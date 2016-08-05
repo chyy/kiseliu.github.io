@@ -84,28 +84,16 @@
 
 
 
-<meta name="description" content="maxIter最大迭代次数。
-regParamregularization parameter 正则化参数。
-elasticNetParamElasticNet混合参数的取值范围为［0, 1］之间。如果alpha = 0, 那么惩罚是L2惩罚；如果alpha = 1, 是L1惩罚。具体可参考 Elastic net regularization。
-tol迭代算法的收敛容错(&amp;gt;= 0)。
-fitI">
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spark中Logistic Regression参数解释">
 <meta property="og:url" content="http://github.com/kiseliu/2016/08/03/spark中logistic-regression参数解析/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="maxIter最大迭代次数。
-regParamregularization parameter 正则化参数。
-elasticNetParamElasticNet混合参数的取值范围为［0, 1］之间。如果alpha = 0, 那么惩罚是L2惩罚；如果alpha = 1, 是L1惩罚。具体可参考 Elastic net regularization。
-tol迭代算法的收敛容错(&amp;gt;= 0)。
-fitI">
-<meta property="og:updated_time" content="2016-08-03T05:05:31.000Z">
+<meta property="og:description">
+<meta property="og:updated_time" content="2016-08-05T09:42:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark中Logistic Regression参数解释">
-<meta name="twitter:description" content="maxIter最大迭代次数。
-regParamregularization parameter 正则化参数。
-elasticNetParamElasticNet混合参数的取值范围为［0, 1］之间。如果alpha = 0, 那么惩罚是L2惩罚；如果alpha = 1, 是L1惩罚。具体可参考 Elastic net regularization。
-tol迭代算法的收敛容错(&amp;gt;= 0)。
-fitI">
+<meta name="twitter:description">
 
 
 
@@ -362,21 +350,7 @@ fitI">
       
 
       
-        <ul>
-<li>maxIter<br>最大迭代次数。</li>
-<li>regParam<br>regularization parameter 正则化参数。</li>
-<li>elasticNetParam<br>ElasticNet混合参数的取值范围为［0, 1］之间。如果alpha = 0, 那么惩罚是L2惩罚；如果alpha = 1, 是L1惩罚。具体可参考 <a href="https://en.wikipedia.org/wiki/Elastic_net_regularization" target="_blank" rel="external">Elastic net regularization</a>。</li>
-<li>tol<br>迭代算法的收敛容错(>= 0)。</li>
-<li>fitIntercept<br>是否要拟合截距项。</li>
-<li>threshold<br>在二元分类预测中，Threshold的值在0～1之间。如果threshold 和 thresholds都设置了，它们必须匹配。比如，如果threshold 是 p, 那么thresholds必须等于to  <a href="">[1-p, p]</a>。</li>
-<li>thresholds<br>多元分类中的Thresholds是为了调整预测每个类别时的概率。数组长度必须和类别数目相等。The class with largest value p/t is predicted, where p is the original probability of that class and t is the class’ threshold.</li>
-<li>standardization<br>是否在拟合模型前对训练特征进行标准化。</li>
-<li>weightCol<br>权重列名。如果不是集合或者为空，我们把所有实例的权重都当作1.0 。</li>
-<li>coefficients<br>模型系数。</li>
-<li>intercept<br>模型截距。</li>
-<li>summary<br>在训练集上得到的模型的总结 (e.g. residuals, mse, r-squared ) 。</li>
-</ul>
-
+        
       
     </div>
 
