@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：1234567891011121314`Traceback (most recent call last):  File &quot;/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py&quot;, line 5, in \&amp;lt;module\&amp;gt;s">
+<meta name="description" content="上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：```python\Traceback (most recent call last):  File “/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py”, line 5, in \spark = SparkSession.build">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spark2.0.0 PySpark依赖包py4j升级问题">
 <meta property="og:url" content="http://github.com/kiseliu/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：1234567891011121314`Traceback (most recent call last):  File &quot;/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py&quot;, line 5, in \&amp;lt;module\&amp;gt;s">
-<meta property="og:updated_time" content="2016-08-01T15:12:01.000Z">
+<meta property="og:description" content="上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：```python\Traceback (most recent call last):  File “/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py”, line 5, in \spark = SparkSession.build">
+<meta property="og:updated_time" content="2016-08-05T06:34:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark2.0.0 PySpark依赖包py4j升级问题">
-<meta name="twitter:description" content="上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：1234567891011121314`Traceback (most recent call last):  File &quot;/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py&quot;, line 5, in \&amp;lt;module\&amp;gt;s">
+<meta name="twitter:description" content="上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：```python\Traceback (most recent call last):  File “/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py”, line 5, in \spark = SparkSession.build">
 
 
 
@@ -116,13 +116,13 @@
 
   <link rel="canonical" href="http://github.com/kiseliu/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/"/>
 
-  <title> Spark2.0.0 PySpark依赖包py4j升级问题 | Welcome to kiseliu's homepage </title>
+  <title> Spark2.0.0 PySpark依赖包py4j升级问题 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '',
@@ -324,6 +324,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/01/spark2-0-pyspark依赖包py4j升级问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -343,8 +350,7 @@
       
 
       
-        <p>上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">`Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py"</span>, line <span class="number">5</span>, <span class="keyword">in</span> \&lt;module\&gt;</span><br><span class="line">spark = SparkSession.builder.master(<span class="string">"local"</span>).appName(<span class="string">'test 2.0'</span>).config(conf=SparkConf()).getOrCreate()</span><br><span class="line">  File <span class="string">"/Users/lyj/Programs/Apache/Spark2/python/pyspark/conf.py"</span>, line <span class="number">104</span>, <span class="keyword">in</span> __init__</span><br><span class="line">SparkContext._ensure_initialized()</span><br><span class="line">  File <span class="string">"/Users/lyj/Programs/Apache/Spark2/python/pyspark/context.py"</span>, line <span class="number">243</span>, <span class="keyword">in</span> _ensure_initialized</span><br><span class="line">SparkContext._gateway = gateway <span class="keyword">or</span> launch_gateway()</span><br><span class="line">  File <span class="string">"/Users/lyj/Programs/Apache/Spark2/python/pyspark/java_gateway.py"</span>, line <span class="number">116</span>, <span class="keyword">in</span> launch_gateway</span><br><span class="line">java_import(gateway.jvm, <span class="string">"org.apache.spark.SparkConf"</span>)</span><br><span class="line">  File <span class="string">"/Library/Python/2.7/site-packages/py4j/java_gateway.py"</span>, line <span class="number">90</span>, <span class="keyword">in</span> java_import</span><br><span class="line">return_value = get_return_value(answer, gateway_client, <span class="keyword">None</span>, <span class="keyword">None</span>)</span><br><span class="line">  File <span class="string">"/Library/Python/2.7/site-packages/py4j/protocol.py"</span>, line <span class="number">306</span>, <span class="keyword">in</span> get_return_value</span><br><span class="line">value = OUTPUT_CONVERTER[type]()(answer[<span class="number">2</span>:](), gateway_client)</span><br><span class="line">KeyError: <span class="string">u'y'</span></span><br></pre></td></tr></table></figure></p>
-<p>`因为用的是PyCharm，之前配置PySpark环境的时候就折腾了一番，所以出了这个问题，我就觉得难不成是环境配置的问题。然后又因为Spark2.0.0整合了SparkContext和SQLContext成为新的入口SparkSession，所以在网上查了很多关于SparkSession的例子，结果又是搞了很久也没解决这个问题。</p>
+        <p>上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：<br>```python<br>\Traceback (most recent call last):<br>  File “/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py”, line 5, in \<module\><br>spark = SparkSession.builder.master(“local”).appName(‘test 2.0’).config(conf=SparkConf()).getOrCreate()<br>  File “/Users/lyj/Programs/Apache/Spark2/python/pyspark/conf.py”, line 104, in <strong>init</strong><br>SparkContext._ensure_initialized()<br>  File “/Users/lyj/Programs/Apache/Spark2/python/pyspark/context.py”, line 243, in _ensure_initialized<br>SparkContext._gateway = gateway or launch_gateway()<br>  File “/Users/lyj/Programs/Apache/Spark2/python/pyspark/java_gateway.py”, line 116, in launch_gateway<br>java_import(gateway.jvm, “org.apache.spark.SparkConf”)<br>  File “/Library/Python/2.7/site-packages/py4j/java_gateway.py”, line 90, in java_import<br>return_value = get_return_value(answer, gateway_client, None, None)<br>  File “/Library/Python/2.7/site-packages/py4j/protocol.py”, line 306, in get_return_value<br>value = OUTPUT_CONVERTER<a href="">type</a>(answer<a href="">2:</a>, gateway_client)<br>KeyError: u’y’<br>```<br>`因为用的是PyCharm，之前配置PySpark环境的时候就折腾了一番，所以出了这个问题，我就觉得难不成是环境配置的问题。然后又因为Spark2.0.0整合了SparkContext和SQLContext成为新的入口SparkSession，所以在网上查了很多关于SparkSession的例子，结果又是搞了很久也没解决这个问题。</module\></p>
 <p>继在好几个技术群里求助未果之后，我只好到Stack Overflow上求助，过了两天终于有人回复我了，附上链接<a href="https://stackoverflow.com/questions/38637988/how-could-i-write-the-right-entry-point-in-spark-2-0-program-actually-pyspark-2" target="_blank" rel="external">https://stackoverflow.com/questions/38637988/how-could-i-write-the-right-entry-point-in-spark-2-0-program-actually-pyspark-2</a> 。万能的Stack Overflow，必须赞一个👍，虽然我总是问一些小白问题，但是都有人回答。</p>
 <p>根据答友提供的解决方案，只需要更新一下Python的py4j库，pip install py4j –upgrade，然后问题就解决了。说到底还是对pyspark底层不了解，即使我知道Spark2.0.0的根目录下的./python/lib/py4j-0.10.1-src.zip 从0.9更新到0.10.1了，错误提示也说到了py4j这个库，我也还是没想到只需要升级一下py4j就没问题了。</p>
 
@@ -385,6 +391,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/08/02/机器学习算法总结/" rel="prev" title="机器学习算法总结——分类篇">
+                机器学习算法总结——分类篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -409,9 +419,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="fb-comments"
-           data-href="http://github.com/kiseliu/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/"
-           data-numposts="10">
+      <div class="ds-thread" data-thread-key="2016/08/01/spark2-0-pyspark依赖包py4j升级问题/"
+           data-title="Spark2.0.0 PySpark依赖包py4j升级问题" data-url="http://github.com/kiseliu/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/">
       </div>
     
   </div>
@@ -456,7 +465,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -465,7 +474,7 @@
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -475,7 +484,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -647,9 +656,28 @@
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kiseliu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
+    
+  
+
+
 
 
 
@@ -682,7 +710,24 @@
 
   
 <script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 </body>

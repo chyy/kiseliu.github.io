@@ -84,15 +84,31 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Welcome to kiseliu's homepage">
-<meta property="og:url" content="http://github.com/kiseliu/tags/pyspark/index.html">
+<meta name="description" content="内建函数的集合
+基本的数学函数
+abs(col): 计算绝对值。
+exp(col): Computes the exponential of the given value.
+cbrt(col): 计算给定值的立方根。
+bround(col, scale=0): Round the given value to scale decimal places using HALF_EVEN roundi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pyspark.sql.functions Module">
+<meta property="og:url" content="http://github.com/kiseliu/2016/08/05/pyspark-sql-functions-module/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description">
+<meta property="og:description" content="内建函数的集合
+基本的数学函数
+abs(col): 计算绝对值。
+exp(col): Computes the exponential of the given value.
+cbrt(col): 计算给定值的立方根。
+bround(col, scale=0): Round the given value to scale decimal places using HALF_EVEN roundi">
+<meta property="og:updated_time" content="2016-08-05T08:47:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Welcome to kiseliu's homepage">
-<meta name="twitter:description">
+<meta name="twitter:title" content="pyspark.sql.functions Module">
+<meta name="twitter:description" content="内建函数的集合
+基本的数学函数
+abs(col): 计算绝对值。
+exp(col): Computes the exponential of the given value.
+cbrt(col): 计算给定值的立方根。
+bround(col, scale=0): Round the given value to scale decimal places using HALF_EVEN roundi">
 
 
 
@@ -113,9 +129,9 @@
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/tags/pyspark/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/2016/08/05/pyspark-sql-functions-module/"/>
 
-  <title> Tag: PySpark | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> pyspark.sql.functions Module | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -154,7 +170,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -262,46 +278,193 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        PySpark
-        <small>Tag</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                pyspark.sql.functions Module
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-05T14:29:10+08:00" content="2016-08-05">
+              2016-08-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/pyspark/" itemprop="url" rel="index">
+                    <span itemprop="name">PySpark</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/05/pyspark-sql-functions-module/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/05/pyspark-sql-functions-module/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>内建函数的集合</p>
+<h2 id="基本的数学函数"><a href="#基本的数学函数" class="headerlink" title="基本的数学函数"></a>基本的数学函数</h2><ul>
+<li>abs(col): 计算绝对值。</li>
+<li>exp(col): Computes the exponential of the given value.</li>
+<li>cbrt(col): 计算给定值的立方根。</li>
+<li>bround(col, scale=0): Round the given value to scale decimal places using HALF_EVEN rounding mode if scale >= 0 or at integral part when scale \&lt; 0.</li>
+<li>ceil(col): 计算给定值的向上取整。</li>
+<li>floor(col): 计算给定值的向下取整。</li>
+<li>sin(col): 计算给定值的正弦。</li>
+<li>asin(col): 计算给定值的反正弦，返回的角度介于-pi/2 到 pi/2 。</li>
+<li>sinh(col):  计算给定值的双曲正弦值。</li>
+<li>cos(col): 计算给定值的余弦。</li>
+<li>acos(col): 计算给定值的反余弦，返回的角度介于 0.0 到 pi 。</li>
+<li>cosh(col): 计算给定值的双曲余弦值。</li>
+<li>tan(col): 计算给定值的正切。</li>
+<li>atan(col): 计算给定值的反正切。</li>
+<li>tanh(col): 计算给定值的双曲正切值。</li>
+<li>atan2(col1, col2): 返回从直角坐标系(x,y)转化到极坐标系(r,theta)的角度theta 。</li>
+<li>corr(col1, col2): Returns a new Column for the Pearson Correlation Coefficient for col1 and col2.</li>
+</ul>
+<h2 id="Spark中的算子"><a href="#Spark中的算子" class="headerlink" title="Spark中的算子"></a>Spark中的算子</h2><ul>
+<li>avg(col): Aggregate function: 返回一个group中的平均值。</li>
+<li>collect_list(col): Aggregate function: returns a list of objects with duplicates. </li>
+<li>collect_set(col): Aggregate function: returns a set of objects with duplicate elements eliminated.</li>
+<li>count(col): Aggregate function: returns the number of items in a group.</li>
+<li>broadcast(df): Marks a DataFrame as small enough for use in broadcast joins.</li>
+</ul>
+<ul>
+<li>asc(col): 返回基于升序的给定的列名的排序表达式。</li>
+<li>desc(col): Returns a sort expression based on the descending order of the given column name.</li>
+<li>add_months(start, months): 返回start之后的months个月的日期。</li>
+<li>approxCountDistinct(col, rsd=None): Returns a new Column for approximate distinct count of col。</li>
+<li>array(*cols): 创建一个新的数组列。参数：cols－列名(string)的list或者具有相同数据类型的列的表达式的列表。</li>
+<li>array_contains(col, value): Collection function: 如果数组包含给定值，返回True。元素和值的集合必须具有相同的类型。参数：col－ 包含数组的列名；value－需要检查的数组中的值。</li>
+</ul>
+<h2 id="对列的一些操作"><a href="#对列的一些操作" class="headerlink" title="对列的一些操作"></a>对列的一些操作</h2><ul>
+<li>coalesce(*cols): 返回不为0的第一列。</li>
+<li>col(col): 根据给定的列名返回相应的列。</li>
+<li>column(col): 根据给定的列名返回相应的列。</li>
+<li>concat(*cols): 把多个输入类型为字符串的列合并成为一列。</li>
+<li>concat_ws(sep, *cols): Concatenates multiple input string columns together into a single string column, using the given separator.</li>
+<li>countDistinct(col, *cols): Returns a new Column for distinct count of col or cols.</li>
+<li>covar_pop(col1, col2): Returns a new Column for the population covariance of col1 and col2.</li>
+</ul>
+<h2 id="关于编码和进制的函数"><a href="#关于编码和进制的函数" class="headerlink" title="关于编码和进制的函数"></a>关于编码和进制的函数</h2><ul>
+<li>ascii(col): Computes the numeric value of the first character of the string column. </li>
+<li>base64(col): Computes the BASE64 encoding of a binary column and returns it as a string column.</li>
+<li>bin(col): Returns the string representation of the binary value of the given column.</li>
+<li>bitwiseNOT(col): Computes bitwise not.</li>
+<li>conv(col, fromBase, toBase): 把字符串列中的数字从一个进制转化为另一个。</li>
+<li>encode(col, charset): Computes the first argument into a binary from a string using the provided character set (one of ‘US-ASCII’, ‘ISO-8859-1’, ‘UTF-8’, ‘UTF-16BE’, ‘UTF-16LE’, ‘UTF-16’).</li>
+<li>decode(col, charset): Computes the first argument into a string from a binary using the provided character set (one of ‘US-ASCII’, ‘ISO-8859-1’, ‘UTF-8’, ‘UTF-16BE’, ‘UTF-16LE’, ‘UTF-16’).</li>
+</ul>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/" itemprop="url">
-              
-                <span itemprop="name">Spark2.0.0 PySpark依赖包py4j升级问题</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-01T22:25:56+08:00"
-              content="2016-08-01" >
-          08-01
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/05/pyspark-ml库中的classification/" rel="next" title="PySpark.ml库中的Classification">
+                <i class="fa fa-chevron-left"></i> PySpark.ml库中的Classification
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -309,6 +472,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/05/pyspark-sql-functions-module/"
+           data-title="pyspark.sql.functions Module" data-url="http://github.com/kiseliu/2016/08/05/pyspark-sql-functions-module/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -328,8 +499,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/myname.png"
@@ -410,6 +590,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本的数学函数"><span class="nav-number">1.</span> <span class="nav-text">基本的数学函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark中的算子"><span class="nav-number">2.</span> <span class="nav-text">Spark中的算子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对列的一些操作"><span class="nav-number">3.</span> <span class="nav-text">对列的一些操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于编码和进制的函数"><span class="nav-number">4.</span> <span class="nav-text">关于编码和进制的函数</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -506,6 +697,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

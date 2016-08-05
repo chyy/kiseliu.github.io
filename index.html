@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -115,13 +115,13 @@
 
   <link rel="canonical" href="http://github.com/kiseliu/"/>
 
-  <title> Welcome to kiseliu's homepage </title>
+  <title> Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '',
@@ -286,6 +286,759 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/05/pyspark-sql-functions-module/" itemprop="url">
+                  pyspark.sql.functions Module
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-05T14:29:10+08:00" content="2016-08-05">
+              2016-08-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/pyspark/" itemprop="url" rel="index">
+                    <span itemprop="name">PySpark</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/05/pyspark-sql-functions-module/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/05/pyspark-sql-functions-module/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          内建函数的集合
+基本的数学函数
+abs(col): 计算绝对值。
+exp(col): Computes the exponential of the given value.
+cbrt(col): 计算给定值的立方根。
+bround(col, scale=0): Round the given value to scale decimal places using HALF_EVEN roundi
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/05/pyspark-sql-functions-module/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/05/pyspark-ml库中的classification/" itemprop="url">
+                  PySpark.ml库中的Classification
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-05T09:20:05+08:00" content="2016-08-05">
+              2016-08-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/05/pyspark-ml库中的classification/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/05/pyspark-ml库中的classification/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          本页将讨论分类和回归算法，也讨论了几个算法的特殊类，如线性方法，树方法和集成方法。
+Logistic RegressionLogistic regression是一种流行的预测二元结果的方法。它是预测输出概率的广义线性模型的一种特殊情况。关于更多实现的背景和细节，可以参考spark.mllib中的logistic regression部分的文档。
+
+目前spark.ml中对于logistic re
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/05/pyspark-ml库中的classification/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/03/using-pre-trained-word-embeddings-in-a-keras-model/" itemprop="url">
+                  Using Pre-Trained Word Embeddings in a Keras Model
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-03T16:16:24+08:00" content="2016-08-03">
+              2016-08-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/deep-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Deep Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/03/using-pre-trained-word-embeddings-in-a-keras-model/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/03/using-pre-trained-word-embeddings-in-a-keras-model/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          在本教程中，我们将带你体验使用预先训练好的词嵌入和卷积神经网络解决文本分类问题的过程。
+What are word embeddings?“Word embeddings”是一种旨在将语义映射到几何空间的自然语言处理技术，它将字典中的每个词和一个数值向量进行关联，比如任意两个向量间的距离(L2距离或者更常见的余弦距离)表示了两个相关联的词汇间的部分语义关系。由这些向量构成的几何空间叫做embedd
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/03/using-pre-trained-word-embeddings-in-a-keras-model/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/03/spark中logistic-regression参数解析/" itemprop="url">
+                  Spark中Logistic Regression参数解释
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-03T11:38:18+08:00" content="2016-08-03">
+              2016-08-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/03/spark中logistic-regression参数解析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/03/spark中logistic-regression参数解析/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+maxIter最大迭代次数。
+regParamregularization parameter 正则化参数。
+elasticNetParamElasticNet混合参数的取值范围为［0, 1］之间。如果alpha = 0, 那么惩罚是L2惩罚；如果alpha = 1, 是L1惩罚。具体可参考 Elastic net regularization。
+tol迭代算法的收敛容错(>= 0)。
+fitI
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/03/spark中logistic-regression参数解析/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/02/机器学习算法总结-聚类/" itemprop="url">
+                  机器学习算法总结——聚类篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-02T18:56:48+08:00" content="2016-08-02">
+              2016-08-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/02/机器学习算法总结-聚类/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/02/机器学习算法总结-聚类/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Clustering基于划分的方法KMeans#### 
+基于密度的方法DBSCAN### 
+### 
+### 
+
+          
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/02/机器学习算法总结-聚类/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/02/机器学习算法总结/" itemprop="url">
+                  机器学习算法总结——分类篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-02T16:53:08+08:00" content="2016-08-02">
+              2016-08-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/02/机器学习算法总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/02/机器学习算法总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          ClassificationKNN
+算法介绍：KNN也叫K最近邻算法，属于lazy learning的一种。当我们需要对未知类别数据点进行类别预测时，我们需要计算它和所有已知类别数据点的距离，并对距离进行排序，取最小的前K个数据，然后计算这K个数据的类别的概率，取概率最大的类别作为该未知类别数据点的类别。
+优点：实现起来非常简单
+缺点：计算量很大，对样本进行预测，需要计算它与所有的数据点的距离。
+
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/02/机器学习算法总结/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/" itemprop="url">
                   Spark2.0.0 PySpark依赖包py4j升级问题
                 </a>
@@ -328,6 +1081,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/01/spark2-0-pyspark依赖包py4j升级问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -349,12 +1109,14 @@
       
         
           
-            <p>上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">`Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py"</span>, line <span class="number">5</span>, <span class="keyword">in</span> \&lt;module\&gt;</span><br><span class="line">spark = SparkSession.builder.master(<span class="string">"local"</span>).appName(<span class="string">'test 2.0'</span>).config(conf=SparkConf()).getOrCreate()</span><br><span class="line">  File <span class="string">"/Users/lyj/Programs/Apache/Spark2/python/pyspark/conf.py"</span>, line <span class="number">104</span>, <span class="keyword">in</span> __init__</span><br><span class="line">SparkContext._ensure_initialized()</span><br><span class="line">  File <span class="string">"/Users/lyj/Programs/Apache/Spark2/python/pyspark/context.py"</span>, line <span class="number">243</span>, <span class="keyword">in</span> _ensure_initialized</span><br><span class="line">SparkContext._gateway = gateway <span class="keyword">or</span> launch_gateway()</span><br><span class="line">  File <span class="string">"/Users/lyj/Programs/Apache/Spark2/python/pyspark/java_gateway.py"</span>, line <span class="number">116</span>, <span class="keyword">in</span> launch_gateway</span><br><span class="line">java_import(gateway.jvm, <span class="string">"org.apache.spark.SparkConf"</span>)</span><br><span class="line">  File <span class="string">"/Library/Python/2.7/site-packages/py4j/java_gateway.py"</span>, line <span class="number">90</span>, <span class="keyword">in</span> java_import</span><br><span class="line">return_value = get_return_value(answer, gateway_client, <span class="keyword">None</span>, <span class="keyword">None</span>)</span><br><span class="line">  File <span class="string">"/Library/Python/2.7/site-packages/py4j/protocol.py"</span>, line <span class="number">306</span>, <span class="keyword">in</span> get_return_value</span><br><span class="line">value = OUTPUT_CONVERTER[type]()(answer[<span class="number">2</span>:](), gateway_client)</span><br><span class="line">KeyError: <span class="string">u'y'</span></span><br></pre></td></tr></table></figure></p>
-<p>`因为用的是PyCharm，之前配置PySpark环境的时候就折腾了一番，所以出了这个问题，我就觉得难不成是环境配置的问题。然后又因为Spark2.0.0整合了SparkContext和SQLContext成为新的入口SparkSession，所以在网上查了很多关于SparkSession的例子，结果又是搞了很久也没解决这个问题。</p>
-<p>继在好几个技术群里求助未果之后，我只好到Stack Overflow上求助，过了两天终于有人回复我了，附上链接<a href="https://stackoverflow.com/questions/38637988/how-could-i-write-the-right-entry-point-in-spark-2-0-program-actually-pyspark-2" target="_blank" rel="external">https://stackoverflow.com/questions/38637988/how-could-i-write-the-right-entry-point-in-spark-2-0-program-actually-pyspark-2</a> 。万能的Stack Overflow，必须赞一个👍，虽然我总是问一些小白问题，但是都有人回答。</p>
-<p>根据答友提供的解决方案，只需要更新一下Python的py4j库，pip install py4j –upgrade，然后问题就解决了。说到底还是对pyspark底层不了解，即使我知道Spark2.0.0的根目录下的./python/lib/py4j-0.10.1-src.zip 从0.9更新到0.10.1了，错误提示也说到了py4j这个库，我也还是没想到只需要升级一下py4j就没问题了。</p>
+          上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：```python\Traceback (most recent call last):  File “/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py”, line 5, in \spark = SparkSession.build
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -444,138 +1206,12 @@
 
           
             
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Machine-Learning-Library-MLlib-Guide"><a href="#Machine-Learning-Library-MLlib-Guide" class="headerlink" title="Machine Learning Library (MLlib) Guide"></a>Machine Learning Library (MLlib) Guide</h3><p><a href="https://spark.apache.org/docs/latest/ml-guide.html" title="Spark2.0官网" target="_blank" rel="external">MLlib</a> 是Spark的机器学习库，它旨在让机器学习算法具有可扩展性，并且很容易实现。它提供的工具如下：</p>
-<ul>
-<li>ML Algorithms: 常用的机器学习算法，如分类，回归，聚类，和协同过滤</li>
-<li>Featurization: 特征抽取，特征转换，特征降维，和特征选择</li>
-<li>Pipelines: 构建，评价，和调优的ML Pipelines工具</li>
-<li>Persistence: 保存和加载算法，模型和Pipelines</li>
-<li>Utilities: linear algebra, statistics, data handling, etc.</li>
-</ul>
-<h3 id="Announcement-DataFrame-based-API-is-primary-API"><a href="#Announcement-DataFrame-based-API-is-primary-API" class="headerlink" title="Announcement: DataFrame-based API is primary API"></a>Announcement: DataFrame-based API is primary API</h3><p><strong>基于RDD的MLlib API现在处于维护模式。</strong><br>对于Spark 2.0，spark.mllib库中基于RDD的APIs已经进入了维护模式。现在 Spark主要的机器学习API是spark.ml库中基于DataFrame的API。</p>
-<h5 id="这意味着什么？"><a href="#这意味着什么？" class="headerlink" title="这意味着什么？"></a>这意味着什么？</h5><ul>
-<li>MLlib依然支持对spark.mllib库中基于RDD的API进行bug维护。</li>
-<li>MLlib不会对基于RDD的API增加新的特性。</li>
-<li>In the Spark 2.x releases, MLlib will add features to the DataFrames-based API to reach feature parity with the RDD-based API.  在Spark 2.x的发行版本中，MLlib将会对基于DataFrames的API增加特性来达到和基于RDD的API进行功能校验。</li>
-<li>在达到功能校验之后(粗略估计是Spark2.2)，基于RDD的API会被废除。</li>
-<li>基于RDD的API可能会被移动到Spark3.0中。</li>
-</ul>
-<h5 id="为什么MLlib要转而提供基于DataFrame的API？"><a href="#为什么MLlib要转而提供基于DataFrame的API？" class="headerlink" title="为什么MLlib要转而提供基于DataFrame的API？"></a>为什么MLlib要转而提供基于DataFrame的API？</h5><ul>
-<li>比起 RDDs，DataFrames 提供了更多对用户友好的API。DataFrames 的许多好处包括 Spark 数据源，SQL/DataFrame查询，Tungsten 和 Catalyst 优化，跨语言的一致性API。</li>
-<li>MLlib中基于DataFrame的API在机器学习算法和跨语言方面提供了一致的API。</li>
-<li>DataFrame使得使用ML pipelines更加便捷，尤其是特征转换。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/22/中文分词/" itemprop="url">
-                  中文分词
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/28/spark2.0更新说明/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/28/spark2.0更新说明/" itemprop="commentsCount"></span>
                 </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-07-22T11:56:18+08:00" content="2016-07-22">
-              2016-07-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nlp/" itemprop="url" rel="index">
-                    <span itemprop="name">NLP</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
             
           
 
@@ -598,9 +1234,18 @@
       
         
           
-            <p>###<br><a href="https://github.com/HIT-SCIR/ltp-cws">哈工大LTP</a></p>
+          Machine Learning Library (MLlib) GuideMLlib 是Spark的机器学习库，它旨在让机器学习算法具有可扩展性，并且很容易实现。它提供的工具如下：
 
-          
+ML Algorithms: 常用的机器学习算法，如分类，回归，聚类，和协同过滤
+Featurization: 特征抽取，特征转换，特征降维，和特征选择
+Pipelines: 构建，评价，和调优的ML Pipeli
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/28/spark2.0更新说明/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -690,6 +1335,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/23/Github多账号以及Pages搭建问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/23/Github多账号以及Pages搭建问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -711,24 +1363,14 @@
       
         
           
-            <p>今天终于搭建好了自己的第一个博客，眼看工作马上就满一年，可是自己却从未写过什么。身边的同学，同事都用CSDN，但是我每次查资料进到CSDN的网页，看到比较糟糕的文字和公式排版，就根本看不进去内容。直到前两天看到别人分享的有关机器学习的文章，页面的清爽让我感到眼前一亮。然后我注意到域名是github.io，就通过搜索查到了github pages，然后开始萌生在github上开始建立自己的博客的想法。</p>
-<p>想法总是美好的，可是实际操作起来不搞个1-2天是根本解决不了问题的，尤其是在我的github 2个帐号冲突的问题没有解决，以及我从来没有在本地仓库和远程仓库进行过任何交互的情况下，还想要结合Jekyll来搭建自己的github pages。</p>
-<p>废话不多说，直接进入正题。</p>
-<h2 id="Github-pages搭建问题"><a href="#Github-pages搭建问题" class="headerlink" title="Github pages搭建问题"></a>Github pages搭建问题</h2><p>我的搭建过程主要是参考 <a href="http://pizida.com/technology/2016/03/03/use-jekyll-create-blog-on-github/" target="_blank" rel="external">痞子达</a> 同学的这篇博客，博客写的很详细，但是我第一次按照这个流程走的时候，还是遇到了问题。</p>
-<ul>
-<li><p>username.git.com VS username.git.io<br>username.git.com 这个域名已经被废除了，作者的文章是在  username.git.io 启用之前写的，所以这里指明一下。我当时排查错误的时候，怀疑过是不是应该把username.git.io 改成 username.git.com (原谅我这种奇葩的想法)。</p>
-</li>
-<li><p>master VS gh-pages<br>直到我今天搞了半天，终于定位到是分支的问题，我记得之前按照上述博客中的步骤提交的时候，报错信息里提到了master 和 gh-pages。今天我从头到尾又试了一次，也出现了同样的问题(我当时的操作是git push origin master，可是我的.git配置的是gh-pages分支 ，自然是要出现问题的)。</p>
-</li>
-</ul>
-<p>我们在git clone <a href="https://github.com/username/username.github.io.git">https://github.com/username/username.github.io.git</a> 的时候，一定要确保 clone 的分支是master，如果clone下来的是 gh-pages，最后程序是不能提交到master分支，只能提交到gh-pages分支，但是gh-pages分支的内容不会在<a href="https://username.git.io" target="_blank" rel="external">https://username.git.io</a> 网页上显示出来(根据<a href="http://jekyllcn.com/docs/github-pages/" target="_blank" rel="external">jekyll官网</a>上说是因为我们建立的是个人主页，如果是项目主页，站点分支会被放到gh-pages分支上，不过我表示不知道怎么建立项目主页)。</p>
-<p>具体修改的方法是在username.git.io目录下，选择Settings —> Branches，然后将默认分支改为master，点击update即可。</p>
-<h2 id="GitHub-多个帐号冲突的问题"><a href="#GitHub-多个帐号冲突的问题" class="headerlink" title="GitHub 多个帐号冲突的问题"></a>GitHub 多个帐号冲突的问题</h2><p>前天花了很长时间解决帐号冲突的问题，之前对Github不是很了解(其实现在也不是很了解)，只是注册了帐号，然后在本地安装了git，没有真正地使用过git。在这里推荐 廖雪峰 老师的git教程，我个人觉得说的还是比较清楚的，新手不妨看看。</p>
-<p>解决该问题的主要思想就是先生成两组密钥，建立两个账号的安全连接；然后提交代码的时候，指定不同的帐户采用不同的密钥，具体可以参考如下链接(没想到百度经验还是有点用的)：<a href="http://jingyan.baidu.com/article/219f4bf7f6f8e1de442d3829.html" target="_blank" rel="external">同一台电脑设置多个公钥与不同Github帐号交互</a>。</p>
-<p>如果在提交代码的时候，遇到错误说，该次提交被某个用户拒绝了，就说明你远程仓库的地址不是本次提交的用户的，你可以通过 git remote set-url origin github.com:githubname/repository.git  这个命令把远程仓库origin的地址修改为本次提交的用户的地址。(远程仓库的名称是可以修改的，根据你自己的进行设置)</p>
-<p>以上就作为我的第一篇博客吧，搭建这个博客遇到很多问题，想都说清楚实属不易，如果有问题，欢迎大家一起讨论。</p>
+          今天终于搭建好了自己的第一个博客，眼看工作马上就满一年，可是自己却从未写过什么。身边的同学，同事都用CSDN，但是我每次查资料进到CSDN的网页，看到比较糟糕的文字和公式排版，就根本看不进去内容。直到前两天看到别人分享的有关机器学习的文章，页面的清爽让我感到眼前一亮。然后我注意到域名是github.io，就通过搜索查到了github pages，然后开始萌生在github上开始建立自己的博客的想法
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/23/Github多账号以及Pages搭建问题/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -796,7 +1438,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -805,7 +1447,7 @@
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -815,7 +1457,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -972,9 +1614,28 @@
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kiseliu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
+    
+  
+
+
 
 
 
@@ -1007,7 +1668,24 @@
 
   
 <script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 </body>

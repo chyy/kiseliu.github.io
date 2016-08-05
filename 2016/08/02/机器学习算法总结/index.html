@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Spark," />
+  <meta name="keywords" content="ML," />
 
 
 
@@ -84,28 +84,25 @@
 
 
 
-<meta name="description" content="Machine Learning Library (MLlib) GuideMLlib 是Spark的机器学习库，它旨在让机器学习算法具有可扩展性，并且很容易实现。它提供的工具如下：
-
-ML Algorithms: 常用的机器学习算法，如分类，回归，聚类，和协同过滤
-Featurization: 特征抽取，特征转换，特征降维，和特征选择
-Pipelines: 构建，评价，和调优的ML Pipeli">
+<meta name="description" content="ClassificationKNN
+算法介绍：KNN也叫K最近邻算法，属于lazy learning的一种。当我们需要对未知类别数据点进行类别预测时，我们需要计算它和所有已知类别数据点的距离，并对距离进行排序，取最小的前K个数据，然后计算这K个数据的类别的概率，取概率最大的类别作为该未知类别数据点的类别。
+优点：实现起来非常简单
+缺点：计算量很大，对样本进行预测，需要计算它与所有的数据点的距离。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spark2.0.0 MLlib 更新说明">
-<meta property="og:url" content="http://github.com/kiseliu/2016/07/28/spark2.0更新说明/index.html">
+<meta property="og:title" content="机器学习算法总结——分类篇">
+<meta property="og:url" content="http://github.com/kiseliu/2016/08/02/机器学习算法总结/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="Machine Learning Library (MLlib) GuideMLlib 是Spark的机器学习库，它旨在让机器学习算法具有可扩展性，并且很容易实现。它提供的工具如下：
-
-ML Algorithms: 常用的机器学习算法，如分类，回归，聚类，和协同过滤
-Featurization: 特征抽取，特征转换，特征降维，和特征选择
-Pipelines: 构建，评价，和调优的ML Pipeli">
-<meta property="og:updated_time" content="2016-08-01T15:08:27.000Z">
+<meta property="og:description" content="ClassificationKNN
+算法介绍：KNN也叫K最近邻算法，属于lazy learning的一种。当我们需要对未知类别数据点进行类别预测时，我们需要计算它和所有已知类别数据点的距离，并对距离进行排序，取最小的前K个数据，然后计算这K个数据的类别的概率，取概率最大的类别作为该未知类别数据点的类别。
+优点：实现起来非常简单
+缺点：计算量很大，对样本进行预测，需要计算它与所有的数据点的距离。">
+<meta property="og:updated_time" content="2016-08-05T03:12:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spark2.0.0 MLlib 更新说明">
-<meta name="twitter:description" content="Machine Learning Library (MLlib) GuideMLlib 是Spark的机器学习库，它旨在让机器学习算法具有可扩展性，并且很容易实现。它提供的工具如下：
-
-ML Algorithms: 常用的机器学习算法，如分类，回归，聚类，和协同过滤
-Featurization: 特征抽取，特征转换，特征降维，和特征选择
-Pipelines: 构建，评价，和调优的ML Pipeli">
+<meta name="twitter:title" content="机器学习算法总结——分类篇">
+<meta name="twitter:description" content="ClassificationKNN
+算法介绍：KNN也叫K最近邻算法，属于lazy learning的一种。当我们需要对未知类别数据点进行类别预测时，我们需要计算它和所有已知类别数据点的距离，并对距离进行排序，取最小的前K个数据，然后计算这K个数据的类别的概率，取概率最大的类别作为该未知类别数据点的类别。
+优点：实现起来非常简单
+缺点：计算量很大，对样本进行预测，需要计算它与所有的数据点的距离。">
 
 
 
@@ -126,9 +123,9 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/2016/07/28/spark2.0更新说明/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/2016/08/02/机器学习算法总结/"/>
 
-  <title> Spark2.0.0 MLlib 更新说明 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 机器学习算法总结——分类篇 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -296,7 +293,7 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
             
             
               
-                Spark2.0.0 MLlib 更新说明
+                机器学习算法总结——分类篇
               
             
           </h1>
@@ -308,8 +305,8 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-07-28T12:59:58+08:00" content="2016-07-28">
-              2016-07-28
+            <time itemprop="dateCreated" datetime="2016-08-02T16:53:08+08:00" content="2016-08-02">
+              2016-08-02
             </time>
           </span>
 
@@ -322,8 +319,8 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">Spark</span>
+                  <a href="/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
                   </a>
                 </span>
 
@@ -338,8 +335,8 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/28/spark2.0更新说明/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/28/spark2.0更新说明/" itemprop="commentsCount"></span>
+                <a href="/2016/08/02/机器学习算法总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/02/机器学习算法总结/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -362,28 +359,39 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
       
 
       
-        <h3 id="Machine-Learning-Library-MLlib-Guide"><a href="#Machine-Learning-Library-MLlib-Guide" class="headerlink" title="Machine Learning Library (MLlib) Guide"></a>Machine Learning Library (MLlib) Guide</h3><p><a href="https://spark.apache.org/docs/latest/ml-guide.html" title="Spark2.0官网" target="_blank" rel="external">MLlib</a> 是Spark的机器学习库，它旨在让机器学习算法具有可扩展性，并且很容易实现。它提供的工具如下：</p>
-<ul>
-<li>ML Algorithms: 常用的机器学习算法，如分类，回归，聚类，和协同过滤</li>
-<li>Featurization: 特征抽取，特征转换，特征降维，和特征选择</li>
-<li>Pipelines: 构建，评价，和调优的ML Pipelines工具</li>
-<li>Persistence: 保存和加载算法，模型和Pipelines</li>
-<li>Utilities: linear algebra, statistics, data handling, etc.</li>
+        <h2 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h2><h3 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h3><ul>
+<li>算法介绍：<br>KNN也叫K最近邻算法，属于lazy learning的一种。<br>当我们需要对未知类别数据点进行类别预测时，我们需要计算它和所有已知类别数据点的距离，并对距离进行排序，取最小的前K个数据，然后计算这K个数据的类别的概率，取概率最大的类别作为该未知类别数据点的类别。</li>
+<li>优点：实现起来非常简单</li>
+<li>缺点：计算量很大，对样本进行预测，需要计算它与所有的数据点的距离。</li>
 </ul>
-<h3 id="Announcement-DataFrame-based-API-is-primary-API"><a href="#Announcement-DataFrame-based-API-is-primary-API" class="headerlink" title="Announcement: DataFrame-based API is primary API"></a>Announcement: DataFrame-based API is primary API</h3><p><strong>基于RDD的MLlib API现在处于维护模式。</strong><br>对于Spark 2.0，spark.mllib库中基于RDD的APIs已经进入了维护模式。现在 Spark主要的机器学习API是spark.ml库中基于DataFrame的API。</p>
-<h5 id="这意味着什么？"><a href="#这意味着什么？" class="headerlink" title="这意味着什么？"></a>这意味着什么？</h5><ul>
-<li>MLlib依然支持对spark.mllib库中基于RDD的API进行bug维护。</li>
-<li>MLlib不会对基于RDD的API增加新的特性。</li>
-<li>In the Spark 2.x releases, MLlib will add features to the DataFrames-based API to reach feature parity with the RDD-based API.  在Spark 2.x的发行版本中，MLlib将会对基于DataFrames的API增加特性来达到和基于RDD的API进行功能校验。</li>
-<li>在达到功能校验之后(粗略估计是Spark2.2)，基于RDD的API会被废除。</li>
-<li>基于RDD的API可能会被移动到Spark3.0中。</li>
+<h3 id="Naive-Bayes"><a href="#Naive-Bayes" class="headerlink" title="Naive Bayes"></a>Naive Bayes</h3><ul>
+<li>算法介绍：<br>朴素贝叶斯是贝叶斯决策理论(选择具有最高概率的决策)的一部分，贝叶斯分类器的一个扩展，它假定特征之间相互独立。<br>$$C=\underset { { C }_{ i } }{ argmax } P({ C }_{ i }|X) =\underset { { C }_{ i } }{ argmax } \frac { P(X|{ C }_{ i })P({ C }_{ i }) }{ P(X) } =\underset { { C }_{ i } }{ argmax } P(X|{ C }_{ i })P({ C }_{ i }) $$<br>$$=\underset { { C }_{ i } }{ argmax } P({ x }_{ 1 },…,{ x }_{ k }|{ C }_{ i })P({ C }_{ i }) =\underset { { C }_{ i } }{ argmax } \prod _{ j=1 }^{ k }{ P({ x }_{ j }|{ C }_{ i }) } P({ C }_{ i }) $$<br>朴素贝叶斯的参数估计有两种：极大似然估计和贝叶斯估计。贝叶斯估计是为了防止估计的概率为0，从而加入了平滑因子lambda。如果lambda为1，则称为拉普拉斯平滑，或拉普拉斯估计。<br>用于文本分类的朴素贝叶斯模型，其特征计算可以使用词集模型或词袋模型。</li>
+<li>优点：模型简单，容易训练，只需要遍历所有数据集一次。</li>
+<li>缺点：特征之间的假设太过简单。</li>
 </ul>
-<h5 id="为什么MLlib要转而提供基于DataFrame的API？"><a href="#为什么MLlib要转而提供基于DataFrame的API？" class="headerlink" title="为什么MLlib要转而提供基于DataFrame的API？"></a>为什么MLlib要转而提供基于DataFrame的API？</h5><ul>
-<li>比起 RDDs，DataFrames 提供了更多对用户友好的API。DataFrames 的许多好处包括 Spark 数据源，SQL/DataFrame查询，Tungsten 和 Catalyst 优化，跨语言的一致性API。</li>
-<li>MLlib中基于DataFrame的API在机器学习算法和跨语言方面提供了一致的API。</li>
-<li>DataFrame使得使用ML pipelines更加便捷，尤其是特征转换。</li>
+<h3 id="Perceptron"><a href="#Perceptron" class="headerlink" title="Perceptron"></a>Perceptron</h3><ul>
+<li>算法介绍：<br>我们对于分类任务(以二元分类为例)的出发点是，希望在特征空间中找到一个超平面很好地将二类数据分开。<br>感知机是二元分类的线性分类模型，如果我们使用0-1损失函数来度量分类误差，在数据线性可分的条件下，可以使用PLA算法求解；如果数据线性不可分，使用Pocket算法求解。如果使用平方损失函数来度量分类误差，可以使用梯度下降法，或者随机梯度下降法进行求解。<br>感知机学习算法存在许多解，这些解依赖初值的选择，以及迭代过程中误分类点的顺序。<ul>
+<li>优点：</li>
+<li>缺点：</li>
 </ul>
-
+</li>
+</ul>
+<h3 id="Support-Vector-Machines"><a href="#Support-Vector-Machines" class="headerlink" title="Support Vector Machines"></a>Support Vector Machines</h3><ul>
+<li>算法介绍：<br>我们知道</li>
+<li>优点：</li>
+<li>缺点：</li>
+</ul>
+<h3 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h3><ul>
+<li>算法介绍：<br>Logistic Regression和Perceptron一样，都是二元分类的线性模型。区别在于Logistic Regression可以被看成是一种概率估计。对于未知类别的数据点，我们可能不仅想知道它是属于类别0，还是类别1，我们还想知道它有多大概率属于这些类别。<br>Logistic Regression使用的是cross entropy误差</li>
+<li>优点：</li>
+<li>缺点：</li>
+</ul>
+<h3 id="Decision-Tree-Classification-Tree"><a href="#Decision-Tree-Classification-Tree" class="headerlink" title="Decision Tree-Classification Tree"></a>Decision Tree-Classification Tree</h3><ul>
+<li>算法介绍：<br>决策树学习的本质是从训练集中归纳出一组分类规则，然后将这种规则用树表示出来。给定一个类别未知的数据X，从决策树的根结点出发，测试数据X的属性值，一路跟踪到某个叶节点，该节点即是数据X的类别预测。<br>对训练数据集正确分类的决策树可能有很多，也可能一个都没有，因此我们要找的是和训练集矛盾较小的决策树，由于在损失函数意义下寻找最优的决策树是一个NP问题，所以我们采用启发式的方法近似求解。具体来说就是，对决策树的构造中，我们不断地选取对数据有足够分类能力的特征。<br>决策树的生成对应于模型的局部选择，而剪枝则考虑了全局。</li>
+<li>优点：具有可解释性，很多情况下，性能良好。</li>
+<li>缺点：训练过程计算量大，且较难扩展。<h3 id="Bagging-and-Boosting"><a href="#Bagging-and-Boosting" class="headerlink" title="Bagging and Boosting"></a>Bagging and Boosting</h3></li>
+</ul>
+<h2 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h2><h3 id="Linear-Regression"><a href="#Linear-Regression" class="headerlink" title="Linear Regression"></a>Linear Regression</h3><h4 id="Ordinary-Least-Squares"><a href="#Ordinary-Least-Squares" class="headerlink" title="Ordinary Least Squares"></a>Ordinary Least Squares</h4><h4 id="Locally-Weighted-Linear-Regression"><a href="#Locally-Weighted-Linear-Regression" class="headerlink" title="Locally Weighted Linear Regression"></a>Locally Weighted Linear Regression</h4><h3 id="Decision-Tree-Regression-Tree"><a href="#Decision-Tree-Regression-Tree" class="headerlink" title="Decision Tree-Regression Tree"></a>Decision Tree-Regression Tree</h3>
       
     </div>
 
@@ -404,7 +412,7 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
       
         <div class="post-tags">
           
-            <a href="/tags/spark/" rel="tag">#Spark</a>
+            <a href="/tags/ml/" rel="tag">#ML</a>
           
         </div>
       
@@ -413,16 +421,16 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/23/Github多账号以及Pages搭建问题/" rel="next" title="Github多账号以及Pages搭建问题">
-                <i class="fa fa-chevron-left"></i> Github多账号以及Pages搭建问题
+              <a href="/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/" rel="next" title="Spark2.0.0 PySpark依赖包py4j升级问题">
+                <i class="fa fa-chevron-left"></i> Spark2.0.0 PySpark依赖包py4j升级问题
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/" rel="prev" title="Spark2.0.0 PySpark依赖包py4j升级问题">
-                Spark2.0.0 PySpark依赖包py4j升级问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/02/机器学习算法总结-聚类/" rel="prev" title="机器学习算法总结——聚类篇">
+                机器学习算法总结——聚类篇 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -449,8 +457,8 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/28/spark2.0更新说明/"
-           data-title="Spark2.0.0 MLlib 更新说明" data-url="http://github.com/kiseliu/2016/07/28/spark2.0更新说明/">
+      <div class="ds-thread" data-thread-key="2016/08/02/机器学习算法总结/"
+           data-title="机器学习算法总结——分类篇" data-url="http://github.com/kiseliu/2016/08/02/机器学习算法总结/">
       </div>
     
   </div>
@@ -572,7 +580,7 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-Learning-Library-MLlib-Guide"><span class="nav-number">1.</span> <span class="nav-text">Machine Learning Library (MLlib) Guide</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Announcement-DataFrame-based-API-is-primary-API"><span class="nav-number">2.</span> <span class="nav-text">Announcement: DataFrame-based API is primary API</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#这意味着什么？"><span class="nav-number">2.0.1.</span> <span class="nav-text">这意味着什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么MLlib要转而提供基于DataFrame的API？"><span class="nav-number">2.0.2.</span> <span class="nav-text">为什么MLlib要转而提供基于DataFrame的API？</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Classification"><span class="nav-number">1.</span> <span class="nav-text">Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#KNN"><span class="nav-number">1.1.</span> <span class="nav-text">KNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Naive-Bayes"><span class="nav-number">1.2.</span> <span class="nav-text">Naive Bayes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Perceptron"><span class="nav-number">1.3.</span> <span class="nav-text">Perceptron</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Support-Vector-Machines"><span class="nav-number">1.4.</span> <span class="nav-text">Support Vector Machines</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logistic-Regression"><span class="nav-number">1.5.</span> <span class="nav-text">Logistic Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-Tree-Classification-Tree"><span class="nav-number">1.6.</span> <span class="nav-text">Decision Tree-Classification Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bagging-and-Boosting"><span class="nav-number">1.7.</span> <span class="nav-text">Bagging and Boosting</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regression"><span class="nav-number">2.</span> <span class="nav-text">Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Regression"><span class="nav-number">2.1.</span> <span class="nav-text">Linear Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ordinary-Least-Squares"><span class="nav-number">2.1.1.</span> <span class="nav-text">Ordinary Least Squares</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Locally-Weighted-Linear-Regression"><span class="nav-number">2.1.2.</span> <span class="nav-text">Locally Weighted Linear Regression</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-Tree-Regression-Tree"><span class="nav-number">2.2.</span> <span class="nav-text">Decision Tree-Regression Tree</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
