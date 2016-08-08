@@ -96,7 +96,7 @@ Logistic Regression简要介绍Logistic regression是一种流行的预测二元
 Logistic Regression简要介绍Logistic regression是一种流行的预测二元结果的方法。它是预测输出概率的广义线性模型的一种特殊情况。关于更多实现的背景和细节，可以参考spark.mllib中的logistic regression部分的文档。
 
 目前spark.ml中对于logisti">
-<meta property="og:updated_time" content="2016-08-05T10:00:27.000Z">
+<meta property="og:updated_time" content="2016-08-05T10:02:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PySpark.ml库中的Classification">
 <meta name="twitter:description" content="本页将讨论分类和回归算法，也讨论了几个算法的特殊类，如线性方法，树方法和集成方法。
@@ -388,10 +388,7 @@ Logistic Regression简要介绍Logistic regression是一种流行的预测二元
 <ul>
 <li>Smoothing: 设置朴素贝叶斯的平滑因子，该值必须大于等于0，默认是1.0 。</li>
 <li>ModelType:设置模型的类型，即是二元模型还是多元模型。</li>
-<li>Thresholds: 设置阈值，在多元分类中用来调整对每个类别进行预测的概率。该数组的长度必须等于类别的数目，且值大于等于0 。p/t 值最大的那个类别为预测的类别，这里p为该类别的原始值，t是该类的阈值。</li>
-</ul>
-<h3 id="NaiveBayesModel"><a href="#NaiveBayesModel" class="headerlink" title="NaiveBayesModel"></a>NaiveBayesModel</h3><p>由NaiveBayes拟合的模型。</p>
-<ul>
+<li>Thresholds: 设置阈值，在多元分类中用来调整对每个类别进行预测的概率。该数组的长度必须等于类别的数目，且值大于等于0 。p/t 值最大的那个类别为预测的类别，这里p为该类别的原始值，t是该类的阈值。<h3 id="NaiveBayesModel"><a href="#NaiveBayesModel" class="headerlink" title="NaiveBayesModel"></a>NaiveBayesModel</h3>由NaiveBayes拟合的模型。</li>
 <li>pi: 类别的先验值的log。</li>
 <li>theta: 类别的条件概率的log。</li>
 <li>prediction: 输出预测的类别。</li>
@@ -505,7 +502,7 @@ Logistic Regression简要介绍Logistic regression是一种流行的预测二元
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -514,7 +511,7 @@ Logistic Regression简要介绍Logistic regression是一种流行的预测二元
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -524,7 +521,7 @@ Logistic Regression简要介绍Logistic regression是一种流行的预测二元
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>

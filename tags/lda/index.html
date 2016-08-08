@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Spark," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,28 +84,15 @@
 
 
 
-<meta name="description" content="Machine Learning Library (MLlib) GuideMLlib 是Spark的机器学习库，它旨在让机器学习算法具有可扩展性，并且很容易实现。它提供的工具如下：
-
-ML Algorithms: 常用的机器学习算法，如分类，回归，聚类，和协同过滤
-Featurization: 特征抽取，特征转换，特征降维，和特征选择
-Pipelines: 构建，评价，和调优的ML Pipeli">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Spark2.0.0 MLlib 更新说明">
-<meta property="og:url" content="http://github.com/kiseliu/2016/07/28/spark2.0更新说明/index.html">
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Welcome to kiseliu's homepage">
+<meta property="og:url" content="http://github.com/kiseliu/tags/lda/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="Machine Learning Library (MLlib) GuideMLlib 是Spark的机器学习库，它旨在让机器学习算法具有可扩展性，并且很容易实现。它提供的工具如下：
-
-ML Algorithms: 常用的机器学习算法，如分类，回归，聚类，和协同过滤
-Featurization: 特征抽取，特征转换，特征降维，和特征选择
-Pipelines: 构建，评价，和调优的ML Pipeli">
-<meta property="og:updated_time" content="2016-08-01T15:08:27.000Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spark2.0.0 MLlib 更新说明">
-<meta name="twitter:description" content="Machine Learning Library (MLlib) GuideMLlib 是Spark的机器学习库，它旨在让机器学习算法具有可扩展性，并且很容易实现。它提供的工具如下：
-
-ML Algorithms: 常用的机器学习算法，如分类，回归，聚类，和协同过滤
-Featurization: 特征抽取，特征转换，特征降维，和特征选择
-Pipelines: 构建，评价，和调优的ML Pipeli">
+<meta name="twitter:title" content="Welcome to kiseliu's homepage">
+<meta name="twitter:description">
 
 
 
@@ -126,9 +113,9 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/2016/07/28/spark2.0更新说明/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/tags/lda/"/>
 
-  <title> Spark2.0.0 MLlib 更新说明 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Tag: LDA | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -167,7 +154,7 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -275,171 +262,46 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Spark2.0.0 MLlib 更新说明
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-07-28T12:59:58+08:00" content="2016-07-28">
-              2016-07-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">Spark</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/28/spark2.0更新说明/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/28/spark2.0更新说明/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="Machine-Learning-Library-MLlib-Guide"><a href="#Machine-Learning-Library-MLlib-Guide" class="headerlink" title="Machine Learning Library (MLlib) Guide"></a>Machine Learning Library (MLlib) Guide</h3><p><a href="https://spark.apache.org/docs/latest/ml-guide.html" title="Spark2.0官网" target="_blank" rel="external">MLlib</a> 是Spark的机器学习库，它旨在让机器学习算法具有可扩展性，并且很容易实现。它提供的工具如下：</p>
-<ul>
-<li>ML Algorithms: 常用的机器学习算法，如分类，回归，聚类，和协同过滤</li>
-<li>Featurization: 特征抽取，特征转换，特征降维，和特征选择</li>
-<li>Pipelines: 构建，评价，和调优的ML Pipelines工具</li>
-<li>Persistence: 保存和加载算法，模型和Pipelines</li>
-<li>Utilities: linear algebra, statistics, data handling, etc.</li>
-</ul>
-<h3 id="Announcement-DataFrame-based-API-is-primary-API"><a href="#Announcement-DataFrame-based-API-is-primary-API" class="headerlink" title="Announcement: DataFrame-based API is primary API"></a>Announcement: DataFrame-based API is primary API</h3><p><strong>基于RDD的MLlib API现在处于维护模式。</strong><br>对于Spark 2.0，spark.mllib库中基于RDD的APIs已经进入了维护模式。现在 Spark主要的机器学习API是spark.ml库中基于DataFrame的API。</p>
-<h5 id="这意味着什么？"><a href="#这意味着什么？" class="headerlink" title="这意味着什么？"></a>这意味着什么？</h5><ul>
-<li>MLlib依然支持对spark.mllib库中基于RDD的API进行bug维护。</li>
-<li>MLlib不会对基于RDD的API增加新的特性。</li>
-<li>In the Spark 2.x releases, MLlib will add features to the DataFrames-based API to reach feature parity with the RDD-based API.  在Spark 2.x的发行版本中，MLlib将会对基于DataFrames的API增加特性来达到和基于RDD的API进行功能校验。</li>
-<li>在达到功能校验之后(粗略估计是Spark2.2)，基于RDD的API会被废除。</li>
-<li>基于RDD的API可能会被移动到Spark3.0中。</li>
-</ul>
-<h5 id="为什么MLlib要转而提供基于DataFrame的API？"><a href="#为什么MLlib要转而提供基于DataFrame的API？" class="headerlink" title="为什么MLlib要转而提供基于DataFrame的API？"></a>为什么MLlib要转而提供基于DataFrame的API？</h5><ul>
-<li>比起 RDDs，DataFrames 提供了更多对用户友好的API。DataFrames 的许多好处包括 Spark 数据源，SQL/DataFrame查询，Tungsten 和 Catalyst 优化，跨语言的一致性API。</li>
-<li>MLlib中基于DataFrame的API在机器学习算法和跨语言方面提供了一致的API。</li>
-<li>DataFrame使得使用ML pipelines更加便捷，尤其是特征转换。</li>
-</ul>
-
-      
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        LDA
+        <small>Tag</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-      
-    </div>
-
-    <div>
-      
+            <a class="post-title-link" href="/2016/08/08/lda理论详解/" itemprop="url">
+              
+                <span itemprop="name">LDA理论详解</span>
+              
+            </a>
         
+      </h1>
 
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-08-08T14:30:15+08:00"
+              content="2016-08-08" >
+          08-08
+        </time>
+      </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/spark/" rel="tag">#Spark</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/06/23/Github多账号以及Pages搭建问题/" rel="next" title="Github多账号以及Pages搭建问题">
-                <i class="fa fa-chevron-left"></i> Github多账号以及Pages搭建问题
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/" rel="prev" title="Spark2.0.0 PySpark依赖包py4j升级问题">
-                Spark2.0.0 PySpark依赖包py4j升级问题 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -447,14 +309,6 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/07/28/spark2.0更新说明/"
-           data-title="Spark2.0.0 MLlib 更新说明" data-url="http://github.com/kiseliu/2016/07/28/spark2.0更新说明/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -474,17 +328,8 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/myname.png"
@@ -565,17 +410,6 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-Learning-Library-MLlib-Guide"><span class="nav-number">1.</span> <span class="nav-text">Machine Learning Library (MLlib) Guide</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Announcement-DataFrame-based-API-is-primary-API"><span class="nav-number">2.</span> <span class="nav-text">Announcement: DataFrame-based API is primary API</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#这意味着什么？"><span class="nav-number">2.0.1.</span> <span class="nav-text">这意味着什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么MLlib要转而提供基于DataFrame的API？"><span class="nav-number">2.0.2.</span> <span class="nav-text">为什么MLlib要转而提供基于DataFrame的API？</span></a></li></ol></li></ol></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -672,10 +506,6 @@ Pipelines: 构建，评价，和调优的ML Pipeli">
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 
