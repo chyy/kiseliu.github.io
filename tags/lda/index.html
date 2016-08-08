@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PyMongo," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,28 +84,15 @@
 
 
 
-<meta name="description" content="import pymongo
-
-db = pymongo.MongoClient(&amp;apos;192.1.1.131&amp;apos;, 27017, replicaset=&amp;apos;mongoreplset&amp;apos;).Spider
-for item in db.SinaNewsSpider.find({}).limit(100):
-    print &amp;apos;----------------">
-<meta property="og:type" content="article">
-<meta property="og:title" content="PyMongo简单使用">
-<meta property="og:url" content="http://github.com/kiseliu/2016/08/08/pymongo简单使用/index.html">
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Welcome to kiseliu's homepage">
+<meta property="og:url" content="http://github.com/kiseliu/tags/lda/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="import pymongo
-
-db = pymongo.MongoClient(&amp;apos;192.1.1.131&amp;apos;, 27017, replicaset=&amp;apos;mongoreplset&amp;apos;).Spider
-for item in db.SinaNewsSpider.find({}).limit(100):
-    print &amp;apos;----------------">
-<meta property="og:updated_time" content="2016-08-08T06:29:27.000Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PyMongo简单使用">
-<meta name="twitter:description" content="import pymongo
-
-db = pymongo.MongoClient(&amp;apos;192.1.1.131&amp;apos;, 27017, replicaset=&amp;apos;mongoreplset&amp;apos;).Spider
-for item in db.SinaNewsSpider.find({}).limit(100):
-    print &amp;apos;----------------">
+<meta name="twitter:title" content="Welcome to kiseliu's homepage">
+<meta name="twitter:description">
 
 
 
@@ -126,9 +113,9 @@ for item in db.SinaNewsSpider.find({}).limit(100):
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/2016/08/08/pymongo简单使用/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/tags/lda/"/>
 
-  <title> PyMongo简单使用 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Tag: LDA | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -167,7 +154,7 @@ for item in db.SinaNewsSpider.find({}).limit(100):
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -275,160 +262,46 @@ for item in db.SinaNewsSpider.find({}).limit(100):
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                PyMongo简单使用
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-08T14:25:39+08:00" content="2016-08-08">
-              2016-08-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/08/pymongo简单使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/08/pymongo简单使用/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <pre><code>import pymongo
-
-db = pymongo.MongoClient(&apos;192.1.1.131&apos;, 27017, replicaset=&apos;mongoreplset&apos;).Spider
-for item in db.SinaNewsSpider.find({}).limit(100):
-    print &apos;-------------------------------------&apos;
-    print item[&apos;info&apos;][&apos;author&apos;]
-    print item[&apos;info&apos;][&apos;title&apos;]
-    print item[&apos;info&apos;][&apos;cate_name&apos;]
-    print item[&apos;info&apos;][&apos;content&apos;]
-    print item[&apos;url&apos;]
-
-
-for cate in cate_name:
-    print cate, db.SinaNewsSpider.find({&apos;info.cate_name&apos;:cate}).count()
-</code></pre>
-      
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        LDA
+        <small>Tag</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-      
-    </div>
-
-    <div>
-      
+            <a class="post-title-link" href="/2016/08/08/lda理论详解/" itemprop="url">
+              
+                <span itemprop="name">LDA理论详解</span>
+              
+            </a>
         
+      </h1>
 
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-08-08T14:30:15+08:00"
+              content="2016-08-08" >
+          08-08
+        </time>
+      </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/pymongo/" rel="tag">#PyMongo</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/08/05/pyspark-sql-functions-module/" rel="next" title="pyspark.sql.functions Module">
-                <i class="fa fa-chevron-left"></i> pyspark.sql.functions Module
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -436,14 +309,6 @@ for cate in cate_name:
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/08/08/pymongo简单使用/"
-           data-title="PyMongo简单使用" data-url="http://github.com/kiseliu/2016/08/08/pymongo简单使用/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -463,17 +328,8 @@ for cate in cate_name:
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/myname.png"
@@ -554,17 +410,6 @@ for cate in cate_name:
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -661,10 +506,6 @@ for cate in cate_name:
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 
