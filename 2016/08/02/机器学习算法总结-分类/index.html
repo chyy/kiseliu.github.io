@@ -1,0 +1,774 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Helvetica Neue:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ML,Classification," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="ClassificationKNN
+算法介绍：KNN也叫K最近邻算法，属于lazy learning的一种。当我们需要对未知类别数据点进行类别预测时，我们需要计算它和所有已知类别数据点的距离，并对距离进行排序，取最小的前K个数据，然后计算这K个数据的类别的概率，取概率最大的类别作为该未知类别数据点的类别。
+优点：实现起来非常简单
+缺点：计算量很大，对样本进行预测，需要计算它与所有的数据点的距离。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习算法总结——分类篇">
+<meta property="og:url" content="http://github.com/kiseliu/2016/08/02/机器学习算法总结-分类/index.html">
+<meta property="og:site_name" content="Welcome to kiseliu's homepage">
+<meta property="og:description" content="ClassificationKNN
+算法介绍：KNN也叫K最近邻算法，属于lazy learning的一种。当我们需要对未知类别数据点进行类别预测时，我们需要计算它和所有已知类别数据点的距离，并对距离进行排序，取最小的前K个数据，然后计算这K个数据的类别的概率，取概率最大的类别作为该未知类别数据点的类别。
+优点：实现起来非常简单
+缺点：计算量很大，对样本进行预测，需要计算它与所有的数据点的距离。">
+<meta property="og:updated_time" content="2016-08-10T08:55:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习算法总结——分类篇">
+<meta name="twitter:description" content="ClassificationKNN
+算法介绍：KNN也叫K最近邻算法，属于lazy learning的一种。当我们需要对未知类别数据点进行类别预测时，我们需要计算它和所有已知类别数据点的距离，并对距离进行排序，取最小的前K个数据，然后计算这K个数据的类别的概率，取概率最大的类别作为该未知类别数据点的类别。
+优点：实现起来非常简单
+缺点：计算量很大，对样本进行预测，需要计算它与所有的数据点的距离。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://github.com/kiseliu/2016/08/02/机器学习算法总结-分类/"/>
+
+  <title> 机器学习算法总结——分类篇 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Welcome to kiseliu's homepage</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Here's a dream chaser.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                机器学习算法总结——分类篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-02T16:53:08+08:00" content="2016-08-02">
+              2016-08-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/02/机器学习算法总结-分类/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/02/机器学习算法总结-分类/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h2><h3 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h3><ul>
+<li>算法介绍：<br>KNN也叫K最近邻算法，属于lazy learning的一种。<br>当我们需要对未知类别数据点进行类别预测时，我们需要计算它和所有已知类别数据点的距离，并对距离进行排序，取最小的前K个数据，然后计算这K个数据的类别的概率，取概率最大的类别作为该未知类别数据点的类别。</li>
+<li>优点：实现起来非常简单</li>
+<li>缺点：计算量很大，对样本进行预测，需要计算它与所有的数据点的距离。</li>
+</ul>
+<h3 id="Naive-Bayes"><a href="#Naive-Bayes" class="headerlink" title="Naive Bayes"></a>Naive Bayes</h3><ul>
+<li>算法介绍：<br>朴素贝叶斯是贝叶斯决策理论(选择具有最高概率的决策)的一部分，贝叶斯分类器的一个扩展，它假定特征之间相互独立。<br>$$C=\underset { { C }_{ i } }{ argmax } P({ C }_{ i }|X) =\underset { { C }_{ i } }{ argmax } \frac { P(X|{ C }_{ i })P({ C }_{ i }) }{ P(X) } =\underset { { C }_{ i } }{ argmax } P(X|{ C }_{ i })P({ C }_{ i }) $$<br>$$=\underset { { C }_{ i } }{ argmax } P({ x }_{ 1 },…,{ x }_{ k }|{ C }_{ i })P({ C }_{ i }) =\underset { { C }_{ i } }{ argmax } \prod _{ j=1 }^{ k }{ P({ x }_{ j }|{ C }_{ i }) } P({ C }_{ i }) $$<br>朴素贝叶斯的参数估计有两种：极大似然估计和贝叶斯估计。贝叶斯估计是为了防止估计的概率为0，从而加入了平滑因子lambda。如果lambda为1，则称为拉普拉斯平滑，或拉普拉斯估计。<br>用于文本分类的朴素贝叶斯模型，其特征计算可以使用词集模型或词袋模型。</li>
+<li>优点：模型简单，容易训练，只需要遍历所有数据集一次。</li>
+<li>缺点：特征之间的假设太过简单。</li>
+</ul>
+<h3 id="Perceptron"><a href="#Perceptron" class="headerlink" title="Perceptron"></a>Perceptron</h3><ul>
+<li>算法介绍：<br>我们对于分类任务(以二元分类为例)的出发点是，希望在特征空间中找到一个超平面很好地将二类数据分开。<br>感知机是二元分类的线性分类模型，如果我们使用0-1损失函数来度量分类误差，在数据线性可分的条件下，可以使用PLA算法求解；如果数据线性不可分，使用Pocket算法求解。如果使用平方损失函数来度量分类误差，可以使用梯度下降法，或者随机梯度下降法进行求解。<br>感知机学习算法存在许多解，这些解依赖初值的选择，以及迭代过程中误分类点的顺序。<ul>
+<li>优点：</li>
+<li>缺点：</li>
+</ul>
+</li>
+</ul>
+<h3 id="Support-Vector-Machines"><a href="#Support-Vector-Machines" class="headerlink" title="Support Vector Machines"></a>Support Vector Machines</h3><ul>
+<li>算法介绍：<br>我们知道</li>
+<li>优点：</li>
+<li>缺点：</li>
+</ul>
+<h3 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h3><ul>
+<li>算法介绍：<br>Logistic Regression和Perceptron一样，都是二元分类的线性模型。区别在于Logistic Regression可以被看成是一种概率估计。对于未知类别的数据点，我们可能不仅想知道它是属于类别0，还是类别1，我们还想知道它有多大概率属于这些类别。<br>Logistic Regression使用的是cross entropy误差</li>
+<li>优点：</li>
+<li>缺点：</li>
+</ul>
+<h3 id="Decision-Tree-Classification-Tree"><a href="#Decision-Tree-Classification-Tree" class="headerlink" title="Decision Tree-Classification Tree"></a>Decision Tree-Classification Tree</h3><ul>
+<li>算法介绍：<br>决策树学习的本质是从训练集中归纳出一组分类规则，然后将这种规则用树表示出来。给定一个类别未知的数据X，从决策树的根结点出发，测试数据X的属性值，一路跟踪到某个叶节点，该节点即是数据X的类别预测。<br>对训练数据集正确分类的决策树可能有很多，也可能一个都没有，因此我们要找的是和训练集矛盾较小的决策树，由于在损失函数意义下寻找最优的决策树是一个NP问题，所以我们采用启发式的方法近似求解。具体来说就是，对决策树的构造中，我们不断地选取对数据有足够分类能力的特征。<br>决策树的生成对应于模型的局部选择，而剪枝则考虑了全局。</li>
+<li>优点：具有可解释性，很多情况下，性能良好。</li>
+<li>缺点：训练过程计算量大，且较难扩展。<h3 id="Bagging-and-Boosting"><a href="#Bagging-and-Boosting" class="headerlink" title="Bagging and Boosting"></a>Bagging and Boosting</h3></li>
+</ul>
+<h2 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h2><h3 id="Linear-Regression"><a href="#Linear-Regression" class="headerlink" title="Linear Regression"></a>Linear Regression</h3><h4 id="Ordinary-Least-Squares"><a href="#Ordinary-Least-Squares" class="headerlink" title="Ordinary Least Squares"></a>Ordinary Least Squares</h4><h4 id="Locally-Weighted-Linear-Regression"><a href="#Locally-Weighted-Linear-Regression" class="headerlink" title="Locally Weighted Linear Regression"></a>Locally Weighted Linear Regression</h4><h3 id="Decision-Tree-Regression-Tree"><a href="#Decision-Tree-Regression-Tree" class="headerlink" title="Decision Tree-Regression Tree"></a>Decision Tree-Regression Tree</h3>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ml/" rel="tag">#ML</a>
+          
+            <a href="/tags/classification/" rel="tag">#Classification</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/" rel="next" title="Spark2.0.0 PySpark依赖包py4j升级问题">
+                <i class="fa fa-chevron-left"></i> Spark2.0.0 PySpark依赖包py4j升级问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/02/机器学习算法总结-聚类/" rel="prev" title="机器学习算法总结——聚类篇">
+                机器学习算法总结——聚类篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/02/机器学习算法总结-分类/"
+           data-title="机器学习算法总结——分类篇" data-url="http://github.com/kiseliu/2016/08/02/机器学习算法总结-分类/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myname.png"
+               alt="kiseliu" />
+          <p class="site-author-name" itemprop="name">kiseliu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/">
+                
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kiseliu" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/kiseliu" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/kiseliu" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Classification"><span class="nav-number">1.</span> <span class="nav-text">Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#KNN"><span class="nav-number">1.1.</span> <span class="nav-text">KNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Naive-Bayes"><span class="nav-number">1.2.</span> <span class="nav-text">Naive Bayes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Perceptron"><span class="nav-number">1.3.</span> <span class="nav-text">Perceptron</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Support-Vector-Machines"><span class="nav-number">1.4.</span> <span class="nav-text">Support Vector Machines</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logistic-Regression"><span class="nav-number">1.5.</span> <span class="nav-text">Logistic Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-Tree-Classification-Tree"><span class="nav-number">1.6.</span> <span class="nav-text">Decision Tree-Classification Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bagging-and-Boosting"><span class="nav-number">1.7.</span> <span class="nav-text">Bagging and Boosting</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regression"><span class="nav-number">2.</span> <span class="nav-text">Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Regression"><span class="nav-number">2.1.</span> <span class="nav-text">Linear Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ordinary-Least-Squares"><span class="nav-number">2.1.1.</span> <span class="nav-text">Ordinary Least Squares</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Locally-Weighted-Linear-Regression"><span class="nav-number">2.1.2.</span> <span class="nav-text">Locally Weighted Linear Regression</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-Tree-Regression-Tree"><span class="nav-number">2.2.</span> <span class="nav-text">Decision Tree-Regression Tree</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kiseliu</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kiseliu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
