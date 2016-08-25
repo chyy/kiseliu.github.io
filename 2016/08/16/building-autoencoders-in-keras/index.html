@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="autoencoder,keras," />
+  <meta name="keywords" content="Deep Learning，Keras," />
 
 
 
@@ -111,7 +111,9 @@ What are autoencoders?“Autoencoder”是一种数据压缩算法，它的压�
 
 What are autoencoders?“Autoencoder”是一种数据压缩算法，它的压缩和解压函数是1)数据专用的，2)有损失的，3)自动从样本中学习而不是人工设计的。此外，在">
 <meta property="og:image" content="https://github.com/kiseliu/MarkDownPictures/blob/master/dl/%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8.png">
-<meta property="og:updated_time" content="2016-08-18T13:15:43.000Z">
+<meta property="og:image" content="https://github.com/kiseliu/MarkDownPictures/blob/master/dl/%E7%A8%80%E7%96%8F%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8.png">
+<meta property="og:image" content="https://github.com/kiseliu/MarkDownPictures/blob/master/dl/%E6%B7%B1%E5%BA%A6%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8.png">
+<meta property="og:updated_time" content="2016-08-25T03:57:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Building Autoencoders in Keras">
 <meta name="twitter:description" content="本节，我们将回答关于自编码的一些常见的问题，我们将给出下面几个模型的代码示例：
@@ -328,7 +330,7 @@ What are autoencoders?“Autoencoder”是一种数据压缩算法，它的压�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-16T12:50:35+08:00" content="2016-08-16">
+            <time itemprop="dateCreated" datetime="2016-08-16T16:16:24+08:00" content="2016-08-16">
               2016-08-16
             </time>
           </span>
@@ -398,7 +400,7 @@ What are autoencoders?“Autoencoder”是一种数据压缩算法，它的压�
 <p>3) 自编码器自动从数据样本中学习，这是一个有用的性质。it means that it is easy to train specialized instances of the algorithm that will perform well on a specific type of input.它不需要任何新的设计，只需要合适的训练数据。</p>
 <p>要想构建一个自编码器，你需要三件事：编码函数，解码函数，和衡量数据的压缩表示和解压表示间的信息损失的距离函数(i.e. a “loss” function)。编码器和解码器需要选择是参数方程(尤其是神经网络)，并且对于距离函数是可微分的，这样编码/解码函数的参数可以通过使用SGD减小重构损失进行优化。这非常简单，你甚至不需要理解任何文字就可以开始使用自编码器。</p>
 <h2 id="Are-they-good-at-data-compression"><a href="#Are-they-good-at-data-compression" class="headerlink" title="Are they good at data compression?"></a>Are they good at data compression?</h2><p>通常不是这样的，比如在图像压缩中，很难训练一个自编码器做的比基础算法，像JPEG效果好。它能做到的唯一的方法就是，限制在一种非常特殊的图片(比如，JPEG做得不好的图片上)。自编码器是数据专用的的事实让它们对于现实世界的数据压缩问题通常都是不实际的：你只能把它们用在和训练集相似的数据上，因此想要让它们变得通用需要大量的训练数据。但是未来的进步可能会改变这一现状，谁知道呢？</p>
-<h2 id="What-are-autoencoders-good-for"><a href="#What-are-autoencoders-good-for" class="headerlink" title="What are autoencoders good for?"></a>What are autoencoders good for?</h2><p>自编码器很少用在实际的应用中。In 2012 they briefly found an application in greedy layer-wise pretraining for deep convolutional neural networks <a href="https://stackoverflow.com/questions/37758496/python-keras-theano-wrong-dimensions-for-deep-autoencoder" target="_blank" rel="external">1</a>，但是它很快就过时了，因为我们开始意识到，更好的随机权重初始化方案足以让我们从头开始训练深度网络。在2014年，batch normalization [2] 开始允许更深的网络，从2015年末我们可以使用残差学习随意从头训练深度网络[3]。</p>
+<h2 id="What-are-autoencoders-good-for"><a href="#What-are-autoencoders-good-for" class="headerlink" title="What are autoencoders good for?"></a>What are autoencoders good for?</h2><p>自编码器很少用在实际的应用中。In 2012 they briefly found an application in greedy layer-wise pretraining for deep convolutional neural networks <a href="https://stackoverflow.com/questions/37758496/python-keras-theano-wrong-dimensions-for-deep-autoencoder" target="_blank" rel="external">1</a>，但是它很快就过时了，因为我们开始意识到，更好的随机权重初始化方案足以让我们从头开始训练深度网络。在2014年，batch normalization <a href="https://stackoverflow.com/questions/37758496/python-keras-theano-wrong-dimensions-for-deep-autoencoder" target="_blank" rel="external">2</a> 开始允许更深的网络，从2015年末我们可以使用残差学习随意从头训练深度网络<a href="http://keras-cn.readthedocs.io/en/latest/backend/" target="_blank" rel="external">3</a>。</p>
 <p>如今自编码器的两个有趣的实际应用是<strong>数据去噪</strong>(本文后续会说)，和用于<strong>数据可视化的降维</strong>。有了合适的维度和稀疏性限制，自编码器可以学习数据投影，它比PCA或者其它基本的技术更有趣。</p>
 <p>For 2D visualization specifically, t-SNE (pronounced “tee-snee”) is probably the best algorithm around, but it typically requires relatively low-dimensional data. So a good strategy for visualizing similarity relationships in high-dimensional data is to start by using an autoencoder to compress your data into a low-dimensional space (e.g. 32 dimensional), then use t-SNE for mapping the compressed data to a 2D plane. Note that a nice parametric implementation of t-SNE in Keras was developed by Kyle McDonald and is available on Github. Otherwise scikit-learn also has a simple and practical implementation.</p>
 <h2 id="So-what’s-the-big-deal-with-autoencoders"><a href="#So-what’s-the-big-deal-with-autoencoders" class="headerlink" title="So what’s the big deal with autoencoders?"></a>So what’s the big deal with autoencoders?</h2><h2 id="Let’s-build-the-simplest-possible-autoencoder"><a href="#Let’s-build-the-simplest-possible-autoencoder" class="headerlink" title="Let’s build the simplest possible autoencoder"></a>Let’s build the simplest possible autoencoder</h2><p>我们先从最简单的单层全连接神经网络开始建立编码器和解码器：</p>
@@ -455,8 +457,21 @@ for i in range(n):
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)
 plt.show()
-</code></pre><p>最终经过压缩再解压后的图片效果如下：<br><img src="https://github.com/kiseliu/MarkDownPictures/blob/master/dl/%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8.png" alt="">          </p>
-<h2 id="Adding-a-sparsity-constraint-on-the-encoded-representations"><a href="#Adding-a-sparsity-constraint-on-the-encoded-representations" class="headerlink" title="Adding a sparsity constraint on the encoded representations"></a>Adding a sparsity constraint on the encoded representations</h2><h2 id="Deep-autoencoder"><a href="#Deep-autoencoder" class="headerlink" title="Deep autoencoder"></a>Deep autoencoder</h2><p>我们不必限制编码器或者解码器为单层，相反我们可以多叠几层，比如：</p>
+</code></pre><p>最终经过压缩再解压后的图片效果如下：<br><img src="https://github.com/kiseliu/MarkDownPictures/blob/master/dl/%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8.png" alt="">  </p>
+<h2 id="Adding-a-sparsity-constraint-on-the-encoded-representations"><a href="#Adding-a-sparsity-constraint-on-the-encoded-representations" class="headerlink" title="Adding a sparsity constraint on the encoded representations"></a>Adding a sparsity constraint on the encoded representations</h2><p>在前面的例子中，编码表示只受到隐藏层大小(32)的限制。在这样的情况下，隐藏层做的事情是学习PCA的近似表示。另一种限制表示被压缩的方法是对隐藏层表示的行为加入稀疏性限制，在给定的时刻只有少数的单元被启动。在Keras，可以通过在Dense 层加入 activity_regularizer 做到：_<br>    from keras import regularizers</p>
+<pre><code>encoding_dim = 32
+
+input_img = Input(shape=(784,))
+# add a Dense layer with a L1 activity regularizer
+encoded = Dense(encoding_dim, activation=&apos;relu&apos;,
+                activity_regularizer=regularizers.activity_l1(10e-5))(input_img)
+decoded = Dense(784, activation=&apos;sigmoid&apos;)(encoded)
+
+autoencoder = Model(input=input_img, output=decoded)
+</code></pre><p>我们让模型训练迭代100次(模型加入正则化更不容易过拟合，并且可以被训练地更久)，结束后训练损失是0.11，测试损失是0.10。这两者的差别主要是因为在训练过程中，被加入到损失中的正则化项(大概有0.01)。</p>
+<p>这里是新的可视化结果：<br><img src="https://github.com/kiseliu/MarkDownPictures/blob/master/dl/%E7%A8%80%E7%96%8F%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8.png" alt=""></p>
+<p>They look pretty similar to the previous model, the only significant difference being the sparsity of the encoded representations. encoded_imgs.mean() yields a value 3.33 (over our 10,000 test images), whereas with the previous model the same quantity was 7.30. So our new model yields encoded representations that are twice sparser. </p>
+<h2 id="Deep-autoencoder"><a href="#Deep-autoencoder" class="headerlink" title="Deep autoencoder"></a>Deep autoencoder</h2><p>我们不必限制编码器或者解码器为单层，相反我们可以多叠几层，比如：</p>
 <pre><code>#coding:utf-8
 from keras.layers import Input, Dense
 from keras.models import Model
@@ -518,7 +533,50 @@ for i in range(n):
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)
 plt.show()
-</code></pre><p>注意，由于构建了深度解码器，在单独构建解码器的时候，不能再取最后一层作为解码器了，因为此时最后一层的输入是128维，而此时encoding dim是32维，所以程序会报错，具体可以参考<a href="https://stackoverflow.com/questions/37758496/python-keras-theano-wrong-dimensions-for-deep-autoencoder" target="_blank" rel="external">stack overflow上的回答</a>，开始我也犯了同样的错误。</p>
+</code></pre><p>注意，由于构建了深度解码器，在单独构建解码器的时候，不能再取最后一层作为解码器了，因为此时最后一层的输入是128维，而此时encoding dim是32维，所以程序会报错，具体可以参考<a href="https://stackoverflow.com/questions/37758496/python-keras-theano-wrong-dimensions-for-deep-autoencoder" target="_blank" rel="external">stack overflow上的回答</a>，开始我也犯了同样的错误。<br>最终经过压缩和解压后的图像如下：<br><img src="https://github.com/kiseliu/MarkDownPictures/blob/master/dl/%E6%B7%B1%E5%BA%A6%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8.png" alt=""></p>
+<h2 id="Convolutional-autoencoder"><a href="#Convolutional-autoencoder" class="headerlink" title="Convolutional autoencoder"></a>Convolutional autoencoder</h2><p>由于我们的输入是图像，使用卷积神经网络作为编码器和解码器是合理的。在实际的场景中，应用在图像上的自编码器通常是卷积自编码器，它们很容易表现地更好。</p>
+<p>让我们实现一个。编码器将由Convolution2D 和 MaxPooling2D (max pooling being used for spatial down-sampling) 层堆叠组成，解码器将由Convolution2D 和 UpSampling2D 层堆叠成。</p>
+<pre><code>#coding:utf-8
+import numpy as np
+from keras.layers import Input, Dense, Convolution2D, MaxPooling2D, UpSampling2D
+from keras.models import Model
+from keras.datasets import mnist
+
+input_img = Input(shape=(1, 28, 28))
+x = Convolution2D(16, 3, 3, activation=&apos;relu&apos;, border_mode=&apos;same&apos;)(input_img)
+x = MaxPooling2D((2, 2), border_mode=&apos;same&apos;)(x)
+x = Convolution2D(8, 3, 3, activation=&apos;relu&apos;, border_mode=&apos;same&apos;)(x)
+x = MaxPooling2D((2, 2), border_mode=&apos;same&apos;)(x)
+x = Convolution2D(8 ,3, 3, activation=&apos;relu&apos;, border_mode=&apos;same&apos;)(x)
+encoded = MaxPooling2D((2,2), border_mode=&apos;same&apos;)(x)
+
+x = Convolution2D(8, 3, 3, activation=&apos;relu&apos;, border_mode=&apos;same&apos;)(encoded)
+x = UpSampling2D((2,2))(x)
+x = Convolution2D(8, 3, 3, activation=&apos;relu&apos;, border_mode=&apos;same&apos;)(x)
+x = UpSampling2D((2,2))(x)
+x = Convolution2D(16, 3, 3, activation=&apos;relu&apos;)(x)
+x = UpSampling2D((2,2))(x)
+decoded = Convolution2D(1, 3, 3, activation=&apos;sigmoid&apos;, border_mode=&apos;same&apos;)(x)
+
+autoencoder = Model(input_img, decoded)
+autoencoder.compile(optimizer=&apos;adadelta&apos;, loss=&apos;binary_crossentropy&apos;)
+
+(x_train, _), (x_test, _) = mnist.load_data()
+
+x_train = x_train.astype(&apos;float32&apos;) / 255.
+x_test = x_test.astype(&apos;float32&apos;) / 255.
+x_train = np.reshape(x_train, (len(x_train), 1, 28, 28))
+x_test = np.reshape(x_test, (len(x_test), 1, 28, 28))
+</code></pre><p>为了说明如何可视化训练过程中模型的结果，我们将使用TensorFlow backendand 和 TensorBoard callback。</p>
+<p>首先打开终端，然后开启TensorBoard服务器，它会从你指定的文件夹读取日志。</p>
+<pre><code>tensorboard --logdir=/Users/lyj/DeepLearning/tmp/autoencoder
+</code></pre><p>然后训练模型，在callbacks列表中，我们传递一个TensorBoard callback实例。每一轮迭代过后，该callback会把日志写入你指定的文件夹，然后它会被TensorBoard服务器读取。</p>
+<pre><code>from keras.callbacks import TensorBoard
+autoencoder.fit(x_train, x_train, nb_epoch=50, batch_size=128, shuffle=True,validation_data=(x_test, x_test),
+                 callbacks=[TensorBoard(log_dir=&apos;/Users/lyj/DeepLearning/tmp/autoencoder&apos;)])
+</code></pre><p>这里需要注意，Keras默认是把then当作后端的，如果我们要用TensorBoard，需要把后端改成tensorflow，具体见<a href="http://keras-cn.readthedocs.io/en/latest/backend/" target="_blank" rel="external">http://keras-cn.readthedocs.io/en/latest/backend/</a>。</p>
+<p>我们可以在TensorBoard 页面监控训练(通过<a href="http://0.0.0.0:6006" target="_blank" rel="external">http://0.0.0.0:6006</a> 网址)：</p>
+<p>模型收敛时损失为0.094，比我们前面的模型好得多(主要是因为编码表示的更大的熵能力，128维 vs 32维)。让我们看下重塑的数字：</p>
 
       
     </div>
@@ -540,9 +598,7 @@ plt.show()
       
         <div class="post-tags">
           
-            <a href="/tags/autoencoder/" rel="tag">#autoencoder</a>
-          
-            <a href="/tags/keras/" rel="tag">#keras</a>
+            <a href="/tags/deep-learning，keras/" rel="tag">#Deep Learning，Keras</a>
           
         </div>
       
@@ -629,7 +685,7 @@ plt.show()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -648,7 +704,7 @@ plt.show()
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -706,7 +762,7 @@ plt.show()
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-are-autoencoders"><span class="nav-number">1.</span> <span class="nav-text">What are autoencoders?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Are-they-good-at-data-compression"><span class="nav-number">2.</span> <span class="nav-text">Are they good at data compression?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-are-autoencoders-good-for"><span class="nav-number">3.</span> <span class="nav-text">What are autoencoders good for?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#So-what’s-the-big-deal-with-autoencoders"><span class="nav-number">4.</span> <span class="nav-text">So what’s the big deal with autoencoders?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Let’s-build-the-simplest-possible-autoencoder"><span class="nav-number">5.</span> <span class="nav-text">Let’s build the simplest possible autoencoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adding-a-sparsity-constraint-on-the-encoded-representations"><span class="nav-number">6.</span> <span class="nav-text">Adding a sparsity constraint on the encoded representations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-autoencoder"><span class="nav-number">7.</span> <span class="nav-text">Deep autoencoder</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-are-autoencoders"><span class="nav-number">1.</span> <span class="nav-text">What are autoencoders?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Are-they-good-at-data-compression"><span class="nav-number">2.</span> <span class="nav-text">Are they good at data compression?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-are-autoencoders-good-for"><span class="nav-number">3.</span> <span class="nav-text">What are autoencoders good for?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#So-what’s-the-big-deal-with-autoencoders"><span class="nav-number">4.</span> <span class="nav-text">So what’s the big deal with autoencoders?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Let’s-build-the-simplest-possible-autoencoder"><span class="nav-number">5.</span> <span class="nav-text">Let’s build the simplest possible autoencoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adding-a-sparsity-constraint-on-the-encoded-representations"><span class="nav-number">6.</span> <span class="nav-text">Adding a sparsity constraint on the encoded representations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-autoencoder"><span class="nav-number">7.</span> <span class="nav-text">Deep autoencoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolutional-autoencoder"><span class="nav-number">8.</span> <span class="nav-text">Convolutional autoencoder</span></a></li></ol></div>
             
           </div>
         </section>
