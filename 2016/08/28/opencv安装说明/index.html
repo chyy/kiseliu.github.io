@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="BP算法,神经网络," />
+  <meta name="keywords" content="OpenCV," />
 
 
 
@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="原理## 
-局限性随着层数越多，权重变化越小，越学习不到东西参考论文Understanding the difficulty of training deep feedforward neural networks 2006年之前深层神经网络没有被成功训练过，这之后有几个算法可以成功地训练深层神经网络，并且实验结果讨论了更深vs更浅的网络的优越性。所有的实验结果都是根据新的初始化方式或者训练机制得">
+<meta name="description" content="说明：本文参考炼数成金讲师罗韵的课程《开源计算机视觉库OpenCV从入门到应用（第一期）》。
+下载Linux版本源码这里有两部分代码opencv和opencv_contrib需要下载，其中opencv库是opencv的核心库，opencv_contrib是最新贡献但不是很成熟的函数库。由于国内网络防火墙问题，在编译过程中，会因为ippicv_linux_20151201.tgz下载错误导致编译失败">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BP算法">
-<meta property="og:url" content="http://github.com/kiseliu/2016/08/09/bp算法/index.html">
+<meta property="og:title" content="OpenCV安装说明">
+<meta property="og:url" content="http://github.com/kiseliu/2016/08/28/opencv安装说明/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="原理## 
-局限性随着层数越多，权重变化越小，越学习不到东西参考论文Understanding the difficulty of training deep feedforward neural networks 2006年之前深层神经网络没有被成功训练过，这之后有几个算法可以成功地训练深层神经网络，并且实验结果讨论了更深vs更浅的网络的优越性。所有的实验结果都是根据新的初始化方式或者训练机制得">
-<meta property="og:updated_time" content="2016-08-10T09:40:00.000Z">
+<meta property="og:description" content="说明：本文参考炼数成金讲师罗韵的课程《开源计算机视觉库OpenCV从入门到应用（第一期）》。
+下载Linux版本源码这里有两部分代码opencv和opencv_contrib需要下载，其中opencv库是opencv的核心库，opencv_contrib是最新贡献但不是很成熟的函数库。由于国内网络防火墙问题，在编译过程中，会因为ippicv_linux_20151201.tgz下载错误导致编译失败">
+<meta property="og:updated_time" content="2016-08-28T11:16:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BP算法">
-<meta name="twitter:description" content="原理## 
-局限性随着层数越多，权重变化越小，越学习不到东西参考论文Understanding the difficulty of training deep feedforward neural networks 2006年之前深层神经网络没有被成功训练过，这之后有几个算法可以成功地训练深层神经网络，并且实验结果讨论了更深vs更浅的网络的优越性。所有的实验结果都是根据新的初始化方式或者训练机制得">
+<meta name="twitter:title" content="OpenCV安装说明">
+<meta name="twitter:description" content="说明：本文参考炼数成金讲师罗韵的课程《开源计算机视觉库OpenCV从入门到应用（第一期）》。
+下载Linux版本源码这里有两部分代码opencv和opencv_contrib需要下载，其中opencv库是opencv的核心库，opencv_contrib是最新贡献但不是很成熟的函数库。由于国内网络防火墙问题，在编译过程中，会因为ippicv_linux_20151201.tgz下载错误导致编译失败">
 
 
 
@@ -117,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/2016/08/09/bp算法/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/2016/08/28/opencv安装说明/"/>
 
-  <title> BP算法 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> OpenCV安装说明 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -287,7 +287,7 @@
             
             
               
-                BP算法
+                OpenCV安装说明
               
             
           </h1>
@@ -299,8 +299,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-09T09:26:51+08:00" content="2016-08-09">
-              2016-08-09
+            <time itemprop="dateCreated" datetime="2016-08-28T18:19:53+08:00" content="2016-08-28">
+              2016-08-28
             </time>
           </span>
 
@@ -329,8 +329,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/09/bp算法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/09/bp算法/" itemprop="commentsCount"></span>
+                <a href="/2016/08/28/opencv安装说明/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/opencv安装说明/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -353,8 +353,49 @@
       
 
       
-        <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>## </p>
-<h2 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h2><h3 id="随着层数越多，权重变化越小，越学习不到东西"><a href="#随着层数越多，权重变化越小，越学习不到东西" class="headerlink" title="随着层数越多，权重变化越小，越学习不到东西"></a>随着层数越多，权重变化越小，越学习不到东西</h3><p>参考论文<a href="">Understanding the difficulty of training deep feedforward neural networks </a><br>2006年之前深层神经网络没有被成功训练过，这之后有几个算法可以成功地训练深层神经网络，并且实验结果讨论了更深vs更浅的网络的优越性。所有的实验结果都是根据新的初始化方式或者训练机制得到的。我们的目标是为了更好的理解，为什么随机初始的标准梯度下降方法在深的神经网络中表现的如此糟糕，更好地理解这些近期相关的成果，并帮助在未来设计更好的算法。我们首先考察非线性激活函数的影响。我们发现随机初始的logistic sigmoid激活函数不适合深层网络，因为它的均值会引起top hidden layer达到saturation。<br>出人意料的是，我们发现，饱和的单位可以自行迁出饱和，尽管速度缓慢，这解释了训练神经网络时，有时会看到的高原。我们还发现了一个比较少saturate的新的非线性的激活函数，它会很有帮助。</p>
+        <p>说明：本文参考炼数成金讲师罗韵的课程《开源计算机视觉库OpenCV从入门到应用（第一期）》。</p>
+<h2 id="下载Linux版本源码"><a href="#下载Linux版本源码" class="headerlink" title="下载Linux版本源码"></a>下载Linux版本源码</h2><p>这里有两部分代码opencv和opencv_contrib需要下载，其中opencv库是opencv的核心库，opencv_contrib是最新贡献但不是很成熟的函数库。由于国内网络防火墙问题，在编译过程中，会因为ippicv_linux_20151201.tgz下载错误导致编译失败，因此事先也需要准备正确的压缩包。</p>
+<h2 id="安装第三方环境"><a href="#安装第三方环境" class="headerlink" title="安装第三方环境"></a>安装第三方环境</h2><p>安装源码前需要先安装好需要的第三方环境：</p>
+<ul>
+<li>[compiler] sudo apt-get install build-essential </li>
+<li>[required] sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev<br>  libswscale-dev </li>
+<li>[optional] sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev </li>
+</ul>
+<h2 id="编译源码进行安装"><a href="#编译源码进行安装" class="headerlink" title="编译源码进行安装"></a>编译源码进行安装</h2><h3 id="Step1-编译源码"><a href="#Step1-编译源码" class="headerlink" title="Step1: 编译源码"></a>Step1: 编译源码</h3><p>在OpenCV目录下，创建build文件夹，然后进入build文件夹内部，使用cmake命令编译源码，这里我们也编译了opencv_contrib库。</p>
+<pre><code>mkdir build
+cd build
+cmake -D CMAKE_BUILD_TYPE=Release -D OPENCV_EXTRA_MODULES_PATH=/mypath/opencv_contrib/modules -D CMAKE_INSTALL_PREFIX=/usr/local ..
+</code></pre><h3 id="Step2-替换被墙的压缩包"><a href="#Step2-替换被墙的压缩包" class="headerlink" title="Step2: 替换被墙的压缩包"></a>Step2: 替换被墙的压缩包</h3><p>这里可能会遇到ippicv_linux_20151201.tgz库下载的问题，我们等编译完成之后，进入opencv/3rdparty/ippicv/downloads/linux-808b791a6eac9ed78d32a7666804320e/ 下，替换已有的错误的压缩包ippicv_linux_20151201.tgz，然后重新编译，当你看到下述提示即可。</p>
+<pre><code>Configuring done
+Generating done
+</code></pre><h3 id="Step3-编译安装"><a href="#Step3-编译安装" class="headerlink" title="Step3: 编译安装"></a>Step3: 编译安装</h3><pre><code>sudo make -j7 &amp;&amp; make install
+</code></pre><p>安装完成之后，我们可以使用下列命令查看具体安装了那些库，由于我们把opencv_contrib中的库也编译进来了，所以可以看到库非常多。</p>
+<pre><code>ll /usr/local/lib
+</code></pre><p>然后为了方便后续对这些库的使用，下面还需要进行如下配置：</p>
+<pre><code>sudo vim /etc/ld.so.conf
+</code></pre><p>然后添加 /usr/local/bin 到文件中，再执行更新命令：</p>
+<pre><code>sudo ldconfig
+</code></pre><p>如果不添加这一行，在执行可执行文件的时候，可能会报错说不能找到某些扩展库。</p>
+<h2 id="测试安装是否成功"><a href="#测试安装是否成功" class="headerlink" title="测试安装是否成功"></a>测试安装是否成功</h2><p>我们用下列 test_opencv.cpp 代码进行测试，该代码主要是读取图片，显示图片：</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;opencv2/highgui/highgui.hpp&gt;
+
+int main(int argc,char* argv[]){
+  const std::string window_name = &quot;Cloud&quot;;
+  const std::string input_pic = &quot;Cloud.jpg&quot;;
+  cv::Mat test_pic = cv::imread(input_pic);
+  if(test_pic.empty()){
+          std::cout&lt;&lt;&quot;no input image&quot;&lt;&lt;std::endl;
+          return -1;
+  }
+  cv::namedWindow(window_name);
+  cv::imshow(window_name,test_pic);
+  cv::waitKey(0);
+  return 0;
+}
+</code></pre><p>进行编译，链接该代码执行所需要的三个库：</p>
+<pre><code>g++ -o test_opencv test_opencv.cpp -lopencv_core -lopencv_highgui -lopencv_imgcodecs
+</code></pre><p>然后执行编译好的文件./test_opencv，如果能够显示出你读取的文件，即说明安装成功。  </p>
 
       
     </div>
@@ -376,9 +417,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/bp算法/" rel="tag">#BP算法</a>
-          
-            <a href="/tags/神经网络/" rel="tag">#神经网络</a>
+            <a href="/tags/opencv/" rel="tag">#OpenCV</a>
           
         </div>
       
@@ -387,17 +426,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/08/lda理论详解/" rel="next" title="LDA理论详解">
-                <i class="fa fa-chevron-left"></i> LDA理论详解
+              <a href="/2016/08/27/sml基本命令/" rel="next" title="Emacs With Sml-Mode">
+                <i class="fa fa-chevron-left"></i> Emacs With Sml-Mode
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/09/pyspark-sql-module/" rel="prev" title="pyspark.sql Module">
-                pyspark.sql Module <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -423,8 +458,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/09/bp算法/"
-           data-title="BP算法" data-url="http://github.com/kiseliu/2016/08/09/bp算法/">
+      <div class="ds-thread" data-thread-key="2016/08/28/opencv安装说明/"
+           data-title="OpenCV安装说明" data-url="http://github.com/kiseliu/2016/08/28/opencv安装说明/">
       </div>
     
   </div>
@@ -546,7 +581,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#局限性"><span class="nav-number">2.</span> <span class="nav-text">局限性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#随着层数越多，权重变化越小，越学习不到东西"><span class="nav-number">2.1.</span> <span class="nav-text">随着层数越多，权重变化越小，越学习不到东西</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载Linux版本源码"><span class="nav-number">1.</span> <span class="nav-text">下载Linux版本源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装第三方环境"><span class="nav-number">2.</span> <span class="nav-text">安装第三方环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译源码进行安装"><span class="nav-number">3.</span> <span class="nav-text">编译源码进行安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step1-编译源码"><span class="nav-number">3.1.</span> <span class="nav-text">Step1: 编译源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step2-替换被墙的压缩包"><span class="nav-number">3.2.</span> <span class="nav-text">Step2: 替换被墙的压缩包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step3-编译安装"><span class="nav-number">3.3.</span> <span class="nav-text">Step3: 编译安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试安装是否成功"><span class="nav-number">4.</span> <span class="nav-text">测试安装是否成功</span></a></li></ol></div>
             
           </div>
         </section>

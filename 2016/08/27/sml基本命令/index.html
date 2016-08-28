@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="BP算法,神经网络," />
+  <meta name="keywords" content="washington pl,emacs,sml," />
 
 
 
@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="原理## 
-局限性随着层数越多，权重变化越小，越学习不到东西参考论文Understanding the difficulty of training deep feedforward neural networks 2006年之前深层神经网络没有被成功训练过，这之后有几个算法可以成功地训练深层神经网络，并且实验结果讨论了更深vs更浅的网络的优越性。所有的实验结果都是根据新的初始化方式或者训练机制得">
+<meta name="description" content="本文来自Coursera程序设计语言(华盛顿大学)。
+Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；• C-x C-c: Quit Emacs• C-g: Cancel the current action• C-x C-f: Open a file (whether or not it already exists)• C-x C-s: Save a file•">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BP算法">
-<meta property="og:url" content="http://github.com/kiseliu/2016/08/09/bp算法/index.html">
+<meta property="og:title" content="Emacs With Sml-Mode">
+<meta property="og:url" content="http://github.com/kiseliu/2016/08/27/sml基本命令/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="原理## 
-局限性随着层数越多，权重变化越小，越学习不到东西参考论文Understanding the difficulty of training deep feedforward neural networks 2006年之前深层神经网络没有被成功训练过，这之后有几个算法可以成功地训练深层神经网络，并且实验结果讨论了更深vs更浅的网络的优越性。所有的实验结果都是根据新的初始化方式或者训练机制得">
-<meta property="og:updated_time" content="2016-08-10T09:40:00.000Z">
+<meta property="og:description" content="本文来自Coursera程序设计语言(华盛顿大学)。
+Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；• C-x C-c: Quit Emacs• C-g: Cancel the current action• C-x C-f: Open a file (whether or not it already exists)• C-x C-s: Save a file•">
+<meta property="og:updated_time" content="2016-08-28T02:45:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BP算法">
-<meta name="twitter:description" content="原理## 
-局限性随着层数越多，权重变化越小，越学习不到东西参考论文Understanding the difficulty of training deep feedforward neural networks 2006年之前深层神经网络没有被成功训练过，这之后有几个算法可以成功地训练深层神经网络，并且实验结果讨论了更深vs更浅的网络的优越性。所有的实验结果都是根据新的初始化方式或者训练机制得">
+<meta name="twitter:title" content="Emacs With Sml-Mode">
+<meta name="twitter:description" content="本文来自Coursera程序设计语言(华盛顿大学)。
+Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；• C-x C-c: Quit Emacs• C-g: Cancel the current action• C-x C-f: Open a file (whether or not it already exists)• C-x C-s: Save a file•">
 
 
 
@@ -117,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/2016/08/09/bp算法/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/2016/08/27/sml基本命令/"/>
 
-  <title> BP算法 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Emacs With Sml-Mode | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -287,7 +287,7 @@
             
             
               
-                BP算法
+                Emacs With Sml-Mode
               
             
           </h1>
@@ -299,8 +299,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-09T09:26:51+08:00" content="2016-08-09">
-              2016-08-09
+            <time itemprop="dateCreated" datetime="2016-08-27T18:29:50+08:00" content="2016-08-27">
+              2016-08-27
             </time>
           </span>
 
@@ -313,8 +313,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/deep-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Deep Learning</span>
+                  <a href="/categories/programming-languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming Languages</span>
                   </a>
                 </span>
 
@@ -329,8 +329,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/09/bp算法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/09/bp算法/" itemprop="commentsCount"></span>
+                <a href="/2016/08/27/sml基本命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/27/sml基本命令/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -353,9 +353,19 @@
       
 
       
-        <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>## </p>
-<h2 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h2><h3 id="随着层数越多，权重变化越小，越学习不到东西"><a href="#随着层数越多，权重变化越小，越学习不到东西" class="headerlink" title="随着层数越多，权重变化越小，越学习不到东西"></a>随着层数越多，权重变化越小，越学习不到东西</h3><p>参考论文<a href="">Understanding the difficulty of training deep feedforward neural networks </a><br>2006年之前深层神经网络没有被成功训练过，这之后有几个算法可以成功地训练深层神经网络，并且实验结果讨论了更深vs更浅的网络的优越性。所有的实验结果都是根据新的初始化方式或者训练机制得到的。我们的目标是为了更好的理解，为什么随机初始的标准梯度下降方法在深的神经网络中表现的如此糟糕，更好地理解这些近期相关的成果，并帮助在未来设计更好的算法。我们首先考察非线性激活函数的影响。我们发现随机初始的logistic sigmoid激活函数不适合深层网络，因为它的均值会引起top hidden layer达到saturation。<br>出人意料的是，我们发现，饱和的单位可以自行迁出饱和，尽管速度缓慢，这解释了训练神经网络时，有时会看到的高原。我们还发现了一个比较少saturate的新的非线性的激活函数，它会很有帮助。</p>
-
+        <p>本文来自<a href="https://www.coursera.org/learn/programming-languages/supplement/mi5oU/part-a-software-installation-and-use-sml-and-emacs" target="_blank" rel="external">Coursera程序设计语言(华盛顿大学)</a>。</p>
+<h2 id="Emacs基本命令"><a href="#Emacs基本命令" class="headerlink" title="Emacs基本命令"></a>Emacs基本命令</h2><p>C-x 表示按住Control，再按x键；M表示按下Alt键；<br>• C-x C-c: Quit Emacs<br>• C-g: Cancel the current action<br>• C-x C-f: Open a file (whether or not it already exists)<br>• C-x C-s: Save a file<br>• C-x C-w: Write a file (probably more familiar to you as Save as…)<br>Cut, copy, paste:<br>• Highlight text with the mouse or by hitting C-Space to set a mark and then moving the cursor to highlight a region.<br>• C-w: Cut a highlighted region<br>• M-w: Copy a highlighted region<br>• C-k: Cut (kill) from the cursor to the end of the line<br>• C-y: Paste (yank)<br>Some other useful commands:<br>• C-x 2: Split the window into 2 buffers, one above the other (Use the mouse or C-x o to switch between them)<br>• C-x 0: Undo window-splitting so there is only 1 buffer<br>• C-x b: Switch to another buffer by entering its name<br>• C-x C-b: See a list of all current buffers<br>Getting help within Emacs: In addition to the help button/menu on the right…<br>• C-h: Hitting this will display a short message in the minibuffer: 𝙲-𝚑 (𝚃𝚢𝚙𝚎 ? 𝚏𝚘𝚛 𝚏𝚞𝚛𝚝𝚑𝚎𝚛 𝚘𝚙𝚝𝚒𝚘𝚗𝚜).<br>• C-h b: Key bindings. This lists all key bindings that are valid for the current mode. Note that key bindings change from mode to mode.<br>• C-h a: Command apropos. After typing 𝙲-𝚑 a you can type a symbol and a buffer will appear that lists all symbols and functions that match that phrase.</p>
+<h2 id="SML-NJ-Installation"><a href="#SML-NJ-Installation" class="headerlink" title="SML/NJ Installation"></a>SML/NJ Installation</h2><p>打开链接<a href="http://www.smlnj.org/dist/working/110.79/" target="_blank" rel="external">http://www.smlnj.org/dist/working/110.79/</a>，下载𝚜𝚖𝚕𝚗𝚓-𝚡𝟾𝟼-𝟷𝟷𝟶.𝟽𝟿.𝚙𝚔𝚐，然后按照提示安装，不用修改安装位置，默认的安装位置是：“/usr/local/smlnj/bin”。<br>打开~/.𝚋𝚊𝚜𝚑_𝚙𝚛𝚘𝚏𝚒𝚕𝚎 文件，添加环境变量:</p>
+<pre><code>export PATH=&quot;$PATH:/usr/local/smlnj/bin&quot;
+</code></pre><p>保存执行下列命令即可：</p>
+<pre><code>source .bash_profile
+</code></pre><h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><ul>
+<li><p>smh：在终端键入smh + Enter/Return，进入SML解释器，你会看到如下提示符：</p>
+<p>  Standard ML of New Jersey v110.79 [built: …]</p>
+</li>
+<li>Control-D：退出SML解释器；</li>
+</ul>
+<h2 id="SML-Mode-for-Emacs-Installation"><a href="#SML-Mode-for-Emacs-Installation" class="headerlink" title="SML Mode for Emacs Installation"></a>SML Mode for Emacs Installation</h2>
       
     </div>
 
@@ -376,9 +386,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/bp算法/" rel="tag">#BP算法</a>
+            <a href="/tags/washington-pl/" rel="tag">#washington pl</a>
           
-            <a href="/tags/神经网络/" rel="tag">#神经网络</a>
+            <a href="/tags/emacs/" rel="tag">#emacs</a>
+          
+            <a href="/tags/sml/" rel="tag">#sml</a>
           
         </div>
       
@@ -387,16 +399,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/08/lda理论详解/" rel="next" title="LDA理论详解">
-                <i class="fa fa-chevron-left"></i> LDA理论详解
+              <a href="/2016/08/16/building-autoencoders-in-keras/" rel="next" title="Building Autoencoders in Keras">
+                <i class="fa fa-chevron-left"></i> Building Autoencoders in Keras
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/09/pyspark-sql-module/" rel="prev" title="pyspark.sql Module">
-                pyspark.sql Module <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/28/opencv安装说明/" rel="prev" title="OpenCV安装说明">
+                OpenCV安装说明 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -423,8 +435,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/09/bp算法/"
-           data-title="BP算法" data-url="http://github.com/kiseliu/2016/08/09/bp算法/">
+      <div class="ds-thread" data-thread-key="2016/08/27/sml基本命令/"
+           data-title="Emacs With Sml-Mode" data-url="http://github.com/kiseliu/2016/08/27/sml基本命令/">
       </div>
     
   </div>
@@ -546,7 +558,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#局限性"><span class="nav-number">2.</span> <span class="nav-text">局限性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#随着层数越多，权重变化越小，越学习不到东西"><span class="nav-number">2.1.</span> <span class="nav-text">随着层数越多，权重变化越小，越学习不到东西</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Emacs基本命令"><span class="nav-number">1.</span> <span class="nav-text">Emacs基本命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SML-NJ-Installation"><span class="nav-number">2.</span> <span class="nav-text">SML/NJ Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作"><span class="nav-number">3.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SML-Mode-for-Emacs-Installation"><span class="nav-number">4.</span> <span class="nav-text">SML Mode for Emacs Installation</span></a></li></ol></div>
             
           </div>
         </section>
