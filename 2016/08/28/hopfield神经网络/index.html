@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="OpenCV," />
+  <meta name="keywords" content="Deep Learning,Hopfield Neural Network," />
 
 
 
@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="说明：本文参考炼数成金讲师罗韵的课程《开源计算机视觉库OpenCV从入门到应用（第一期）》。
-下载Linux版本源码这里有两部分代码opencv和opencv_contrib需要下载，其中opencv库是opencv的核心库，opencv_contrib是最新贡献但不是很成熟的函数库。由于国内网络防火墙问题，在编译过程中，会因为ippicv_linux_20151201.tgz下载错误导致编译失败">
+<meta name="description" content="根据神经网络运行过程中的信息流向，可分为前馈式和反馈式两种基本类型。前馈式网络通过引入隐层以及非线性转移函数，网络具有复杂的非线性映射能力。但其输出仅由当前输入和权矩阵决定，与网络先前的输出状态无关。Hopfield神经网络是一种单层反馈神经网络，分为离散型和连续型两种网络模型，分别记作 DHNN (Discrete Hopfield Neural Network)和 CHNN (Continuo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV安装说明">
-<meta property="og:url" content="http://github.com/kiseliu/2016/08/28/opencv安装说明/index.html">
+<meta property="og:title" content="Hopfield神经网络">
+<meta property="og:url" content="http://github.com/kiseliu/2016/08/28/hopfield神经网络/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="说明：本文参考炼数成金讲师罗韵的课程《开源计算机视觉库OpenCV从入门到应用（第一期）》。
-下载Linux版本源码这里有两部分代码opencv和opencv_contrib需要下载，其中opencv库是opencv的核心库，opencv_contrib是最新贡献但不是很成熟的函数库。由于国内网络防火墙问题，在编译过程中，会因为ippicv_linux_20151201.tgz下载错误导致编译失败">
-<meta property="og:updated_time" content="2016-08-28T11:16:47.000Z">
+<meta property="og:description" content="根据神经网络运行过程中的信息流向，可分为前馈式和反馈式两种基本类型。前馈式网络通过引入隐层以及非线性转移函数，网络具有复杂的非线性映射能力。但其输出仅由当前输入和权矩阵决定，与网络先前的输出状态无关。Hopfield神经网络是一种单层反馈神经网络，分为离散型和连续型两种网络模型，分别记作 DHNN (Discrete Hopfield Neural Network)和 CHNN (Continuo">
+<meta property="og:updated_time" content="2016-08-28T17:16:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OpenCV安装说明">
-<meta name="twitter:description" content="说明：本文参考炼数成金讲师罗韵的课程《开源计算机视觉库OpenCV从入门到应用（第一期）》。
-下载Linux版本源码这里有两部分代码opencv和opencv_contrib需要下载，其中opencv库是opencv的核心库，opencv_contrib是最新贡献但不是很成熟的函数库。由于国内网络防火墙问题，在编译过程中，会因为ippicv_linux_20151201.tgz下载错误导致编译失败">
+<meta name="twitter:title" content="Hopfield神经网络">
+<meta name="twitter:description" content="根据神经网络运行过程中的信息流向，可分为前馈式和反馈式两种基本类型。前馈式网络通过引入隐层以及非线性转移函数，网络具有复杂的非线性映射能力。但其输出仅由当前输入和权矩阵决定，与网络先前的输出状态无关。Hopfield神经网络是一种单层反馈神经网络，分为离散型和连续型两种网络模型，分别记作 DHNN (Discrete Hopfield Neural Network)和 CHNN (Continuo">
 
 
 
@@ -117,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/2016/08/28/opencv安装说明/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/2016/08/28/hopfield神经网络/"/>
 
-  <title> OpenCV安装说明 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Hopfield神经网络 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -287,7 +284,7 @@
             
             
               
-                OpenCV安装说明
+                Hopfield神经网络
               
             
           </h1>
@@ -299,7 +296,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-28T18:19:53+08:00" content="2016-08-28">
+            <time itemprop="dateCreated" datetime="2016-08-28T22:09:21+08:00" content="2016-08-28">
               2016-08-28
             </time>
           </span>
@@ -329,8 +326,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/28/opencv安装说明/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/opencv安装说明/" itemprop="commentsCount"></span>
+                <a href="/2016/08/28/hopfield神经网络/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/hopfield神经网络/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -353,49 +350,20 @@
       
 
       
-        <p>说明：本文参考炼数成金讲师罗韵的课程《开源计算机视觉库OpenCV从入门到应用（第一期）》。</p>
-<h2 id="下载Linux版本源码"><a href="#下载Linux版本源码" class="headerlink" title="下载Linux版本源码"></a>下载Linux版本源码</h2><p>这里有两部分代码opencv和opencv_contrib需要下载，其中opencv库是opencv的核心库，opencv_contrib是最新贡献但不是很成熟的函数库。由于国内网络防火墙问题，在编译过程中，会因为ippicv_linux_20151201.tgz下载错误导致编译失败，因此事先也需要准备正确的压缩包。</p>
-<h2 id="安装第三方环境"><a href="#安装第三方环境" class="headerlink" title="安装第三方环境"></a>安装第三方环境</h2><p>安装源码前需要先安装好需要的第三方环境：</p>
-<ul>
-<li>[compiler] sudo apt-get install build-essential </li>
-<li>[required] sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev<br>  libswscale-dev </li>
-<li>[optional] sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev </li>
+        <p>根据神经网络运行过程中的信息流向，可分为前馈式和反馈式两种基本类型。前馈式网络通过引入隐层以及非线性转移函数，网络具有复杂的非线性映射能力。但其输出仅由当前输入和权矩阵决定，与网络先前的输出状态无关。<br>Hopfield神经网络是一种单层反馈神经网络，分为离散型和连续型两种网络模型，分别记作 DHNN (Discrete Hopfield Neural Network)和 CHNN (Continuous Hopfield Neural Network)。</p>
+<h1 id="离散型Hopfield神经网络"><a href="#离散型Hopfield神经网络" class="headerlink" title="离散型Hopfield神经网络"></a>离散型Hopfield神经网络</h1><h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p>上图来自《人工神经网络理论、设计及应用》</p>
+<p>离散型反馈网络的拓扑结构如图所示，这是一种单层全反馈网络，共有 \(n\) 个神经元。任一神经元的输出 \( { x }_{ i } \) 都通过连接权重 \({ w }_{ ij }\) 反馈至所有神经元 \({ x }_{ j }\) 作为输入，同样，每个神经元都通过连接权重接收所有神经元输出反馈回来的信息，其目的是为了让任一神经元的输出都能受所有神经元输出的控制，从而使各神经元的输出能相互制约。每个神经元均设有一个阈值 \({ T }_{ j }\) ，以反映对输入噪声的控制。</p>
+<p>DHNN网中的每个神经元都有相同的功能，其输出称为状态，用 \({ x }_{ j }\) 表示，所有神经元状态的集合就构成反馈网络的状态 \( X={ [{ x }_{ 1 },\quad { x }_{ 2 }\quad ,…,{ x }_{ n }] }^{ T } \)。</p>
+<p>反馈网络的输入就是网络的状态初始值，在外界输入激发下，从初始状态进入动态演变，变化规律由下式规定：<br>$$ { x }_{ j }=f({ net }_{ j })\quad \quad \quad \quad j=1,2,…,n $$<br>DHNN网的转移函数 \(f\) 常采用符号函数：<br>$$ { x }_{ j }=sign({ net }_{ j })=\begin{cases} 1,\quad { net }_{ j }\ge 0 \\ -1,\quad { net }_ { j }\&lt;0 \end{cases}\quad \quad \quad \quad j=1,2,…,n $$<br>式中 \({ net }_{ j }\) 为：\( { net }_{ j }=\sum _{ i=1 }^{ n }{ ({ w }_{ ij }{ x }_{ i }-{ T }_{ j }) } \quad j=1,2,…,n \) ；且对于DHNN网，一般有 \( { w }_{ ii }=0, { w }_{ ij }={ w }_{ ji }\)。</p>
+<p>我们希望的是给定一个输入状态，经过一定迭代次数之后状态不再变化，此时我们称为网络达到稳态。</p>
+<h2 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h2><ul>
+<li>异步工作方式<br>异步工作方式是一种串行方式，网络运行时每次只有一个神经元 \( i \) 根据转移函数进行状态的调整计算，其他神经元的状态均保持不变，即：<br>$$ { x }_{ j }(t+1)=sign({ net }_{ j })=\begin{cases} sign[{ net }_{ j }(t)],\quad j=i \\ { x }_{ j }(t),\quad j\neq i \end{cases} $$<br>神经元状态的调整次序可以按某种规定的次序进行，也可以随机选定。每次神经元在调整状态时，根据其当前净输入值的正负决定下一时刻的状态，因此其状态可能会发生变化，也可能保持原状。而在下一次调整其他神经元状态时，本次的调整结果即在下一个神经元的净输入中发挥作用。</li>
+<li>同步工作方式<br>网络的同步工作方式是一种并行方式，所有神经元同时调整状态，即：<br>$$ { x }_{ j }(t+1)=sign[{ net }_{ j }(t)]\quad \quad \quad \quad j=1,2,…,n $$</li>
 </ul>
-<h2 id="编译源码进行安装"><a href="#编译源码进行安装" class="headerlink" title="编译源码进行安装"></a>编译源码进行安装</h2><h3 id="Step1-编译源码"><a href="#Step1-编译源码" class="headerlink" title="Step1: 编译源码"></a>Step1: 编译源码</h3><p>在OpenCV目录下，创建build文件夹，然后进入build文件夹内部，使用cmake命令编译源码，这里我们也编译了opencv_contrib库。</p>
-<pre><code>mkdir build
-cd build
-cmake -D CMAKE_BUILD_TYPE=Release -D OPENCV_EXTRA_MODULES_PATH=/mypath/opencv_contrib/modules -D CMAKE_INSTALL_PREFIX=/usr/local ..
-</code></pre><h3 id="Step2-替换被墙的压缩包"><a href="#Step2-替换被墙的压缩包" class="headerlink" title="Step2: 替换被墙的压缩包"></a>Step2: 替换被墙的压缩包</h3><p>这里可能会遇到ippicv_linux_20151201.tgz库下载的问题，我们等编译完成之后，进入opencv/3rdparty/ippicv/downloads/linux-808b791a6eac9ed78d32a7666804320e/ 下，替换已有的错误的压缩包ippicv_linux_20151201.tgz，然后重新编译，当你看到下述提示即可。</p>
-<pre><code>Configuring done
-Generating done
-</code></pre><h3 id="Step3-编译安装"><a href="#Step3-编译安装" class="headerlink" title="Step3: 编译安装"></a>Step3: 编译安装</h3><pre><code>sudo make -j7 &amp;&amp; make install
-</code></pre><p>安装完成之后，我们可以使用下列命令查看具体安装了那些库，由于我们把opencv_contrib中的库也编译进来了，所以可以看到库非常多。</p>
-<pre><code>ll /usr/local/lib
-</code></pre><p>然后为了方便后续对这些库的使用，下面还需要进行如下配置：</p>
-<pre><code>sudo vim /etc/ld.so.conf
-</code></pre><p>然后添加 /usr/local/bin 到文件中，再执行更新命令：</p>
-<pre><code>sudo ldconfig
-</code></pre><p>如果不添加这一行，在执行可执行文件的时候，可能会报错说不能找到某些扩展库。</p>
-<h2 id="测试安装是否成功"><a href="#测试安装是否成功" class="headerlink" title="测试安装是否成功"></a>测试安装是否成功</h2><p>我们用下列 test_opencv.cpp 代码进行测试，该代码主要是读取图片，显示图片：</p>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;opencv2/highgui/highgui.hpp&gt;
-
-int main(int argc,char* argv[]){
-  const std::string window_name = &quot;Cloud&quot;;
-  const std::string input_pic = &quot;Cloud.jpg&quot;;
-  cv::Mat test_pic = cv::imread(input_pic);
-  if(test_pic.empty()){
-          std::cout&lt;&lt;&quot;no input image&quot;&lt;&lt;std::endl;
-          return -1;
-  }
-  cv::namedWindow(window_name);
-  cv::imshow(window_name,test_pic);
-  cv::waitKey(0);
-  return 0;
-}
-</code></pre><p>进行编译，链接该代码执行所需要的三个库：</p>
-<pre><code>g++ -o test_opencv test_opencv.cpp -lopencv_core -lopencv_highgui -lopencv_imgcodecs
-</code></pre><p>然后执行编译好的文件./test_opencv，如果能够显示出你读取的文件，即说明安装成功。  </p>
+<h2 id="稳定性与吸引子"><a href="#稳定性与吸引子" class="headerlink" title="稳定性与吸引子"></a>稳定性与吸引子</h2><h2 id="网络设计"><a href="#网络设计" class="headerlink" title="网络设计"></a>网络设计</h2><ul>
+<li>联立方程法</li>
+<li>外积和法</li>
+</ul>
 
       
     </div>
@@ -417,7 +385,9 @@ int main(int argc,char* argv[]){
       
         <div class="post-tags">
           
-            <a href="/tags/opencv/" rel="tag">#OpenCV</a>
+            <a href="/tags/deep-learning/" rel="tag">#Deep Learning</a>
+          
+            <a href="/tags/hopfield-neural-network/" rel="tag">#Hopfield Neural Network</a>
           
         </div>
       
@@ -426,17 +396,13 @@ int main(int argc,char* argv[]){
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/27/sml基本命令/" rel="next" title="Emacs With Sml-Mode">
-                <i class="fa fa-chevron-left"></i> Emacs With Sml-Mode
+              <a href="/2016/08/28/approximate-list-of-specific-course-topics/" rel="next" title="Approximate-List-of-Specific-Course-Topics">
+                <i class="fa fa-chevron-left"></i> Approximate-List-of-Specific-Course-Topics
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/28/approximate-list-of-specific-course-topics/" rel="prev" title="Approximate-List-of-Specific-Course-Topics">
-                Approximate-List-of-Specific-Course-Topics <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -462,8 +428,8 @@ int main(int argc,char* argv[]){
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/28/opencv安装说明/"
-           data-title="OpenCV安装说明" data-url="http://github.com/kiseliu/2016/08/28/opencv安装说明/">
+      <div class="ds-thread" data-thread-key="2016/08/28/hopfield神经网络/"
+           data-title="Hopfield神经网络" data-url="http://github.com/kiseliu/2016/08/28/hopfield神经网络/">
       </div>
     
   </div>
@@ -585,7 +551,7 @@ int main(int argc,char* argv[]){
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载Linux版本源码"><span class="nav-number">1.</span> <span class="nav-text">下载Linux版本源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装第三方环境"><span class="nav-number">2.</span> <span class="nav-text">安装第三方环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译源码进行安装"><span class="nav-number">3.</span> <span class="nav-text">编译源码进行安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step1-编译源码"><span class="nav-number">3.1.</span> <span class="nav-text">Step1: 编译源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step2-替换被墙的压缩包"><span class="nav-number">3.2.</span> <span class="nav-text">Step2: 替换被墙的压缩包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step3-编译安装"><span class="nav-number">3.3.</span> <span class="nav-text">Step3: 编译安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试安装是否成功"><span class="nav-number">4.</span> <span class="nav-text">测试安装是否成功</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#离散型Hopfield神经网络"><span class="nav-number">1.</span> <span class="nav-text">离散型Hopfield神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络结构"><span class="nav-number">1.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作方式"><span class="nav-number">1.2.</span> <span class="nav-text">工作方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#稳定性与吸引子"><span class="nav-number">1.3.</span> <span class="nav-text">稳定性与吸引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络设计"><span class="nav-number">1.4.</span> <span class="nav-text">网络设计</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
