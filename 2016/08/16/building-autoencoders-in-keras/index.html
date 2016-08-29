@@ -113,7 +113,7 @@ What are autoencoders?“Autoencoder”是一种数据压缩算法，它的压�
 <meta property="og:image" content="https://github.com/kiseliu/MarkDownPictures/blob/master/dl/%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8.png">
 <meta property="og:image" content="https://github.com/kiseliu/MarkDownPictures/blob/master/dl/%E7%A8%80%E7%96%8F%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8.png">
 <meta property="og:image" content="https://github.com/kiseliu/MarkDownPictures/blob/master/dl/%E6%B7%B1%E5%BA%A6%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8.png">
-<meta property="og:updated_time" content="2016-08-25T03:57:33.000Z">
+<meta property="og:updated_time" content="2016-08-29T03:27:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Building Autoencoders in Keras">
 <meta name="twitter:description" content="本节，我们将回答关于自编码的一些常见的问题，我们将给出下面几个模型的代码示例：
@@ -577,6 +577,9 @@ autoencoder.fit(x_train, x_train, nb_epoch=50, batch_size=128, shuffle=True,vali
 </code></pre><p>这里需要注意，Keras默认是把then当作后端的，如果我们要用TensorBoard，需要把后端改成tensorflow，具体见<a href="http://keras-cn.readthedocs.io/en/latest/backend/" target="_blank" rel="external">http://keras-cn.readthedocs.io/en/latest/backend/</a>。</p>
 <p>我们可以在TensorBoard 页面监控训练(通过<a href="http://0.0.0.0:6006" target="_blank" rel="external">http://0.0.0.0:6006</a> 网址)：</p>
 <p>模型收敛时损失为0.094，比我们前面的模型好得多(主要是因为编码表示的更大的熵能力，128维 vs 32维)。让我们看下重塑的数字：</p>
+<p>我们也看一下128维的编码表示，这些表示是8x4x4的，所以可以把它们转变成4x32大小，然后用灰度图像展示出来。</p>
+<h2 id="Application-to-image-denoising"><a href="#Application-to-image-denoising" class="headerlink" title="Application to image denoising"></a>Application to image denoising</h2><p>Let’s put our convolutional autoencoder to work on an image denoising problem. It’s simple: we will train the autoencoder to map noisy digits images to clean digits images. </p>
+<p>Here’s how we will generate synthetic noisy digits: we just apply a gaussian noise matrix and clip the images between 0 and 1.</p>
 
       
     </div>
@@ -689,7 +692,7 @@ autoencoder.fit(x_train, x_train, nb_epoch=50, batch_size=128, shuffle=True,vali
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -766,7 +769,7 @@ autoencoder.fit(x_train, x_train, nb_epoch=50, batch_size=128, shuffle=True,vali
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-are-autoencoders"><span class="nav-number">1.</span> <span class="nav-text">What are autoencoders?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Are-they-good-at-data-compression"><span class="nav-number">2.</span> <span class="nav-text">Are they good at data compression?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-are-autoencoders-good-for"><span class="nav-number">3.</span> <span class="nav-text">What are autoencoders good for?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#So-what’s-the-big-deal-with-autoencoders"><span class="nav-number">4.</span> <span class="nav-text">So what’s the big deal with autoencoders?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Let’s-build-the-simplest-possible-autoencoder"><span class="nav-number">5.</span> <span class="nav-text">Let’s build the simplest possible autoencoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adding-a-sparsity-constraint-on-the-encoded-representations"><span class="nav-number">6.</span> <span class="nav-text">Adding a sparsity constraint on the encoded representations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-autoencoder"><span class="nav-number">7.</span> <span class="nav-text">Deep autoencoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolutional-autoencoder"><span class="nav-number">8.</span> <span class="nav-text">Convolutional autoencoder</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-are-autoencoders"><span class="nav-number">1.</span> <span class="nav-text">What are autoencoders?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Are-they-good-at-data-compression"><span class="nav-number">2.</span> <span class="nav-text">Are they good at data compression?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-are-autoencoders-good-for"><span class="nav-number">3.</span> <span class="nav-text">What are autoencoders good for?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#So-what’s-the-big-deal-with-autoencoders"><span class="nav-number">4.</span> <span class="nav-text">So what’s the big deal with autoencoders?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Let’s-build-the-simplest-possible-autoencoder"><span class="nav-number">5.</span> <span class="nav-text">Let’s build the simplest possible autoencoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adding-a-sparsity-constraint-on-the-encoded-representations"><span class="nav-number">6.</span> <span class="nav-text">Adding a sparsity constraint on the encoded representations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-autoencoder"><span class="nav-number">7.</span> <span class="nav-text">Deep autoencoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolutional-autoencoder"><span class="nav-number">8.</span> <span class="nav-text">Convolutional autoencoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-to-image-denoising"><span class="nav-number">9.</span> <span class="nav-text">Application to image denoising</span></a></li></ol></div>
             
           </div>
         </section>
