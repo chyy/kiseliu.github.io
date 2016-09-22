@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://github.com/kiseliu/2016/08/31/模拟退火算法和波尔滋曼机/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
 <meta property="og:description" content="Hopfield虽然因为吸引子的存在具有联想功能，但是它的问题在于很难避免伪吸引子的出现。因为Hopfield网络对特定输入只能严格按照能量函数递减的方式演化，容易陷入局部极小值(伪吸引子)，无法收敛于全局最优点。如果反馈神经网络的迭代过程不那么“死板”，可以在一定程度上暂时接受能量函数变大的结果，就有可能跳出局部极小值。随机神经网络的核心思想，就是在网络中加入概率因素，网络并不是确定地向能量函数">
-<meta property="og:updated_time" content="2016-08-31T07:27:11.000Z">
+<meta property="og:updated_time" content="2016-09-04T15:06:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模拟退火算法和波尔滋曼机">
 <meta name="twitter:description" content="Hopfield虽然因为吸引子的存在具有联想功能，但是它的问题在于很难避免伪吸引子的出现。因为Hopfield网络对特定输入只能严格按照能量函数递减的方式演化，容易陷入局部极小值(伪吸引子)，无法收敛于全局最优点。如果反馈神经网络的迭代过程不那么“死板”，可以在一定程度上暂时接受能量函数变大的结果，就有可能跳出局部极小值。随机神经网络的核心思想，就是在网络中加入概率因素，网络并不是确定地向能量函数">
@@ -361,7 +361,7 @@
 <p>这也是Hopfield网络用于优化计算时遇到的问题，模拟退火算法能有效解决上述问题。</p>
 <h2 id="物理背景"><a href="#物理背景" class="headerlink" title="物理背景"></a>物理背景</h2><p>“退火”是指对物体加温后再冷却的过程，它源于晶体冷却的过程，如果固体不处于最低能量状态，给固体加热再冷却，随着温度缓慢下降，固体中的原子按一定形状排列，形成高密度，低能量的有规则晶体，在算法中对应全局最优值。<br>而如果温度下降过快，可能导致原子缺少足够的时间排列成晶体结构，结果产生了具有较高能量的非晶体，这就是局部最优值。</p>
 <h2 id="Metropolis算法"><a href="#Metropolis算法" class="headerlink" title="Metropolis算法"></a>Metropolis算法</h2><p>模拟退火算法包含Metropolis算法和退火过程两部分。</p>
-<h4 id="Metropolis准则"><a href="#Metropolis准则" class="headerlink" title="Metropolis准则"></a>Metropolis准则</h4><p>Metropolis算法又叫Metropolis抽样，它是Metropolis提出的重要性采样法，即以概率来接受新状态，而不是使用完全确定的规则，称为Metropolis准则，可以显著减小计算量。<br>$$ p=\begin{cases} 1\quad \quad \quad E(n+1)&lt;E(n) \\ { e }^{ ( -\frac { E(n+1)-E(n) }{ T }  ) }\quad \quad \quad E(n+1)\ge E(n) \end{cases} $$<br>当状态由 \( x(n)\) 变为 \(x(n+1)\) 之后，能量减小了，那么这种转移就能被接受。如果能量增大，则先在区间[0,1]产生一个均匀分布的随机数\(\xi \)，如果 \(\xi&lt;p\)，这种转移也将被接受，否则拒绝转移，进入下一步。</p>
+<h4 id="Metropolis准则"><a href="#Metropolis准则" class="headerlink" title="Metropolis准则"></a>Metropolis准则</h4><p>Metropolis算法又叫Metropolis抽样，它是Metropolis提出的重要性采样法，即以概率来接受新状态，而不是使用完全确定的规则，称为Metropolis准则，可以显著减小计算量。<br>$$ p=\begin{cases} 1\quad \quad \quad E(n+1)&lt;E(n) \\ { e }^{ ( -\frac { E(n+1)-E(n) }{ T }  ) }\quad \quad \quad E(n+1)\ge E(n) \end{cases} $$<br>当状态由 \( x(n)\) 变为 \(x(n+1)\) 之后，能量减小了，那么这种转移就能被接受。如果能量增大，则先在区间[0,1]产生一个均匀分布的随机数\(\xi \)，如果 \(\xi &lt; p\)，这种转移也将被接受，否则拒绝转移，进入下一步。</p>
 <h4 id="可调节参数"><a href="#可调节参数" class="headerlink" title="可调节参数"></a>可调节参数</h4><p>为了确保Metropolis算法在有限时间收敛，必须设定控制算法收敛的参数，参数 \(T\) 就是控制退火快慢的可调节参数。\(T\) 如果过大，会导致退火太快，达到局部最优即结束迭代；如果取值过小，则会延长不必要的搜索时间。</p>
 <p>实际应用中是在退火的初期采用较大的\(T\)值，随着退火的进行，逐步降低，具体过程如下：</p>
 <ul>
@@ -370,7 +370,12 @@
 </ul>
 <p>\(lambda \)是一个小于1的正数，一般取值在0.8和0.99之间。使得对每一温度，有足够的转移尝试。指数式下降的收敛速度比较慢，其他下降方式如下所示：<br>$$T(n)=\frac { T(0) }{ \log { (1+t) }  } \quad or \quad T(n)=\frac { T(0) }{ 1+t }  $$</p>
 <h2 id="模拟退火算法-1"><a href="#模拟退火算法-1" class="headerlink" title="模拟退火算法"></a>模拟退火算法</h2><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><h4 id="运行Metropolis算法"><a href="#运行Metropolis算法" class="headerlink" title="运行Metropolis算法"></a>运行Metropolis算法</h4><h4 id="根据内循环终止准则，检查是否达到热平衡。"><a href="#根据内循环终止准则，检查是否达到热平衡。" class="headerlink" title="根据内循环终止准则，检查是否达到热平衡。"></a>根据内循环终止准则，检查是否达到热平衡。</h4><h4 id="按照公式调整T，根据外循环终止准则检查退火算法是否收敛。"><a href="#按照公式调整T，根据外循环终止准则检查退火算法是否收敛。" class="headerlink" title="按照公式调整T，根据外循环终止准则检查退火算法是否收敛。"></a>按照公式调整T，根据外循环终止准则检查退火算法是否收敛。</h4><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>与温度\(T\)有关的参数对模拟退火算法的运行影响非常大，初始温度足够高，温度下降足够慢，能使系统达到高质量的解，但耗费的时间也是很可观的，这一点需要根据实际需求进行权衡。</p>
-<h1 id="Boltzmann机"><a href="#Boltzmann机" class="headerlink" title="Boltzmann机"></a>Boltzmann机</h1>
+<h1 id="Boltzmann机"><a href="#Boltzmann机" class="headerlink" title="Boltzmann机"></a>Boltzmann机</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>和Hopfield网络每个节点都和其他节点连通不同，波尔滋曼机的节点有两种：</p>
+<ul>
+<li>可见节点：负责输入输出</li>
+<li>隐藏节点：类似BP网络中的隐节点<br>根据可见节点的输入输出，又可以分为自联想型BM，异联想型BM。</li>
+</ul>
+
       
     </div>
 
@@ -409,6 +414,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/05/word2vec原理/" rel="prev" title="Word2Vec原理">
+                Word2Vec原理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -480,7 +489,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -489,7 +498,7 @@
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -499,7 +508,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -557,7 +566,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模拟退火算法"><span class="nav-number">1.</span> <span class="nav-text">模拟退火算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题背景"><span class="nav-number">1.1.</span> <span class="nav-text">问题背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物理背景"><span class="nav-number">1.2.</span> <span class="nav-text">物理背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Metropolis算法"><span class="nav-number">1.3.</span> <span class="nav-text">Metropolis算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Metropolis准则"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">Metropolis准则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可调节参数"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">可调节参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟退火算法-1"><span class="nav-number">1.4.</span> <span class="nav-text">模拟退火算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行Metropolis算法"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">运行Metropolis算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据内循环终止准则，检查是否达到热平衡。"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">根据内循环终止准则，检查是否达到热平衡。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按照公式调整T，根据外循环终止准则检查退火算法是否收敛。"><span class="nav-number">1.4.0.4.</span> <span class="nav-text">按照公式调整T，根据外循环终止准则检查退火算法是否收敛。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Boltzmann机"><span class="nav-number">2.</span> <span class="nav-text">Boltzmann机</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模拟退火算法"><span class="nav-number">1.</span> <span class="nav-text">模拟退火算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题背景"><span class="nav-number">1.1.</span> <span class="nav-text">问题背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物理背景"><span class="nav-number">1.2.</span> <span class="nav-text">物理背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Metropolis算法"><span class="nav-number">1.3.</span> <span class="nav-text">Metropolis算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Metropolis准则"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">Metropolis准则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可调节参数"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">可调节参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟退火算法-1"><span class="nav-number">1.4.</span> <span class="nav-text">模拟退火算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行Metropolis算法"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">运行Metropolis算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据内循环终止准则，检查是否达到热平衡。"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">根据内循环终止准则，检查是否达到热平衡。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按照公式调整T，根据外循环终止准则检查退火算法是否收敛。"><span class="nav-number">1.4.0.4.</span> <span class="nav-text">按照公式调整T，根据外循环终止准则检查退火算法是否收敛。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Boltzmann机"><span class="nav-number">2.</span> <span class="nav-text">Boltzmann机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

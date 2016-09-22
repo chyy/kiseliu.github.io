@@ -1,0 +1,793 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Helvetica Neue:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PySpark,Clustering," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="LDA模型介绍LDA是一种典型的Bag-of-words模型，即一篇文档是由一组词构成，词与词之间没有先后顺序的关系。可以将文档集中每篇文档的主题以概率分布的形式给出，从而通过分析一些文档抽取出它们的主题(分布)出来后，便可以根据主题(分布)进行主题聚类或文本分类。
+Latent Dirichlet allocation (LDA)LDA是主题模型，它推测文本文档集合中的主题。按照下述描述，LDA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PySpark.ml库中的Clustering">
+<meta property="og:url" content="http://github.com/kiseliu/2016/09/05/pyspark-ml库中的clustering/index.html">
+<meta property="og:site_name" content="Welcome to kiseliu's homepage">
+<meta property="og:description" content="LDA模型介绍LDA是一种典型的Bag-of-words模型，即一篇文档是由一组词构成，词与词之间没有先后顺序的关系。可以将文档集中每篇文档的主题以概率分布的形式给出，从而通过分析一些文档抽取出它们的主题(分布)出来后，便可以根据主题(分布)进行主题聚类或文本分类。
+Latent Dirichlet allocation (LDA)LDA是主题模型，它推测文本文档集合中的主题。按照下述描述，LDA">
+<meta property="og:updated_time" content="2016-09-12T05:49:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PySpark.ml库中的Clustering">
+<meta name="twitter:description" content="LDA模型介绍LDA是一种典型的Bag-of-words模型，即一篇文档是由一组词构成，词与词之间没有先后顺序的关系。可以将文档集中每篇文档的主题以概率分布的形式给出，从而通过分析一些文档抽取出它们的主题(分布)出来后，便可以根据主题(分布)进行主题聚类或文本分类。
+Latent Dirichlet allocation (LDA)LDA是主题模型，它推测文本文档集合中的主题。按照下述描述，LDA">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://github.com/kiseliu/2016/09/05/pyspark-ml库中的clustering/"/>
+
+  <title> PySpark.ml库中的Clustering | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Welcome to kiseliu's homepage</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Here's a dream chaser.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PySpark.ml库中的Clustering
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-05T16:34:37+08:00" content="2016-09-05">
+              2016-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/pyspark/" itemprop="url" rel="index">
+                    <span itemprop="name">PySpark</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/05/pyspark-ml库中的clustering/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/05/pyspark-ml库中的clustering/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="LDA模型介绍"><a href="#LDA模型介绍" class="headerlink" title="LDA模型介绍"></a>LDA模型介绍</h1><p>LDA是一种典型的Bag-of-words模型，即一篇文档是由一组词构成，词与词之间没有先后顺序的关系。<br>可以将文档集中每篇文档的主题以概率分布的形式给出，从而通过分析一些文档抽取出它们的主题(分布)出来后，便可以根据主题(分布)进行主题聚类或文本分类。</p>
+<h1 id="Latent-Dirichlet-allocation-LDA"><a href="#Latent-Dirichlet-allocation-LDA" class="headerlink" title="Latent Dirichlet allocation (LDA)"></a>Latent Dirichlet allocation (LDA)</h1><p>LDA是主题模型，它推测文本文档集合中的主题。按照下述描述，LDA可以被认为是一种聚类算法：</p>
+<ul>
+<li>主题对应聚类中心，文档对应数据集中的例子。</li>
+<li>主题和文档在特征空间中都存在，且特征向量是词频向量。</li>
+<li>LDA不是用传统的距离来衡量一个类簇，它使用的是基于文本文档生成的统计模型的函数。</li>
+</ul>
+<p>LDA通过 <em>setOptimizer</em> 函数支持不同的推断算法。<em>EMLDAOptimizer</em> 对于似然函数用<strong> expectation-maximization </strong>算法学习聚类，然后获得一个合理的结果。<em>OnlineLDAOptimizer</em>使用迭代的mini-batch抽样来进行<strong> online variational inference</strong>，它通常对内存更友好。 </p>
+<p>LDA接收文档集合表示的词频向量，和下列参数(使用builder模式进行设置)：</p>
+<ul>
+<li>k: 主题数(也就是聚类中心数)</li>
+<li>optimizer: 学习LDA模型使用的优化器，<em>EMLDAOptimizer</em> 或者 <em>OnlineLDAOptimizer</em>。</li>
+<li>docConcentration: 文档-主题分布的先验Dirichlet参数。值越大，推断的分布越平滑。</li>
+<li>topicConcentration: 主题-词语分布的先验Dirichlet参数。值越大，推断的分布越平滑。</li>
+<li>maxIterations: 迭代次数的限制</li>
+<li>checkpointInterval: 如果你使用checkpointing(在Spark配置中设置)，该参数设置checkpoints创建的次数，如果maxIterations过大，使用checkpointing可以帮助减少磁盘上shuffle文件的大小，然后帮助失败恢复。</li>
+</ul>
+<p>所有spark.mllib的 LDA 模型都支持：</p>
+<ul>
+<li>describeTopics: 返回主题，它是最重要的term组成的数组和term对应的权重组成的数组。</li>
+<li>topicsMatrix: 返回一个 vocabSize*k 维的矩阵，每一个列是一个topic。</li>
+</ul>
+<p>注意：LDA仍然是一个正在开发的实验特性。某些特性只在两种优化器/由优化器生成的模型中的一个提供。目前，分布式模型可以转化为本地模型，反过来不可以。</p>
+<p>下列讨论将分开描述每个优化器/模型。</p>
+<h2 id="Expectation-Maximization"><a href="#Expectation-Maximization" class="headerlink" title="Expectation Maximization"></a>Expectation Maximization</h2><p>Implemented in EMLDAOptimizer and DistributedLDAModel.</p>
+<p>提供给LDA的参数有:</p>
+<ul>
+<li>docConcentration: 只支持对称的先验，因此在提供的k维向量中所有值都相等。所有值也必须大于1.0。提供Vector(-1)会导致默认值 (uniform k dimensional vector with value (50/k))+1。</li>
+<li>topicConcentration: 只支持对称的先验，所有值也必须大于1.0。提供-1会导致默认值0.1 加1。</li>
+<li>maxIterations: EM迭代的最大次数。</li>
+</ul>
+<p>注意：做足够多次迭代是重要的。在早期的迭代中，EM经常会有一些无用的topics，但是这些topics经过更多次的迭代会有改善。依赖你的数据集，如果使用至少20个topic，可能需要50-100次的迭代。</p>
+<p>EMLDAOptimizer 会产生 DistributedLDAModel, 它不只存储推断的主题，还有所有的训练语料，以及训练语料库中每个文档的主题分布:</p>
+<ul>
+<li>topTopicsPerDocument: 训练语料库中每个文档的前若干个主题和对应的权重</li>
+<li>topDocumentsPerTopic: 每个主题下的前若干个文档和文档中对应的主题的权重</li>
+<li>logPrior: 基于超参doc Concentration 和 topic Concentration，估计的主题和文档-主题分布的对数概率。</li>
+<li>logLikelihood: 基于推断的主题和文档-主题分布，训练语料的对数似然。</li>
+</ul>
+<h2 id="Online-Variational-Bayes"><a href="#Online-Variational-Bayes" class="headerlink" title="Online Variational Bayes"></a>Online Variational Bayes</h2><p>Implemented in OnlineLDAOptimizer and LocalLDAModel.</p>
+<p>提供给LDA的参数有:</p>
+<ul>
+<li>docConcentration: 通过传递每个维度值都等于Dirichlet参数的向量使用不对称的先验，值应该大于等于0 。提供 Vector(-1) 会使用默认值(uniform k dimensional vector with value \((1.0/k)\))。</li>
+<li>topicConcentration: 只支持对称的先验，值必须大于等于0。提供值-1会使用默认值 \((1.0/k)\)。</li>
+<li>maxIterations: 提交的minibatches的最大次数。</li>
+</ul>
+<p>此外，OnlineLDAOptimizer 接收下列参数：</p>
+<ul>
+<li>miniBatchFraction: 每次迭代使用的语料库抽样比例。</li>
+<li>optimizeDocConcentration: 如果设置为true，每次 minibatch 之后计算参数 docConcentration (aka alpha) 的最大似然估计，然后在返回的 LocalLDAModel 使用优化了的docConcentration。</li>
+<li>\({ \tau  }_{ 0 }\) 和 \(\kappa\): 用作学习率衰减，用 \({ ({ \tau  }_{ 0 }+iter) }^{ -\kappa  }\) 计算，这里 \(iter\) 是目前的迭代次数。</li>
+</ul>
+<p>OnlineLDAOptimizer 生成 LocalLDAModel，它只存储了推断的主题。LocalLDAModel支持：</p>
+<ul>
+<li>logLikelihood(documents): 给定推断的主题，计算提供的文档的下界。</li>
+<li>logPerplexity(documents): 给定推断的主题，计算提供的文档的复杂度的上界。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pyspark/" rel="tag">#PySpark</a>
+          
+            <a href="/tags/clustering/" rel="tag">#Clustering</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/05/word2vec原理/" rel="next" title="Word2Vec原理">
+                <i class="fa fa-chevron-left"></i> Word2Vec原理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/05/opencv第2课/" rel="prev" title="OpenCV第2课">
+                OpenCV第2课 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/05/pyspark-ml库中的clustering/"
+           data-title="PySpark.ml库中的Clustering" data-url="http://github.com/kiseliu/2016/09/05/pyspark-ml库中的clustering/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myname.png"
+               alt="kiseliu" />
+          <p class="site-author-name" itemprop="name">kiseliu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/">
+                
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">categories</span>
+                
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+              
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kiseliu" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/kiseliu" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/kiseliu" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LDA模型介绍"><span class="nav-number">1.</span> <span class="nav-text">LDA模型介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Latent-Dirichlet-allocation-LDA"><span class="nav-number">2.</span> <span class="nav-text">Latent Dirichlet allocation (LDA)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Expectation-Maximization"><span class="nav-number">2.1.</span> <span class="nav-text">Expectation Maximization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Online-Variational-Bayes"><span class="nav-number">2.2.</span> <span class="nav-text">Online Variational Bayes</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kiseliu</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kiseliu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>

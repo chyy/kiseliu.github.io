@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Deep Learning，Keras," />
+  <meta name="keywords" content="Deep Learning,Keras," />
 
 
 
@@ -92,7 +92,7 @@ What are word embeddings?“Word embeddings”是一种旨在将语义映射到�
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
 <meta property="og:description" content="在本教程中，我们将带你体验使用预先训练好的词嵌入和卷积神经网络解决文本分类问题的过程。
 What are word embeddings?“Word embeddings”是一种旨在将语义映射到几何空间的自然语言处理技术，它将字典中的每个词和一个数值向量进行关联，比如任意两个向量间的距离(L2距离或者更常见的余弦距离)表示了两个相关联的词汇间的部分语义关系。由这些向量构成的几何空间叫做embedd">
-<meta property="og:updated_time" content="2016-08-10T08:58:48.000Z">
+<meta property="og:updated_time" content="2016-09-20T06:17:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Using Pre-Trained Word Embeddings in a Keras Model">
 <meta name="twitter:description" content="在本教程中，我们将带你体验使用预先训练好的词嵌入和卷积神经网络解决文本分类问题的过程。
@@ -357,18 +357,135 @@ What are word embeddings?“Word embeddings”是一种旨在将语义映射到�
 <h4 id="What-are-word-embeddings"><a href="#What-are-word-embeddings" class="headerlink" title="What are word embeddings?"></a>What are word embeddings?</h4><p>“<a href="https://en.wikipedia.org/wiki/Word_embedding" target="_blank" rel="external">Word embeddings</a>”是一种旨在将语义映射到几何空间的自然语言处理技术，它将字典中的每个词和一个数值向量进行关联，比如任意两个向量间的距离(L2距离或者更常见的余弦距离)表示了两个相关联的词汇间的部分语义关系。由这些向量构成的几何空间叫做embedding space。</p>
 <p>比如说，”coconut” 和 “polar bear”是语义上很不同的词语，那么一个合理的embedding space会把它们表示成隔得很远的向量。但是”kitchen” 和 “dinner” 是有关系的词语，所以它们应该互相隔的很近。</p>
 <p>理想情况下，在一个好的嵌入空间里，从”kitchen” 和 “dinner” 出发的”path” (a vector) 会准确地抓住这两个概念的语义关系。在这种情况下，关系是”where x occurs” , 所以你会期望向量 kitchen - dinner(二个嵌入向量的差，也就是从 kitchen 到 dinner 的路径 )能够表示这种”where x occurs”关系。最基本地，我们应该有向量的相等： dinner + (where x occurs) = kitchen(至少大约相等)。<br>如果这确实成立，我们可以用这种关系向量来回答问题。比如，从一个新向量开始，比如”work”, 然后应用这种关系向量，我们有时会得到对问题”where does work occur?”有意义的回答work + (where x occurs) = office。</p>
-<p>Word embeddings 通过将降为技术应用到语料库文本中的词汇间的共现统计的数据集上进行计算。这可以通过神经网络(“word2vec”技术)，或者因子分解做到。</p>
+<p>Word embeddings 通过将降维技术应用到语料库文本中的词汇间的共现统计的数据集上进行计算。这可以通过神经网络(“word2vec”技术)，或者因子分解做到。</p>
 <h4 id="GloVe-word-embeddings"><a href="#GloVe-word-embeddings" class="headerlink" title="GloVe word embeddings"></a>GloVe word embeddings</h4><p>我们将使用GloVe embeddings，你可以在这里了解<a href="http://nlp.stanford.edu/projects/glove/" target="_blank" rel="external">它</a>。GloVe表示词的全局向量表示。它是基于词的共现统计矩阵分解的一种流行的embedding技术。</p>
 <p>特别地，我们将使用由2014 dump of English Wikipedia 计算出来的400k个词语的100维的GloVe embeddings。</p>
-<h4 id="20-Newsgroup-dataset"><a href="#20-Newsgroup-dataset" class="headerlink" title="20 Newsgroup dataset"></a>20 Newsgroup dataset</h4><p>The task we will try to solve will be to classify posts coming from 20 different newsgroup, into their original 20 categories –the infamous “20 Newsgroup dataset”. You can read about the dataset and download the raw text data here.<br>我们将尝试解决的任务是对来自20个不同的新闻组的数据进行分类。<br>Categories are fairly semantically distinct and thus will have quite different words associated with them. Here are a few sample categories:</p>
-<h4 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h4><p>以下是我们将如何解决分类问题：</p>
+<h4 id="20-Newsgroup-dataset"><a href="#20-Newsgroup-dataset" class="headerlink" title="20 Newsgroup dataset"></a>20 Newsgroup dataset</h4><p>The task we will try to solve will be to classify posts coming from 20 different newsgroup, into their original 20 categories –the infamous “20 Newsgroup dataset”. You can read about the dataset and download the raw text data <a href="http://www.cs.cmu.edu/afs/cs.cmu.edu/project/theo-20/www/data/news20.html" target="_blank" rel="external">here</a>.</p>
+<p>Categories are fairly semantically distinct and thus will have quite different words associated with them. Here are a few sample categories:</p>
+<pre><code>comp.sys.ibm.pc.hardware
+comp.graphics
+comp.os.ms-windows.misc
+comp.sys.mac.hardware
+comp.windows.x
+
+rec.autos
+rec.motorcycles
+rec.sport.baseball
+rec.sport.hockey
+</code></pre><h4 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h4><p>以下是我们将如何解决分类问题：</p>
 <ul>
 <li>将数据集中所有的文本样本转化成带索引的词语的序列。词语的索引是整数ID。我们只考虑数据中最常出现的前20000个词语，并且我们将把序列截断成最大长度为1000个词语。</li>
 <li>prepare an “embedding matrix” which will contain at index i the embedding vector for the word of index i in our word index.</li>
 <li>加载这个 embedding matrix 到一个Keras Embedding layer,然后设置为 frozen (它的权重，embedding vectors 在训练阶段都不会被更新)。</li>
-<li>build on top of it a 1D convolutional neural network, ending in a softmax output over our 20 categories.</li>
+<li>构建于1维的卷积神经网络，结束于20个类的softmax输出。</li>
 </ul>
-<h4 id="Preparing-the-text-data"><a href="#Preparing-the-text-data" class="headerlink" title="Preparing the text data"></a>Preparing the text data</h4>
+<h4 id="Preparing-the-text-data"><a href="#Preparing-the-text-data" class="headerlink" title="Preparing the text data"></a>Preparing the text data</h4><p>首先，我们简单地对文本样本存储的文件夹进行迭代，然后把它们格式化为样本的列表。我们同时也准备样本对应的类别索引列表。</p>
+<pre><code>#coding:utf-8
+import os
+
+texts = []
+labels_index = {}
+labels = []
+text_data_dir = &quot;/path/20news-bydate/20news-bydate-train&quot;
+for name in sorted(os.listdir(text_data_dir)):
+    path = os.path.join(text_data_dir, name)
+    if os.path.isdir(path):
+        label_id = len(labels_index)
+        labels_index[name] = label_id
+        for fname in sorted(os.listdir(path)):
+            if fname.isdigit():
+                fpath = os.path.join(path, fname)
+                f = open(fpath)
+                texts.append(f.read())
+                f.close()
+                labels.append(label_id)
+
+print &quot;Found %s texts.&quot; % len(texts)
+</code></pre><p>然后我们格式化文本样本和标签为tensors，这些tensors可以被喂给神经网络。为了达到此目的，我们需要依赖Keras的工具keras.preprocessing.text.Tokenizer 和keras.preprocessing.sequence.pad_sequences.</p>
+<pre><code>from keras.preprocessing.text import Tokenizer
+from keras.preprocessing.sequence import pad_sequences
+MAX_NB_WORDS = 20000
+tokenizer = Tokenizer(nb_words=MAX_NB_WORDS)
+tokenizer.fit_on_texts(texts)
+word_index = tokenizer.word_index
+print &quot;Found %s unique tokens.&quot; % len(word_index)
+# print word_index
+
+sequences = tokenizer.texts_to_sequences(texts)
+
+MAX_SEQUENCE_LENGTH = 20000
+data = pad_sequences(sequences, maxlen=MAX_SEQUENCE_LENGTH)
+labels = to_categorical(np.asarray(labels))
+print(&apos;Shape of data tensor:&apos;, data.shape)
+print(&apos;Shape of label tensor:&apos;, labels.shape)
+
+
+# shuffle数据
+indices = np.arange(data.shape[0])
+np.random.shuffle(indices)
+data = data[indices]
+labels = labels[indices]
+
+# 然后把数据分成训练集和测试集
+VALIDATION_SPLIT = 0.2
+nb_validation_samples = int(VALIDATION_SPLIT * data.shape[0])
+x_train = data[:-nb_validation_samples]
+y_train = labels[:-nb_validation_samples]
+x_val = data[-nb_validation_samples:]
+y_val = labels[-nb_validation_samples:]
+</code></pre><h4 id="Preparing-the-Embedding-layer"><a href="#Preparing-the-Embedding-layer" class="headerlink" title="Preparing the Embedding layer"></a>Preparing the Embedding layer</h4><p>Next, we compute an index mapping words to known embeddings, by parsing the data dump of pre-trained embeddings: </p>
+<pre><code>#从预训练好的GloVe文件中解析出每个词和它所对应的词向量，并用字典的方式存储
+embeddings_index = {}
+glove_text = &apos;&apos;
+f = open(glove_text)
+for line in f:
+    values = line.split()
+    word = values[0]  #取词
+    coefs = np.asarray(values[1:], dtype=&apos;float32&apos;)  #取向量
+    embeddings_index[word] = coefs  #将词和对应的向量存到字典里
+f.close()
+print(&apos;Found %s word vectors.&apos; % len(embeddings_index))
+</code></pre><p>此时，我们可以加载 embedding_index字典 和 word_index 来计算 embedding 矩阵：</p>
+<pre><code>EMBEDDING_DIM = 100
+embeddings_matrix = np.zeros((len(word_index)+1, EMBEDDING_DIM))
+for word, i in word_index.items():  #借助字典embeddings_index[词,向量]将&quot;词和索引&quot;转化为&quot;索引和向量&quot;
+    embeddings_vector = embeddings_index.get(word)   # 在embedding index 中没有找到的词,其对应的向量会是全0
+    if embeddings_vector is not None:
+        embeddings_matrix[i] = embeddings_vector
+</code></pre><p>我们加载 embedding矩阵 到 Embedding层，注意我们设置trainable=False来防止权重在训练的过程中被更新。</p>
+<pre><code>from keras.layers import Embedding
+embeddings_layer = Embedding(len(word_index)+1, EMBEDDING_DIM, weights=[embedding_matrix],
+                             input_length=MAX_SEQUENCE_LENGTH, trainable=False)
+</code></pre><p>Embedding层接收的应该是整数序列，比如一个2D的输入，它的shape值为(samples, indices)，也就是一个samples行，indeces列的矩阵。这些输入序列应该被填充使得每一批的输入数据都有相同的长度(尽管Embedding层可以处理不同长度的序列，如果你不传递一个清晰的input_length参数给该层)。</p>
+<p>Embedding层做的事情是将整数输入映射到embedding矩阵中对应的索引的向量。比如序列[1, 2]将被转换为[embeddings<a href="https://en.wikipedia.org/wiki/Word_embedding" target="_blank" rel="external">1</a>, embeddings<a href="http://nlp.stanford.edu/projects/glove/" target="_blank" rel="external">2</a>]，这样对于二维的输入，Embedding层的输出将是一个大小为(samples, sequence_length, embedding_dim)的三维张量积。</p>
+<h4 id="Training-a-1D-convnet"><a href="#Training-a-1D-convnet" class="headerlink" title="Training a 1D convnet"></a>Training a 1D convnet</h4><p>最后，我们可以构建一个一层的卷积神经网络来解决我们的分类问题：</p>
+<pre><code>from keras.layers import Dense, Input, Flatten
+from keras.layers import Conv1D, MaxPooling1D, Embedding
+from keras.models import Model
+
+sequence_input = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype=&apos;int32&apos;)
+embedded_sequences = embeddings_layer(sequence_input)
+x = Conv1D(128, 5, activation=&apos;relu&apos;)(embedded_sequences)
+x = MaxPooling1D(5)(x)
+x = Conv1D(128, 5, activation=&apos;relu&apos;)(x)
+x = MaxPooling1D(5)(x)
+x = Conv1D(128, 5, activation=&apos;relu&apos;)(x)
+x = MaxPooling1D(35)(x)
+x = Flatten()(x)
+x = Dense(128, activation=&apos;relu&apos;)(x)
+preds = Dense(len(labels_index), activation=&apos;softmax&apos;)(x)
+
+model = Model(sequence_input, preds)
+model.compile(loss=&apos;categorical_crossentropy&apos;, optimizer=&apos;rmsprop&apos;, metrics=[&apos;acc&apos;])
+
+model.fit(x_train, y_train, validation_data=(x_val, y_val), nb_epoch=2, batch_size=128)
+</code></pre><p>只要经过2次迭代，该模型即可在交叉集上达到95%的分类准确率。通过使用一些正则化机制(比如dropout)训练得更久，或者对Embedding调优，你可能会得到更高的准确率。</p>
+<p>我们也可以测试下如果不使用预先训练好的词向量，而是从头开始初始化Embedding层，在训练的过程中学习它的值，准确率会如何？我们只需要用下列的代码替换Embedding层：</p>
+<pre><code>embedding_layer = Embedding(len(word_index) + 1,
+                            EMBEDDING_DIM,
+                            input_length=MAX_SEQUENCE_LENGTH)
+</code></pre><p>在2次迭代之后，该方法只能得到90%的交叉验证准确率，比我们前面的模型只迭代一次的准确率低。我们预训练的向量肯定带来了些什么。In general, using pre-trained embeddings is relevant for natural processing tasks were little training data is available (functionally the embeddings act as an injection of outside information which might prove useful for your model).</p>
+
       
     </div>
 
@@ -389,7 +506,9 @@ What are word embeddings?“Word embeddings”是一种旨在将语义映射到�
       
         <div class="post-tags">
           
-            <a href="/tags/deep-learning，keras/" rel="tag">#Deep Learning，Keras</a>
+            <a href="/tags/deep-learning/" rel="tag">#Deep Learning</a>
+          
+            <a href="/tags/keras/" rel="tag">#Keras</a>
           
         </div>
       
@@ -480,7 +599,7 @@ What are word embeddings?“Word embeddings”是一种旨在将语义映射到�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -489,7 +608,7 @@ What are word embeddings?“Word embeddings”是一种旨在将语义映射到�
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -499,7 +618,7 @@ What are word embeddings?“Word embeddings”是一种旨在将语义映射到�
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -557,7 +676,7 @@ What are word embeddings?“Word embeddings”是一种旨在将语义映射到�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#What-are-word-embeddings"><span class="nav-number">1.</span> <span class="nav-text">What are word embeddings?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GloVe-word-embeddings"><span class="nav-number">2.</span> <span class="nav-text">GloVe word embeddings</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-Newsgroup-dataset"><span class="nav-number">3.</span> <span class="nav-text">20 Newsgroup dataset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Approach"><span class="nav-number">4.</span> <span class="nav-text">Approach</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Preparing-the-text-data"><span class="nav-number">5.</span> <span class="nav-text">Preparing the text data</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#What-are-word-embeddings"><span class="nav-number">1.</span> <span class="nav-text">What are word embeddings?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GloVe-word-embeddings"><span class="nav-number">2.</span> <span class="nav-text">GloVe word embeddings</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-Newsgroup-dataset"><span class="nav-number">3.</span> <span class="nav-text">20 Newsgroup dataset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Approach"><span class="nav-number">4.</span> <span class="nav-text">Approach</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Preparing-the-text-data"><span class="nav-number">5.</span> <span class="nav-text">Preparing the text data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Preparing-the-Embedding-layer"><span class="nav-number">6.</span> <span class="nav-text">Preparing the Embedding layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Training-a-1D-convnet"><span class="nav-number">7.</span> <span class="nav-text">Training a 1D convnet</span></a></li></ol></div>
             
           </div>
         </section>

@@ -1,0 +1,779 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Helvetica Neue:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CNN," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文译自UNDERSTANDING CONVOLUTIONAL NEURAL NETWORKS FOR NLP。
+当我们听到CNN的时候，我们一下就会想到计算机视觉。CNNs在图像分类的重大突破上做出了巨大的贡献，从Facebook的自动图像标注到自动驾驶，CNNs当今大多数计算机视觉系统的核心。
+最近，我们也开始应用CNNs解决NLP中遇到的问题，取得了一些有趣的结果。本文将尽力解释什么是CNN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding Convolutional Neural Networks for NLP">
+<meta property="og:url" content="http://github.com/kiseliu/2016/09/22/understanding-convolutional-neural-networks-for-nlp/index.html">
+<meta property="og:site_name" content="Welcome to kiseliu's homepage">
+<meta property="og:description" content="本文译自UNDERSTANDING CONVOLUTIONAL NEURAL NETWORKS FOR NLP。
+当我们听到CNN的时候，我们一下就会想到计算机视觉。CNNs在图像分类的重大突破上做出了巨大的贡献，从Facebook的自动图像标注到自动驾驶，CNNs当今大多数计算机视觉系统的核心。
+最近，我们也开始应用CNNs解决NLP中遇到的问题，取得了一些有趣的结果。本文将尽力解释什么是CNN">
+<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/6/6c/Convolution_schematic.gif">
+<meta property="og:image" content="http://docs.gimp.org/en/images/filters/examples/convolution-blur.png">
+<meta property="og:image" content="http://docs.gimp.org/en/images/filters/examples/generic-taj-convmatrix-blur.jpg">
+<meta property="og:image" content="http://docs.gimp.org/en/images/filters/examples/convolution-edge-detect1.png">
+<meta property="og:image" content="http://docs.gimp.org/en/images/filters/examples/generic-taj-convmatrix-edge-detect.jpg">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-07-at-7.26.20-AM.png">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-12.05.40-PM.png">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-05-at-9.47.41-AM.png">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-05-at-10.18.08-AM.png">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-05-at-2.18.38-PM.png">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-8.03.47-AM.png">
+<meta property="og:updated_time" content="2016-09-22T09:39:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Understanding Convolutional Neural Networks for NLP">
+<meta name="twitter:description" content="本文译自UNDERSTANDING CONVOLUTIONAL NEURAL NETWORKS FOR NLP。
+当我们听到CNN的时候，我们一下就会想到计算机视觉。CNNs在图像分类的重大突破上做出了巨大的贡献，从Facebook的自动图像标注到自动驾驶，CNNs当今大多数计算机视觉系统的核心。
+最近，我们也开始应用CNNs解决NLP中遇到的问题，取得了一些有趣的结果。本文将尽力解释什么是CNN">
+<meta name="twitter:image" content="http://deeplearning.stanford.edu/wiki/images/6/6c/Convolution_schematic.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://github.com/kiseliu/2016/09/22/understanding-convolutional-neural-networks-for-nlp/"/>
+
+  <title> Understanding Convolutional Neural Networks for NLP | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Welcome to kiseliu's homepage</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Here's a dream chaser.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Understanding Convolutional Neural Networks for NLP
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-22T10:28:17+08:00" content="2016-09-22">
+              2016-09-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/deep-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Deep Learning</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/deep-learning/nlp/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/22/understanding-convolutional-neural-networks-for-nlp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/understanding-convolutional-neural-networks-for-nlp/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>本文译自<a href="http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/" target="_blank" rel="external">UNDERSTANDING CONVOLUTIONAL NEURAL NETWORKS FOR NLP</a></strong>。</p>
+<p>当我们听到CNN的时候，我们一下就会想到计算机视觉。CNNs在图像分类的重大突破上做出了巨大的贡献，从Facebook的自动图像标注到自动驾驶，CNNs当今大多数计算机视觉系统的核心。</p>
+<p>最近，我们也开始应用CNNs解决NLP中遇到的问题，取得了一些有趣的结果。本文将尽力解释什么是CNNs，它怎么用于NLP。CNNs 背后的直觉让理解计算机视觉的应用案例更容易，因此我们将从这里开始，然后逐渐转向NLP。</p>
+<h1 id="What-is-convolution"><a href="#What-is-convolution" class="headerlink" title="What is convolution?"></a>What is convolution?</h1><p>对于我来说理解<strong>卷积</strong>最简单的方法是把它想成一个应用到矩阵上的滑动窗口函数。看一下图像可能更清楚：<br><img src="http://deeplearning.stanford.edu/wiki/images/6/6c/Convolution_schematic.gif" alt="" title="Convolution with 3×3 Filter. Source: http://deeplearning.stanford.edu/wiki/index.php/Feature_extraction_using_convolution"><br>想象左边的矩阵表示一张黑白的图片。每一个输入表示一个像素，0表示黑色，1表示白色(对于灰度图来说，取值通常介于0～255)。滑动窗口叫做<strong>kernel</strong>, <strong>filter</strong>, 或者 <strong>feature detector</strong>。这里我们用一个 3x3 的filter，和原始矩阵做点乘，然后相加。为了得到所有的卷积，我们通过在整个矩阵上滑动filter对每个元素都这样做 (To get the full convolution we do this for each element by sliding the filter over the whole matrix.)。</p>
+<p>你可能会想用这个你可以做什么？这里是一些直接的例子。<br>对每个像素，结合它的邻值做平均来模糊图像：<br><img src="http://docs.gimp.org/en/images/filters/examples/convolution-blur.png" alt=""> <img src="http://docs.gimp.org/en/images/filters/examples/generic-taj-convmatrix-blur.jpg" alt="来源: http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/"><br>根据像素和它的近邻像素的差异来检测边缘：<br>(To understand this one intuitively, think about what happens in parts of the image that are smooth, where a pixel color equals that of its neighbors: The additions cancel and the resulting value is 0, or black. If there’s a sharp edge in intensity, a transition from white to black for example, you get a large difference and a resulting white value)<br><img src="http://docs.gimp.org/en/images/filters/examples/convolution-edge-detect1.png" alt="来源: http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/"> <img src="http://docs.gimp.org/en/images/filters/examples/generic-taj-convmatrix-edge-detect.jpg" alt=""><br><a href="http://docs.gimp.org/en/plug-in-convmatrix.html" target="_blank" rel="external">GIMP manual</a> 有一些其它的例子。为了理解更多关于卷积是如何工作的，我推荐看一下<a href="http://colah.github.io/posts/2014-07-Understanding-Convolutions/" target="_blank" rel="external">Chris Olah’s post on the topic</a>。</p>
+<h1 id="What-are-convolutional-neural-networks"><a href="#What-are-convolutional-neural-networks" class="headerlink" title="What are convolutional neural networks?"></a>What are convolutional neural networks?</h1><p>现在你知道什么是卷积了，但是什么是CNNs？CNNs只是几层具有非线性激活函数，像 <a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)" target="_blank" rel="external">ReLU</a> or <a href="https://reference.wolfram.com/language/ref/Tanh.html" target="_blank" rel="external">tanh</a> 的卷积层。在传统的前馈神经网络中，我们连接每个输入神经元到下一层的每个输出神经元。这也叫做全连接层，或者仿射层。在CNNs中，我们不这样做。相反，我们在输入层使用卷积来计算输出。这会得到一个局部连接，也就是输入的每个小区域都被连接到输出的每个神经元。每层应用不同的filters，可以是成百上千个filters，然后把它们的结果连接起来。这也叫做pooling (subsampling) layers，我们后面会讲。在训练阶段，根据你想要进行的任务，<strong>CNN会自动学习filters的值</strong>。比如在图像分类中，第一层CNN可能会从原始的像素中学习检测边缘，然后在第二层用边缘来检测简单的形状，用这些形状来得到更高层次的特征，比如在更深层的面部形状。最后一层是使用这些高阶特征的分类器。<br><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-07-at-7.26.20-AM.png" alt=""><br>该计算有两方面值得注意：<strong>Location Invariance</strong> 和 <strong>Compositionality</strong>。假如你想要区分图片上是否有大象🐘，因为你在整个图像上滑动你的filters，你并不在意大象出现在那里。在实践中，pooling给你提供 invariance 到 translation，rotation 和 scaling等等。第二个主要的方面是 (local) compositionality。每一个filter都把低阶特征的一个局部patch构成更高阶的表示，这就是为什么CNNs在计算机视觉中如此强大的原因。直觉上这是合理的，你从像素构建出边缘，从边缘构建出形状，从形状构建出更复杂的对象。</p>
+<h1 id="So-how-does-any-of-this-apply-to-NLP"><a href="#So-how-does-any-of-this-apply-to-NLP" class="headerlink" title="So, how does any of this apply to NLP?"></a>So, how does any of this apply to NLP?</h1><p>和图像像素不同，大多数NLP任务的输入是表示成矩阵的句子或者文档。矩阵的每一行对应一个token，也就是一个word，但是它可以是一个字符。也就是说每一行是一个向量，它代表一个word。通常来说，这些向量是word embeddings(低维表示)，像 word2vec 或者 GloVe，但是也可以是索引词到词汇表的one-hot编码的向量。对于一个使用100维embedding的包含10个word的句子，我们的输入是一个10*100的矩阵，这就是我们的“图像”。</p>
+<p>在计算机视觉中，filters在图像的局部patches上滑动，但是在NLP领域，我们常常使用在矩阵的整行(words)上滑动的filters。也就是filters的宽和输入矩阵的宽度相同。高或者说区域的大小可能会变化，但是常用的滑动窗口一次包含2-5个words(花几分钟尝试理解一下这幅图，以及维度是如何计算的。现在你可以先忽略pooling，后续我们会解释)：<br><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-12.05.40-PM.png" alt="" title="Illustration of a Convolutional Neural Network (CNN) architecture for sentence classification. Here we depict three filter region sizes: 2, 3 and 4, each of which has 2 filters. Every filter performs convolution on the sentence matrix and generates (variable-length) feature maps. Then 1-max pooling is performed over each map, i.e., the largest number from each feature map is recorded. Thus a univariate feature vector is generated from all six maps, and these 6 features are concatenated to form a feature vector for the penultimate layer. The final softmax layer then receives this feature vector as input and uses it to classify the sentence; here we assume binary classification and hence depict two possible output states. Source: Zhang, Y., &amp; Wallace, B. (2015). A Sensitivity Analysis of (and Practitioners’ Guide to) Convolutional Neural Networks for Sentence Classification."><br>我们在计算机视觉中有的良好的直觉是什么？Location Invariance 和 local Compositionality 在图像方面是合理的，但是在NLP中并不是。你可能很关心word到底出现在句子中的哪个地方？相邻的像素很可能是语义相关的(相同对象的一部分)，但是这种关系对words并不总是成立。在许多语言中，短语的某些部分可能被几个其他words给分开。compositional 方面也不明显。很显然，words以某些方式组成在一起，比如，形容词修饰名词，但是这到底如何组成，高阶表示实际上说明了什么并不像计算机视觉中的应用案例那样明显。</p>
+<p>考虑所有的这些，CNNs似乎并不是很适合NLP领域的任务。<a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="external">Recurrent Neural Networks</a>在直觉上更合理。它们模仿我们怎么处理语言(或者我们认为我们如何处理语言): 从左往右按顺序读。幸运地是，这并不意味着CNNs不起作用。<a href="https://en.wikipedia.org/wiki/All_models_are_wrong" target="_blank" rel="external">All models are wrong, but some are sueful</a>。CNNs在NLP问题上表现地相当好。简单的<a href="https://en.wikipedia.org/wiki/Bag-of-words_model" target="_blank" rel="external">词袋模型</a>很显然过于简单，有着不正确的假设，但是尽管如此，这些年它都是标准的方法，并且也有不错的结果。</p>
+<p>CNNs的一个特点是速度快，非常快。卷积是计算机图像学的一个核心部分，在基于GPUs的硬件层面上实现。和n-grams相比，CNNs就表示而言也是很高效的。对于很大的词汇表，计算超过 3-grams的任务的代价很快就非常昂贵。即使是Google也不提供超过5-grams的任务。Convolutional Filters自动学习好的表示，不需要表示整个词汇表。filters的大小超过5也是非常合理的。我可能会想，在第一层许多学习出来的filters是在学习类似(但不限于)n-grams的特征，只是用一种更压缩的方式来表示它们。</p>
+<h1 id="CNN-Hyperparameters"><a href="#CNN-Hyperparameters" class="headerlink" title="CNN Hyperparameters"></a>CNN Hyperparameters</h1><p>在解释CNNs如何应用于NLP任务之前，我们先看一看构建CNN时，你需要做的一些选择。希望这会帮助你更好地理解这个领域的文献。</p>
+<h1 id="Narrow-VS-Wide-Convolution"><a href="#Narrow-VS-Wide-Convolution" class="headerlink" title="Narrow VS. Wide Convolution"></a>Narrow VS. Wide Convolution</h1><p>当我在上面解释卷积的时候，我忽略了我们如何应用filter的一些细节。在矩阵中心应用一个3×3 的filter工作的很好，但是在边缘呢？你如何将filter 应用在矩阵的第一个元素，这个元素的上面和左边都没有相邻元素？你可以使用0填充。所有落在矩阵外面的元素都取零。这样做，你就可以把filter应用到输入矩阵的每一个元素上，然后得到一个更大或者相等大小的输出。加入零填充也叫做wide convolution，不使用零填充就是narrow convolution。一个1维的例子如下：<br><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-05-at-9.47.41-AM.png" alt="" title="Narrow vs. Wide Convolution. Filter size 5, input size 7. Source: A Convolutional Neural Network for Modelling Sentences (2014)"><br>可以看到，当你用一个相对输入来说较大的filter时，wide convolution很有用的，甚至是必须的。在上图，narrow convolution 得到大小为 \((7-5)+1=3\) 的输出，wide convolution的输出大小为 \((7+2*4-5)+1=11\)。更一般地，输出大小的公式是 \(n_{out}=(n_{in}+2*n_{padding}-n_{filter})+1\)。</p>
+<h1 id="Stride-size"><a href="#Stride-size" class="headerlink" title="Stride size"></a>Stride size</h1><p>and consecutive applications of the filter overlapped. A larger stride size leads to fewer applications of the filter and a smaller output size. The following from the Stanford cs231 website shows stride sizes of 1 and 2 applied to a one-dimensional input:<br> 卷积的另一个超参是stride size，它定义每一步你的filter移动多少。在上面所有的例子中，stride size都是1。filter的连续作用是重叠的。更大的 stride size 会得到更少的filter作用和更小的输出。下图来自<a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">Stanford cs231 website</a>，显示了stride size 1 和 stride size 2 分别作用在1维输入的情况：<br><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-05-at-10.18.08-AM.png" alt="" title="Convolution Stride Size. Left: Stride size 1. Right: Stride size 2. Source: http://cs231n.github.io/convolutional-networks/"><br>在文献中，我们常常看到stride size为1，但是更大的stride size会让你构建出表现和<a href="https://en.wikipedia.org/wiki/Recursive_neural_network" target="_blank" rel="external">Recursive Neural Network</a>(看起来像树)相似的模型。</p>
+<h1 id="Pooling-layers"><a href="#Pooling-layers" class="headerlink" title="Pooling layers"></a>Pooling layers</h1><p>Convolutional Neural Networks的一个很重要的方面是pooling层，常常应用在卷积层后面。Pooling层子抽样他们的输入。做pooling最常用的方法是在每一个filter的结果之上做一个\(max\)操作。你不需要在整个矩阵上做pool，你也可以在一个window上做pool。比如，下图显示了一个对于2x2 window的max pooling(在NLP中，我们常常应用pooling到整个输出，每个filter只获得一个数值)：<br><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-05-at-2.18.38-PM.png" alt="" title="Max pooling in CNN. Source: http://cs231n.github.io/convolutional-networks/#pool"><br>为什么pooling？这里有几个原因。pooling的一个特性是提供了一个固定大小的输出矩阵，这常常是分类需要的。比如，如果你有1000个filters，然后你对每个都应用 max pooling，你会得到一个1000维的输出，和filters的大小，或者输入的大小无关。这让你可以使用可变长的句子，可变大小的filters，但是总是得到相同的输出维度，然后喂给分类器。</p>
+<p>Pooling也会减少输出的维度，但是(希望)保持最重要的信息。你可以认为每个filter都是用来探测特定的特征的，比如探测句子是否包含像“not amazing”的否定词。如果这个短语出现在句子中的某个地方，应用filter到那个区域的结果是获得一个很大的值，但是在其他区域得到的是较小的值。通过进行max操作，你可以保持特征是否出现在句子中的信息，但是你丢失了它到底出现在哪的信息。但是关于位置的信息不是真的有用吗？是的，它没有用，这和n-grams的词袋模型做的事情有一点类似。你丢失了位置的全局信息(where in a sentence something happens)，但是你保持了filters捕获的局部信息，比如“not amazing”和“amazing not”就很不同。</p>
+<p>在图像识别中，pooling也提供了基本的invariance 到 translating (shifting) 和 rotation。当你在一个区域进行pooling，输出大致上将保持相同，即使你shift/rotate图像的一些像素，因为max操作会找到相同的值。</p>
+<h1 id="Channels"><a href="#Channels" class="headerlink" title="Channels"></a>Channels</h1><p>最后一个需要理解的概念是channels。比如，在图像识别中，你通常有RGB (red, green, blue)通道。你可以跨通道应用卷积，以不同的或者相同的权重。在NLP中，你也可以想象有多个通道：你可以对不同的word embeddings (比如<a href="https://code.google.com/p/word2vec/" target="_blank" rel="external">word2vec</a> 和 <a href="http://nlp.stanford.edu/projects/glove/" target="_blank" rel="external">GloVe</a>)有一个单独的通道，或者对用不同的语言表示的相同的句子/不同形式的短语，你可以有一个通道。</p>
+<h1 id="Convolutional-Neural-Networks-Applied-to-NLP"><a href="#Convolutional-Neural-Networks-Applied-to-NLP" class="headerlink" title="Convolutional Neural Networks Applied to NLP"></a>Convolutional Neural Networks Applied to NLP</h1><p>现在让我们看看CNNs在NLP领域的一些应用。我也会阐述一些研究结果，当然我可能会错过许多有趣的应用(请在评论中让我知道)，但是我希望至少包含一些受欢迎的结论。</p>
+<p>对于CNNs应用在NLP，最自然的似乎是分类任务，比如情感分类，垃圾过滤或者主题分类。卷积和pooling操作会丢失words的局部顺序的信息，因此如词性标注或者命名实体识别的序列标注较难应用到纯碎的CNN架构(但是不是不可能，你可以加入输入的位置特征)中。</p>
+<p>[<a href="http://arxiv.org/abs/1408.5882.pdf" target="_blank" rel="external">1</a>] 在各种分类(主要由情感分析，主题分类任务组成)数据集上评价CNN架构。在跨数据集上，CNN架构取得了非常好的表现，甚至有一些非常好。令人惊讶地是这篇论文中使用的网络相当简单，输入层是由相连的word2vec word embeddings 组成的句子。然后是有多个filters的卷积层，max-pooling层，最后是一个softmax分类器。这篇论文也用两个不同的通道进行了实验，一个是静态的word embeddings，一个是动态的word embeddings，也就是在训练的时候，一个通道被调整，另一个不动。一个相似但更复杂的架构在[<a href="http://arxiv.org/abs/1404.2188" target="_blank" rel="external">2</a>]中更早被提出。[<a href="http://www.aclweb.org/anthology/P15-2058" target="_blank" rel="external">6</a>]增加了一个额外的层对这个网络架构进行”语义聚类”。<br><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-8.03.47-AM.png" alt="" title="Kim, Y. (2014). Convolutional Neural Networks for Sentence Classification"></p>
+<h1 id="Character-level-CNNS"><a href="#Character-level-CNNS" class="headerlink" title="Character-level CNNS"></a>Character-level CNNS</h1><p>目前为止，我们说的所有模型都是基于words的。但是也有研究把CNNs直接应用到characters的。[<a href="http://jmlr.org/proceedings/papers/v32/santos14.pdf" target="_blank" rel="external">14</a>] 学习了character-level embeddings，用预训练的word embeddings结合它们，然后用CNN进行词性标注。[<a href="http://arxiv.org/abs/1509.01626" target="_blank" rel="external">15</a>][<a href="http://arxiv.org/abs/1502.01710" target="_blank" rel="external">16</a>] 探索了CNNs的用法，直接从characters中学习，不需要任何预训练的embeddings。值得注意的是，作者用了一个相当深的网络，有9层，然后将它应用到情感分析和文本分类任务。结果显示直接从character-level的输入中学习在大数据集(百万样本)上表现地相当好，但是在较小的数据集(几百几千个样本)上的表现不如简单的模型。[<a href="http://arxiv.org/abs/1508.06615" target="_blank" rel="external">17</a>] 探索了character-level convolutions 在语言模型上的应用，在每一步，使用character-level CNN 的输出作为 LSTM 的输入。相同的模型应用在各种各样的语言。</p>
+<p>令人兴奋的是上面的论文基本都是在过去的1-2年出版的。显然之前就已经有CNNs在NLP的优秀成果。比如<a href="http://arxiv.org/abs/1103.0398" target="_blank" rel="external">Natural Language Processing (almost) from Scratch</a>，但是新的研究成果和最先进的系统出版的步调很显然正在加速。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cnn/" rel="tag">#CNN</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/14/受限波尔滋曼机/" rel="next" title="受限波尔滋曼机">
+                <i class="fa fa-chevron-left"></i> 受限波尔滋曼机
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/22/understanding-convolutional-neural-networks-for-nlp/"
+           data-title="Understanding Convolutional Neural Networks for NLP" data-url="http://github.com/kiseliu/2016/09/22/understanding-convolutional-neural-networks-for-nlp/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myname.png"
+               alt="kiseliu" />
+          <p class="site-author-name" itemprop="name">kiseliu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/">
+                
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">categories</span>
+                
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+              
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kiseliu" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/kiseliu" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/kiseliu" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-convolution"><span class="nav-number">1.</span> <span class="nav-text">What is convolution?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#What-are-convolutional-neural-networks"><span class="nav-number">2.</span> <span class="nav-text">What are convolutional neural networks?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#So-how-does-any-of-this-apply-to-NLP"><span class="nav-number">3.</span> <span class="nav-text">So, how does any of this apply to NLP?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CNN-Hyperparameters"><span class="nav-number">4.</span> <span class="nav-text">CNN Hyperparameters</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Narrow-VS-Wide-Convolution"><span class="nav-number">5.</span> <span class="nav-text">Narrow VS. Wide Convolution</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Stride-size"><span class="nav-number">6.</span> <span class="nav-text">Stride size</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pooling-layers"><span class="nav-number">7.</span> <span class="nav-text">Pooling layers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Channels"><span class="nav-number">8.</span> <span class="nav-text">Channels</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Convolutional-Neural-Networks-Applied-to-NLP"><span class="nav-number">9.</span> <span class="nav-text">Convolutional Neural Networks Applied to NLP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Character-level-CNNS"><span class="nav-number">10.</span> <span class="nav-text">Character-level CNNS</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kiseliu</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kiseliu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>

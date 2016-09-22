@@ -84,16 +84,25 @@
 
 
 
-<meta name="description">
+<meta name="description" content="LDA在数据挖掘任务中的作用
+主题推断：给定一篇新的文档，可以利用已有的主题模型训练结果，计算出该文档中所包含的主题，以及各个主题所在比重。
+文档聚类：主题可以看作是聚类中心，而文档可以看作是多个聚类中心相关联的数据样本。利用主题模型做文档聚类，可以用于重新组织文档数据集。
+特征提取：由于主题模型可以推断出每个文档在不同主题上的分布，因此这个分布可以看作是文档的一个新特征，该特征可以用于其他的机器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LDA理论详解">
 <meta property="og:url" content="http://github.com/kiseliu/2016/08/08/lda理论详解/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-08-10T08:56:25.000Z">
+<meta property="og:description" content="LDA在数据挖掘任务中的作用
+主题推断：给定一篇新的文档，可以利用已有的主题模型训练结果，计算出该文档中所包含的主题，以及各个主题所在比重。
+文档聚类：主题可以看作是聚类中心，而文档可以看作是多个聚类中心相关联的数据样本。利用主题模型做文档聚类，可以用于重新组织文档数据集。
+特征提取：由于主题模型可以推断出每个文档在不同主题上的分布，因此这个分布可以看作是文档的一个新特征，该特征可以用于其他的机器">
+<meta property="og:updated_time" content="2016-09-12T05:51:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LDA理论详解">
-<meta name="twitter:description">
+<meta name="twitter:description" content="LDA在数据挖掘任务中的作用
+主题推断：给定一篇新的文档，可以利用已有的主题模型训练结果，计算出该文档中所包含的主题，以及各个主题所在比重。
+文档聚类：主题可以看作是聚类中心，而文档可以看作是多个聚类中心相关联的数据样本。利用主题模型做文档聚类，可以用于重新组织文档数据集。
+特征提取：由于主题模型可以推断出每个文档在不同主题上的分布，因此这个分布可以看作是文档的一个新特征，该特征可以用于其他的机器">
 
 
 
@@ -350,7 +359,14 @@
       
 
       
-        
+        <h1 id="LDA在数据挖掘任务中的作用"><a href="#LDA在数据挖掘任务中的作用" class="headerlink" title="LDA在数据挖掘任务中的作用"></a>LDA在数据挖掘任务中的作用</h1><ul>
+<li>主题推断：给定一篇新的文档，可以利用已有的主题模型训练结果，计算出该文档中所包含的主题，以及各个主题所在比重。</li>
+<li>文档聚类：主题可以看作是聚类中心，而文档可以看作是多个聚类中心相关联的数据样本。利用主题模型做文档聚类，可以用于重新组织文档数据集。</li>
+<li>特征提取：由于主题模型可以推断出每个文档在不同主题上的分布，因此这个分布可以看作是文档的一个新特征，该特征可以用于其他的机器学习模型中。</li>
+<li>维度压缩：主题模型得到的主题分布特征，可以看作是将原有的高维文档向量投影在低维主题空间当中。</li>
+</ul>
+<h1 id="确定LDA的Topic个数"><a href="#确定LDA的Topic个数" class="headerlink" title="确定LDA的Topic个数"></a>确定LDA的Topic个数</h1><p>有一种自动决定主题个数的方法是hierarchical Dirichlet process (HDP)</p>
+
       
     </div>
 
@@ -462,7 +478,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -471,7 +487,7 @@
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -481,7 +497,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -539,7 +555,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LDA在数据挖掘任务中的作用"><span class="nav-number">1.</span> <span class="nav-text">LDA在数据挖掘任务中的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#确定LDA的Topic个数"><span class="nav-number">2.</span> <span class="nav-text">确定LDA的Topic个数</span></a></li></ol></div>
             
           </div>
         </section>

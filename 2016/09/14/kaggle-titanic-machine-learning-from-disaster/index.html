@@ -1,0 +1,737 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Helvetica Neue:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Kaggle," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Getting Started with PythonIn this chapter we will go trough the essential steps that you will need to take before beginning to build predictive models.
+How it worksGet the Data with PandasUnderstandi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kaggle Titanic: Machine Learning From Disaster">
+<meta property="og:url" content="http://github.com/kiseliu/2016/09/14/kaggle-titanic-machine-learning-from-disaster/index.html">
+<meta property="og:site_name" content="Welcome to kiseliu's homepage">
+<meta property="og:description" content="Getting Started with PythonIn this chapter we will go trough the essential steps that you will need to take before beginning to build predictive models.
+How it worksGet the Data with PandasUnderstandi">
+<meta property="og:updated_time" content="2016-09-14T09:37:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kaggle Titanic: Machine Learning From Disaster">
+<meta name="twitter:description" content="Getting Started with PythonIn this chapter we will go trough the essential steps that you will need to take before beginning to build predictive models.
+How it worksGet the Data with PandasUnderstandi">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://github.com/kiseliu/2016/09/14/kaggle-titanic-machine-learning-from-disaster/"/>
+
+  <title> Kaggle Titanic: Machine Learning From Disaster | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Welcome to kiseliu's homepage</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Here's a dream chaser.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Kaggle Titanic: Machine Learning From Disaster
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-14T16:50:27+08:00" content="2016-09-14">
+              2016-09-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/14/kaggle-titanic-machine-learning-from-disaster/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/14/kaggle-titanic-machine-learning-from-disaster/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Getting-Started-with-Python"><a href="#Getting-Started-with-Python" class="headerlink" title="Getting Started with Python"></a>Getting Started with Python</h1><p>In this chapter we will go trough the essential steps that you will need to take before beginning to build predictive models.</p>
+<h2 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works"></a>How it works</h2><h2 id="Get-the-Data-with-Pandas"><a href="#Get-the-Data-with-Pandas" class="headerlink" title="Get the Data with Pandas"></a>Get the Data with Pandas</h2><h2 id="Understanding-your-data"><a href="#Understanding-your-data" class="headerlink" title="Understanding your data"></a>Understanding your data</h2><h2 id="Rose-vs-Jack-or-Female-vs-Male"><a href="#Rose-vs-Jack-or-Female-vs-Male" class="headerlink" title="Rose vs Jack, or Female vs Male"></a>Rose vs Jack, or Female vs Male</h2><h2 id="Does-age-play-a-role"><a href="#Does-age-play-a-role" class="headerlink" title="Does age play a role"></a>Does age play a role</h2><h2 id="First-Prediction"><a href="#First-Prediction" class="headerlink" title="First Prediction"></a>First Prediction</h2><h1 id="Predicting-with-Decision-Tree"><a href="#Predicting-with-Decision-Tree" class="headerlink" title="Predicting with Decision Tree"></a>Predicting with Decision Tree</h1><h2 id="Intro-to-decision-trees"><a href="#Intro-to-decision-trees" class="headerlink" title="Intro to decision trees"></a>Intro to decision trees</h2><h2 id="Cleaning-and-Formatting-your-Data"><a href="#Cleaning-and-Formatting-your-Data" class="headerlink" title="Cleaning and Formatting your Data"></a>Cleaning and Formatting your Data</h2><h2 id="Creating-your-first-decision-tree"><a href="#Creating-your-first-decision-tree" class="headerlink" title="Creating your first decision tree"></a>Creating your first decision tree</h2><h2 id="Interpreting-your-decision-tree"><a href="#Interpreting-your-decision-tree" class="headerlink" title="Interpreting your decision tree"></a>Interpreting your decision tree</h2><h2 id="Predict-and-submit-to-Kaggle"><a href="#Predict-and-submit-to-Kaggle" class="headerlink" title="Predict and submit to Kaggle"></a>Predict and submit to Kaggle</h2><h2 id="Overfitting-and-how-to-control-it"><a href="#Overfitting-and-how-to-control-it" class="headerlink" title="Overfitting and how to control it"></a>Overfitting and how to control it</h2><h2 id="Feature-engineering-for-our-Titanic-data-set"><a href="#Feature-engineering-for-our-Titanic-data-set" class="headerlink" title="Feature-engineering for our Titanic data set"></a>Feature-engineering for our Titanic data set</h2><p>Data Science is an art that benefits from a human element. Enter feature engineering: creatively engineering your own features by combining the different existing variables.<br>While feature engineering is a discipline in itself, too broad to be covered here in detail, you will have a look at a simple example by creating your own new predictive attribute: family_size.<br>A valid assumption is that larger families need more time to get together on a sinking ship, and hence have lower probability of surviving. Family size is determined by the variables SibSp andParch, which indicate the number of family members a certain passenger is traveling with. So when doing feature engineering, you add a new variable family_size, which is the sum of SibSpand Parch plus one (the observation itself), to the test and train set.</p>
+<h1 id="Improving-your-predictions"><a href="#Improving-your-predictions" class="headerlink" title="Improving your predictions"></a>Improving your predictions</h1><p>What techniques can you use to improve your predictions even more? One possible way is by making use of the machine learning method Random Forest. Namely, a forest is just a collection of trees…</p>
+<h2 id="A-Random-Forest-analysis-in-Python"><a href="#A-Random-Forest-analysis-in-Python" class="headerlink" title="A Random Forest analysis in Python"></a>A Random Forest analysis in Python</h2><h2 id="Interpreting-and-Comparing"><a href="#Interpreting-and-Comparing" class="headerlink" title="Interpreting and Comparing"></a>Interpreting and Comparing</h2><h2 id="Conclude-and-Submit"><a href="#Conclude-and-Submit" class="headerlink" title="Conclude and Submit"></a>Conclude and Submit</h2>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/kaggle/" rel="tag">#Kaggle</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/08/情感分析/" rel="next" title="情感分析">
+                <i class="fa fa-chevron-left"></i> 情感分析
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/14/受限波尔滋曼机/" rel="prev" title="受限波尔滋曼机">
+                受限波尔滋曼机 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/14/kaggle-titanic-machine-learning-from-disaster/"
+           data-title="Kaggle Titanic: Machine Learning From Disaster" data-url="http://github.com/kiseliu/2016/09/14/kaggle-titanic-machine-learning-from-disaster/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myname.png"
+               alt="kiseliu" />
+          <p class="site-author-name" itemprop="name">kiseliu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/">
+                
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">categories</span>
+                
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+              
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kiseliu" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/kiseliu" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/kiseliu" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Getting-Started-with-Python"><span class="nav-number">1.</span> <span class="nav-text">Getting Started with Python</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#How-it-works"><span class="nav-number">1.1.</span> <span class="nav-text">How it works</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-the-Data-with-Pandas"><span class="nav-number">1.2.</span> <span class="nav-text">Get the Data with Pandas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Understanding-your-data"><span class="nav-number">1.3.</span> <span class="nav-text">Understanding your data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rose-vs-Jack-or-Female-vs-Male"><span class="nav-number">1.4.</span> <span class="nav-text">Rose vs Jack, or Female vs Male</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Does-age-play-a-role"><span class="nav-number">1.5.</span> <span class="nav-text">Does age play a role</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#First-Prediction"><span class="nav-number">1.6.</span> <span class="nav-text">First Prediction</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Predicting-with-Decision-Tree"><span class="nav-number">2.</span> <span class="nav-text">Predicting with Decision Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro-to-decision-trees"><span class="nav-number">2.1.</span> <span class="nav-text">Intro to decision trees</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cleaning-and-Formatting-your-Data"><span class="nav-number">2.2.</span> <span class="nav-text">Cleaning and Formatting your Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-your-first-decision-tree"><span class="nav-number">2.3.</span> <span class="nav-text">Creating your first decision tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interpreting-your-decision-tree"><span class="nav-number">2.4.</span> <span class="nav-text">Interpreting your decision tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Predict-and-submit-to-Kaggle"><span class="nav-number">2.5.</span> <span class="nav-text">Predict and submit to Kaggle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Overfitting-and-how-to-control-it"><span class="nav-number">2.6.</span> <span class="nav-text">Overfitting and how to control it</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feature-engineering-for-our-Titanic-data-set"><span class="nav-number">2.7.</span> <span class="nav-text">Feature-engineering for our Titanic data set</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Improving-your-predictions"><span class="nav-number">3.</span> <span class="nav-text">Improving your predictions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Random-Forest-analysis-in-Python"><span class="nav-number">3.1.</span> <span class="nav-text">A Random Forest analysis in Python</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interpreting-and-Comparing"><span class="nav-number">3.2.</span> <span class="nav-text">Interpreting and Comparing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclude-and-Submit"><span class="nav-number">3.3.</span> <span class="nav-text">Conclude and Submit</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kiseliu</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kiseliu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
