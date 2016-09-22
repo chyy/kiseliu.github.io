@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：Traceback (most recent call last):  File “/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py”, line 5, in \spark = SparkSession.builder.master(">
+<meta name="description" content="上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：    Traceback (most recent call last):     File “/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py”, line 5, in \    spark = SparkSession.buil">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spark2.0.0 PySpark依赖包py4j升级问题">
 <meta property="og:url" content="http://github.com/kiseliu/2016/08/01/spark2-0-pyspark依赖包py4j升级问题/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：Traceback (most recent call last):  File “/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py”, line 5, in \spark = SparkSession.builder.master(">
-<meta property="og:updated_time" content="2016-08-10T08:58:02.000Z">
+<meta property="og:description" content="上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：    Traceback (most recent call last):     File “/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py”, line 5, in \    spark = SparkSession.buil">
+<meta property="og:updated_time" content="2016-09-22T09:53:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark2.0.0 PySpark依赖包py4j升级问题">
-<meta name="twitter:description" content="上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：Traceback (most recent call last):  File “/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py”, line 5, in \spark = SparkSession.builder.master(">
+<meta name="twitter:description" content="上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：    Traceback (most recent call last):     File “/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py”, line 5, in \    spark = SparkSession.buil">
 
 
 
@@ -350,7 +350,7 @@
       
 
       
-        <p>上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：<br>Traceback (most recent call last):<br>  File “/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py”, line 5, in \<module\><br>spark = SparkSession.builder.master(“local”).appName(‘test 2.0’).config(conf=SparkConf()).getOrCreate()<br>  File “/Users/lyj/Programs/Apache/Spark2/python/pyspark/conf.py”, line 104, in <strong>init</strong><br>SparkContext._ensure_initialized()<br>  File “/Users/lyj/Programs/Apache/Spark2/python/pyspark/context.py”, line 243, in _ensure_initialized<br>SparkContext._gateway = gateway or launch_gateway()<br>  File “/Users/lyj/Programs/Apache/Spark2/python/pyspark/java_gateway.py”, line 116, in launch_gateway<br>java_import(gateway.jvm, “org.apache.spark.SparkConf”)<br>  File “/Library/Python/2.7/site-packages/py4j/java_gateway.py”, line 90, in java_import<br>return_value = get_return_value(answer, gateway_client, None, None)<br>  File “/Library/Python/2.7/site-packages/py4j/protocol.py”, line 306, in get_return_value<br>value = OUTPUT_CONVERTER<a href="">type</a>(answer<a href="">2:</a>, gateway_client)<br>KeyError: u’y’<br>因为用的是PyCharm，之前配置PySpark环境的时候就折腾了一番，所以出了这个问题，我就觉得难不成是环境配置的问题。然后又因为Spark2.0.0整合了SparkContext和SQLContext成为新的入口SparkSession，所以在网上查了很多关于SparkSession的例子，结果又是搞了很久也没解决这个问题。</module\></p>
+        <p>上周把Spark更新到2.0.0的时候，运行pyspark接口，总是有问题，报错信息如下：<br>    Traceback (most recent call last):<br>     File “/Users/lyj/Programs/kiseliugit/MyPysparkCodes/test/spark2.0.py”, line 5, in \<module\><br>    spark = SparkSession.builder.master(“local”).appName(‘test 2.0’).config(conf=SparkConf()).getOrCreate()<br>     File “/Users/lyj/Programs/Apache/Spark2/python/pyspark/conf.py”, line 104, in <strong>init</strong><br>    SparkContext._ensure_initialized()<br>     File “/Users/lyj/Programs/Apache/Spark2/python/pyspark/context.py”, line 243, in _ensure_initialized<br>    SparkContext._gateway = gateway or launch_gateway()<br>     File “/Users/lyj/Programs/Apache/Spark2/python/pyspark/java_gateway.py”, line 116, in launch_gateway<br>    java_import(gateway.jvm, “org.apache.spark.SparkConf”)<br>     File “/Library/Python/2.7/site-packages/py4j/java_gateway.py”, line 90, in java_import<br>    return_value = get_return_value(answer, gateway_client, None, None)<br>     File “/Library/Python/2.7/site-packages/py4j/protocol.py”, line 306, in get_return_value<br>    value = OUTPUT_CONVERTER<a href="answer[2:], gateway\_client">type</a><br>    KeyError: u’y’<br>因为用的是PyCharm，之前配置PySpark环境的时候就折腾了一番，所以出了这个问题，我就觉得难不成是环境配置的问题。然后又因为Spark2.0.0整合了SparkContext和SQLContext成为新的入口SparkSession，所以在网上查了很多关于SparkSession的例子，结果又是搞了很久也没解决这个问题。</module\></p>
 <p>继在好几个技术群里求助未果之后，我只好到Stack Overflow上求助，过了两天终于有人回复我了，附上链接<a href="https://stackoverflow.com/questions/38637988/how-could-i-write-the-right-entry-point-in-spark-2-0-program-actually-pyspark-2" target="_blank" rel="external">https://stackoverflow.com/questions/38637988/how-could-i-write-the-right-entry-point-in-spark-2-0-program-actually-pyspark-2</a> 。万能的Stack Overflow，必须赞一个👍，虽然我总是问一些小白问题，但是都有人回答。</p>
 <p>根据答友提供的解决方案，只需要更新一下Python的py4j库，pip install py4j –upgrade，然后问题就解决了。说到底还是对pyspark底层不了解，即使我知道Spark2.0.0的根目录下的./python/lib/py4j-0.10.1-src.zip 从0.9更新到0.10.1了，错误提示也说到了py4j这个库，我也还是没想到只需要升级一下py4j就没问题了。</p>
 
@@ -467,7 +467,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -476,7 +476,7 @@
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -486,7 +486,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>

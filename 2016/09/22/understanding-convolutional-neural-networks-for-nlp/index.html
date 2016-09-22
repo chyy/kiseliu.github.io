@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CNN," />
+  <meta name="keywords" content="Classification,CNN," />
 
 
 
@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-05-at-10.18.08-AM.png">
 <meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-05-at-2.18.38-PM.png">
 <meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-8.03.47-AM.png">
-<meta property="og:updated_time" content="2016-09-22T09:39:58.000Z">
+<meta property="og:updated_time" content="2016-09-22T09:50:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Understanding Convolutional Neural Networks for NLP">
 <meta name="twitter:description" content="本文译自UNDERSTANDING CONVOLUTIONAL NEURAL NETWORKS FOR NLP。
@@ -335,18 +335,6 @@
 
                 
                 
-                  , 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/deep-learning/nlp/" itemprop="url" rel="index">
-                    <span itemprop="name">NLP</span>
-                  </a>
-                </span>
-
-                
-                
 
               
             </span>
@@ -400,6 +388,10 @@
 <h1 id="Convolutional-Neural-Networks-Applied-to-NLP"><a href="#Convolutional-Neural-Networks-Applied-to-NLP" class="headerlink" title="Convolutional Neural Networks Applied to NLP"></a>Convolutional Neural Networks Applied to NLP</h1><p>现在让我们看看CNNs在NLP领域的一些应用。我也会阐述一些研究结果，当然我可能会错过许多有趣的应用(请在评论中让我知道)，但是我希望至少包含一些受欢迎的结论。</p>
 <p>对于CNNs应用在NLP，最自然的似乎是分类任务，比如情感分类，垃圾过滤或者主题分类。卷积和pooling操作会丢失words的局部顺序的信息，因此如词性标注或者命名实体识别的序列标注较难应用到纯碎的CNN架构(但是不是不可能，你可以加入输入的位置特征)中。</p>
 <p>[<a href="http://arxiv.org/abs/1408.5882.pdf" target="_blank" rel="external">1</a>] 在各种分类(主要由情感分析，主题分类任务组成)数据集上评价CNN架构。在跨数据集上，CNN架构取得了非常好的表现，甚至有一些非常好。令人惊讶地是这篇论文中使用的网络相当简单，输入层是由相连的word2vec word embeddings 组成的句子。然后是有多个filters的卷积层，max-pooling层，最后是一个softmax分类器。这篇论文也用两个不同的通道进行了实验，一个是静态的word embeddings，一个是动态的word embeddings，也就是在训练的时候，一个通道被调整，另一个不动。一个相似但更复杂的架构在[<a href="http://arxiv.org/abs/1404.2188" target="_blank" rel="external">2</a>]中更早被提出。[<a href="http://www.aclweb.org/anthology/P15-2058" target="_blank" rel="external">6</a>]增加了一个额外的层对这个网络架构进行”语义聚类”。<br><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-8.03.47-AM.png" alt="" title="Kim, Y. (2014). Convolutional Neural Networks for Sentence Classification"></p>
+<p><a href="">4</a> Trains a CNN from scratch, without the need for for pre-trained word vectors like word2vec or GloVe. It applies convolutions directly to one-hot vectors. The author also proposes a space-efficient bag-of-words-like representation for the input data, reducing the number of parameters the network needs to learn. In <a href="">5</a> the author  extends the model with an additional unsupervised “region embedding” that is learned using a CNN  predicting the context of text regions. The approach in these papers seems to work well for long-form texts (like movie reviews), but their performance on short texts (like tweets) isn’t clear. Intuitively, it makes sense that using pre-trained word embeddings for short texts would yield larger gains than using them for long texts.</p>
+<p>Building a CNN architecture means that there are many hyperparameters to choose from, some of which I presented above: Input represenations (word2vec, GloVe, one-hot), number and sizes of convolution filters, pooling strategies (max, average), and activation functions (ReLU, tanh). <a href="">7</a> performs an empirical evaluation on the effect of varying hyperparameters in CNN architectures, investigating their impact on performance and variance over multiple runs. If you are looking to implement your own CNN for text classification, using the results of this paper as a starting point would be an excellent idea. A few results that stand out are that max-pooling always beat average pooling, that the ideal filter sizes are important but task-dependent, and that regularization doesn’t seem to make a big different in the NLP tasks that were considered. A caveat of this research is that all the datasets were quite similar in terms of their document length, so the same guidelines may not apply to data that looks considerably different.</p>
+<p><a href="">8</a> explores CNNs for  Relation Extraction and Relation Classification tasks. In addition to the word vectors, the authors use the relative positions of words to the entities of interest as an input to the convolutional layer. This models assumes that the positions of the entities are given, and that each example input contains one relation. <a href="">9</a> and <a href="">10</a> have explored similar models.<br>Another interesting use case of CNNs in NLP can be found in <a href="">11</a> and <a href="">12</a>, coming out of Microsoft Research. These papers describe how to learn semantically meaningful representations of sentences that can be used for Information Retrieval. The example given in the papers includes recommending potentially interesting documents to users based on what they are currently reading. The sentence representations are trained based on search engine log data.</p>
+<p>Most CNN architectures learn embeddings (low-dimensional representations) for words and sentences in one way or another as part of their training procedure. Not all papers though focus on this aspect of training or investigate how meaningful the learned embeddings are. <a href="">13</a> presents a CNN architecture to predict hashtags for Facebook posts, while at the same time generating meaningful embeddings for words and sentences. These learned embeddings are then successfully applied to another task – recommending potentially interesting documents to users, trained based on clickstream data.</p>
 <h1 id="Character-level-CNNS"><a href="#Character-level-CNNS" class="headerlink" title="Character-level CNNS"></a>Character-level CNNS</h1><p>目前为止，我们说的所有模型都是基于words的。但是也有研究把CNNs直接应用到characters的。[<a href="http://jmlr.org/proceedings/papers/v32/santos14.pdf" target="_blank" rel="external">14</a>] 学习了character-level embeddings，用预训练的word embeddings结合它们，然后用CNN进行词性标注。[<a href="http://arxiv.org/abs/1509.01626" target="_blank" rel="external">15</a>][<a href="http://arxiv.org/abs/1502.01710" target="_blank" rel="external">16</a>] 探索了CNNs的用法，直接从characters中学习，不需要任何预训练的embeddings。值得注意的是，作者用了一个相当深的网络，有9层，然后将它应用到情感分析和文本分类任务。结果显示直接从character-level的输入中学习在大数据集(百万样本)上表现地相当好，但是在较小的数据集(几百几千个样本)上的表现不如简单的模型。[<a href="http://arxiv.org/abs/1508.06615" target="_blank" rel="external">17</a>] 探索了character-level convolutions 在语言模型上的应用，在每一步，使用character-level CNN 的输出作为 LSTM 的输入。相同的模型应用在各种各样的语言。</p>
 <p>令人兴奋的是上面的论文基本都是在过去的1-2年出版的。显然之前就已经有CNNs在NLP的优秀成果。比如<a href="http://arxiv.org/abs/1103.0398" target="_blank" rel="external">Natural Language Processing (almost) from Scratch</a>，但是新的研究成果和最先进的系统出版的步调很显然正在加速。</p>
 
@@ -423,6 +415,8 @@
       
         <div class="post-tags">
           
+            <a href="/tags/classification/" rel="tag">#Classification</a>
+          
             <a href="/tags/cnn/" rel="tag">#CNN</a>
           
         </div>
@@ -439,6 +433,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/22/apache-spark-machine-learning-summarization/" rel="prev" title="Apache Spark Machine Learning Summarization">
+                Apache Spark Machine Learning Summarization <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -510,7 +508,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -519,7 +517,7 @@
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -529,7 +527,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>

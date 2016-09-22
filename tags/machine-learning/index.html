@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Deep Learning,Hopfield Neural Network," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,16 +84,15 @@
 
 
 
-<meta name="description" content="根据神经网络运行过程中的信息流向，可分为前馈式和反馈式两种基本类型。前馈式网络通过引入隐层以及非线性转移函数，网络具有复杂的非线性映射能力。但其输出仅由当前输入和权矩阵决定，与网络先前的输出状态无关。Hopfield神经网络是一种单层反馈神经网络，分为离散型和连续型两种网络模型，分别记作 DHNN (Discrete Hopfield Neural Network)和 CHNN (Continuo">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hopfield神经网络">
-<meta property="og:url" content="http://github.com/kiseliu/2016/08/28/hopfield神经网络/index.html">
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Welcome to kiseliu's homepage">
+<meta property="og:url" content="http://github.com/kiseliu/tags/machine-learning/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="根据神经网络运行过程中的信息流向，可分为前馈式和反馈式两种基本类型。前馈式网络通过引入隐层以及非线性转移函数，网络具有复杂的非线性映射能力。但其输出仅由当前输入和权矩阵决定，与网络先前的输出状态无关。Hopfield神经网络是一种单层反馈神经网络，分为离散型和连续型两种网络模型，分别记作 DHNN (Discrete Hopfield Neural Network)和 CHNN (Continuo">
-<meta property="og:updated_time" content="2016-08-31T03:31:16.000Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hopfield神经网络">
-<meta name="twitter:description" content="根据神经网络运行过程中的信息流向，可分为前馈式和反馈式两种基本类型。前馈式网络通过引入隐层以及非线性转移函数，网络具有复杂的非线性映射能力。但其输出仅由当前输入和权矩阵决定，与网络先前的输出状态无关。Hopfield神经网络是一种单层反馈神经网络，分为离散型和连续型两种网络模型，分别记作 DHNN (Discrete Hopfield Neural Network)和 CHNN (Continuo">
+<meta name="twitter:title" content="Welcome to kiseliu's homepage">
+<meta name="twitter:description">
 
 
 
@@ -114,9 +113,9 @@
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/2016/08/28/hopfield神经网络/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/tags/machine-learning/"/>
 
-  <title> Hopfield神经网络 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Tag: Machine Learning | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -155,7 +154,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -263,166 +262,46 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Hopfield神经网络
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-28T22:09:21+08:00" content="2016-08-28">
-              2016-08-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/deep-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Deep Learning</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/28/hopfield神经网络/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/hopfield神经网络/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>根据神经网络运行过程中的信息流向，可分为前馈式和反馈式两种基本类型。前馈式网络通过引入隐层以及非线性转移函数，网络具有复杂的非线性映射能力。但其输出仅由当前输入和权矩阵决定，与网络先前的输出状态无关。<br>Hopfield神经网络是一种单层反馈神经网络，分为离散型和连续型两种网络模型，分别记作 DHNN (Discrete Hopfield Neural Network)和 CHNN (Continuous Hopfield Neural Network)。</p>
-<h1 id="离散型Hopfield神经网络"><a href="#离散型Hopfield神经网络" class="headerlink" title="离散型Hopfield神经网络"></a>离散型Hopfield神经网络</h1><h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p>上图来自《人工神经网络理论、设计及应用》</p>
-<p>离散型反馈网络的拓扑结构如图所示，这是一种单层全反馈网络，共有 \(n\) 个神经元。任一神经元的输出 \( { x }_{ i } \) 都通过连接权重 \({ w }_{ ij }\) 反馈至所有神经元 \({ x }_{ j }\) 作为输入，同样，每个神经元都通过连接权重接收所有神经元输出反馈回来的信息，其目的是为了让任一神经元的输出都能受所有神经元输出的控制，从而使各神经元的输出能相互制约。每个神经元均设有一个阈值 \({ T }_{ j }\) ，以反映对输入噪声的控制。</p>
-<p>DHNN网中的每个神经元都有相同的功能，其输出称为状态，用 \({ x }_{ j }\) 表示，所有神经元状态的集合就构成反馈网络的状态 \( X={ [{ x }_{ 1 }, { x }_{ 2 } ,…,{ x }_{ n }] }^{ T } \)。</p>
-<p>反馈网络的输入就是网络的状态初始值，在外界输入激发下，从初始状态进入动态演变，变化规律由下式规定：<br>$$ { x }_{ j }=f({ net }_{ j })\quad \quad \quad \quad j=1,2,…,n $$<br>DHNN网的转移函数 \(f\) 常采用符号函数：<br>$$ { x }_{ j }=sign({ net }_{ j })=\begin{cases} 1,\quad { net }_{ j }\ge 0 \\ -1,\quad { net }_ { j } &lt; 0 \end{cases}\quad \quad \quad \quad j=1,2,…,n $$<br>式中 \({ net }_{ j }\) 为：\( { net }_{ j }=\sum _{ i=1 }^{ n }{ ({ w }_{ ij }{ x }_{ i }-{ T }_{ j }) } \quad j=1,2,…,n \) ；且对于DHNN网，一般有 \( { w }_{ ii }=0, { w }_{ ij }={ w }_{ ji }\)。</p>
-<p>我们希望的是给定一个输入状态，经过一定迭代次数之后状态不再变化，此时我们称为网络达到稳态。</p>
-<h2 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h2><ul>
-<li>异步工作方式<br>异步工作方式是一种串行方式，网络运行时每次只有一个神经元 \( i \) 根据转移函数进行状态的调整计算，其他神经元的状态均保持不变，即：<br>$$ { x }_{ j }(t+1)=sign({ net }_{ j })=\begin{cases} sign[{ net }_{ j }(t)],\quad j=i \\ { x }_{ j }(t),\quad j\neq i \end{cases} $$<br>神经元状态的调整次序可以按某种规定的次序进行，也可以随机选定。每次神经元在调整状态时，根据其当前净输入值的正负决定下一时刻的状态，因此其状态可能会发生变化，也可能保持原状。而在下一次调整其他神经元状态时，本次的调整结果即在下一个神经元的净输入中发挥作用。</li>
-<li>同步工作方式<br>网络的同步工作方式是一种并行方式，所有神经元同时调整状态，即：<br>$$ { x }_{ j }(t+1)=sign[{ net }_{ j }(t)]\quad \quad \quad \quad j=1,2,…,n $$</li>
-</ul>
-<h2 id="稳定性与吸引子"><a href="#稳定性与吸引子" class="headerlink" title="稳定性与吸引子"></a>稳定性与吸引子</h2><h2 id="网络设计"><a href="#网络设计" class="headerlink" title="网络设计"></a>网络设计</h2><ul>
-<li>联立方程法</li>
-<li>外积和法</li>
-</ul>
-
-      
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        Machine Learning
+        <small>Tag</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-      
-    </div>
-
-    <div>
-      
+            <a class="post-title-link" href="/2016/09/22/apache-spark-machine-learning-summarization/" itemprop="url">
+              
+                <span itemprop="name">Apache Spark Machine Learning Summarization</span>
+              
+            </a>
         
+      </h1>
 
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-09-22T17:47:13+08:00"
+              content="2016-09-22" >
+          09-22
+        </time>
+      </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/deep-learning/" rel="tag">#Deep Learning</a>
-          
-            <a href="/tags/hopfield-neural-network/" rel="tag">#Hopfield Neural Network</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/08/28/approximate-list-of-specific-course-topics/" rel="next" title="Programming Languages Course">
-                <i class="fa fa-chevron-left"></i> Programming Languages Course
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/29/section-1-summary/" rel="prev" title="Section 1 Summary">
-                Section 1 Summary <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -430,14 +309,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/08/28/hopfield神经网络/"
-           data-title="Hopfield神经网络" data-url="http://github.com/kiseliu/2016/08/28/hopfield神经网络/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -457,17 +328,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/myname.png"
@@ -548,17 +410,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#离散型Hopfield神经网络"><span class="nav-number">1.</span> <span class="nav-text">离散型Hopfield神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络结构"><span class="nav-number">1.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作方式"><span class="nav-number">1.2.</span> <span class="nav-text">工作方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#稳定性与吸引子"><span class="nav-number">1.3.</span> <span class="nav-text">稳定性与吸引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络设计"><span class="nav-number">1.4.</span> <span class="nav-text">网络设计</span></a></li></ol></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -655,10 +506,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 
