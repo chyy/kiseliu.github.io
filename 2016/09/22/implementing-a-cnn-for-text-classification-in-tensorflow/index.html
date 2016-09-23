@@ -84,16 +84,26 @@
 
 
 
-<meta name="description">
+<meta name="description" content="本文译自 Implementing a CNN for Text Classification in Tensorflow .
+本文我们将实现和Kim Yoon用CNN对句子分类相似的模型。论文中给出的模型在许多文本分类任务(如情感分析)都取得了好的分类表现，并且已经成为了新的文本分类架构的标准baseline。
+本文假设你对应用在NLP的CNNs基础知识已经比较熟悉，如果不是，建议先读一下Und">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Implementing a CNN for Text Classification in Tensorflow">
 <meta property="og:url" content="http://github.com/kiseliu/2016/09/22/implementing-a-cnn-for-text-classification-in-tensorflow/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-09-22T11:45:25.000Z">
+<meta property="og:description" content="本文译自 Implementing a CNN for Text Classification in Tensorflow .
+本文我们将实现和Kim Yoon用CNN对句子分类相似的模型。论文中给出的模型在许多文本分类任务(如情感分析)都取得了好的分类表现，并且已经成为了新的文本分类架构的标准baseline。
+本文假设你对应用在NLP的CNNs基础知识已经比较熟悉，如果不是，建议先读一下Und">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-8.03.47-AM.png">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/12/Screen-Shot-2015-12-10-at-10.13.50-AM1.png">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/12/Screen-Shot-2015-12-10-at-10.22.29-AM.png">
+<meta property="og:updated_time" content="2016-09-23T07:51:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Implementing a CNN for Text Classification in Tensorflow">
-<meta name="twitter:description">
+<meta name="twitter:description" content="本文译自 Implementing a CNN for Text Classification in Tensorflow .
+本文我们将实现和Kim Yoon用CNN对句子分类相似的模型。论文中给出的模型在许多文本分类任务(如情感分析)都取得了好的分类表现，并且已经成为了新的文本分类架构的标准baseline。
+本文假设你对应用在NLP的CNNs基础知识已经比较熟悉，如果不是，建议先读一下Und">
+<meta name="twitter:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-8.03.47-AM.png">
 
 
 
@@ -350,7 +360,94 @@
       
 
       
-        
+        <p>本文译自<a href="http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/" target="_blank" rel="external"> Implementing a CNN for Text Classification in Tensorflow </a>.</p>
+<p>本文我们将实现和Kim Yoon用<a href="http://arxiv.org/abs/1408.5882" target="_blank" rel="external">CNN对句子分类</a>相似的模型。论文中给出的模型在许多文本分类任务(如情感分析)都取得了好的分类表现，并且已经成为了新的文本分类架构的标准baseline。</p>
+<p>本文假设你对应用在NLP的CNNs基础知识已经比较熟悉，如果不是，建议先读一下<a href="https://kiseliu.github.io/2016/09/22/understanding-convolutional-neural-networks-for-nlp/" target="_blank" rel="external">Understanding Convolutional Neural Networks for NLP</a>，以了解必要的背景知识。</p>
+<h1 id="Data-and-Preprocessing"><a href="#Data-and-Preprocessing" class="headerlink" title="Data and Preprocessing"></a>Data and Preprocessing</h1><p>本文使用的数据集是 <a href="http://www.cs.cornell.edu/people/pabo/movie-review-data/" target="_blank" rel="external">Movie Review data from Rotten Tomatoes</a> – 原始的论文中也使用的数据之一。该数据集包含了10,662个示例评论句子，一半正向，一半负向。词汇表的大小大约有20k。注意因为该数据集非常小，我们用太强大的模型很可能会过拟合。该数据集也没有用正规的train/test分割，我们简单地使用数据集的10%作为验证集。原始的论文给出的结果在数据集上使用了10-fold交叉验证。</p>
+<p>本文不再重复数据预处理的代码，在<a href="https://github.com/dennybritz/cnn-text-classification-tf/blob/master/data_helpers.py">Github</a>上可以直接获得，预处理主要做了下面几件事：</p>
+<ol>
+<li>从原始数据文件中加载正负向句子。</li>
+<li>用和原始论文相同的代码清理文本数据。</li>
+<li>填充每个句子到的最大句子长度，该数据集上是59。我们添加特殊的\<pad\> tokens 到其他句子中使得它们包含59个words。填充句子到同样的长度是有用的，因为批处理的每个样本都必须有相同的长度，所以这样可以高效地把数据划分成批。</pad\></li>
+<li>构建词汇表索引，然后将每个词映射到一个0~18765(词汇表的大小)之间的整数。每个句子都成为一个整数向量。</li>
+</ol>
+<h1 id="The-Model"><a href="#The-Model" class="headerlink" title="The Model"></a>The Model</h1><p>本文构建的网络看起来大致如下：<br><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-8.03.47-AM.png" alt=""><br>第一层将words嵌入到低维的向量。下一层使用多个filters在嵌入的词向量中做卷积，比如，一次滑动3，4，5个words。然后 max-pool 卷积层的结果到一个长的特征向量，加入dropout正则，使用softmax层对结果进行分类。</p>
+<p>本文对原始论文中的模型进行了简化：</p>
+<ul>
+<li>我们不用预训练好的 word2vec 向量作为我们的word embeddings，而是从头开始学习embeddings。</li>
+<li>我们不对权重向量做L2正则化限制。对CNNs做句子分类的敏感性分析发现限制会对最终的结果有一点影响。</li>
+<li>原始论文使用了两个输入数据通道，静态的和非静态的词向量。我们只用一个通道。</li>
+</ul>
+<p>It is relatively straightforward (a few dozen lines of code) to add the above extensions to the code here. Take a look at the exercises at the end of the post.</p>
+<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><p>为了进行多个超参配置，我们把代码放到<strong>TextCNN</strong>类中，然后在<strong>init</strong>函数中生成模型图。</p>
+<pre><code>class TextCNN(object):
+    &quot;&quot;&quot;
+    CNN进行文本分类
+    使用embedding layer,a convolutional, max-pooling 和 softmax layer.
+    &quot;&quot;&quot;
+    def __init__(self, sequence_length, num_classes, vocab_size, 
+                 embedding_size, filter_sizes, num_filters):
+</code></pre><p>为了初始化类，我们需要传递如下参数：</p>
+<ul>
+<li>sequence_length: 句子的长度，我们把所有的句子都填充成了相同的长度(该数据集是59)。</li>
+<li>num_classes: 输出层的类别数，我们这个例子是2(正向和负向)。</li>
+<li>vocab_size: 我们词汇表的大小。定义 embedding 层的大小的时候需要这个参数，embedding层的形状是[vocabulary_size, embedding_size]。</li>
+<li>embedding_size: 嵌入的维度。</li>
+<li>filter_sizes: 我们想要 convolutional filters 覆盖的words的个数，对于每个size，我们会有 num_filters 个 filters。比如 [3,4,5] 表示我们有分别滑过3，4，5个 words 的 filters，总共是3 * num_filters 个 filters。</li>
+<li>num_filters: 每一个filter size的filters数量(见上面)。</li>
+</ul>
+<h1 id="Input-Placeholders"><a href="#Input-Placeholders" class="headerlink" title="Input Placeholders"></a>Input Placeholders</h1><p>我们从定义传递给网络的输入数据开始：</p>
+<pre><code># 输入,输出,和dropout的占位符
+self.input_x = tf.placeholder(tf.int32, [None, sequence_length], name=&apos;input_x&apos;)
+self.input_y = tf.placeholder(tf.float32, [None, num_classes], name=&apos;input_y&apos;)
+self.dropout_keep_prob = tf.placeholder(tf.float32, name=&apos;dropout_keep_prob&apos;)
+</code></pre><p>tf.placeholder 创建了一个占位符变量，当我们在训练或者测试运行代码的时候，会把该变量喂给网络。第二个参数是输入张量积的形状。None表示那一维的长度可以是任何值。在这里第一个维度是批大小，使用None表示允许网络处理任意大小的批。</p>
+<p>在dropout层保持的神经元的数量也是网络的输入，因为我们可以只在训练过程中启动dropout，而评估模型的时候不启动。</p>
+<h1 id="Embedding-Layer"><a href="#Embedding-Layer" class="headerlink" title="Embedding Layer"></a>Embedding Layer</h1><p>我们定义的首层是embedding layer，它将词汇表的词索引映射到低维向量表示。它基本上是我们从数据中学习到的lookup table。</p>
+<pre><code>with tf.device(&apos;/cpu:0&apos;), tf.name_scope(&apos;embedding&apos;):
+    W = tf.Variable(tf.random_normal([vocab_size, embedding_size]), name=&apos;W&apos;)
+    self.embedded_chars = tf.nn.embedding_lookup(W, self.input_x)
+    self.embedded_chars_expanded = tf.expand_dims(self.embedded_chars, -1)  #扩展维度，在最后一行加1，表示一个通道
+</code></pre><p>We’re using a couple of new features here so let’s go over them:</p>
+<ul>
+<li><strong>tf.device(“/cpu:0”)</strong>: 强制操作运行在CPU上。 如果有GPU，TensorFlow 会默认尝试把操作运行在GPU上，但是embedding实现目前没有GPU支持，如果使用GPU会报错。</li>
+<li><strong>tf.name_scope</strong>: 这个 scope 添加所有的操作到一个叫做“embedding”的高阶节点，使得在TensorBoard可视化你的网络时，你可以得到一个好的层次。</li>
+</ul>
+<p><strong>W</strong>是训练过程中学习的embedding矩阵，我们用一个随机的均匀分布初始化它。<a href="https://www.tensorflow.org/versions/master/api_docs/python/nn.html#embedding_lookup" target="_blank" rel="external">tf.nn.embedding_lookup</a>创建实际的embedding操作。embedding操作的结果是形状为 [None, sequence_length, embedding_size] 的3维张量积。</p>
+<p>TensorFlow的卷积<a href="http://www.tensorflow.org/api_docs/python/nn.html#conv2d" target="_blank" rel="external">conv2d</a>操作接收一个4维的张量，维度分别代表batch, width, height 和 channel。我们的embedding结果不包含 channel 维度，因此我们要手动添加，然后得到形状为[None, sequence_length, embedding_size, 1]的embedding层。</p>
+<h1 id="Convolution-and-Max-Pooling-Layers"><a href="#Convolution-and-Max-Pooling-Layers" class="headerlink" title="Convolution and Max-Pooling Layers"></a>Convolution and Max-Pooling Layers</h1><p>现在我们准备构建convolutional layers，然后进行max-pooling。注意我们使用不同大小的filters。因为每个卷积会产生不同形状的张量积，我们需要通过他们迭代，为每一个卷积构建一个卷积层，然后把结果合并为一个大的特征向量。</p>
+<pre><code># Create a convolution + maxpool layer for each filter size
+pooled_outputs = []
+for i, filter_size in enumerate(filter_sizes):
+    with tf.name_scope(&quot;conv-maxpool-%s&quot; % filter_size):
+        # Convolution Layer
+        filter_shape = [filter_size, embedding_size, 1, num_filters]
+        W = tf.Variable(tf.truncated_normal(filter_shape, stddev=0.1), name=&quot;W&quot;)
+        b = tf.Variable(tf.constant(0.1, shape=[num_filters]), name=&quot;b&quot;)
+        conv = tf.nn.conv2d(
+            self.embedded_chars_expanded,
+            W,
+            strides=[1,1,1,1],
+            padding=&apos;VALID&apos;,
+            name=&apos;conv&apos;)
+        # Apply nonlinearity
+        h = tf.nn.relu(tf.nn.bias_add(conv, b), name=&quot;relu&quot;)
+        # Max-pooling over the outputs
+        pooled = tf.nn.max_pool(
+            h,
+            ksize = [1, sequence_length-filter_size + 1, 1, 1],
+            strides=[1,1,1,1],
+            padding=&apos;VALID&apos;,
+            name=&apos;pool&apos;)
+        pooled_outputs.append(pooled)
+
+# Combine all the pooled features
+num_filters_total = num_filters * len(filter_size)
+self.h_pool = tf.concat(3, pooled_outputs)
+self.h_pool_flat = tf.reshape(self.h_pool, [-1, num_filters_total])
+</code></pre><p>这里，W是filter矩阵，h是对卷积输出应用非线性的结果(就是说卷积层用的是rely激活函数)，每个filter都在整个embedding上滑动，但是覆盖的words个数不同。”VALID” 填充意味着我们在句子上滑动filter没有填充边缘，做的是narrow convolution，可以得到形状为 [1, sequence_length - filter_size + 1, 1, 1]的输出。对特定的filter大小的输出进行max-pooling得到的是形状为[batch_size, 1, 1, num_filters]的张量积，这基本是一个特征向量，最后的维度对应特征。一旦我们从每个filter size得到了所有的pool了的输出张量积，我们可以将它们结合在一起形成一个长的特征向量，形状是[batch_size, num_filters_total]。在<strong> tf.reshape</strong>中使用-1是告诉TensorFlow把维度展平。</p>
+<p>花点时间来理解每一个操作的输出形状。你也可以退回到Understanding Convolutional Neural Networks for NLP再加深一下理解。在TensorBoard中可视化这些操作也是有帮助的(filter大小为3，4和5)：<br><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/12/Screen-Shot-2015-12-10-at-10.13.50-AM1.png" alt=""><br><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/12/Screen-Shot-2015-12-10-at-10.22.29-AM.png" alt=""></p>
+<h1 id="Dropout-Layer"><a href="#Dropout-Layer" class="headerlink" title="Dropout Layer"></a>Dropout Layer</h1>
       
     </div>
 
@@ -541,7 +638,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-and-Preprocessing"><span class="nav-number">1.</span> <span class="nav-text">Data and Preprocessing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Model"><span class="nav-number">2.</span> <span class="nav-text">The Model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implementation"><span class="nav-number">3.</span> <span class="nav-text">Implementation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Input-Placeholders"><span class="nav-number">4.</span> <span class="nav-text">Input Placeholders</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Embedding-Layer"><span class="nav-number">5.</span> <span class="nav-text">Embedding Layer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Convolution-and-Max-Pooling-Layers"><span class="nav-number">6.</span> <span class="nav-text">Convolution and Max-Pooling Layers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dropout-Layer"><span class="nav-number">7.</span> <span class="nav-text">Dropout Layer</span></a></li></ol></div>
             
           </div>
         </section>
