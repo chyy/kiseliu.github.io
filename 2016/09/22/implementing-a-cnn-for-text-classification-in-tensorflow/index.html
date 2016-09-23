@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-8.03.47-AM.png">
 <meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/12/Screen-Shot-2015-12-10-at-10.13.50-AM1.png">
 <meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/12/Screen-Shot-2015-12-10-at-10.22.29-AM.png">
-<meta property="og:updated_time" content="2016-09-23T07:51:41.000Z">
+<meta property="og:updated_time" content="2016-09-23T09:19:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Implementing a CNN for Text Classification in Tensorflow">
 <meta name="twitter:description" content="本文译自 Implementing a CNN for Text Classification in Tensorflow .
@@ -415,6 +415,20 @@ self.dropout_keep_prob = tf.placeholder(tf.float32, name=&apos;dropout_keep_prob
 </ul>
 <p><strong>W</strong>是训练过程中学习的embedding矩阵，我们用一个随机的均匀分布初始化它。<a href="https://www.tensorflow.org/versions/master/api_docs/python/nn.html#embedding_lookup" target="_blank" rel="external">tf.nn.embedding_lookup</a>创建实际的embedding操作。embedding操作的结果是形状为 [None, sequence_length, embedding_size] 的3维张量积。</p>
 <p>TensorFlow的卷积<a href="http://www.tensorflow.org/api_docs/python/nn.html#conv2d" target="_blank" rel="external">conv2d</a>操作接收一个4维的张量，维度分别代表batch, width, height 和 channel。我们的embedding结果不包含 channel 维度，因此我们要手动添加，然后得到形状为[None, sequence_length, embedding_size, 1]的embedding层。</p>
+<p><strong>参数说明：TensorFlow</strong>中的<strong>conv2d</strong>定义如下：</p>
+<pre><code>def conv2d(input, filter, strides, padding, use_cudnn_on_gpu=None,
+           data_format=None, name=None):
+  r&quot;&quot;&quot;Computes a 2-D convolution given 4-D `input` and `filter` tensors.
+
+  Given an input tensor of shape `[batch, in_height, in_width, in_channels]`
+  and a filter / kernel tensor of shape
+  `[filter_height, filter_width, in_channels, out_channels]`, this op
+  performs the following:
+</code></pre><ul>
+<li>input: [batch, in_height, in_width, in_channels]</li>
+<li>filter: [filter_height, filter_width, in_channels, out_channels]</li>
+</ul>
+<p><strong>[sequence_length, embedding_size] 就是本文前面的那个图中显示的句子的 n x k 表示。</strong><br>假如使用 size 为 i 的 filter，则该filter的大小为[i, k]，经过feature map之后的向量是[n-i+1, 1]。假如共有num_filters_total = num_filters * len(filter_size)个filters，则一个句子(n x k)经过卷积层(feature map)之后变成[num_filters_total, n-i+1, 1]的形状。然后进行max pooling，结果就变成[num_filters_total, 1, 1]，最后经过softmax函数即可。</p>
 <h1 id="Convolution-and-Max-Pooling-Layers"><a href="#Convolution-and-Max-Pooling-Layers" class="headerlink" title="Convolution and Max-Pooling Layers"></a>Convolution and Max-Pooling Layers</h1><p>现在我们准备构建convolutional layers，然后进行max-pooling。注意我们使用不同大小的filters。因为每个卷积会产生不同形状的张量积，我们需要通过他们迭代，为每一个卷积构建一个卷积层，然后把结果合并为一个大的特征向量。</p>
 <pre><code># Create a convolution + maxpool layer for each filter size
 pooled_outputs = []
@@ -445,7 +459,7 @@ for i, filter_size in enumerate(filter_sizes):
 num_filters_total = num_filters * len(filter_size)
 self.h_pool = tf.concat(3, pooled_outputs)
 self.h_pool_flat = tf.reshape(self.h_pool, [-1, num_filters_total])
-</code></pre><p>这里，W是filter矩阵，h是对卷积输出应用非线性的结果(就是说卷积层用的是rely激活函数)，每个filter都在整个embedding上滑动，但是覆盖的words个数不同。”VALID” 填充意味着我们在句子上滑动filter没有填充边缘，做的是narrow convolution，可以得到形状为 [1, sequence_length - filter_size + 1, 1, 1]的输出。对特定的filter大小的输出进行max-pooling得到的是形状为[batch_size, 1, 1, num_filters]的张量积，这基本是一个特征向量，最后的维度对应特征。一旦我们从每个filter size得到了所有的pool了的输出张量积，我们可以将它们结合在一起形成一个长的特征向量，形状是[batch_size, num_filters_total]。在<strong> tf.reshape</strong>中使用-1是告诉TensorFlow把维度展平。</p>
+</code></pre><p>这里，W是filter矩阵，h是对卷积输出应用非线性的结果(就是说卷积层用的是relu激活函数)，每个filter都在整个embedding上滑动，但是覆盖的words个数不同。”VALID” 填充意味着我们在句子上滑动filter没有填充边缘，做的是narrow convolution，可以得到形状为 [1, sequence_length - filter_size + 1, 1, 1]的输出。对特定的filter大小的输出进行max-pooling得到的是形状为[batch_size, 1, 1, num_filters]的张量积，这基本是一个特征向量，最后的维度对应特征。一旦我们从每个filter size得到了所有的pool了的输出张量积，我们可以将它们结合在一起形成一个长的特征向量，形状是[batch_size, num_filters_total]。在<strong> tf.reshape</strong>中使用-1是告诉TensorFlow把维度展平。</p>
 <p>花点时间来理解每一个操作的输出形状。你也可以退回到Understanding Convolutional Neural Networks for NLP再加深一下理解。在TensorBoard中可视化这些操作也是有帮助的(filter大小为3，4和5)：<br><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/12/Screen-Shot-2015-12-10-at-10.13.50-AM1.png" alt=""><br><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/12/Screen-Shot-2015-12-10-at-10.22.29-AM.png" alt=""></p>
 <h1 id="Dropout-Layer"><a href="#Dropout-Layer" class="headerlink" title="Dropout Layer"></a>Dropout Layer</h1>
       
@@ -570,7 +584,7 @@ self.h_pool_flat = tf.reshape(self.h_pool, [-1, num_filters_total])
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
