@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Learning Notes," />
+  <meta name="keywords" content="DBN," />
 
 
 
@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="Tutorial
-Kaggle Titanic: Machine Learning from Disaster">
+<meta name="description" content="受限波尔滋曼机的作用：提取特征受限波尔滋曼机的训练过程其实就是Gibbs采样，通过Gibbs采样逐渐逼近一个波尔滋曼分布，隐藏层就是提取的特征。受限波尔滋曼机的结构类似自编码器，不同之处在于学习算法不同，RBM是用的CD学习算法，用Gibbs采样逐渐逼近一个波尔滋曼分布。
+受限波尔滋曼机在协同过滤中的应用Conditional RBM’s假设我们对K个从K个可能的评分连接到每个隐藏特征的权重中的每">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kaggle Collections">
-<meta property="og:url" content="http://github.com/kiseliu/2017/12/30/kaggle-collections/index.html">
+<meta property="og:title" content="RBM和DBF">
+<meta property="og:url" content="http://github.com/kiseliu/2016/09/24/RBM and DBF/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="Tutorial
-Kaggle Titanic: Machine Learning from Disaster">
-<meta property="og:updated_time" content="2016-09-23T16:03:29.000Z">
+<meta property="og:description" content="受限波尔滋曼机的作用：提取特征受限波尔滋曼机的训练过程其实就是Gibbs采样，通过Gibbs采样逐渐逼近一个波尔滋曼分布，隐藏层就是提取的特征。受限波尔滋曼机的结构类似自编码器，不同之处在于学习算法不同，RBM是用的CD学习算法，用Gibbs采样逐渐逼近一个波尔滋曼分布。
+受限波尔滋曼机在协同过滤中的应用Conditional RBM’s假设我们对K个从K个可能的评分连接到每个隐藏特征的权重中的每">
+<meta property="og:updated_time" content="2016-09-25T10:21:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kaggle Collections">
-<meta name="twitter:description" content="Tutorial
-Kaggle Titanic: Machine Learning from Disaster">
+<meta name="twitter:title" content="RBM和DBF">
+<meta name="twitter:description" content="受限波尔滋曼机的作用：提取特征受限波尔滋曼机的训练过程其实就是Gibbs采样，通过Gibbs采样逐渐逼近一个波尔滋曼分布，隐藏层就是提取的特征。受限波尔滋曼机的结构类似自编码器，不同之处在于学习算法不同，RBM是用的CD学习算法，用Gibbs采样逐渐逼近一个波尔滋曼分布。
+受限波尔滋曼机在协同过滤中的应用Conditional RBM’s假设我们对K个从K个可能的评分连接到每个隐藏特征的权重中的每">
 
 
 
@@ -117,9 +117,9 @@ Kaggle Titanic: Machine Learning from Disaster">
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/2017/12/30/kaggle-collections/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/2016/09/24/RBM and DBF/"/>
 
-  <title> Kaggle Collections | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> RBM和DBF | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -287,7 +287,7 @@ Kaggle Titanic: Machine Learning from Disaster">
             
             
               
-                Kaggle Collections
+                RBM和DBF
               
             
           </h1>
@@ -299,8 +299,8 @@ Kaggle Titanic: Machine Learning from Disaster">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2017-12-30T00:00:00+08:00" content="2017-12-30">
-              2017-12-30
+            <time itemprop="dateCreated" datetime="2016-09-24T00:11:04+08:00" content="2016-09-24">
+              2016-09-24
             </time>
           </span>
 
@@ -313,8 +313,8 @@ Kaggle Titanic: Machine Learning from Disaster">
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kaggle/" itemprop="url" rel="index">
-                    <span itemprop="name">Kaggle</span>
+                  <a href="/categories/deep-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Deep Learning</span>
                   </a>
                 </span>
 
@@ -329,8 +329,8 @@ Kaggle Titanic: Machine Learning from Disaster">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/12/30/kaggle-collections/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/12/30/kaggle-collections/" itemprop="commentsCount"></span>
+                <a href="/2016/09/24/RBM and DBF/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/24/RBM and DBF/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -353,10 +353,13 @@ Kaggle Titanic: Machine Learning from Disaster">
       
 
       
-        <h1 id="Tutorial"><a href="#Tutorial" class="headerlink" title="Tutorial"></a>Tutorial</h1><ul>
-<li><a href="https://kiseliu.github.io/2016/09/14/kaggle-titanic-machine-learning-from-disaster/" target="_blank" rel="external">Kaggle Titanic: Machine Learning from Disaster</a></li>
-</ul>
-
+        <h1 id="受限波尔滋曼机的作用：提取特征"><a href="#受限波尔滋曼机的作用：提取特征" class="headerlink" title="受限波尔滋曼机的作用：提取特征"></a>受限波尔滋曼机的作用：提取特征</h1><p>受限波尔滋曼机的训练过程其实就是Gibbs采样，通过Gibbs采样逐渐逼近一个波尔滋曼分布，隐藏层就是提取的特征。受限波尔滋曼机的结构类似自编码器，不同之处在于学习算法不同，RBM是用的CD学习算法，用Gibbs采样逐渐逼近一个波尔滋曼分布。</p>
+<h1 id="受限波尔滋曼机在协同过滤中的应用"><a href="#受限波尔滋曼机在协同过滤中的应用" class="headerlink" title="受限波尔滋曼机在协同过滤中的应用"></a>受限波尔滋曼机在协同过滤中的应用</h1><h2 id="Conditional-RBM’s"><a href="#Conditional-RBM’s" class="headerlink" title="Conditional RBM’s"></a>Conditional RBM’s</h2><p>假设我们对K个从K个可能的评分连接到每个隐藏特征的权重中的每一个，都加上w，并且从隐藏特征的偏置中抽取w。和K评分表示的一样，这不影响隐藏或者可见单元的行为，因为”softmax”已经被参数化了。但是，如果评分是missing的，w就对隐藏特征的总输入有影响。所以使用已经参数化的softmax，RBM可以学习使用missings评分来影响隐藏特征，尽管它不会重构missings评分，而且也不进行缩放missings评分数量的计算。</p>
+<p>在Netflix数据库中有更多的信息来源没有被标准的多元RBM捕捉到。Netflix事先告诉了我们，哪些user/movie对在测试集中出现过，因此我们有了第三个分类，电影被浏览过但是评分未知。对于用户在测试集中出现多少次这样的信息，这是有用的来源，尤其是它们只给训练数据集中的一小部分进行了评分。比如，一个用户有一个评分“Rocky 5”，我们就可以假设他喜欢那种电影。</p>
+<p>Conditional RBM模型考虑了额外的信息，设\(r\in { \left\{ 1,0 \right\}  }^{ M }\)是长度为M(总的电影数)的二值向量，表示用户评论过的电影(尽管有些评论是未知的)。这种思想是在已知 \(r\) 的条件下，定义了一个\((V,h)\)的联合分布，在提出的条件模型中，\(r\) 会影响隐藏神经元的状态：<br>$$p({ v }_{ i }^{ k }=1|h)=\frac { exp({ b }_{ i }^{ k }+\sum _{ j=1 }^{ F }{ { h }_{ j } } { W }_{ ij }^{ k }) }{ \sum _{ l=1 }^{ K }{ exp({ b }_{ i }^{ l }+\sum _{ j=1 }^{ F }{ { h }_{ j } } { W }_{ ij }^{ l }) }  } $$<br>$$p({ h }_{ j }=1|V,r)=\sigma ({ b }_{ j }+\sum _{ i=1 }^{ m }{ \sum _{ k=1 }^{ K }{ { v }_{ i }^{ k }{ { W }_{ ij }^{ k } } }  } +\sum _{ i=1 }^{ M }{ { r }_{ i }{ D }_{ ij } } ) $$<br>这里\({ D }_{ ij }\)是学习得到的矩阵的元素，该矩阵基于 \(h\) 建模 \(r\) 的影响。用CD学习算法学习D和学习偏置很相似，有如下形式:<br>$$\Delta { D }_{ ij }=\epsilon ({ &lt;{ h }_{ j }> }_{ data }-{ &lt;{ h }_{ j }> }_{ T }){ r }_{ i } $$</p>
+<p>或者我们可以定义一个任意的非线性函数\(f(r|\theta )\)，通过让\f\)对\(\theta\)进行微分，我们可以使用后向传播算法来学习\(\theta\)：<br>$$\Delta \theta =\epsilon ({ &lt;{ h }_{ j }> }_{ data }-{ &lt;{ h }_{ j }> }_{ T })\frac { \partial f(r|\theta ) }{ \partial \theta  } $$<br>尤其是\(f(r|\theta ) \)可以作为多层神经网络被参数化。</p>
+<h1 id="reducing-the-dimensionality-of-data-with-neural-networks"><a href="#reducing-the-dimensionality-of-data-with-neural-networks" class="headerlink" title="reducing the dimensionality of data with neural networks"></a>reducing the dimensionality of data with neural networks</h1><p>处理多层BP神经网络，初值，激活函数的选择。</p>
+<h1 id="语义hashing"><a href="#语义hashing" class="headerlink" title="语义hashing"></a>语义hashing</h1>
       
     </div>
 
@@ -377,7 +380,7 @@ Kaggle Titanic: Machine Learning from Disaster">
       
         <div class="post-tags">
           
-            <a href="/tags/learning-notes/" rel="tag">#Learning Notes</a>
+            <a href="/tags/dbn/" rel="tag">#DBN</a>
           
         </div>
       
@@ -386,16 +389,16 @@ Kaggle Titanic: Machine Learning from Disaster">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/24/RBM and DBF/" rel="next" title="RBM和DBF">
-                <i class="fa fa-chevron-left"></i> RBM和DBF
+              <a href="/2016/09/22/implementing-a-cnn-for-text-classification-in-tensorflow/" rel="next" title="Implementing a CNN for Text Classification in Tensorflow">
+                <i class="fa fa-chevron-left"></i> Implementing a CNN for Text Classification in Tensorflow
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/30/apache-spark-machine-learning-summarization/" rel="prev" title="Apache Spark Machine Learning Learning Notes">
-                Apache Spark Machine Learning Learning Notes <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/30/kaggle-collections/" rel="prev" title="Kaggle Collections">
+                Kaggle Collections <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -422,8 +425,8 @@ Kaggle Titanic: Machine Learning from Disaster">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/12/30/kaggle-collections/"
-           data-title="Kaggle Collections" data-url="http://github.com/kiseliu/2017/12/30/kaggle-collections/">
+      <div class="ds-thread" data-thread-key="2016/09/24/RBM and DBF/"
+           data-title="RBM和DBF" data-url="http://github.com/kiseliu/2016/09/24/RBM and DBF/">
       </div>
     
   </div>
@@ -545,7 +548,7 @@ Kaggle Titanic: Machine Learning from Disaster">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Tutorial"><span class="nav-number">1.</span> <span class="nav-text">Tutorial</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#受限波尔滋曼机的作用：提取特征"><span class="nav-number">1.</span> <span class="nav-text">受限波尔滋曼机的作用：提取特征</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#受限波尔滋曼机在协同过滤中的应用"><span class="nav-number">2.</span> <span class="nav-text">受限波尔滋曼机在协同过滤中的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conditional-RBM’s"><span class="nav-number">2.1.</span> <span class="nav-text">Conditional RBM’s</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reducing-the-dimensionality-of-data-with-neural-networks"><span class="nav-number">3.</span> <span class="nav-text">reducing the dimensionality of data with neural networks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#语义hashing"><span class="nav-number">4.</span> <span class="nav-text">语义hashing</span></a></li></ol></div>
             
           </div>
         </section>
