@@ -84,15 +84,21 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
+<meta name="description" content="layout: pagestitle: ‘TensorBoard: Visualizing Learning’date: 2016-08-24 15:53:29categories: Deep Learning
+tags: [tensorflow]When TensorBoard is fully configured, it looks like this:你使用TensorFlow主要为了计">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Welcome to kiseliu's homepage">
-<meta property="og:url" content="http://github.com/kiseliu/categories/computer-science/index.html">
+<meta property="og:url" content="http://github.com/kiseliu/2016/08/24/tensorboard-visualizing-learning/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description">
+<meta property="og:description" content="layout: pagestitle: ‘TensorBoard: Visualizing Learning’date: 2016-08-24 15:53:29categories: Deep Learning
+tags: [tensorflow]When TensorBoard is fully configured, it looks like this:你使用TensorFlow主要为了计">
+<meta property="og:image" content="http://tensorflow.org/tensorboard">
+<meta property="og:updated_time" content="2016-08-24T09:51:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Welcome to kiseliu's homepage">
-<meta name="twitter:description">
+<meta name="twitter:description" content="layout: pagestitle: ‘TensorBoard: Visualizing Learning’date: 2016-08-24 15:53:29categories: Deep Learning
+tags: [tensorflow]When TensorBoard is fully configured, it looks like this:你使用TensorFlow主要为了计">
+<meta name="twitter:image" content="http://tensorflow.org/tensorboard">
 
 
 
@@ -113,9 +119,9 @@
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/categories/computer-science/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/2016/08/24/tensorboard-visualizing-learning/"/>
 
-  <title> Category: Computer Science | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>  | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -154,7 +160,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -262,47 +268,132 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Computer Science
-        <small>Category</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-24T15:53:29+08:00" content="2016-08-24">
+              2016-08-24
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/24/tensorboard-visualizing-learning/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/24/tensorboard-visualizing-learning/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <hr>
+<p>layout: pages<br>title: ‘TensorBoard: Visualizing Learning’<br>date: 2016-08-24 15:53:29<br>categories: Deep Learning</p>
+<h2 id="tags-tensorflow"><a href="#tags-tensorflow" class="headerlink" title="tags: [tensorflow]"></a>tags: [tensorflow]</h2><p>When TensorBoard is fully configured, it looks like this:<br>你使用TensorFlow主要为了计算，像训练大型的深度神经网络，它可能是复杂且容易混乱的。为了更容易理解，调试，优化TensorFlow程序，我们提供了一套可视化工具，叫做TensorBoard。你可以使用TensorBoard来可视化你的TensorFlow图，画出图运行的量化指标，并且显示其它的数据，比如传给图的图像。当TensorBoard被配置好之后，它看起来像这样：<br><img src="http://tensorflow.org/tensorboard" alt=""><br><a href="https://www.tensorflow.org/tensorboard/index.html#events" target="_blank" rel="external">Click try a TensorBoard with data from this tutorial!</a><br>这个教程旨在让你开始最简单的TensorBoard使用，也有其它可用的资源。TensorBoard的<a href="https://github.com/tensorflow/tensorflow/blob/r0.10/tensorflow/tensorboard/README.md">README</a>文档有更多关于TensorBoard的使用信息，包括tips &amp; tricks, and debugging information。</p>
+<h2 id="Serializing-the-data"><a href="#Serializing-the-data" class="headerlink" title="Serializing the data"></a>Serializing the data</h2><p>TensorBoard通过读取TensorFlow的事件文件，包括：运行TensorFlow产生的汇总数据，进行操作。下面是TensorBoard 内的汇总数据的一般生命周期。</p>
+<p>首先，创建你想要收集的汇总数据的TensorFlow图，然后决定你想要用<a href="https://www.tensorflow.org/versions/r0.10/api_docs/python/train.html#summary-operations" target="_blank" rel="external">汇总操作</a>注释的节点。</p>
+<p>You’d like to record how the learning rate varies over time, and how the objective function is changing. Collect these by attachingscalar_summary ops to the nodes that output the learning rate and loss respectively. Then, give eachscalar_summary a meaningful tag, like ‘learning rate’ or ‘loss function’.<br>例如，假设你正在训练一个识别MNIST数字的卷积神经网络。你想要记录学习率随着时间是如何变化的，以及目标函数是如何改变的。收集通过scalar_summary OPS连接到节点分别学习率和损失输出收集这些。然后，给每个scalar_summary一个有意义的标签，如“学习率”或“损失函数”。</p>
+<p>Perhaps you’d also like to visualize the distributions of activations coming off a particular layer, or the distribution of gradients or weights. Collect this data by attaching histogram_summary ops to the gradient outputs and to the variable that holds your weights, respectively.  </p>
+<h2 id="Launching-TensorBoard"><a href="#Launching-TensorBoard" class="headerlink" title="Launching TensorBoard"></a>Launching TensorBoard</h2>
+      
+    </div>
 
-      <h1 class="post-title">
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/12/30/computer-science-learning-notes/" itemprop="url">
-              
-                <span itemprop="name">Computer Science Learning Notes</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-30T01:00:00+08:00"
-              content="2017-12-30" >
-          12-30
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/16/building-autoencoders-in-keras/" rel="next" title="Building Autoencoders in Keras">
+                <i class="fa fa-chevron-left"></i> Building Autoencoders in Keras
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/27/sml基本命令/" rel="prev" title="Emacs With Sml-Mode">
+                Emacs With Sml-Mode <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </section>
 
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -310,6 +401,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/24/tensorboard-visualizing-learning/"
+           data-title="" data-url="http://github.com/kiseliu/2016/08/24/tensorboard-visualizing-learning/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -329,8 +428,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/myname.png"
@@ -341,7 +449,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -360,7 +468,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -411,6 +519,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-tensorflow"><span class="nav-number">1.</span> <span class="nav-text">tags: [tensorflow]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Serializing-the-data"><span class="nav-number">2.</span> <span class="nav-text">Serializing the data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Launching-TensorBoard"><span class="nav-number">3.</span> <span class="nav-text">Launching TensorBoard</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -507,11 +626,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
