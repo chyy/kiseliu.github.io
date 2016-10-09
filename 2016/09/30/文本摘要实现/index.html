@@ -94,7 +94,7 @@
 <meta property="og:description" content="本文参考南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。
 国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短的精确的表达而无须补充解释 或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性。
 文本摘要的意义网络上巨大的信息量使得信息检索的难度">
-<meta property="og:updated_time" content="2016-10-09T06:10:26.000Z">
+<meta property="og:updated_time" content="2016-10-09T06:41:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文本摘要的实现">
 <meta name="twitter:description" content="本文参考南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。
@@ -378,8 +378,9 @@
 <li>对所有的句子，抽取重要的词汇(这里主要抽取名词)，作为后续计算相似性的依据；</li>
 <li>计算句子和句子之间的相似性，构造一个权值矩阵，矩阵的大小为句子数*句子数；相似性计算的公式如下：<br>$$Similarity({ S }_{ i },{ S }_{ j })=\frac { |\{ { w }_{ k }|{ w }_{ k }\in { S }_{ i }{ \&amp; { w }_{ k }\in S }_{ j }\} | }{ log(|{ S }_{ i }|)+log(|{ S }_{ j }|) }， { S }_{ i }为第i个句子，{ w }_{ k }为句子中的第k个词，|{ S }_{ i }|为句子的长度 $$</li>
 <li>对所有句子的权值初始化为1，然后进行TextRank迭代收敛，最终的权重作为句子的得分；</li>
-<li>取得分最高的topK个句子，按照在原文中的顺序排列输出；<br>代码链接：<a href="https://github.com/kiseliu/NaturalLanguageProcessing/blob/master/text_summarization/based_on_textrank.py">based_on_textrank.py</a></li>
+<li>取得分最高的topK个句子，按照在原文中的顺序排列输出；</li>
 </ul>
+<p>代码链接：<a href="https://github.com/kiseliu/NaturalLanguageProcessing/blob/master/text_summarization/based_on_textrank.py">based_on_textrank.py</a></p>
 <h2 id="利用LSA进行单文档摘要"><a href="#利用LSA进行单文档摘要" class="headerlink" title="利用LSA进行单文档摘要"></a>利用LSA进行单文档摘要</h2><p>压缩文本，去除噪音。<br>从词的权重出发，构造出句子的权重和段落的权重，用句子的权重选出句子，用段落的权重给出每段应该选多少个句子？</p>
 <h2 id="基于LDA的单文档摘要"><a href="#基于LDA的单文档摘要" class="headerlink" title="基于LDA的单文档摘要"></a>基于LDA的单文档摘要</h2><p>计算文档的语义模型和句子的语义模型的KL散度。</p>
 
@@ -420,8 +421,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/30/kaggle-collections/" rel="prev" title="Kaggle Collections">
-                Kaggle Collections <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/30/tensorflow-learning-notes/" rel="prev" title="TensorFlow Learning Notes">
+                TensorFlow Learning Notes <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
