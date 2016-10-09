@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Text Summarization," />
 
 
 
@@ -84,28 +84,22 @@
 
 
 
-<meta name="description" content="Basic AlgorithmsTheoryMachine LearningProbabilistic Graphical Models
-ToolsSpark
-Deep AlgorithmsTheoryDeep LearningDeep Reinforcement Learning
-ToolsTensorFlowKeras
-FieldsNatural Language ProcessingComp">
+<meta name="description" content="本文参考南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。
+国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短的精确的表达而无须补充解释 或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性。
+文本摘要的意义网络上巨大的信息量使得信息检索的难度">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Learning Notes Summary">
-<meta property="og:url" content="http://github.com/kiseliu/2018/01/01/learning-notes-summary/index.html">
+<meta property="og:title" content="文本摘要的实现">
+<meta property="og:url" content="http://github.com/kiseliu/2016/09/30/文本摘要实现/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="Basic AlgorithmsTheoryMachine LearningProbabilistic Graphical Models
-ToolsSpark
-Deep AlgorithmsTheoryDeep LearningDeep Reinforcement Learning
-ToolsTensorFlowKeras
-FieldsNatural Language ProcessingComp">
-<meta property="og:updated_time" content="2016-09-28T03:30:30.000Z">
+<meta property="og:description" content="本文参考南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。
+国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短的精确的表达而无须补充解释 或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性。
+文本摘要的意义网络上巨大的信息量使得信息检索的难度">
+<meta property="og:updated_time" content="2016-10-09T06:10:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Learning Notes Summary">
-<meta name="twitter:description" content="Basic AlgorithmsTheoryMachine LearningProbabilistic Graphical Models
-ToolsSpark
-Deep AlgorithmsTheoryDeep LearningDeep Reinforcement Learning
-ToolsTensorFlowKeras
-FieldsNatural Language ProcessingComp">
+<meta name="twitter:title" content="文本摘要的实现">
+<meta name="twitter:description" content="本文参考南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。
+国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短的精确的表达而无须补充解释 或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性。
+文本摘要的意义网络上巨大的信息量使得信息检索的难度">
 
 
 
@@ -126,9 +120,9 @@ FieldsNatural Language ProcessingComp">
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/2018/01/01/learning-notes-summary/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/2016/09/30/文本摘要实现/"/>
 
-  <title> Learning Notes Summary | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 文本摘要的实现 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -296,7 +290,7 @@ FieldsNatural Language ProcessingComp">
             
             
               
-                Learning Notes Summary
+                文本摘要的实现
               
             
           </h1>
@@ -308,8 +302,8 @@ FieldsNatural Language ProcessingComp">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2018-01-01T11:15:09+08:00" content="2018-01-01">
-              2018-01-01
+            <time itemprop="dateCreated" datetime="2016-09-30T09:45:44+08:00" content="2016-09-30">
+              2016-09-30
             </time>
           </span>
 
@@ -322,8 +316,8 @@ FieldsNatural Language ProcessingComp">
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/learning-notes/" itemprop="url" rel="index">
-                    <span itemprop="name">Learning Notes</span>
+                  <a href="/categories/natural-language-processing/" itemprop="url" rel="index">
+                    <span itemprop="name">Natural Language Processing</span>
                   </a>
                 </span>
 
@@ -338,8 +332,8 @@ FieldsNatural Language ProcessingComp">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2018/01/01/learning-notes-summary/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/01/01/learning-notes-summary/" itemprop="commentsCount"></span>
+                <a href="/2016/09/30/文本摘要实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/30/文本摘要实现/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -362,15 +356,32 @@ FieldsNatural Language ProcessingComp">
       
 
       
-        <h1 id="Basic-Algorithms"><a href="#Basic-Algorithms" class="headerlink" title="Basic Algorithms"></a>Basic Algorithms</h1><h2 id="Theory"><a href="#Theory" class="headerlink" title="Theory"></a>Theory</h2><p>Machine Learning<br><a href="http://localhost:4000/2017/12/30/probabilistic-graphical-models-learning-notes/" target="_blank" rel="external">Probabilistic Graphical Models</a></p>
-<h2 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h2><p><a href="https://kiseliu.github.io/2017/12/30/apache-spark-machine-learning-summarization/" target="_blank" rel="external">Spark</a></p>
-<h1 id="Deep-Algorithms"><a href="#Deep-Algorithms" class="headerlink" title="Deep Algorithms"></a>Deep Algorithms</h1><h2 id="Theory-1"><a href="#Theory-1" class="headerlink" title="Theory"></a>Theory</h2><p><a href="https://kiseliu.github.io/2018/01/01/deep-learning-learning-notes/" target="_blank" rel="external">Deep Learning</a><br><a href="https://kiseliu.github.io/2018/01/01/deep-reinforcement-learning-learning-notes/" target="_blank" rel="external">Deep Reinforcement Learning</a></p>
-<h2 id="Tools-1"><a href="#Tools-1" class="headerlink" title="Tools"></a>Tools</h2><p><a href="https://kiseliu.github.io/2017/12/30/tensorflow-learning-notes/" target="_blank" rel="external">TensorFlow</a><br><a href="">Keras</a></p>
-<h1 id="Fields"><a href="#Fields" class="headerlink" title="Fields"></a>Fields</h1><h2 id="Natural-Language-Processing"><a href="#Natural-Language-Processing" class="headerlink" title="Natural Language Processing"></a><a href="http://localhost:4000/2017/12/31/natural-language-processing-learning-notes/" target="_blank" rel="external">Natural Language Processing</a></h2><h2 id="Computer-Vision"><a href="#Computer-Vision" class="headerlink" title="Computer Vision"></a>Computer Vision</h2><p><a href="">OpenCV</a></p>
-<h1 id="Programming"><a href="#Programming" class="headerlink" title="Programming"></a>Programming</h1><ul>
-<li>C/C++</li>
-<li>Python</li>
+        <p>本文参考南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。</p>
+<p>国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短的精确的表达而无须补充解释 或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性。</p>
+<h1 id="文本摘要的意义"><a href="#文本摘要的意义" class="headerlink" title="文本摘要的意义"></a>文本摘要的意义</h1><p>网络上巨大的信息量使得信息检索的难度加大，而信息摘要对于信息的发布者，使用者以及搜索引擎都有着重要的作用。如果能提供给用户简短的文本摘要则可以帮助用户快速地找到所需要的信息，提高搜索引擎的检索速度。由于人工提取摘要工作量巨大，自动摘要技术受到了广泛的重视和研究。</p>
+<h1 id="研究现状"><a href="#研究现状" class="headerlink" title="研究现状"></a>研究现状</h1><p>为了抽取文章的摘要，研究者从不同的角度对自动文本摘要技术进行了研究：有专门研究摘要内容跟非摘要内容的区分特征的，有试图通过模拟文章写作过程将文章的主题挖掘出来的主题模型等等。如何将文章内容的侧重点挖掘出来，是自动摘要技术研究的关键之处。</p>
+<p>基于篇章结构的自动文本摘要方法在近年来发展迅速。</p>
+<p>潜在语义分析是一种篇章结构分析方法，其核心是用于描述文本产生机制的主题模型。一个好的主题模型应该能把握创作者的思路，即文章所表达的意思和这些意思之间的转折情况，并且能够根据意思选择合适的词组织成句。</p>
+<p>主题模型的训练离不开词频统计，词语多义现象造成基于词形的词频统计不准确，因此需要先对文本进行词语消歧。可以基于WordNet进行词语相关度计算，用于词语消歧，该步骤可以看作自动文本摘要的预处理工作。</p>
+<p>HMM(Hidden Markov Model)模型将文本看成<strong>由句子构成的观察序列</strong>，<strong>隐藏状态是文本的主题</strong>，该模型取消了主题的独立性假设，在理论上比较成功地描述了文本的发生机制，但是对于文本摘要，特别是单文本摘要，如果能得知文本各部分主题的长度，就能够保证摘要内容的平衡性。</p>
+<p>自动文本摘要技术需要考虑摘要的信息压缩比、内容的覆盖率和平衡性、语句的多样性、 整体的可读性等因素,这些因素直接影响自动文本摘要结果的好坏。</p>
+<h1 id="单文本摘要技术"><a href="#单文本摘要技术" class="headerlink" title="单文本摘要技术"></a>单文本摘要技术</h1><h2 id="基于特征的实现方法"><a href="#基于特征的实现方法" class="headerlink" title="基于特征的实现方法"></a>基于特征的实现方法</h2><ul>
+<li>将全文按照标题和内容分开；</li>
+<li>选取文本内容中重要的词语(这里主要考虑名词和动词)，并计算每个词语的权重，权重计算根据其在文本中出现的次数 tf 和包含该词语的句子个数 isf，即为 tf\isf；如果某个词语在标题中出现，对其权重乘以大于1的值，此处选取1.2。</li>
+<li>对文本内容进行分段分句，对位于首段尾段，首句尾句的句子进行标记。计算每个句子的权重，方法是将句子中的重要词语的权重加和；然后对首段尾段的句子权重乘以p_weight(大于1)，对首句尾句的句子权重乘以s_weight(大于1)。</li>
+<li>根据用户输入的压缩比，求出权重最高的topK个句子，并按它们在原文中的顺序输出生成摘要。</li>
 </ul>
+<p>代码链接：<a href="https://github.com/kiseliu/NaturalLanguageProcessing/blob/master/text_summarization/based_on_features_with_paragraph.py">based_on_features_with_paragraph.py</a></p>
+<p>显然在这种方法中，由于句子被假定为相互独立的，它们所表达的不同意思仅仅通过简单的词语统计量区别。将句子看成是相互独立的，意味着形成的摘要中的句子有可能会在内容上重复，该方法目前还没有考虑解决该问题。</p>
+<h2 id="基于TextRank的实现方法"><a href="#基于TextRank的实现方法" class="headerlink" title="基于TextRank的实现方法"></a>基于TextRank的实现方法</h2><ul>
+<li>对文本进行句子切分，如果文本有分段，则将所有段落的句子放在一起；</li>
+<li>对所有的句子，抽取重要的词汇(这里主要抽取名词)，作为后续计算相似性的依据；</li>
+<li>计算句子和句子之间的相似性，构造一个权值矩阵，矩阵的大小为句子数*句子数；相似性计算的公式如下：<br>$$Similarity({ S }_{ i },{ S }_{ j })=\frac { |\{ { w }_{ k }|{ w }_{ k }\in { S }_{ i }{ \&amp; { w }_{ k }\in S }_{ j }\} | }{ log(|{ S }_{ i }|)+log(|{ S }_{ j }|) }， { S }_{ i }为第i个句子，{ w }_{ k }为句子中的第k个词，|{ S }_{ i }|为句子的长度 $$</li>
+<li>对所有句子的权值初始化为1，然后进行TextRank迭代收敛，最终的权重作为句子的得分；</li>
+<li>取得分最高的topK个句子，按照在原文中的顺序排列输出；<br>代码链接：<a href="https://github.com/kiseliu/NaturalLanguageProcessing/blob/master/text_summarization/based_on_textrank.py">based_on_textrank.py</a></li>
+</ul>
+<h2 id="利用LSA进行单文档摘要"><a href="#利用LSA进行单文档摘要" class="headerlink" title="利用LSA进行单文档摘要"></a>利用LSA进行单文档摘要</h2><p>压缩文本，去除噪音。<br>从词的权重出发，构造出句子的权重和段落的权重，用句子的权重选出句子，用段落的权重给出每段应该选多少个句子？</p>
+<h2 id="基于LDA的单文档摘要"><a href="#基于LDA的单文档摘要" class="headerlink" title="基于LDA的单文档摘要"></a>基于LDA的单文档摘要</h2><p>计算文档的语义模型和句子的语义模型的KL散度。</p>
 
       
     </div>
@@ -390,18 +401,28 @@ FieldsNatural Language ProcessingComp">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/text-summarization/" rel="tag">#Text Summarization</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/01/deep-reinforcement-learning-learning-notes/" rel="next" title="Deep Reinforcement Learning Learning Notes">
-                <i class="fa fa-chevron-left"></i> Deep Reinforcement Learning Learning Notes
+              <a href="/2016/09/27/文档摘要/" rel="next" title="文本自动摘要">
+                <i class="fa fa-chevron-left"></i> 文本自动摘要
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/30/kaggle-collections/" rel="prev" title="Kaggle Collections">
+                Kaggle Collections <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -427,8 +448,8 @@ FieldsNatural Language ProcessingComp">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2018/01/01/learning-notes-summary/"
-           data-title="Learning Notes Summary" data-url="http://github.com/kiseliu/2018/01/01/learning-notes-summary/">
+      <div class="ds-thread" data-thread-key="2016/09/30/文本摘要实现/"
+           data-title="文本摘要的实现" data-url="http://github.com/kiseliu/2016/09/30/文本摘要实现/">
       </div>
     
   </div>
@@ -550,7 +571,7 @@ FieldsNatural Language ProcessingComp">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-Algorithms"><span class="nav-number">1.</span> <span class="nav-text">Basic Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Theory"><span class="nav-number">1.1.</span> <span class="nav-text">Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tools"><span class="nav-number">1.2.</span> <span class="nav-text">Tools</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Deep-Algorithms"><span class="nav-number">2.</span> <span class="nav-text">Deep Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Theory-1"><span class="nav-number">2.1.</span> <span class="nav-text">Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tools-1"><span class="nav-number">2.2.</span> <span class="nav-text">Tools</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fields"><span class="nav-number">3.</span> <span class="nav-text">Fields</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Natural-Language-Processing"><span class="nav-number">3.1.</span> <span class="nav-text">Natural Language Processing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Computer-Vision"><span class="nav-number">3.2.</span> <span class="nav-text">Computer Vision</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Programming"><span class="nav-number">4.</span> <span class="nav-text">Programming</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文本摘要的意义"><span class="nav-number">1.</span> <span class="nav-text">文本摘要的意义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#研究现状"><span class="nav-number">2.</span> <span class="nav-text">研究现状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单文本摘要技术"><span class="nav-number">3.</span> <span class="nav-text">单文本摘要技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于特征的实现方法"><span class="nav-number">3.1.</span> <span class="nav-text">基于特征的实现方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于TextRank的实现方法"><span class="nav-number">3.2.</span> <span class="nav-text">基于TextRank的实现方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用LSA进行单文档摘要"><span class="nav-number">3.3.</span> <span class="nav-text">利用LSA进行单文档摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于LDA的单文档摘要"><span class="nav-number">3.4.</span> <span class="nav-text">基于LDA的单文档摘要</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
