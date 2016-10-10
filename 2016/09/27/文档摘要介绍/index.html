@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Text Summarization," />
 
 
 
@@ -84,34 +84,19 @@
 
 
 
-<meta name="description" content="本文参考宗成庆《统计自然语言处理》
-技术概要利用计算机自动实现文本分析，内容归纳和摘要自动生成的技术；
-分类
-根据文摘的功能划分，可以分为指示型文摘，报道型文摘 和 评论型文摘； 
-根据输入文本的数量划分，可以分为 单文档摘要，多文档摘要； 
-根据原文语言种类划分，可以分为 单语言摘要 和 跨语言摘要； 
-根据文摘和原文的关系划分，可以分为 摘录型文摘 和 理解型文摘。摘录型文摘由从原文中抽取出来">
+<meta name="description" content="本文主要参考了宗成庆老师的《统计自然语言处理》和 南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。
+背景文摘的定义国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短和精确的表达，无须补充解释或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文本自动摘要">
-<meta property="og:url" content="http://github.com/kiseliu/2016/09/27/文档摘要/index.html">
+<meta property="og:title" content="文本自动摘要介绍">
+<meta property="og:url" content="http://github.com/kiseliu/2016/09/27/文档摘要介绍/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="本文参考宗成庆《统计自然语言处理》
-技术概要利用计算机自动实现文本分析，内容归纳和摘要自动生成的技术；
-分类
-根据文摘的功能划分，可以分为指示型文摘，报道型文摘 和 评论型文摘； 
-根据输入文本的数量划分，可以分为 单文档摘要，多文档摘要； 
-根据原文语言种类划分，可以分为 单语言摘要 和 跨语言摘要； 
-根据文摘和原文的关系划分，可以分为 摘录型文摘 和 理解型文摘。摘录型文摘由从原文中抽取出来">
-<meta property="og:updated_time" content="2016-09-30T03:41:00.000Z">
+<meta property="og:description" content="本文主要参考了宗成庆老师的《统计自然语言处理》和 南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。
+背景文摘的定义国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短和精确的表达，无须补充解释或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性">
+<meta property="og:updated_time" content="2016-10-10T06:17:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文本自动摘要">
-<meta name="twitter:description" content="本文参考宗成庆《统计自然语言处理》
-技术概要利用计算机自动实现文本分析，内容归纳和摘要自动生成的技术；
-分类
-根据文摘的功能划分，可以分为指示型文摘，报道型文摘 和 评论型文摘； 
-根据输入文本的数量划分，可以分为 单文档摘要，多文档摘要； 
-根据原文语言种类划分，可以分为 单语言摘要 和 跨语言摘要； 
-根据文摘和原文的关系划分，可以分为 摘录型文摘 和 理解型文摘。摘录型文摘由从原文中抽取出来">
+<meta name="twitter:title" content="文本自动摘要介绍">
+<meta name="twitter:description" content="本文主要参考了宗成庆老师的《统计自然语言处理》和 南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。
+背景文摘的定义国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短和精确的表达，无须补充解释或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性">
 
 
 
@@ -132,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/2016/09/27/文档摘要/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/2016/09/27/文档摘要介绍/"/>
 
-  <title> 文本自动摘要 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 文本自动摘要介绍 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -302,7 +287,7 @@
             
             
               
-                文本自动摘要
+                文本自动摘要介绍
               
             
           </h1>
@@ -344,8 +329,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/27/文档摘要/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/文档摘要/" itemprop="commentsCount"></span>
+                <a href="/2016/09/27/文档摘要介绍/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/文档摘要介绍/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -368,18 +353,19 @@
       
 
       
-        <p>本文参考宗成庆《统计自然语言处理》</p>
-<h2 id="技术概要"><a href="#技术概要" class="headerlink" title="技术概要"></a>技术概要</h2><p>利用计算机自动实现<strong>文本分析</strong>，<strong>内容归纳</strong>和<strong>摘要自动生成</strong>的技术；</p>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+        <p>本文主要参考了宗成庆老师的《统计自然语言处理》和 南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。</p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h2 id="文摘的定义"><a href="#文摘的定义" class="headerlink" title="文摘的定义"></a>文摘的定义</h2><p>国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短和精确的表达，无须补充解释或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性。</p>
+<p>文本自动摘要技术是利用计算机自动实现<strong>文本分析</strong>，<strong>内容归纳</strong>和<strong>摘要自动生成</strong>的技术；</p>
+<h2 id="文摘的意义"><a href="#文摘的意义" class="headerlink" title="文摘的意义"></a>文摘的意义</h2><p>网络上巨大的信息量使得信息检索的难度加大，而信息摘要对于信息的发布者，使用者以及搜索引擎都有着重要的作用。如果能提供给用户简短的文本摘要则可以帮助用户快速地找到所需要的信息，提供给搜索引擎则可以提高检索速度。<br>由于人工提取摘要工作量巨大，自动摘要技术受到了广泛的重视和研究。</p>
+<h1 id="技术概要"><a href="#技术概要" class="headerlink" title="技术概要"></a>技术概要</h1><h2 id="文摘的分类"><a href="#文摘的分类" class="headerlink" title="文摘的分类"></a>文摘的分类</h2><ul>
 <li>根据<strong>文摘的功能</strong>划分，可以分为<em>指示型文摘</em>，<em>报道型文摘</em> 和 <em>评论型文摘</em>； </li>
 <li>根据<strong>输入文本的数量</strong>划分，可以分为 <em>单文档摘要</em>，<em>多文档摘要</em>； </li>
 <li>根据<strong>原文语言种类</strong>划分，可以分为 <em>单语言摘要</em> 和 <em>跨语言摘要</em>； </li>
 <li>根据<strong>文摘和原文的关系</strong>划分，可以分为 <em>摘录型文摘</em> 和 <em>理解型文摘</em>。摘录型文摘由从原文中抽取出来的片段组成，理解型文摘是对原文主要内容重新组织后形成的。 </li>
-<li><p>根据<strong>文摘的应用</strong>划分，可以分为 <em>普通型文摘</em> 和 <em>面向用户查询的文摘</em>。前者提供原文作者的主要观点，后者反映用户感兴趣的内容。 </p>
-<p>刘挺曾将自动文摘方法概括为四种：<strong>自动摘录</strong>，<strong>基于理解</strong>的自动文摘，<strong>信息抽取</strong>和<strong>基于结构</strong>的自动文摘。<br>秦兵等从系统实现的方法考虑，将多文档自动摘要方法概括为三种：基于<strong>单文档文摘技术</strong>的方法，基于<strong>信息抽取</strong>的方法和基于<strong>多文档集合特征</strong>的方法。 </p>
-</li>
+<li>根据<strong>文摘的应用</strong>划分，可以分为 <em>普通型文摘</em> 和 <em>面向用户查询的文摘</em>。前者提供原文作者的主要观点，后者反映用户感兴趣的内容。 </li>
 </ul>
-<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>一般来说，自动文摘过程包括三个基本步骤： </p>
+<p>另外，刘挺曾将自动文摘方法概括为四种：<strong>自动摘录</strong>，<strong>基于理解</strong>的自动文摘，<strong>信息抽取</strong>和<strong>基于结构</strong>的自动文摘。<br>而秦兵等从系统实现的方法考虑，将<strong>多文档自动摘要</strong>方法概括为三种：基于<strong>单文档文摘技术</strong>的方法，基于<strong>信息抽取</strong>的方法和基于<strong>多文档集合特征</strong>的方法。 </p>
+<h2 id="文摘的过程"><a href="#文摘的过程" class="headerlink" title="文摘的过程"></a>文摘的过程</h2><p>一般来说，自动文摘过程包括三个基本步骤： </p>
 <ol>
 <li>文本分析过程：对原文本进行分析处理，识别冗余信息； </li>
 <li>文本内容的<strong>选取</strong>和<strong>泛化</strong>过程：从文档中辨认重要信息，通过<strong>摘录</strong>或<strong>概括</strong>的方法压缩文本，或者通过计算分析的方法形成文摘表示； </li>
@@ -387,37 +373,49 @@
 </ol>
 <p>文摘的输出形式依据文摘的用途和用户需求确定。不同的系统所采用的具体实现方法不同，因此在不同的系统中，上述几个模块所处理的问题和采用的方法也有所差异。 </p>
 <p>在<strong>基于句子抽取的多文档文摘系统（多文档摘录型文摘）</strong>中，其基本思想是通过<strong>计算句子之间的相似性</strong>，<strong>抽取文摘句</strong>，然后<strong>对文摘句排序</strong>的方法生成最后的文摘，因此其核心技术集中在 <em> 句子相似性计算</em>，<em>文摘句抽取</em> 和 <em>文摘句排序 </em> 三个问题上，并不需要经过文摘表示这一中间环节。 </p>
-<h2 id="多文档摘要"><a href="#多文档摘要" class="headerlink" title="多文档摘要"></a>多文档摘要</h2><p>多文档摘要：将同一个主题下的多个文本描述的主要信息按压缩比提炼出一个文本。 </p>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p> 无论是单文档还是多文档，目前采用的方法一般为基于抽取的方法，或称为摘录型方法和基于理解的方法。</p>
+<h1 id="多文档摘要"><a href="#多文档摘要" class="headerlink" title="多文档摘要"></a>多文档摘要</h1><p>多文档摘要就是将同一个主题下的多个文本描述的主要信息按压缩比提炼出一个文本。<br>一般来说，多文档摘要的概念具有更大的外延，技术研究也可以涉及更广泛的技术问题，因此似乎更受关注。 </p>
+<h2 id="主要问题和方法"><a href="#主要问题和方法" class="headerlink" title="主要问题和方法"></a>主要问题和方法</h2><p> 无论是单文档还是多文档，目前采用的方法一般为基于抽取的方法，或称为摘录型方法和基于理解的方法。</p>
 <p>在单文档摘要系统中，一般都采用基于抽取的方法。而对于多文档而言，由于在同一主题中的不同文档中不可避免地存在信息交叠和信息差异，因此如何避免信息冗余，同时反映出来自不同文档的信息差异是多文档文摘中的首要目标，而要实现这个目标通常意味着要在句子层以下做工作，如对句子进行压缩，合并，切分等。</p>
 <p>另外，单文档的输出句子一般都是按照句子在原文中出现的顺序排列，而在多文档摘要中，大都采用时间顺序排列句子，如何准确地得到每个句子的时间信息，也是多文档摘要需要解决的一个重要问题。 </p>
 <p>正如前面指出，自动文摘过程包含三个基本步骤，实现这些基本步骤的方法可以使基于句子抽取的，也可以是基于内容理解的。无论哪种方法，都必须面对三个关键问题：1文档冗余信息的识别和处理；2重要信息的辨认；3生成文摘的连贯性。 </p>
-<h3 id="关键问题"><a href="#关键问题" class="headerlink" title="关键问题"></a>关键问题</h3><h4 id="文档冗余信息的识别和处理"><a href="#文档冗余信息的识别和处理" class="headerlink" title="文档冗余信息的识别和处理"></a>文档冗余信息的识别和处理</h4><p>常用的冗余识别方法通常有两种：</p>
+<h3 id="文档冗余信息的识别和处理"><a href="#文档冗余信息的识别和处理" class="headerlink" title="文档冗余信息的识别和处理"></a>文档冗余信息的识别和处理</h3><p>常用的冗余识别方法通常有两种：</p>
 <ul>
 <li>一种是聚类的方法，测量所有句子对之间的相似性，然后用聚类方法识别公共信息的主题。</li>
 <li>另一种是采用候选法，即系统首先测量候选文段与已选文段之间的相似性，仅当候选段有足够的新信息时才将其入选，如最大边缘相关法MMR。</li>
 </ul>
-<p>吴晓波提出利用语义角色标注信息判断句子相似性的方法：先识别待判断的两个句子中所有谓词的语义角色，然后计算两个句子间对应语义角色的相似度，最后结合传统的句子相似度计算方法来进行句子相似性计算。</p>
-<h4 id="重要信息的辨认"><a href="#重要信息的辨认" class="headerlink" title="重要信息的辨认"></a>重要信息的辨认</h4><p>辨认重要信息的常用方法有抽取法和信息融合法：</p>
+<p>吴晓波提出利用<strong>语义角色标注信息</strong>判断句子相似性的方法：先识别待判断的两个句子中<strong>所有谓词的语义角色</strong>，然后计算两个句子间对应语义角色的相似度，最后结合传统的句子相似度计算方法来进行句子相似性计算。</p>
+<h3 id="重要信息的辨认"><a href="#重要信息的辨认" class="headerlink" title="重要信息的辨认"></a>重要信息的辨认</h3><p>辨认重要信息的常用方法有抽取法和信息融合法：</p>
 <ul>
 <li>抽取法的基本思路是选出每个聚类中有代表性的部分（一般为句子），默认这些代表性的部分（句子）可以表达这个聚类中的主要信息。</li>
 <li>信息融合法的目的是要生成一个简洁，通顺并能反映这些句子（主题）之间共同信息的句子。为了达到这个目标，要识别出对所有入选的主题句都共有的短语，然后将之合并起来。由于集合意义上的句子交集效果并不理想，因此需要一些其它技术来实现融合，这些技术包括句法分析技术，计算主题交集等。 </li>
 </ul>
-<h4 id="生成文摘的连贯性"><a href="#生成文摘的连贯性" class="headerlink" title="生成文摘的连贯性"></a>生成文摘的连贯性</h4><p>为了确保文摘句子的一致性和连贯性，需要排列句子的先后顺序。</p>
+<h3 id="生成文摘的连贯性"><a href="#生成文摘的连贯性" class="headerlink" title="生成文摘的连贯性"></a>生成文摘的连贯性</h3><p>为了确保文摘句子的一致性和连贯性，需要排列句子的先后顺序。</p>
 <p>目前句子排序方法通常有两种：</p>
 <ul>
 <li>时间排序法（选定某一个时间为参考点，然后计算其它相对时间的绝对时间）；</li>
 <li>扩张排序法（试图通过将有一定内容相关性的主题放在一起来降低不流畅性）； </li>
 </ul>
 <p>目前已有的摘录型方法的主要思路是从文章中提取特征，然后采用有监督或者无监督的机器学习方法对句子进行分类，打分，并进行句子抽取和排序。特征提取的基本单位是句子。 </p>
-<h2 id="文摘评测"><a href="#文摘评测" class="headerlink" title="文摘评测"></a>文摘评测</h2><p>传统的文摘评价方法主要由人工根据以下几个指标评价文摘的质量：一致性，简洁性，文法合理性，可读性和内容含量。<br>2005年NIST组织的DUC评测中，人工评测指标包括如下5项：文摘的合乎语法性，非冗余性，指代的清晰程度，聚焦情况和结构及一致性。但是，在针对大规模文本进行评测时，人工评价需要消耗大量的人力，实现起来比较困难。 </p>
-<p>Jones and Galliers曾将文摘自动评估方法大致分为两类：一类称作内部评价方法，与文摘系统的目的相关，它通过直接分析摘要的质量来评价文摘系统；第二类称作外部评价方法，它是一种间接的评价方法，与系统的功能相对应，将文摘应用于某一个特定的任务中，根据摘要功能对特定任务的效果来评价自动文摘系统的性能，如对于信息检索任务而言，可以对比采用摘要进行检索与采用原文进行检索的准确率差异，通过文摘对检索系统的效果来评价文摘系统的性能。 </p>
-<p>内部评价方法可以按信息的覆盖面和正确率来评价文摘的质量，一般采用将系统结果与“理想摘要”相比较的方法。这种评价方法来源于信息抽取技术。在信息抽取评测中，将原文的关键要点抽取出来，然后与人工抽取的内容相比较，计算其召回率，准确率，冗余率和偏差率等几个指标。<br>       $$ recall = (correct + (partial * 0.5))/possible $$<br>       $$ precision = (correct + (partial * 0.5))/actual  $$<br>      $$ overgeneration = spurious/actual  $$<br>      $$ fallout = (incorrect+spurious)/(possible incorrect) $$<br>其中，correct为正确的响应数；partial为部分正确的响应数；possible为所有可能的答案数，包括两部分：答案数，候选答案中与系统响应匹配的个数；actual为系统给出的实际响应个数；spurious为伪响应数，本来没有答案但系统给出的多余响应；incorrect为不正确的响应数；possible incorrect为可能不正确的答案数，可以用possible数减去正确的答案数来计算；overgeneration指标测试的是系统生成的伪响应的比率，而fallout测试的是可能不正确的答案中系统错误响应和伪响应所占的比率。 </p>
+<h1 id="文摘评测"><a href="#文摘评测" class="headerlink" title="文摘评测"></a>文摘评测</h1><p>文摘自动评测是自然语言处理中比较棘手的问题，相对于机器翻译，信息检索等其他技术的评测更加困难，因为理论上根本没有完美的摘要作为参考。</p>
+<p>传统的文摘评价方法主要由人工根据以下几个指标评价文摘的质量：一致性，简洁性，文法合理性，可读性和内容含量。 2005年NIST组织的DUC评测中，人工评测指标包括如下5项：文摘的合乎语法性，非冗余性，指代的清晰程度，聚焦情况和结构及一致性。但是，在针对大规模文本进行评测时，人工评价需要消耗大量的人力，实现起来比较困难。 </p>
+<h2 id="评估方法"><a href="#评估方法" class="headerlink" title="评估方法"></a>评估方法</h2><p>Jones and Galliers曾将文摘自动评估方法大致分为<strong>两类</strong>：一类称作内部评价方法，与文摘系统的目的相关，它通过<strong>直接分析摘要的质量</strong>来评价文摘系统；第二类称作外部评价方法，它是一种间接的评价方法，与系统的功能相对应，将文摘应用于某一个特定的任务中，根据摘要功能<strong>对特定任务的效果</strong>来评价自动文摘系统的性能，如对于信息检索任务而言，可以对比采用摘要进行检索与采用原文进行检索的准确率差异，通过文摘对检索系统的效果来评价文摘系统的性能。</p>
+<h3 id="内部评价方法"><a href="#内部评价方法" class="headerlink" title="内部评价方法"></a>内部评价方法</h3><p>内部评价方法可以按信息的<strong>覆盖面</strong>和<strong>正确率</strong>来评价文摘的质量，一般采用<strong>将系统结果与“理想摘要”相比较</strong>的方法。这种评价方法来源于信息抽取技术。在信息抽取评测中，将原文的关键要点抽取出来，然后与人工抽取的内容相比较，计算其召回率，准确率，冗余率和偏差率等几个指标。<br>       $$ recall = (correct + (partial * 0.5))/possible $$<br>$$ precision = (correct + (partial * 0.5))/actual  $$<br>      $$ overgeneration = spurious/actual  $$<br>$$fallout = (incorrect+spurious)/(possible incorrect) $$<br>其中:</p>
+<ul>
+<li>correct为正确的响应数；</li>
+<li>partial为部分正确的响应数；</li>
+<li>possible为所有可能的答案数，包括两部分：答案数，候选答案中与系统响应匹配的个数；</li>
+<li>actual为系统给出的实际响应个数；</li>
+<li>spurious为伪响应数，本来没有答案但系统给出的多余响应；</li>
+<li>incorrect为不正确的响应数；</li>
+<li>possible incorrect为可能不正确的答案数，可以用possible数减去正确的答案数来计算；</li>
+<li>overgeneration指标测试的是系统生成的伪响应的比率;</li>
+<li>fallout测试的是可能不正确的答案中系统错误响应和伪响应所占的比率。 </li>
+</ul>
 <p>这种内部评价方法存在的主要困难是“理想摘要”的获得问题，外部评测方法则与测试的特定任务密切相关，这里不再赘述。 </p>
-<p> 一般地，内部评测方法又可分为两类：形式度量和内容度量。形式度量侧重于语法，全文的连贯性和组织结构，内容度量则更加复杂。一种典型的方法是，系统输出与一个或多个人工的理想摘要做逐句的或者逐片段的比较来计算召回率和精确率；另一种常用的方法包括kappa方法和相对效用方法，这两种方法都是通过随机地抽取原文中的一些段落，测试系统对应这些段落产生的摘要质量来评测系统整体性能的。 </p>
+<p>一般地，内部评测方法又可分为两类：<strong>形式度量</strong>和<strong>内容度量</strong>。形式度量侧重于语法，全文的连贯性和组织结构，内容度量则更加复杂。一种典型的方法是，系统输出与一个或多个人工的理想摘要做逐句的或者逐片段的比较来计算召回率和精确率；另一种常用的方法包括kappa方法和相对效用方法，这两种方法都是通过随机地抽取原文中的一些段落，测试系统对应这些段落产生的摘要质量来评测系统整体性能的。 </p>
 <p>在2001年和2002年的DUC评测中，NIST使用了SEE来记录精确率和召回率值。当然，这些方法也同样存在手工抽取“理想摘要”的问题。</p>
-<p> Lin and Hovy基于机器翻译系统评测中的BLEU评分方法提出了一种文摘评测方法。Lin将这一方法加以改进，提出并实现了基于最长公共子串和指定句子内词对的共现统计的评测方法（ROUGE），并证明该评测方法与人工评测具有很好的一致性。在2004年和2005年的DUC文摘自动评测中均采用了ROUGE评测方法。 </p>
-<h2 id="指代消解"><a href="#指代消解" class="headerlink" title="指代消解"></a>指代消解</h2><h3 id="Pairwise-Model"><a href="#Pairwise-Model" class="headerlink" title="Pairwise Model"></a>Pairwise Model</h3><h3 id="First-Order-Logic-Model"><a href="#First-Order-Logic-Model" class="headerlink" title="First-Order Logic Model"></a>First-Order Logic Model</h3><p>给出一堆词，计算它们具有指代关系的概率。<br>样本的产生方法：随机从语料库中采样具有指代关系的正样本(词簇)和不具有指代关系的负样本，并且数量大致平衡。<br>特征模版：</p>
+<p>Lin and Hovy基于机器翻译系统评测中的BLEU评分方法提出了一种文摘评测方法。Lin将这一方法加以改进，提出并实现了<strong>基于最长公共子串和指定句子内词对的共现统计的评测方法（ROUGE）</strong><br>，并证明该评测方法与人工评测具有很好的一致性。在2004年和2005年的DUC文摘自动评测中均采用了ROUGE评测方法。 </p>
+<h1 id="指代消解"><a href="#指代消解" class="headerlink" title="指代消解"></a>指代消解</h1><h2 id="Pairwise-Model"><a href="#Pairwise-Model" class="headerlink" title="Pairwise Model"></a>Pairwise Model</h2><h2 id="First-Order-Logic-Model"><a href="#First-Order-Logic-Model" class="headerlink" title="First-Order Logic Model"></a>First-Order Logic Model</h2><p>给出一堆词，计算它们具有指代关系的概率。<br>样本的产生方法：随机从语料库中采样具有指代关系的正样本(词簇)和不具有指代关系的负样本，并且数量大致平衡。<br>特征模版：</p>
 
       
     </div>
@@ -437,6 +435,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/text-summarization/" rel="tag">#Text Summarization</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
@@ -450,8 +454,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/30/文本摘要实现/" rel="prev" title="文本摘要的实现">
-                文本摘要的实现 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/30/文本摘要实现/" rel="prev" title="文本自动摘要算法">
+                文本自动摘要算法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -478,8 +482,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/27/文档摘要/"
-           data-title="文本自动摘要" data-url="http://github.com/kiseliu/2016/09/27/文档摘要/">
+      <div class="ds-thread" data-thread-key="2016/09/27/文档摘要介绍/"
+           data-title="文本自动摘要介绍" data-url="http://github.com/kiseliu/2016/09/27/文档摘要介绍/">
       </div>
     
   </div>
@@ -524,7 +528,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -601,7 +605,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#技术概要"><span class="nav-number">1.</span> <span class="nav-text">技术概要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类"><span class="nav-number">1.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">1.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多文档摘要"><span class="nav-number">2.</span> <span class="nav-text">多文档摘要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关键问题"><span class="nav-number">2.2.</span> <span class="nav-text">关键问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文档冗余信息的识别和处理"><span class="nav-number">2.2.1.</span> <span class="nav-text">文档冗余信息的识别和处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重要信息的辨认"><span class="nav-number">2.2.2.</span> <span class="nav-text">重要信息的辨认</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成文摘的连贯性"><span class="nav-number">2.2.3.</span> <span class="nav-text">生成文摘的连贯性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文摘评测"><span class="nav-number">3.</span> <span class="nav-text">文摘评测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指代消解"><span class="nav-number">4.</span> <span class="nav-text">指代消解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pairwise-Model"><span class="nav-number">4.1.</span> <span class="nav-text">Pairwise Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#First-Order-Logic-Model"><span class="nav-number">4.2.</span> <span class="nav-text">First-Order Logic Model</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文摘的定义"><span class="nav-number">1.1.</span> <span class="nav-text">文摘的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文摘的意义"><span class="nav-number">1.2.</span> <span class="nav-text">文摘的意义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#技术概要"><span class="nav-number">2.</span> <span class="nav-text">技术概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文摘的分类"><span class="nav-number">2.1.</span> <span class="nav-text">文摘的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文摘的过程"><span class="nav-number">2.2.</span> <span class="nav-text">文摘的过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多文档摘要"><span class="nav-number">3.</span> <span class="nav-text">多文档摘要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要问题和方法"><span class="nav-number">3.1.</span> <span class="nav-text">主要问题和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文档冗余信息的识别和处理"><span class="nav-number">3.1.1.</span> <span class="nav-text">文档冗余信息的识别和处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要信息的辨认"><span class="nav-number">3.1.2.</span> <span class="nav-text">重要信息的辨认</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成文摘的连贯性"><span class="nav-number">3.1.3.</span> <span class="nav-text">生成文摘的连贯性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文摘评测"><span class="nav-number">4.</span> <span class="nav-text">文摘评测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#评估方法"><span class="nav-number">4.1.</span> <span class="nav-text">评估方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内部评价方法"><span class="nav-number">4.1.1.</span> <span class="nav-text">内部评价方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#指代消解"><span class="nav-number">5.</span> <span class="nav-text">指代消解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pairwise-Model"><span class="nav-number">5.1.</span> <span class="nav-text">Pairwise Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#First-Order-Logic-Model"><span class="nav-number">5.2.</span> <span class="nav-text">First-Order Logic Model</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

@@ -84,22 +84,22 @@
 
 
 
-<meta name="description" content="本文参考南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。
-国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短的精确的表达而无须补充解释 或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性。
-文本摘要的意义网络上巨大的信息量使得信息检索的难度">
+<meta name="description" content="研究现状为了抽取文章的摘要，研究者从不同的角度对自动文本摘要技术进行了研究：有专门研究摘要内容跟非摘要内容的区分特征的，有试图通过模拟文章写作过程将文章的主题挖掘出来的主题模型等等。如何将文章内容的侧重点挖掘出来，是自动摘要技术研究的关键之处。
+基于篇章结构的自动文本摘要方法在近年来发展迅速。
+潜在语义分析是一种篇章结构分析方法，其核心是用于描述文本产生机制的主题模型。一个好的主题模型应该能把握创">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文本摘要的实现">
+<meta property="og:title" content="文本自动摘要算法">
 <meta property="og:url" content="http://github.com/kiseliu/2016/09/30/文本摘要实现/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="本文参考南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。
-国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短的精确的表达而无须补充解释 或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性。
-文本摘要的意义网络上巨大的信息量使得信息检索的难度">
-<meta property="og:updated_time" content="2016-10-09T06:41:58.000Z">
+<meta property="og:description" content="研究现状为了抽取文章的摘要，研究者从不同的角度对自动文本摘要技术进行了研究：有专门研究摘要内容跟非摘要内容的区分特征的，有试图通过模拟文章写作过程将文章的主题挖掘出来的主题模型等等。如何将文章内容的侧重点挖掘出来，是自动摘要技术研究的关键之处。
+基于篇章结构的自动文本摘要方法在近年来发展迅速。
+潜在语义分析是一种篇章结构分析方法，其核心是用于描述文本产生机制的主题模型。一个好的主题模型应该能把握创">
+<meta property="og:updated_time" content="2016-10-10T03:07:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文本摘要的实现">
-<meta name="twitter:description" content="本文参考南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。
-国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短的精确的表达而无须补充解释 或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性。
-文本摘要的意义网络上巨大的信息量使得信息检索的难度">
+<meta name="twitter:title" content="文本自动摘要算法">
+<meta name="twitter:description" content="研究现状为了抽取文章的摘要，研究者从不同的角度对自动文本摘要技术进行了研究：有专门研究摘要内容跟非摘要内容的区分特征的，有试图通过模拟文章写作过程将文章的主题挖掘出来的主题模型等等。如何将文章内容的侧重点挖掘出来，是自动摘要技术研究的关键之处。
+基于篇章结构的自动文本摘要方法在近年来发展迅速。
+潜在语义分析是一种篇章结构分析方法，其核心是用于描述文本产生机制的主题模型。一个好的主题模型应该能把握创">
 
 
 
@@ -122,7 +122,7 @@
 
   <link rel="canonical" href="http://github.com/kiseliu/2016/09/30/文本摘要实现/"/>
 
-  <title> 文本摘要的实现 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 文本自动摘要算法 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -290,7 +290,7 @@
             
             
               
-                文本摘要的实现
+                文本自动摘要算法
               
             
           </h1>
@@ -356,10 +356,7 @@
       
 
       
-        <p>本文参考南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。</p>
-<p>国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短的精确的表达而无须补充解释 或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性。</p>
-<h1 id="文本摘要的意义"><a href="#文本摘要的意义" class="headerlink" title="文本摘要的意义"></a>文本摘要的意义</h1><p>网络上巨大的信息量使得信息检索的难度加大，而信息摘要对于信息的发布者，使用者以及搜索引擎都有着重要的作用。如果能提供给用户简短的文本摘要则可以帮助用户快速地找到所需要的信息，提高搜索引擎的检索速度。由于人工提取摘要工作量巨大，自动摘要技术受到了广泛的重视和研究。</p>
-<h1 id="研究现状"><a href="#研究现状" class="headerlink" title="研究现状"></a>研究现状</h1><p>为了抽取文章的摘要，研究者从不同的角度对自动文本摘要技术进行了研究：有专门研究摘要内容跟非摘要内容的区分特征的，有试图通过模拟文章写作过程将文章的主题挖掘出来的主题模型等等。如何将文章内容的侧重点挖掘出来，是自动摘要技术研究的关键之处。</p>
+        <h1 id="研究现状"><a href="#研究现状" class="headerlink" title="研究现状"></a>研究现状</h1><p>为了抽取文章的摘要，研究者从不同的角度对自动文本摘要技术进行了研究：有专门研究摘要内容跟非摘要内容的区分特征的，有试图通过模拟文章写作过程将文章的主题挖掘出来的主题模型等等。如何将文章内容的侧重点挖掘出来，是自动摘要技术研究的关键之处。</p>
 <p>基于篇章结构的自动文本摘要方法在近年来发展迅速。</p>
 <p>潜在语义分析是一种篇章结构分析方法，其核心是用于描述文本产生机制的主题模型。一个好的主题模型应该能把握创作者的思路，即文章所表达的意思和这些意思之间的转折情况，并且能够根据意思选择合适的词组织成句。</p>
 <p>主题模型的训练离不开词频统计，词语多义现象造成基于词形的词频统计不准确，因此需要先对文本进行词语消歧。可以基于WordNet进行词语相关度计算，用于词语消歧，该步骤可以看作自动文本摘要的预处理工作。</p>
@@ -413,16 +410,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/27/文档摘要/" rel="next" title="文本自动摘要">
-                <i class="fa fa-chevron-left"></i> 文本自动摘要
+              <a href="/2016/09/27/文档摘要介绍/" rel="next" title="文本自动摘要介绍">
+                <i class="fa fa-chevron-left"></i> 文本自动摘要介绍
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/30/kaggle-collections/" rel="prev" title="Kaggle Collections">
-                Kaggle Collections <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/10/tensorflow-mnist-for-ml-beginners/" rel="prev" title="TensorFlow:MNIST for ML Beginners">
+                TensorFlow:MNIST for ML Beginners <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -450,7 +447,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/09/30/文本摘要实现/"
-           data-title="文本摘要的实现" data-url="http://github.com/kiseliu/2016/09/30/文本摘要实现/">
+           data-title="文本自动摘要算法" data-url="http://github.com/kiseliu/2016/09/30/文本摘要实现/">
       </div>
     
   </div>
@@ -495,7 +492,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -572,7 +569,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文本摘要的意义"><span class="nav-number">1.</span> <span class="nav-text">文本摘要的意义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#研究现状"><span class="nav-number">2.</span> <span class="nav-text">研究现状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单文本摘要技术"><span class="nav-number">3.</span> <span class="nav-text">单文本摘要技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于特征的实现方法"><span class="nav-number">3.1.</span> <span class="nav-text">基于特征的实现方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于TextRank的实现方法"><span class="nav-number">3.2.</span> <span class="nav-text">基于TextRank的实现方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用LSA进行单文档摘要"><span class="nav-number">3.3.</span> <span class="nav-text">利用LSA进行单文档摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于LDA的单文档摘要"><span class="nav-number">3.4.</span> <span class="nav-text">基于LDA的单文档摘要</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#研究现状"><span class="nav-number">1.</span> <span class="nav-text">研究现状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单文本摘要技术"><span class="nav-number">2.</span> <span class="nav-text">单文本摘要技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于特征的实现方法"><span class="nav-number">2.1.</span> <span class="nav-text">基于特征的实现方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于TextRank的实现方法"><span class="nav-number">2.2.</span> <span class="nav-text">基于TextRank的实现方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用LSA进行单文档摘要"><span class="nav-number">2.3.</span> <span class="nav-text">利用LSA进行单文档摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于LDA的单文档摘要"><span class="nav-number">2.4.</span> <span class="nav-text">基于LDA的单文档摘要</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

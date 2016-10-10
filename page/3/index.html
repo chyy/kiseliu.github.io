@@ -286,8 +286,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/05/pyspark-ml库中的clustering/" itemprop="url">
-                  PySpark.ml库中的Clustering
+                <a class="post-title-link" href="/2016/09/30/文本摘要实现/" itemprop="url">
+                  文本自动摘要算法
                 </a>
               
             
@@ -300,8 +300,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-05T16:34:37+08:00" content="2016-09-05">
-              2016-09-05
+            <time itemprop="dateCreated" datetime="2016-09-30T09:45:44+08:00" content="2016-09-30">
+              2016-09-30
             </time>
           </span>
 
@@ -314,8 +314,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/pyspark/" itemprop="url" rel="index">
-                    <span itemprop="name">PySpark</span>
+                  <a href="/categories/natural-language-processing/" itemprop="url" rel="index">
+                    <span itemprop="name">Natural Language Processing</span>
                   </a>
                 </span>
 
@@ -330,8 +330,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/05/pyspark-ml库中的clustering/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/05/pyspark-ml库中的clustering/" itemprop="commentsCount"></span>
+                <a href="/2016/09/30/文本摘要实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/30/文本摘要实现/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -356,12 +356,13 @@
       
         
           
-          LDA模型介绍LDA是一种典型的Bag-of-words模型，即一篇文档是由一组词构成，词与词之间没有先后顺序的关系。可以将文档集中每篇文档的主题以概率分布的形式给出，从而通过分析一些文档抽取出它们的主题(分布)出来后，便可以根据主题(分布)进行主题聚类或文本分类。
-Latent Dirichlet allocation (LDA)LDA是主题模型，它推测文本文档集合中的主题。按照下述描述，LDA
+          研究现状为了抽取文章的摘要，研究者从不同的角度对自动文本摘要技术进行了研究：有专门研究摘要内容跟非摘要内容的区分特征的，有试图通过模拟文章写作过程将文章的主题挖掘出来的主题模型等等。如何将文章内容的侧重点挖掘出来，是自动摘要技术研究的关键之处。
+基于篇章结构的自动文本摘要方法在近年来发展迅速。
+潜在语义分析是一种篇章结构分析方法，其核心是用于描述文本产生机制的主题模型。一个好的主题模型应该能把握创
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/05/pyspark-ml库中的clustering/#more" rel="contents">
+            <a class="btn" href="/2016/09/30/文本摘要实现/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -412,8 +413,8 @@ Latent Dirichlet allocation (LDA)LDA是主题模型，它推测文本文档集�
             
               
                 
-                <a class="post-title-link" href="/2016/09/05/word2vec原理/" itemprop="url">
-                  Word2Vec原理
+                <a class="post-title-link" href="/2016/09/27/文档摘要介绍/" itemprop="url">
+                  文本自动摘要介绍
                 </a>
               
             
@@ -426,8 +427,8 @@ Latent Dirichlet allocation (LDA)LDA是主题模型，它推测文本文档集�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-05T13:46:45+08:00" content="2016-09-05">
-              2016-09-05
+            <time itemprop="dateCreated" datetime="2016-09-27T09:24:44+08:00" content="2016-09-27">
+              2016-09-27
             </time>
           </span>
 
@@ -440,8 +441,8 @@ Latent Dirichlet allocation (LDA)LDA是主题模型，它推测文本文档集�
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/deep-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Deep Learning</span>
+                  <a href="/categories/natural-language-processing/" itemprop="url" rel="index">
+                    <span itemprop="name">Natural Language Processing</span>
                   </a>
                 </span>
 
@@ -456,8 +457,8 @@ Latent Dirichlet allocation (LDA)LDA是主题模型，它推测文本文档集�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/05/word2vec原理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/05/word2vec原理/" itemprop="commentsCount"></span>
+                <a href="/2016/09/27/文档摘要介绍/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/文档摘要介绍/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -482,136 +483,12 @@ Latent Dirichlet allocation (LDA)LDA是主题模型，它推测文本文档集�
       
         
           
-          Continuous Bag-of-Word ModelOne-word contextMulti-word contextSkip-Gram ModelOptimizing Computational EfficiencyHierarchical SoftmaxNegative Sampling
-          
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/05/word2vec原理/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/31/模拟退火算法和波尔滋曼机/" itemprop="url">
-                  模拟退火算法和波尔滋曼机
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-31T11:50:00+08:00" content="2016-08-31">
-              2016-08-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/deep-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Deep Learning</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/31/模拟退火算法和波尔滋曼机/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/模拟退火算法和波尔滋曼机/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Hopfield虽然因为吸引子的存在具有联想功能，但是它的问题在于很难避免伪吸引子的出现。因为Hopfield网络对特定输入只能严格按照能量函数递减的方式演化，容易陷入局部极小值(伪吸引子)，无法收敛于全局最优点。如果反馈神经网络的迭代过程不那么“死板”，可以在一定程度上暂时接受能量函数变大的结果，就有可能跳出局部极小值。随机神经网络的核心思想，就是在网络中加入概率因素，网络并不是确定地向能量函数
+          本文主要参考了宗成庆老师的《统计自然语言处理》和 南京邮电大学刘霞的硕士论文《基于潜在语义分析的单文本自动摘要方法研究》。
+背景文摘的定义国际标准《文献工作—出版物的文摘和文献工作》 (ISO214-1976(E))中的文摘指的是:“一份文献内容的缩短和精确的表达，无须补充解释或评论，且对写文摘的人来说没有差别。”由此可见，文本摘要是原文内容的压缩，能够正确无误的反应原文的主要内容，并且具有可读性
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/31/模拟退火算法和波尔滋曼机/#more" rel="contents">
+            <a class="btn" href="/2016/09/27/文档摘要介绍/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -662,8 +539,8 @@ Latent Dirichlet allocation (LDA)LDA是主题模型，它推测文本文档集�
             
               
                 
-                <a class="post-title-link" href="/2016/08/29/section-1-summary/" itemprop="url">
-                  Section 1 Summary
+                <a class="post-title-link" href="/2016/09/26/opencv第5课/" itemprop="url">
+                  OpenCV第5课
                 </a>
               
             
@@ -676,38 +553,19 @@ Latent Dirichlet allocation (LDA)LDA是主题模型，它推测文本文档集�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-29T14:25:00+08:00" content="2016-08-29">
-              2016-08-29
+            <time itemprop="dateCreated" datetime="2016-09-26T15:58:02+08:00" content="2016-09-26">
+              2016-09-26
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/programming-languages/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming Languages</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/29/section-1-summary/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/29/section-1-summary/" itemprop="commentsCount"></span>
+                <a href="/2016/09/26/opencv第5课/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/26/opencv第5课/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -732,12 +590,12 @@ Latent Dirichlet allocation (LDA)LDA是主题模型，它推测文本文档集�
       
         
           
-          ML Expressions and Variable BindingsBindings, type-checked, evaluatedAn ML program is a sequence of bindings. Each binding gets type-checked and then (assuming it type-checks) evaluated.
-What type (if
-          ...
+          超分辨重建：利用卷积神经网络，将图像分辨率提升了2倍，同时对图像进行了降噪。简单来说就是在图像中填充了一些原本不存在的像素，使得原本的图像看起来更加的清晰和逼真。
+
+          
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/29/section-1-summary/#more" rel="contents">
+            <a class="btn" href="/2016/09/26/opencv第5课/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -788,8 +646,8 @@ What type (if
             
               
                 
-                <a class="post-title-link" href="/2016/08/28/hopfield神经网络/" itemprop="url">
-                  Hopfield神经网络
+                <a class="post-title-link" href="/2016/09/24/RBM and DBN/" itemprop="url">
+                  RBM and DBN
                 </a>
               
             
@@ -802,8 +660,8 @@ What type (if
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-28T22:09:21+08:00" content="2016-08-28">
-              2016-08-28
+            <time itemprop="dateCreated" datetime="2016-09-24T00:11:04+08:00" content="2016-09-24">
+              2016-09-24
             </time>
           </span>
 
@@ -832,8 +690,8 @@ What type (if
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/28/hopfield神经网络/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/hopfield神经网络/" itemprop="commentsCount"></span>
+                <a href="/2016/09/24/RBM and DBN/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/24/RBM and DBN/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -858,11 +716,12 @@ What type (if
       
         
           
-          根据神经网络运行过程中的信息流向，可分为前馈式和反馈式两种基本类型。前馈式网络通过引入隐层以及非线性转移函数，网络具有复杂的非线性映射能力。但其输出仅由当前输入和权矩阵决定，与网络先前的输出状态无关。Hopfield神经网络是一种单层反馈神经网络，分为离散型和连续型两种网络模型，分别记作 DHNN (Discrete Hopfield Neural Network)和 CHNN (Continuo
+          受限波尔滋曼机的作用：提取特征受限波尔滋曼机的训练过程其实就是Gibbs采样，通过Gibbs采样逐渐逼近一个波尔滋曼分布，隐藏层就是提取的特征。受限波尔滋曼机的结构类似自编码器，不同之处在于学习算法不同，RBM是用的CD学习算法，用Gibbs采样逐渐逼近一个波尔滋曼分布。
+受限波尔滋曼机在协同过滤中的应用Conditional RBM’s假设我们对K个从K个可能的评分连接到每个隐藏特征的权重中的每
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/28/hopfield神经网络/#more" rel="contents">
+            <a class="btn" href="/2016/09/24/RBM and DBN/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -913,8 +772,8 @@ What type (if
             
               
                 
-                <a class="post-title-link" href="/2016/08/28/approximate-list-of-specific-course-topics/" itemprop="url">
-                  Programming Languages Course
+                <a class="post-title-link" href="/2016/09/22/implementing-a-cnn-for-text-classification-in-tensorflow/" itemprop="url">
+                  Implementing a CNN for Text Classification in Tensorflow
                 </a>
               
             
@@ -927,133 +786,8 @@ What type (if
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-28T19:25:54+08:00" content="2016-08-28">
-              2016-08-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/programming-languages/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming Languages</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/28/approximate-list-of-specific-course-topics/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/approximate-list-of-specific-course-topics/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          The goal of this courseIt helps to learn the fundamental concepts that appear in one form or another in almost every programming language. They will get some sense of how these concepts “fit together”
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/28/approximate-list-of-specific-course-topics/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/28/opencv安装说明/" itemprop="url">
-                  OpenCV安装说明
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-28T18:19:53+08:00" content="2016-08-28">
-              2016-08-28
+            <time itemprop="dateCreated" datetime="2016-09-22T19:36:37+08:00" content="2016-09-22">
+              2016-09-22
             </time>
           </span>
 
@@ -1082,8 +816,8 @@ What type (if
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/28/opencv安装说明/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/opencv安装说明/" itemprop="commentsCount"></span>
+                <a href="/2016/09/22/implementing-a-cnn-for-text-classification-in-tensorflow/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/implementing-a-cnn-for-text-classification-in-tensorflow/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1108,12 +842,13 @@ What type (if
       
         
           
-          说明：本文参考炼数成金讲师罗韵的课程《开源计算机视觉库OpenCV从入门到应用（第一期）》。
-下载Linux版本源码这里有两部分代码opencv和opencv_contrib需要下载，其中opencv库是opencv的核心库，opencv_contrib是最新贡献但不是很成熟的函数库。由于国内网络防火墙问题，在编译过程中，会因为ippicv_linux_20151201.tgz下载错误导致编译失败
+          本文译自 Implementing a CNN for Text Classification in Tensorflow .
+本文我们将实现和Kim Yoon用CNN对句子分类相似的模型。论文中给出的模型在许多文本分类任务(如情感分析)都取得了好的分类表现，并且已经成为了新的文本分类架构的标准baseline。
+本文假设你对应用在NLP的CNNs基础知识已经比较熟悉，如果不是，建议先读一下Und
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/28/opencv安装说明/#more" rel="contents">
+            <a class="btn" href="/2016/09/22/implementing-a-cnn-for-text-classification-in-tensorflow/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1164,8 +899,8 @@ What type (if
             
               
                 
-                <a class="post-title-link" href="/2016/08/27/sml基本命令/" itemprop="url">
-                  Emacs With Sml-Mode
+                <a class="post-title-link" href="/2016/09/22/understanding-convolutional-neural-networks-for-nlp/" itemprop="url">
+                  Understanding Convolutional Neural Networks for NLP
                 </a>
               
             
@@ -1178,242 +913,8 @@ What type (if
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-27T18:29:50+08:00" content="2016-08-27">
-              2016-08-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/programming-languages/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming Languages</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/27/sml基本命令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/27/sml基本命令/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          本文来自Coursera程序设计语言(华盛顿大学)。
-Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；• C-x C-c: Quit Emacs• C-g: Cancel the current action• C-x C-f: Open a file (whether or not it already exists)• C-x C-s: Save a file•
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/27/sml基本命令/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/24/tensorboard-visualizing-learning/" itemprop="url">
-                  Untitled
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-24T15:53:29+08:00" content="2016-08-24">
-              2016-08-24
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/24/tensorboard-visualizing-learning/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/24/tensorboard-visualizing-learning/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-layout: pagestitle: ‘TensorBoard: Visualizing Learning’date: 2016-08-24 15:53:29categories: Deep Learning
-tags: [tensorflow]When TensorBoard is fully configured, it looks like this:你使用TensorFlow主要为了计
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/24/tensorboard-visualizing-learning/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/16/building-autoencoders-in-keras/" itemprop="url">
-                  Building Autoencoders in Keras
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-16T16:16:24+08:00" content="2016-08-16">
-              2016-08-16
+            <time itemprop="dateCreated" datetime="2016-09-22T10:28:17+08:00" content="2016-09-22">
+              2016-09-22
             </time>
           </span>
 
@@ -1442,8 +943,8 @@ tags: [tensorflow]When TensorBoard is fully configured, it looks like this:你�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/16/building-autoencoders-in-keras/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/16/building-autoencoders-in-keras/" itemprop="commentsCount"></span>
+                <a href="/2016/09/22/understanding-convolutional-neural-networks-for-nlp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/understanding-convolutional-neural-networks-for-nlp/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1468,21 +969,520 @@ tags: [tensorflow]When TensorBoard is fully configured, it looks like this:你�
       
         
           
-          本节，我们将回答关于自编码的一些常见的问题，我们将给出下面几个模型的代码示例：
-
-基于全连接层的简单的自编码器
-稀疏自编码器
-深度全连接自编码器
-深度卷积自编码器
-图像去噪模型
-序列到序列的自编码器
-变自编码器
-
-What are autoencoders?“Autoencoder”是一种数据压缩算法，它的压缩和解压函数是1)数据专用的，2)有损失的，3)自动从样本中学习而不是人工设计的。此外，在
+          本文译自UNDERSTANDING CONVOLUTIONAL NEURAL NETWORKS FOR NLP。
+当我们听到CNN的时候，我们一下就会想到计算机视觉。CNNs在图像分类的重大突破上做出了巨大的贡献，从Facebook的自动图像标注到自动驾驶，CNNs当今大多数计算机视觉系统的核心。
+最近，我们也开始应用CNNs解决NLP中遇到的问题，取得了一些有趣的结果。本文将尽力解释什么是CNN
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/16/building-autoencoders-in-keras/#more" rel="contents">
+            <a class="btn" href="/2016/09/22/understanding-convolutional-neural-networks-for-nlp/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/14/受限波尔滋曼机/" itemprop="url">
+                  受限波尔滋曼机
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-14T21:55:26+08:00" content="2016-09-14">
+              2016-09-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/deep-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Deep Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/14/受限波尔滋曼机/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/14/受限波尔滋曼机/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          马尔可夫链随机过程，马尔可夫过程是一种特殊的随机过程。状态和时间都是离散的马尔可夫过程，我们称为马尔可夫链。随机过程：一族随机变量，随机变量在不同的时间满足某种分布，称为随机过程。随机过程可依时间(参数)分为连续参数随机过程和离散参数随机过程或随机序列。
+马尔可夫性质：随机过程有一种性质叫做马尔可夫性质。由于随机过程这个概念太过于广泛，通常我们会对这个过程做一些限制进行研究。有一种假设是，在不同的
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/14/受限波尔滋曼机/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/14/kaggle-titanic-machine-learning-from-disaster/" itemprop="url">
+                  Kaggle Titanic: Machine Learning From Disaster
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-14T16:50:27+08:00" content="2016-09-14">
+              2016-09-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kaggle/" itemprop="url" rel="index">
+                    <span itemprop="name">Kaggle</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/14/kaggle-titanic-machine-learning-from-disaster/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/14/kaggle-titanic-machine-learning-from-disaster/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Getting Started with PythonIn this chapter we will go trough the essential steps that you will need to take before beginning to build predictive models.
+How it worksGet the Data with PandasUnderstandi
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/14/kaggle-titanic-machine-learning-from-disaster/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/08/情感分析/" itemprop="url">
+                  情感分析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-08T19:20:58+08:00" content="2016-09-08">
+              2016-09-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/natural-language-processing/" itemprop="url" rel="index">
+                    <span itemprop="name">Natural Language Processing</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/08/情感分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/08/情感分析/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          情感分析：根据文本所表达的含义和情感信息将文本分为褒扬或贬义的两种或多种类型。 
+情感分析是特殊的文本分类问题，既有一般文本分类的共性问题，也有其特殊性。例如情感信息表达的隐蔽性，多义性和极性不明显等。领域相关性强。数据不平衡较为明显。批评等负面评价通常比较隐晦，商品评论几乎都是正面评价，只有很少量数据是差评，数据不平衡会影响有监督分类器的效果。有些评论有星级，但是星级和实际内容不相符，会误导我们
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/08/情感分析/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/07/句法分析/" itemprop="url">
+                  句法分析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-07T20:35:20+08:00" content="2016-09-07">
+              2016-09-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/natural-language-processing/" itemprop="url" rel="index">
+                    <span itemprop="name">Natural Language Processing</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/07/句法分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/07/句法分析/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          PCFG 基于概率上下文无关文法的句法分析方法CFG (Context-Free Grammar) 上下文无关文法一个上下文无关文法是指一个四元组文法\(G=(N,\Sigma ,R,S)\)，其中：
+
+\(N\)：非终止符的有限集合；非终止符可以派生出终止符，在句法分析中通常指句子中的成分，如名词，状语等。
+\(\Sigma\)：终止符的有限集合；通常指具体的词汇，如have，show等。
+\(
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/07/句法分析/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1516,7 +1516,7 @@ What are autoencoders?“Autoencoder”是一种数据压缩算法，它的压�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1557,7 +1557,7 @@ What are autoencoders?“Autoencoder”是一种数据压缩算法，它的压�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
