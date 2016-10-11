@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="MNIST," />
 
 
 
@@ -84,16 +84,24 @@
 
 
 
-<meta name="description">
+<meta name="description" content="该教程主要针对机器学习和TensorFlow的新手。如果你已经知道了MNIST和softmax (multinomial logistic) regression，你可能更喜欢快节奏的教程。在开始教程前确保已经安装了TensorFlow。
+当我们学习如何编程时，有一个传统就是首先打印出“Hello World”，就像编程有Hello World，机器学习有MNIST。
+MNIST是一个简单的计算机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorFlow:MNIST for ML Beginners">
 <meta property="og:url" content="http://github.com/kiseliu/2016/10/10/tensorflow-mnist-for-ml-beginners/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-10-10T08:43:04.000Z">
+<meta property="og:description" content="该教程主要针对机器学习和TensorFlow的新手。如果你已经知道了MNIST和softmax (multinomial logistic) regression，你可能更喜欢快节奏的教程。在开始教程前确保已经安装了TensorFlow。
+当我们学习如何编程时，有一个传统就是首先打印出“Hello World”，就像编程有Hello World，机器学习有MNIST。
+MNIST是一个简单的计算机">
+<meta property="og:image" content="https://www.tensorflow.org/versions/r0.11/images/MNIST.png">
+<meta property="og:updated_time" content="2016-10-10T09:36:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow:MNIST for ML Beginners">
-<meta name="twitter:description">
+<meta name="twitter:description" content="该教程主要针对机器学习和TensorFlow的新手。如果你已经知道了MNIST和softmax (multinomial logistic) regression，你可能更喜欢快节奏的教程。在开始教程前确保已经安装了TensorFlow。
+当我们学习如何编程时，有一个传统就是首先打印出“Hello World”，就像编程有Hello World，机器学习有MNIST。
+MNIST是一个简单的计算机">
+<meta name="twitter:image" content="https://www.tensorflow.org/versions/r0.11/images/MNIST.png">
 
 
 
@@ -302,6 +310,25 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/tensorflow/" itemprop="url" rel="index">
+                    <span itemprop="name">TensorFlow</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -331,7 +358,30 @@
       
 
       
-        
+        <p>该教程主要针对机器学习和TensorFlow的新手。如果你已经知道了MNIST和softmax (multinomial logistic) regression，你可能更喜欢<a href="https://www.tensorflow.org/versions/r0.11/tutorials/mnist/pros/index.html" target="_blank" rel="external">快节奏的教程</a>。在开始教程前确保已经<a href="https://www.tensorflow.org/versions/r0.11/get_started/os_setup.html" target="_blank" rel="external">安装</a>了TensorFlow。</p>
+<p>当我们学习如何编程时，有一个传统就是首先打印出“Hello World”，就像编程有Hello World，机器学习有MNIST。</p>
+<p>MNIST是一个简单的计算机视觉数据集，它由类似下列这些手写数字的图像组成：<br><img src="https://www.tensorflow.org/versions/r0.11/images/MNIST.png" alt=""></p>
+<p>它也包含每张图像的标签，告诉我们每个数字是什么。比如上面图像的标签是5, 0, 4 和 1。</p>
+<p>在该教程，我们将训练一个模型来识别图像中的数字。我们的目标不是训练一个非常精准的模型来达到很好的效果(虽然我们后面能做到)，而是了解TensorFlow。因此，我们以一个非常简单的模型Softmax Regression开始。</p>
+<p>该教程的实际代码非常短，所有有趣的事情只发生在3行代码中。但是，理解它背后的思想是很重要的：TensorFlow如何工作以及核心的机器学习概念。正因为如此，我们会一步一步讲解代码。</p>
+<h2 id="About-this-tutorial"><a href="#About-this-tutorial" class="headerlink" title="About this tutorial"></a>About this tutorial</h2><p>This tutorial is an explanation, line by line, of what is happening in the <a href="https://www.tensorflow.org/code/tensorflow/examples/tutorials/mnist/mnist_softmax.py" target="_blank" rel="external">mnist_softmax.py</a> code.<br>You can use this tutorial in a few different ways, including:</p>
+<ul>
+<li>Copy and paste each code snippet, line by line, into a Python environment as you read through the explanations of each line.</li>
+<li>Run the entire mnist_softmax.py Python file either before or after reading through the explanations, and use this tutorial to understand the lines of code that aren’t clear to you.  </li>
+</ul>
+<p>What we will accomplish in this tutorial:</p>
+<ul>
+<li>Learn about the MNIST data and softmax regressions</li>
+<li>Create a function that is a model for recognizing digits, based on looking at every pixel in the image</li>
+<li>Use Tensorflow to train the model to recognize digits by having it “look” at thousands of examples (and run our first Tensorflow session to do so)</li>
+<li>Check the model’s accuracy with our test data  </li>
+</ul>
+<h2 id="The-MNIST-Data"><a href="#The-MNIST-Data" class="headerlink" title="The MNIST Data"></a>The MNIST Data</h2><p>MNIST 数据集由 <a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="external">Yann LeCun’s website</a>维护。如果你要拷贝和粘贴该教程的代码，你需要加入下列两行代码，它会自动下载和读取数据：</p>
+<pre><code>from tensorflow.examples.tutorials.mnist import input_data
+mnist = input_data.read_data_sets(&quot;MNIST_data/&quot;, one_hot=True)
+</code></pre><p>MNIST数据被分成了三部分：55,000个训练数据样本(mnist.train)，10,000个测试数据样本(mnist.test)和5,000个交叉验证数据样本(mnist.validation)。This split is very important: it’s essential in machine learning that we have separate data which we don’t learn from so that we can make sure that what we’ve learned actually generalizes!</p>
+<p>正如前面提到的，每个MNIST数据样本都有两部分：手写数字的图像和对应的标签。我们称图像为x，标签为y。训练集和测试集都包含图像和它们对应的标签；比如训练集的图像是<strong>mnist.train.images</strong>，训练集的标签是<strong>mnist.train.labels</strong>。</p>
+<h2 id="Softmax-Regressions"><a href="#Softmax-Regressions" class="headerlink" title="Softmax Regressions"></a>Softmax Regressions</h2><h2 id="Implementing-the-Regression"><a href="#Implementing-the-Regression" class="headerlink" title="Implementing the Regression"></a>Implementing the Regression</h2><h2 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h2><h2 id="Evaluating-Our-Model"><a href="#Evaluating-Our-Model" class="headerlink" title="Evaluating Our Model"></a>Evaluating Our Model</h2>
       
     </div>
 
@@ -349,6 +399,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mnist/" rel="tag">#MNIST</a>
+          
+        </div>
       
 
       
@@ -437,7 +493,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-count">54</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -446,7 +502,7 @@
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -456,7 +512,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -514,7 +570,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#About-this-tutorial"><span class="nav-number">1.</span> <span class="nav-text">About this tutorial</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-MNIST-Data"><span class="nav-number">2.</span> <span class="nav-text">The MNIST Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Softmax-Regressions"><span class="nav-number">3.</span> <span class="nav-text">Softmax Regressions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implementing-the-Regression"><span class="nav-number">4.</span> <span class="nav-text">Implementing the Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training"><span class="nav-number">5.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Evaluating-Our-Model"><span class="nav-number">6.</span> <span class="nav-text">Evaluating Our Model</span></a></li></ol></div>
             
           </div>
         </section>
