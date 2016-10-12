@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Information Extraction," />
 
 
 
@@ -84,16 +84,22 @@
 
 
 
-<meta name="description">
+<meta name="description" content="本文参考宗成庆老师的《统计自然语言处理》一书。
+面对日益增多的海量信息，人们迫切需要一种自动化工具来帮助自己从中快速发现真正需要的信息，并将这些信息自动地进行分类，提取和重构。在这种背景下信息抽取技术应运而生，广义上来说，信息抽取处理的对象可以是文本，图像，语音和视频等多种媒体，但通常指的是文本信息抽取(text information extraction)。
+文本信息抽取是指从自然语言文本中自">
 <meta property="og:type" content="article">
 <meta property="og:title" content="信息抽取">
 <meta property="og:url" content="http://github.com/kiseliu/2016/10/11/信息抽取/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-10-11T06:15:49.000Z">
+<meta property="og:description" content="本文参考宗成庆老师的《统计自然语言处理》一书。
+面对日益增多的海量信息，人们迫切需要一种自动化工具来帮助自己从中快速发现真正需要的信息，并将这些信息自动地进行分类，提取和重构。在这种背景下信息抽取技术应运而生，广义上来说，信息抽取处理的对象可以是文本，图像，语音和视频等多种媒体，但通常指的是文本信息抽取(text information extraction)。
+文本信息抽取是指从自然语言文本中自">
+<meta property="og:updated_time" content="2016-10-12T03:20:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="信息抽取">
-<meta name="twitter:description">
+<meta name="twitter:description" content="本文参考宗成庆老师的《统计自然语言处理》一书。
+面对日益增多的海量信息，人们迫切需要一种自动化工具来帮助自己从中快速发现真正需要的信息，并将这些信息自动地进行分类，提取和重构。在这种背景下信息抽取技术应运而生，广义上来说，信息抽取处理的对象可以是文本，图像，语音和视频等多种媒体，但通常指的是文本信息抽取(text information extraction)。
+文本信息抽取是指从自然语言文本中自">
 
 
 
@@ -302,6 +308,25 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/natural-language-processing/" itemprop="url" rel="index">
+                    <span itemprop="name">Natural Language Processing</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -331,7 +356,43 @@
       
 
       
-        
+        <p>本文参考宗成庆老师的《统计自然语言处理》一书。</p>
+<p>面对日益增多的海量信息，人们迫切需要一种自动化工具来帮助自己从中<strong>快速发现真正需要的信息</strong>，并将这些信息自动地进行<strong>分类</strong>，<strong>提取</strong>和<strong>重构</strong>。在这种背景下信息抽取技术应运而生，广义上来说，信息抽取处理的对象可以是文本，图像，语音和视频等多种媒体，但通常指的是文本信息抽取(text information extraction)。</p>
+<p>文本信息抽取是指从自然语言文本中<strong>自动抽取指定类型</strong>的<strong>实体</strong>，<strong>关系</strong>，<strong>事件</strong>等事实信息的应用技术。(事件抽取是信息抽取的一种)从关于自然灾害的新闻报道中<strong>抽取事件的信息</strong>一般包括如下几个重要方面：灾害类型，时间，地点，人员伤亡情况，经济损失等。</p>
+<p>总的来说，文本信息抽取主要包括三方面：</p>
+<ul>
+<li>自动处理非结构化的自然语言文本；</li>
+<li>选择性抽取文本中指定的信息；</li>
+<li>就抽取的信息形成结构化数据表示；</li>
+</ul>
+<p>和自动文摘相比，信息抽取一般是有目的地从文本中寻找所要的信息，并将找到的信息转化成结构化格式表示，一般采用类似框架的表示形式。因此，系统不需要生成自然语言的句子。框架表示中包含哪些属性，需要系统填充哪些槽，都是事先设定好的。<br>而在自动文摘系统中，文摘的内容通常是不确定性的，完全依赖于输入文档的内容，而且输出结果一般是由自然语言描述的，因此必须考虑语言生成的各个方面，诸如语言生成的连贯性，合乎语法性和可读性等问题。<br>但是信息抽取和自动文摘有着非常密切的联系，尤其在<strong>传统的信息抽取任务</strong>中的<strong>文档分析</strong>阶段，包括对<strong>主题的识别</strong>，<strong>重要句子或关键信息</strong>的<strong>识别与抽取</strong>等很多方面几乎是一样的。</p>
+<h1 id="传统的信息抽取技术"><a href="#传统的信息抽取技术" class="headerlink" title="传统的信息抽取技术"></a>传统的信息抽取技术</h1><p>1997年最后一次MUC会议(MUC-7)召开时，有了明确的评测标准，且评测任务增加到了5个：</p>
+<ul>
+<li>场景模版填充(scenario template, ST)：定义了描述场景的模版及槽填充规范；</li>
+<li>命名实体识别(named entity, NE)：识别出文本中出现的专有名称和有意义的数量短语，并加以归类；</li>
+<li>共指关系确定(co-reference, CR)：识别出给定文本中的参照表达(referring expressions)，并确定这些表达之间的共指关系；</li>
+<li>模版元素(template element, TE)填充：类似于人名和组织机构名识别，但要求系统必须识别出实体的描述和名字，如果一个实体在文本中被提到了多次，使用了几种可能的描述和不同的名字形式，要求系统都要把它们识别出来，一个文本中的每个实体只有一个模版元素；</li>
+<li>模版关系(template relation, TR)：确定实体之间与特定领域无关的关系。</li>
+</ul>
+<p>信息抽取系统评测的主要指标是召回率，准确率和F-测度值。</p>
+<p>传统的信息抽取系统在实现方法上，与其他自然语言处理问题的研究方法类似，也可以笼统地划分为基于分析的方法和基于机器学习的统计方法两种。不管系统采用什么样的实现方法，必须解决的关键问题应该包括如下几个方面：</p>
+<ul>
+<li>命名实体识别；</li>
+<li>句法分析，尤其是短语或语块分析等浅层句法分析和依存句法分析；</li>
+<li>共指分析和歧义消解；</li>
+<li>实体关系识别：确定文本中两个实体之间在某一时间范围内所存在的关系；</li>
+<li>事件识别：识别多个实体之间的存在关系，包括经历一段时间之后实体状态以及实体之间关系的改变。</li>
+<li>另外语篇的分析，包括语篇的结构分析和逻辑分析也不可忽视；当然，自动分词问题也是一个无法绕过的步骤。</li>
+</ul>
+<p>传统的信息抽取评测任务是面向限定领域文本的，限定类别实体，关系和事件等的抽取，这在很大程度上制约了文本信息抽取技术的发展和应用。比如问答系统所需要的信息抽取技术远远超过我们通常研究的人名，地名，组织机构名，时间和日期等有限的实体类别，它可能涉及上下位，部分与整体，地理位置等有限关系类别，也可能涉及毁坏，创造或改进，所有权转移或控制等有限事件类别，甚至所需要的类别是未知的，不断变化的。另一方面，从信息抽取的技术手段来讲，由于网络文本具有不规范性，开放性和海量性的特点，使得传统的依赖于训练语料的统计机器学习方法遇到了严重的挑战。</p>
+<h1 id="开放式信息抽取"><a href="#开放式信息抽取" class="headerlink" title="开放式信息抽取"></a>开放式信息抽取</h1><h2 id="开放式实体抽取"><a href="#开放式实体抽取" class="headerlink" title="开放式实体抽取"></a>开放式实体抽取</h2><h2 id="实体消歧"><a href="#实体消歧" class="headerlink" title="实体消歧"></a>实体消歧</h2><h2 id="开放式实体关系抽取"><a href="#开放式实体关系抽取" class="headerlink" title="开放式实体关系抽取"></a>开放式实体关系抽取</h2><h1 id="事件抽取"><a href="#事件抽取" class="headerlink" title="事件抽取"></a>事件抽取</h1><p>参考谭红叶《中文事件抽取关键技术研究》，许旭阳《事件抽取技术的回顾与展望》。</p>
+<p>事件抽取 (Event Extraction) 隶属于信息抽取领域，主要研究如何从含有事件信息 的非结构化文本中抽取出用户感兴趣的事件信息，用自然语言表达的事件以结构化的形式呈现出来，如什么人，在什么地方，什么时间，做了什么事等。</p>
+<p>ACE2005 将该项任务定义为：<strong>识别特定类型的事件</strong>，并进行<strong>相关信息的确定和抽取</strong>，主要的相关信息包括：<strong>事件的类型</strong>和<strong>子类型</strong>、<strong>事件论元角色</strong>等。根据这个定义，可将事件抽取的任务分成两大核心子任务：（1）事件的检测和类型识别；（2）事件论元角色的抽取。除此以外，由于绝大部分的论元角色都是实体，因此实体的识别也是事件抽取的一项基本任务。</p>
+<h2 id="事件类别识别"><a href="#事件类别识别" class="headerlink" title="事件类别识别"></a>事件类别识别</h2><p>事件类别识别是指从文本中检测出事件句，并依据一定的特征判断其所归属的类别。不难看出，事件类别识别是典型的分类问题，其重点在于事件句的检测和事件句的分类。</p>
+<p>现有的检测事件句的方法主要是基于触发词的方法。在这类方法中，将每个词作为一个实例来训练并判断是否为触发词的机器学习模型，引入了大量的反例，导致正反例严重不平衡。</p>
+<h2 id="事件元素识别"><a href="#事件元素识别" class="headerlink" title="事件元素识别"></a>事件元素识别</h2><p>该任务主要从众多命名实体 (Entity) 、时间表达式 (Time Expression) 和属性值(Value) 中识别出真正的事件元素，并给予其准确的角色标注。</p>
+<h2 id="Event-Extraction-as-Dependency-Parsing"><a href="#Event-Extraction-as-Dependency-Parsing" class="headerlink" title="Event Extraction as Dependency Parsing"></a>Event Extraction as Dependency Parsing</h2><p>嵌套的的事件结构在开放领域和特定领域的抽取任务中都经常出现。比如，a “crime” event can cause a “investigation” event, which can lead to an “arrest” event。但是目前大多数解决事件抽取的方法都是把抽取事件和抽取评论独立开来成为局部的模型。对于这种嵌套结构的抽取，我们提出了一种简单的方法，那就是把事件-评论的关系表示成树，然后直接用它作为依存分析形式的表示。这提供给我们一个简单的框架，用来获得嵌套的和平展的事件结构的全局性质。</p>
+
       
     </div>
 
@@ -350,6 +411,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/information-extraction/" rel="tag">#Information Extraction</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
@@ -363,7 +430,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/11/事件抽取/" rel="prev" title="事件抽取">
+              <a href="/2016/10/12/事件抽取/" rel="prev" title="事件抽取">
                 事件抽取 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -437,7 +504,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -456,7 +523,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -514,7 +581,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#传统的信息抽取技术"><span class="nav-number">1.</span> <span class="nav-text">传统的信息抽取技术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开放式信息抽取"><span class="nav-number">2.</span> <span class="nav-text">开放式信息抽取</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#开放式实体抽取"><span class="nav-number">2.1.</span> <span class="nav-text">开放式实体抽取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实体消歧"><span class="nav-number">2.2.</span> <span class="nav-text">实体消歧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开放式实体关系抽取"><span class="nav-number">2.3.</span> <span class="nav-text">开放式实体关系抽取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件抽取"><span class="nav-number">3.</span> <span class="nav-text">事件抽取</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件类别识别"><span class="nav-number">3.1.</span> <span class="nav-text">事件类别识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件元素识别"><span class="nav-number">3.2.</span> <span class="nav-text">事件元素识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Event-Extraction-as-Dependency-Parsing"><span class="nav-number">3.3.</span> <span class="nav-text">Event Extraction as Dependency Parsing</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

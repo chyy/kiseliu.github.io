@@ -84,16 +84,28 @@
 
 
 
-<meta name="description">
+<meta name="description" content="本文参考 赵妍妍《中文事件抽取技术研究》。
+事件抽取把含有事件信息的非结构化文本以结构化的形式呈现出来，在自动文摘，自动问答，信息检索等领域有着广泛的应用。
+根据ACE的定义，事件由事件触发词(Trigger)和描述事件结构的元素(Argument)构成。ACE对于事件的标注标准详细阐述了一个事件的构成：
+事件抽取涉及两项关键技术：事件类别识别和事件元素识别；
+事件类别识别事件模版由事件的类别决定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="事件抽取">
-<meta property="og:url" content="http://github.com/kiseliu/2016/10/11/事件抽取/index.html">
+<meta property="og:url" content="http://github.com/kiseliu/2016/10/12/事件抽取/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-10-11T06:15:56.000Z">
+<meta property="og:description" content="本文参考 赵妍妍《中文事件抽取技术研究》。
+事件抽取把含有事件信息的非结构化文本以结构化的形式呈现出来，在自动文摘，自动问答，信息检索等领域有着广泛的应用。
+根据ACE的定义，事件由事件触发词(Trigger)和描述事件结构的元素(Argument)构成。ACE对于事件的标注标准详细阐述了一个事件的构成：
+事件抽取涉及两项关键技术：事件类别识别和事件元素识别；
+事件类别识别事件模版由事件的类别决定">
+<meta property="og:updated_time" content="2016-10-12T05:06:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事件抽取">
-<meta name="twitter:description">
+<meta name="twitter:description" content="本文参考 赵妍妍《中文事件抽取技术研究》。
+事件抽取把含有事件信息的非结构化文本以结构化的形式呈现出来，在自动文摘，自动问答，信息检索等领域有着广泛的应用。
+根据ACE的定义，事件由事件触发词(Trigger)和描述事件结构的元素(Argument)构成。ACE对于事件的标注标准详细阐述了一个事件的构成：
+事件抽取涉及两项关键技术：事件类别识别和事件元素识别；
+事件类别识别事件模版由事件的类别决定">
 
 
 
@@ -114,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/2016/10/11/事件抽取/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/2016/10/12/事件抽取/"/>
 
   <title> 事件抽取 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -296,8 +308,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-11T14:15:56+08:00" content="2016-10-11">
-              2016-10-11
+            <time itemprop="dateCreated" datetime="2016-10-12T11:10:21+08:00" content="2016-10-12">
+              2016-10-12
             </time>
           </span>
 
@@ -307,8 +319,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/11/事件抽取/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/11/事件抽取/" itemprop="commentsCount"></span>
+                <a href="/2016/10/12/事件抽取/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/事件抽取/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -331,7 +343,26 @@
       
 
       
-        
+        <p>本文参考 赵妍妍《中文事件抽取技术研究》。</p>
+<p>事件抽取把<strong>含有事件信息的非结构化文本</strong>以<strong>结构化的形式</strong>呈现出来，在自动文摘，自动问答，信息检索等领域有着广泛的应用。</p>
+<p>根据ACE的定义，事件由事件触发词(Trigger)和描述事件结构的元素(Argument)构成。ACE对于事件的标注标准详细阐述了一个事件的构成：</p>
+<p>事件抽取涉及两项关键技术：事件类别识别和事件元素识别；</p>
+<h2 id="事件类别识别"><a href="#事件类别识别" class="headerlink" title="事件类别识别"></a>事件类别识别</h2><p>事件模版由事件的类别决定，ACE2005定义了8种事件类别以及33种子类别。每种事件类别/子类别对应着唯一的事件模版，也就是说有33种模版。</p>
+<p>事件触发词直接引发事件的产生，是决定事件类别的重要特征。本文提出基于触发词扩展和二元分类相结合的方法解决事件类别识别问题，分为候选事件的抽取和候选事件的分类两个主要步骤。</p>
+<h3 id="候选事件的抽取"><a href="#候选事件的抽取" class="headerlink" title="候选事件的抽取"></a>候选事件的抽取</h3><p>本文将含有触发词的句子称为候选事件。事件触发词直接决定候选事件及其候选类别的获取。由于训练语料中触发词 ( 种子触发词 ) 数量有限 , 容易造成新事件的丢失。因此需要使用同义词词典自动扩充种子触发词，尽可能多的覆盖各种类型事件的触发词。然后将扩展后的触发词及其所在事件的类别 , 组成二元组对 ( trigger，type ) , 如 : ( 瘫痪，Life/ Injure ) 等，构成 “触发词-事件类别”二元对照表。</p>
+<p>进行候选事件的抽取算法：</p>
+<ul>
+<li>Step1 : 预处理所要分析的文章，包括分句和分词;</li>
+<li>Step2 : 针对每一个句子，查看组成它的词语是否在“触发词-事件类别”对照表中；</li>
+<li>Step3 : 若存在这样的词 w，则认为这个句子是一个候选事件，且事件触发词为 w，候选事件类别为触发词 w 所对应的类型。若该句子含有多个这样的词 w，则认为该句子中存在多个事件，该句子是由不同触发词 w 触发的不同类型的候选事件。</li>
+</ul>
+<p>经过这样的抽取过程 , 不但可以获得大量的候选事件，而且还为每个候选事件规定了一个可能的候选类别，为后续的候选事件二元分类奠定了基础。</p>
+<h3 id="候选事件的分类"><a href="#候选事件的分类" class="headerlink" title="候选事件的分类"></a>候选事件的分类</h3><p>候选事件中存在大量不符合对应候选类别的事件。本文采用分类的方法挑选出真正的事件。由于每个候选事件仅拥有一个可能的候选类别，因此可将候选事件类别识别看作一个二元分类问题，即判断候选事件是否是满足候选类别的事件。</p>
+<p>本文选取了词法、上下文、词典信息等三类语言学特征对候选事件进行描述，如表 3 所示。</p>
+<h2 id="事件元素识别"><a href="#事件元素识别" class="headerlink" title="事件元素识别"></a>事件元素识别</h2><p>事件元素是指事件的参与者，根据所属的事件模版，抽取相应的元素，并为其标上正确的元素标签。<br>基于最大熵的多元分类的方法；</p>
+<h1 id="主要方法"><a href="#主要方法" class="headerlink" title="主要方法"></a>主要方法</h1><h2 id="模式匹配方法"><a href="#模式匹配方法" class="headerlink" title="模式匹配方法"></a>模式匹配方法</h2><p>模式匹配方法是指对于某种类型事件的识别和抽取是在一些模式的指导下进行的,采用各种模式匹配算法将待抽取的事件和已知的模式进行匹配。可见，模式匹配方法由两个基本步骤组成：模式获取和事件抽取。</p>
+<h2 id="机器学习方法"><a href="#机器学习方法" class="headerlink" title="机器学习方法"></a>机器学习方法</h2><p>机器学习方法建立在统计模型基础之上，它是将事件抽取看作分类问题，主要是选择合适的特征并使用合适的分类器来完成。</p>
+
       
     </div>
 
@@ -363,8 +394,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/30/tensorflow-learning-notes/" rel="prev" title="TensorFlow Learning Notes">
-                TensorFlow Learning Notes <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/12/词性标注/" rel="prev" title="词性标注">
+                词性标注 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -391,8 +422,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/11/事件抽取/"
-           data-title="事件抽取" data-url="http://github.com/kiseliu/2016/10/11/事件抽取/">
+      <div class="ds-thread" data-thread-key="2016/10/12/事件抽取/"
+           data-title="事件抽取" data-url="http://github.com/kiseliu/2016/10/12/事件抽取/">
       </div>
     
   </div>
@@ -437,7 +468,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -456,7 +487,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -514,7 +545,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件类别识别"><span class="nav-number">1.</span> <span class="nav-text">事件类别识别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#候选事件的抽取"><span class="nav-number">1.1.</span> <span class="nav-text">候选事件的抽取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#候选事件的分类"><span class="nav-number">1.2.</span> <span class="nav-text">候选事件的分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件元素识别"><span class="nav-number">2.</span> <span class="nav-text">事件元素识别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主要方法"><span class="nav-number"></span> <span class="nav-text">主要方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模式匹配方法"><span class="nav-number">1.</span> <span class="nav-text">模式匹配方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习方法"><span class="nav-number">2.</span> <span class="nav-text">机器学习方法</span></a></li></ol></div>
             
           </div>
         </section>
