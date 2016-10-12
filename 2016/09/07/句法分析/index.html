@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="NLP," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -100,7 +100,7 @@
 \(">
 <meta property="og:image" content="https://github.com/kiseliu/MarkDownPictures/blob/master/nlp/MSTParser.png">
 <meta property="og:image" content="https://github.com/kiseliu/MarkDownPictures/blob/master/nlp/ParserTest.png">
-<meta property="og:updated_time" content="2016-09-27T08:17:16.000Z">
+<meta property="og:updated_time" content="2016-10-12T07:39:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="句法分析">
 <meta name="twitter:description" content="PCFG 基于概率上下文无关文法的句法分析方法CFG (Context-Free Grammar) 上下文无关文法一个上下文无关文法是指一个四元组文法\(G=(N,\Sigma ,R,S)\)，其中：
@@ -385,7 +385,7 @@
 <li>定义 $$\pi (i,j,X)=\max _{ t\in { \Tau  }_{ G }(s) }{ p(t) } $$<br>如果\(\Tau (i,j,X)\) 为空集，则\(\pi (i,j,X)=0\)</li>
 </ul>
 <h1 id="浅层句法分析"><a href="#浅层句法分析" class="headerlink" title="浅层句法分析"></a>浅层句法分析</h1><p>完全句法分析是很困难的任务，树库构建工作量很大，语料昂贵。目前也没有让人满意的算法。退而求其次，我们不像完全句法分析那样对句子进行完全地分析，而是将任务进行简化，主要是包括两个子任务：语块识别与分析，语块之间依附关系分析。</p>
-<p>语块(chunk)：句子中的结构独立，相对较简单的部分。例如，名词短语，动词短语。   </p>
+<p>语块(chunk)：句子中的结构独立，相对较简单的部分。例如，名词短语，动词短语。  </p>
 <h1 id="Base-NP析取"><a href="#Base-NP析取" class="headerlink" title="Base NP析取"></a>Base NP析取</h1><p>语料中使用IOB标注法。<br>字母”B”表示当前词语位于base NLP的开端，字母”I”表示当前词语在base NP内(非短语首词语)，字母”O”表示词语位于base NP之外。这里标点符号也需要标注，被认为是短语之外。</p>
 <h2 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h2><p>由于已经将Base NP的问题转化为序列标注问题，因此可以使用CRF的方法，用于结构化信息提取。</p>
 <h2 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h2><p>Use of Support Vector Learning for Chunk Identification<br>把Base NP识别的问题转化成分类问题，就是对于已经进行词性标注的训练语料和测试语料，对训练语料进行IOB标注，即B-NP, B-VP, I-NP等，然后对于测试语料进行IOB类别分类。</p>
@@ -414,12 +414,6 @@
     </div>
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/nlp/" rel="tag">#NLP</a>
-          
-        </div>
       
 
       
@@ -527,7 +521,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
