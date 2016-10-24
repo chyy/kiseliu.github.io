@@ -84,28 +84,22 @@
 
 
 
-<meta name="description" content="本文参考 赵妍妍《中文事件抽取技术研究》。
-事件抽取把含有事件信息的非结构化文本以结构化的形式呈现出来，在自动文摘，自动问答，信息检索等领域有着广泛的应用。
+<meta name="description" content="赵妍妍《中文事件抽取技术研究》事件抽取把含有事件信息的非结构化文本以结构化的形式呈现出来，在自动文摘，自动问答，信息检索等领域有着广泛的应用。
 根据ACE的定义，事件由事件触发词(Trigger)和描述事件结构的元素(Argument)构成。ACE对于事件的标注标准详细阐述了一个事件的构成：
-事件抽取涉及两项关键技术：事件类别识别和事件元素识别；
-事件类别识别事件模版由事件的类别决定">
+主要方法模式匹配方法模式匹配方法是指对于某种类型事件的识别和抽取是在一些模式的指导下进行的,采用各种模式匹">
 <meta property="og:type" content="article">
 <meta property="og:title" content="事件抽取">
 <meta property="og:url" content="http://github.com/kiseliu/2016/10/12/事件抽取/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="本文参考 赵妍妍《中文事件抽取技术研究》。
-事件抽取把含有事件信息的非结构化文本以结构化的形式呈现出来，在自动文摘，自动问答，信息检索等领域有着广泛的应用。
+<meta property="og:description" content="赵妍妍《中文事件抽取技术研究》事件抽取把含有事件信息的非结构化文本以结构化的形式呈现出来，在自动文摘，自动问答，信息检索等领域有着广泛的应用。
 根据ACE的定义，事件由事件触发词(Trigger)和描述事件结构的元素(Argument)构成。ACE对于事件的标注标准详细阐述了一个事件的构成：
-事件抽取涉及两项关键技术：事件类别识别和事件元素识别；
-事件类别识别事件模版由事件的类别决定">
-<meta property="og:updated_time" content="2016-10-12T07:42:06.000Z">
+主要方法模式匹配方法模式匹配方法是指对于某种类型事件的识别和抽取是在一些模式的指导下进行的,采用各种模式匹">
+<meta property="og:updated_time" content="2016-10-17T01:37:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事件抽取">
-<meta name="twitter:description" content="本文参考 赵妍妍《中文事件抽取技术研究》。
-事件抽取把含有事件信息的非结构化文本以结构化的形式呈现出来，在自动文摘，自动问答，信息检索等领域有着广泛的应用。
+<meta name="twitter:description" content="赵妍妍《中文事件抽取技术研究》事件抽取把含有事件信息的非结构化文本以结构化的形式呈现出来，在自动文摘，自动问答，信息检索等领域有着广泛的应用。
 根据ACE的定义，事件由事件触发词(Trigger)和描述事件结构的元素(Argument)构成。ACE对于事件的标注标准详细阐述了一个事件的构成：
-事件抽取涉及两项关键技术：事件类别识别和事件元素识别；
-事件类别识别事件模版由事件的类别决定">
+主要方法模式匹配方法模式匹配方法是指对于某种类型事件的识别和抽取是在一些模式的指导下进行的,采用各种模式匹">
 
 
 
@@ -362,9 +356,11 @@
       
 
       
-        <p>本文参考 赵妍妍《中文事件抽取技术研究》。</p>
-<p>事件抽取把<strong>含有事件信息的非结构化文本</strong>以<strong>结构化的形式</strong>呈现出来，在自动文摘，自动问答，信息检索等领域有着广泛的应用。</p>
+        <h1 id="赵妍妍《中文事件抽取技术研究》"><a href="#赵妍妍《中文事件抽取技术研究》" class="headerlink" title="赵妍妍《中文事件抽取技术研究》"></a>赵妍妍《中文事件抽取技术研究》</h1><p>事件抽取把<strong>含有事件信息的非结构化文本</strong>以<strong>结构化的形式</strong>呈现出来，在自动文摘，自动问答，信息检索等领域有着广泛的应用。</p>
 <p>根据ACE的定义，事件由事件触发词(Trigger)和描述事件结构的元素(Argument)构成。ACE对于事件的标注标准详细阐述了一个事件的构成：</p>
+<h2 id="主要方法"><a href="#主要方法" class="headerlink" title="主要方法"></a>主要方法</h2><h3 id="模式匹配方法"><a href="#模式匹配方法" class="headerlink" title="模式匹配方法"></a>模式匹配方法</h3><p>模式匹配方法是指对于某种类型事件的识别和抽取是在一些模式的指导下进行的,采用各种模式匹配算法将待抽取的事件和已知的模式进行匹配。可见，模式匹配方法由两个基本步骤组成：模式获取和事件抽取。</p>
+<h3 id="机器学习方法"><a href="#机器学习方法" class="headerlink" title="机器学习方法"></a>机器学习方法</h3><p>机器学习方法建立在统计模型基础之上，它将事件类别及事件元素的识别转换成为分类问题，主要是选择合适的特征并使用合适的分类器来完成。</p>
+<p>由于模式匹配方法具有领域性问题，系统移植性较差，因此越来越多的研究关注于机器学习方法。</p>
 <p>事件抽取涉及两项关键技术：事件类别识别和事件元素识别；</p>
 <h2 id="事件类别识别"><a href="#事件类别识别" class="headerlink" title="事件类别识别"></a>事件类别识别</h2><p>事件模版由事件的类别决定，ACE2005定义了8种事件类别以及33种子类别。每种事件类别/子类别对应着唯一的事件模版，也就是说有33种模版。</p>
 <p>事件触发词直接引发事件的产生，是决定事件类别的重要特征。本文提出基于触发词扩展和二元分类相结合的方法解决事件类别识别问题，分为候选事件的抽取和候选事件的分类两个主要步骤。</p>
@@ -378,10 +374,33 @@
 <p>经过这样的抽取过程 , 不但可以获得大量的候选事件，而且还为每个候选事件规定了一个可能的候选类别，为后续的候选事件二元分类奠定了基础。</p>
 <h3 id="候选事件的分类"><a href="#候选事件的分类" class="headerlink" title="候选事件的分类"></a>候选事件的分类</h3><p>候选事件中存在大量不符合对应候选类别的事件。本文采用分类的方法挑选出真正的事件。由于每个候选事件仅拥有一个可能的候选类别，因此可将候选事件类别识别看作一个二元分类问题，即判断候选事件是否是满足候选类别的事件。</p>
 <p>本文选取了词法、上下文、词典信息等三类语言学特征对候选事件进行描述，如表 3 所示。</p>
-<h2 id="事件元素识别"><a href="#事件元素识别" class="headerlink" title="事件元素识别"></a>事件元素识别</h2><p>事件元素是指事件的参与者，根据所属的事件模版，抽取相应的元素，并为其标上正确的元素标签。<br>基于最大熵的多元分类的方法；</p>
-<h1 id="主要方法"><a href="#主要方法" class="headerlink" title="主要方法"></a>主要方法</h1><h2 id="模式匹配方法"><a href="#模式匹配方法" class="headerlink" title="模式匹配方法"></a>模式匹配方法</h2><p>模式匹配方法是指对于某种类型事件的识别和抽取是在一些模式的指导下进行的,采用各种模式匹配算法将待抽取的事件和已知的模式进行匹配。可见，模式匹配方法由两个基本步骤组成：模式获取和事件抽取。</p>
-<h2 id="机器学习方法"><a href="#机器学习方法" class="headerlink" title="机器学习方法"></a>机器学习方法</h2><p>机器学习方法建立在统计模型基础之上，它是将事件抽取看作分类问题，主要是选择合适的特征并使用合适的分类器来完成。</p>
-
+<h2 id="事件元素识别"><a href="#事件元素识别" class="headerlink" title="事件元素识别"></a>事件元素识别</h2><p>事件元素是指事件的参与者，根据所属的事件模版，抽取相应的元素，并为其标上正确的元素标签。</p>
+<p>通过事件类别的确定，相应的就获得了该类事件的模板，即获得了要抽取的元素标签。由于事件元素是由触发词所在事件的Entity、Time Expression 、Value表示的，我们称其为候选事件元素。基于此，可将事件元素识别任务转换为对文本中每个候选元素进行类别标签识别(包含“None ”标签 , 表示不是事件元素)，即看成分类问题，在后续工作中从候选事件元素中挑选出真正的元素。</p>
+<h3 id="多元分类策略"><a href="#多元分类策略" class="headerlink" title="多元分类策略"></a>多元分类策略</h3><p>基于最大熵的多元分类的方法；<br>根据分类对象的不同，可以采用不同的多元分类策略：</p>
+<ul>
+<li>M_single：为所有类别的事件构造一个候选元素多元分类器；</li>
+<li>M_multitype：为每类事件分别构造一个候选元素多元分类器；</li>
+<li>M_multisubtype：为每类子事件分别构造一个候选元素多元分类器；</li>
+</ul>
+<h3 id="特征选取"><a href="#特征选取" class="headerlink" title="特征选取"></a>特征选取</h3><p>由于将事件元素识别看作分类任务，特征的选取和发现尤为关键。本文综合选取了词法、类别、上下文、句法结构等四类特征多角度的描述候选元素，进行元素标签的识别，如表 4 所示。  </p>
+<p>由于触发词间接决定了事件模板，而事件类别/ 子类别直接决定了事件模板，因此触发词、事件类别和子类别对元素类别识别举足轻重；其次，候选元素的相关特征及其核心词特征体现了候选元素的核心语义，也很有意义；除此之外 , 是否是满足事件模板的元素和上下文信息有很大的关系，因此上下文的词语及其词性信息、句法结构信息是很重要的特征。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文实现了一个事件抽取系统，集事件类别识别、事件元素识别功能于一体。针对事件类别识别任务，文本通过采用《同义词词林 ( 扩展版 ) 》自动扩展事件触发词，生成候选事件及其候选类别；继而对候选事件结合词法特征、上下文特征、词典特征从不同的角度描述候选事件 , 进行二元分类，在 ACE2005 语料上进行实验并取得了 61. 24 % 的F值。实验表明 : 由于扩展触发词的引入和候选事件的生成，有效解决了训练数据正反例不平衡问题以及数据稀疏问题。针对事件元素识别任务，本文将其看作分类问题，引入丰富有效的特征，如词法特征、类别特征、上下文特征、句法特征等，本文对比分析了基于最大熵的三种多元分类方法，在 ACE2005 语料上进行实验并取得了 66. 90 %的 F值。实验表明：为所有事件类别的候选元素构造一个多元分类器的方法由于其训练数据较为充足，避免了其他两种分类方法带来的数据稀疏问题。</p>
+<p>中文事件抽取技术还处于初级阶段，因此还有很广阔的研究空间。如如何进行领域的移植，如何发现新类型的事件等等都将成为我们下一步的工作。</p>
+<h1 id="高源《基于依存句法分析与分类器融合的触发词抽取方法》"><a href="#高源《基于依存句法分析与分类器融合的触发词抽取方法》" class="headerlink" title="高源《基于依存句法分析与分类器融合的触发词抽取方法》"></a>高源《基于依存句法分析与分类器融合的触发词抽取方法》</h1><h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><p>前面的论文是基于触发词抽取来完成事件检测与分类，而触发词抽取的方法较为单一，并没有充分利用依存句法分析信息，而且召回率较低。该论文利用依存句法分析信息和其他信息来抽取<strong>触发词-实体描述对</strong>，提高了触发词抽取的召回率；然后将结果和单一触发词抽取结果相融合，避免了由于召回率提高带来的准确率下降。</p>
+<h3 id="事件概述"><a href="#事件概述" class="headerlink" title="事件概述"></a>事件概述</h3><p>ACE 会议评测任务定义了事件抽取两大核心子任务，即<strong>事件的检测与类型识别</strong>和<strong>事件论元角色的抽取</strong>。评测中事件抽取相关概念包括实体(entity)、实体描述(entitymention)、事件描述(eventmention)、事件论元角色 (eventargument)。其中，<strong>实体描述</strong>是文档中关于实体的描述，一个或多个实体描述构成一个实体；<strong>事件描述</strong>是文中具体描述事件的句子或片段；<strong>事件论元角色</strong>(也称事件元素)是在事件中担当某类角色的实体、数值或时间，包括事件参与者以及与事件相关的属性(如时间属性)。</p>
+<p>基于机器学习的事件抽取方法主要包括基于触发词的抽取方法和基于事件实例的抽取方法。</p>
+<h3 id="改进触发词的抽取方法"><a href="#改进触发词的抽取方法" class="headerlink" title="改进触发词的抽取方法"></a>改进触发词的抽取方法</h3><p><strong>事件触发词(trigger)</strong>是能够触动事件发生的词，是决定事件类型最重要的特征词，因此已有的相关研究大多将事件检测与类型识别转换为事件触发词抽取问题。</p>
+<p>事件触发词抽取包括<strong>触发词检测与分类</strong>，首先通过判定当前句子<strong>是否存在事件触发词</strong>来<strong>实现事件检测</strong>，然后通过<strong>识别事件触发词类型</strong>来<strong>判断事件的类型</strong>。</p>
+<p>句子中如果包含事件，则<strong>事件信息往往包含在触发词与相应论元角色之中</strong>，而论元角色通常为实体描述、数值和时间。 在触发词没有抽取出的情况下，<strong>触发词与实体描述的关系能较好地体现事件信息</strong>，并且<strong>这个关系可以通过依存句法分析获得</strong>。</p>
+<p>当前研究均没有将该关系运用到事件检测与分类之中，本文<strong>利用依存句法分析提取该关系</strong>作为事件抽取的特征，并在此基础上提出了一种<strong>新的触发词抽取方法</strong>。 该方法<strong>抽取触发词-实体描述对</strong>，将<strong>候选触发词与句中相应实体描述联合作为实例</strong>进行判断。由于<strong>每个候选触发词对应多个候选触发词-实体描述对</strong>，该方法可以降低单一触发词作为实例被误判而导致该触发词没有被检测出的概率，从而提高召回率；然后通过<strong>双分类器机制</strong>分别在<strong>管道模型和联合模型</strong>下<strong>将单一触发词抽取方法与触发词-实体描述对抽取方法相融合</strong>来提高触发词抽取的准确率，避免召回率提高而带来的准确率下降问题。</p>
+<h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h3><p>由于一句话内可能包含多个事件，基于触发词的事件抽取方法对事件抽取更加准确全面。 </p>
+<p>Ahn等人结合 MegaM 和 TiMBL两种机器学习方法分别实现了事件抽取两个任务，其事件检测部分就是通过触发词检测完成的。但触发词只占所有词的一小部分，会在训练中引入大量反例，导致正反例不平衡。<br>赵妍妍等人采用了一种基于触发词扩展与二元分类相结合的方法，较好地解决了正反例不平衡以及数据稀疏问题。<br>Chen等人选择一般特征和中文独有的特征，并且还将事件抽取看成序列标注问题，提出了基于字的事件抽取方法，在ACE2005中文语料上取得了较好效果。<br>Li等人丰富了Chen等人的事件抽取特征，并引入组合语义学知识，采用启发式过滤机制及文档连续性推理机制，提高了事件抽取的准确率及召回率。<br>Chen等人在文献管道模型的基础上提出了联合模型，减少了管道模型中的错误传播，取得了一定效果。<br>Li等人将事件检测与事件元素抽取任务合并，并引入全局特征进一步减少了错误传播。</p>
+<h2 id="单一触发词抽取"><a href="#单一触发词抽取" class="headerlink" title="单一触发词抽取"></a>单一触发词抽取</h2><p>传统事件抽取包括事件检测、事件分类、事件论元角色检测、事件论元角色分类四个部分。 其采用管道模型，将前一部分的输出作为后一部分的输入。本文采用文献<a href="">10</a>中事件检测与分类部分的方法来实现单一触发词抽取部分。</p>
+<h3 id="触发词检测"><a href="#触发词检测" class="headerlink" title="触发词检测"></a>触发词检测</h3><p>首先在文献<a href="">10</a>中根据组合语义学知识提出的基础动词 (basicverb,BV)这一概念的基础上，完成候选触发词抽取; 然后采用基于启发式的过滤方法去除错误的候选触发词；最后采用机器学习方法进一步过滤掉错误的候选触发词，即将训练语料中的词是否为触发词作为训练实例训练二分类器，并对上一步过滤后的候选触发词进行分类来判断其是否为触发词。</p>
+<h3 id="触发词分类"><a href="#触发词分类" class="headerlink" title="触发词分类"></a>触发词分类</h3><p>对训练语料中的触发词，提取触发词检测中的特征，训练多分类器，用该多分类器将识别出的触发词分到 ACE2005中文语料预先定义好的 33个事件类别中，完成触发词类型识别。</p>
+<h2 id="触发词-实体描述对抽取"><a href="#触发词-实体描述对抽取" class="headerlink" title="触发词-实体描述对抽取"></a>触发词-实体描述对抽取</h2><h3 id="候选触发词-实体描述对生成"><a href="#候选触发词-实体描述对生成" class="headerlink" title="候选触发词-实体描述对生成"></a>候选触发词-实体描述对生成</h3><p>句子成分间相互支配与被支配、依存与被依存的现象普遍存在于汉语的词汇(合成语)、短语、单句、复合句直到句群的各级能够独立运用的语言单位之中，这一特点为依存关系的普遍性。依存句法分析可以反映出句子各成分之间的语义修饰关系，它可以获得长距离的搭配信息，并与句子成分的物理位置无关。<br>在依存句法分析后，句子中的每个词之间只有一条依存路径，本文由此生成候选触发词-实体描述对。候选触发词-实体描述对在依存关系图的基础上通过下列算法获得，其中 α 为整数阈值因子：</p>
+<p>输入：句子，该句子的依存关系图，停用词表S，训练集中触发词的词性表P。<br>输出：句子中的候选触发词-实体描述对列表E。</p>
+<h3 id="候选触发词-实体描述对分类"><a href="#候选触发词-实体描述对分类" class="headerlink" title="候选触发词-实体描述对分类"></a>候选触发词-实体描述对分类</h3><h2 id="基于分类器融合的事件监测与分类"><a href="#基于分类器融合的事件监测与分类" class="headerlink" title="基于分类器融合的事件监测与分类"></a>基于分类器融合的事件监测与分类</h2>
       
     </div>
 
@@ -493,7 +512,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -502,7 +521,7 @@
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -512,7 +531,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">43</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -570,7 +589,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件类别识别"><span class="nav-number">1.</span> <span class="nav-text">事件类别识别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#候选事件的抽取"><span class="nav-number">1.1.</span> <span class="nav-text">候选事件的抽取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#候选事件的分类"><span class="nav-number">1.2.</span> <span class="nav-text">候选事件的分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件元素识别"><span class="nav-number">2.</span> <span class="nav-text">事件元素识别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主要方法"><span class="nav-number"></span> <span class="nav-text">主要方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模式匹配方法"><span class="nav-number">1.</span> <span class="nav-text">模式匹配方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习方法"><span class="nav-number">2.</span> <span class="nav-text">机器学习方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#赵妍妍《中文事件抽取技术研究》"><span class="nav-number">1.</span> <span class="nav-text">赵妍妍《中文事件抽取技术研究》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要方法"><span class="nav-number">1.1.</span> <span class="nav-text">主要方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模式匹配方法"><span class="nav-number">1.1.1.</span> <span class="nav-text">模式匹配方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">机器学习方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件类别识别"><span class="nav-number">1.2.</span> <span class="nav-text">事件类别识别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#候选事件的抽取"><span class="nav-number">1.2.1.</span> <span class="nav-text">候选事件的抽取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#候选事件的分类"><span class="nav-number">1.2.2.</span> <span class="nav-text">候选事件的分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件元素识别"><span class="nav-number">1.3.</span> <span class="nav-text">事件元素识别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多元分类策略"><span class="nav-number">1.3.1.</span> <span class="nav-text">多元分类策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征选取"><span class="nav-number">1.3.2.</span> <span class="nav-text">特征选取</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高源《基于依存句法分析与分类器融合的触发词抽取方法》"><span class="nav-number">2.</span> <span class="nav-text">高源《基于依存句法分析与分类器融合的触发词抽取方法》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本思路"><span class="nav-number">2.1.</span> <span class="nav-text">基本思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件概述"><span class="nav-number">2.1.1.</span> <span class="nav-text">事件概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进触发词的抽取方法"><span class="nav-number">2.1.2.</span> <span class="nav-text">改进触发词的抽取方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关工作"><span class="nav-number">2.1.3.</span> <span class="nav-text">相关工作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单一触发词抽取"><span class="nav-number">2.2.</span> <span class="nav-text">单一触发词抽取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#触发词检测"><span class="nav-number">2.2.1.</span> <span class="nav-text">触发词检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#触发词分类"><span class="nav-number">2.2.2.</span> <span class="nav-text">触发词分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触发词-实体描述对抽取"><span class="nav-number">2.3.</span> <span class="nav-text">触发词-实体描述对抽取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#候选触发词-实体描述对生成"><span class="nav-number">2.3.1.</span> <span class="nav-text">候选触发词-实体描述对生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#候选触发词-实体描述对分类"><span class="nav-number">2.3.2.</span> <span class="nav-text">候选触发词-实体描述对分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于分类器融合的事件监测与分类"><span class="nav-number">2.4.</span> <span class="nav-text">基于分类器融合的事件监测与分类</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

@@ -95,7 +95,9 @@ MNIST是一个简单的计算机">
 当我们学习如何编程时，有一个传统就是首先打印出“Hello World”，就像编程有Hello World，机器学习有MNIST。
 MNIST是一个简单的计算机">
 <meta property="og:image" content="https://www.tensorflow.org/versions/r0.11/images/MNIST.png">
-<meta property="og:updated_time" content="2016-10-10T09:36:32.000Z">
+<meta property="og:image" content="https://www.tensorflow.org/versions/r0.11/images/MNIST-Matrix.png">
+<meta property="og:image" content="https://www.tensorflow.org/versions/r0.11/images/mnist-train-xs.png">
+<meta property="og:updated_time" content="2016-10-14T08:47:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow:MNIST for ML Beginners">
 <meta name="twitter:description" content="该教程主要针对机器学习和TensorFlow的新手。如果你已经知道了MNIST和softmax (multinomial logistic) regression，你可能更喜欢快节奏的教程。在开始教程前确保已经安装了TensorFlow。
@@ -381,6 +383,9 @@ MNIST是一个简单的计算机">
 mnist = input_data.read_data_sets(&quot;MNIST_data/&quot;, one_hot=True)
 </code></pre><p>MNIST数据被分成了三部分：55,000个训练数据样本(mnist.train)，10,000个测试数据样本(mnist.test)和5,000个交叉验证数据样本(mnist.validation)。This split is very important: it’s essential in machine learning that we have separate data which we don’t learn from so that we can make sure that what we’ve learned actually generalizes!</p>
 <p>正如前面提到的，每个MNIST数据样本都有两部分：手写数字的图像和对应的标签。我们称图像为x，标签为y。训练集和测试集都包含图像和它们对应的标签；比如训练集的图像是<strong>mnist.train.images</strong>，训练集的标签是<strong>mnist.train.labels</strong>。</p>
+<p>每个图像都是28*28像素的，我们可以把它表示成一个由数字组成的大数组：<br><img src="https://www.tensorflow.org/versions/r0.11/images/MNIST-Matrix.png" alt=""><br>我们可以把这个数组平铺成由 28*28=784 个数字组成的向量，不管我们怎么平铺，只要和图像一致即可。从这个观点来说，MNIST图像只是在784维向量空间的一堆点，具有<a href="http://colah.github.io/posts/2014-10-Visualizing-MNIST/" target="_blank" rel="external">丰富的结构</a> (warning: computationally intensive visualizations)。</p>
+<p>把数据平铺会丢掉图像的二维结构信息，这不是很糟糕吗？当然，最好的计算机视觉方法会利用这种结构，我们在后面会见到。但是这里我们用的这种最简单的方法 <strong>softmax regression</strong> 没有利用。</p>
+<p>The first dimension is an index into the list of images and the second dimension is the index for each pixel in each image. Each entry in the tensor is a pixel intensity between 0 and 1, for a particular pixel in a particular image.<br>因此 mnist.train.images 是一个形状为 55000*784 的 tensor (一个n维数组)。第一维是图像的索引，第2维是每张图片的每个像素的索引（”tensor”中的像素值在0到1之间）。<br><img src="https://www.tensorflow.org/versions/r0.11/images/mnist-train-xs.png" alt=""></p>
 <h2 id="Softmax-Regressions"><a href="#Softmax-Regressions" class="headerlink" title="Softmax Regressions"></a>Softmax Regressions</h2><h2 id="Implementing-the-Regression"><a href="#Implementing-the-Regression" class="headerlink" title="Implementing the Regression"></a>Implementing the Regression</h2><h2 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h2><h2 id="Evaluating-Our-Model"><a href="#Evaluating-Our-Model" class="headerlink" title="Evaluating Our Model"></a>Evaluating Our Model</h2>
       
     </div>
@@ -493,7 +498,7 @@ mnist = input_data.read_data_sets(&quot;MNIST_data/&quot;, one_hot=True)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -502,7 +507,7 @@ mnist = input_data.read_data_sets(&quot;MNIST_data/&quot;, one_hot=True)
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -512,7 +517,7 @@ mnist = input_data.read_data_sets(&quot;MNIST_data/&quot;, one_hot=True)
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">43</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>

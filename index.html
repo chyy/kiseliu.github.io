@@ -869,19 +869,11 @@ Hopfield Neural Netw
       
         
           
-          Markov Chain Monte Carlo Methods
-Markov Chains
-Gibbs Sampling Algorithm
-
-
-Hidden Markov Model
-Conditional Random Fields
-
-Latent Dirichlet Allocation
-
-
-
-          
+          求出变量的联合分布，就可以得到任意的条件概率。
+由于变量数很多，变量的取值也有很多，概率模型变得很复杂，因为要列出所有的联合分布。实际上，有些变量是条件独立的，只有部分变量之间是有依赖关系。 
+概率图模型用点表示变量，边表示变量之间的关系。可以直观看到，变量之间存在计算上的依赖关系，简化联合概率的计算。由原来的63个变量，变成只需要17个变量来描述。
+Markov Chain Monte Carl
+          ...
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/12/30/probabilistic-graphical-models-learning-notes/#more" rel="contents">
@@ -1456,8 +1448,8 @@ Kaggle Titanic: Machine Learning from Disaster
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/命名实体识别/" itemprop="url">
-                  命名实体识别
+                <a class="post-title-link" href="/2016/10/20/chains/" itemprop="url">
+                  Markov Chains
                 </a>
               
             
@@ -1470,8 +1462,8 @@ Kaggle Titanic: Machine Learning from Disaster
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T15:33:48+08:00" content="2016-10-12">
-              2016-10-12
+            <time itemprop="dateCreated" datetime="2016-10-20T21:23:27+08:00" content="2016-10-20">
+              2016-10-20
             </time>
           </span>
 
@@ -1484,8 +1476,8 @@ Kaggle Titanic: Machine Learning from Disaster
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/natural-language-processing/" itemprop="url" rel="index">
-                    <span itemprop="name">Natural Language Processing</span>
+                  <a href="/categories/probabilistic-graphical-models/" itemprop="url" rel="index">
+                    <span itemprop="name">Probabilistic Graphical Models</span>
                   </a>
                 </span>
 
@@ -1500,8 +1492,8 @@ Kaggle Titanic: Machine Learning from Disaster
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/12/命名实体识别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/命名实体识别/" itemprop="commentsCount"></span>
+                <a href="/2016/10/20/chains/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/20/chains/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1526,11 +1518,14 @@ Kaggle Titanic: Machine Learning from Disaster
       
         
           
-          
-          
+          随机过程：一族随机变量，随机变量在不同的时间满足某种分布，称为随机过程。
+有一种假设是，在不同的时间点，概率分布都是一样的，这种叫做平稳的随机过程。
+由于随机过程这个概念太过于广泛，通常我们会对这个过程做一些限制进行研究。马尔可夫性质：随机过程有一种性质叫做马尔可夫性质。对随机过程还有一种限制，我们称作马尔可夫性质。
+马尔科夫性质是指将来发生的事情只和现在有关，和过去无关，具有马尔可夫性质的随机过
+          ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/命名实体识别/#more" rel="contents">
+            <a class="btn" href="/2016/10/20/chains/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1605,7 +1600,7 @@ Kaggle Titanic: Machine Learning from Disaster
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1614,7 +1609,7 @@ Kaggle Titanic: Machine Learning from Disaster
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -1624,7 +1619,7 @@ Kaggle Titanic: Machine Learning from Disaster
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">43</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
