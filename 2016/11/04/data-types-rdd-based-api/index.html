@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="MLlib支持存储在单机上的本地向量和矩阵，和由一个或者多个RDDs支撑的分布式矩阵。本地向量和矩阵是很简单的数据模型，用来当作公共接口。底层的线性代数操作是由Breeze提供。在MLlib中，用于有监督学习的训练样本称为 labeled point 。
+<meta name="description" content="MLlib支持存储在单机上的本地向量和矩阵，和由一个或者多个RDDs组成的分布式矩阵。本地向量和矩阵是很简单的数据模型，用来当作公共接口。底层的线性代数操作是由Breeze提供。在MLlib中，用于有监督学习的训练样本称为 labeled point 。
 Local vector本地向量具有从0开始的integer类型的索引以及double类型的值，并且保存在单台机器上。MLlib支持两种类型的本">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Data Types - RDD-Based API">
 <meta property="og:url" content="http://github.com/kiseliu/2016/11/04/data-types-rdd-based-api/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="MLlib支持存储在单机上的本地向量和矩阵，和由一个或者多个RDDs支撑的分布式矩阵。本地向量和矩阵是很简单的数据模型，用来当作公共接口。底层的线性代数操作是由Breeze提供。在MLlib中，用于有监督学习的训练样本称为 labeled point 。
+<meta property="og:description" content="MLlib支持存储在单机上的本地向量和矩阵，和由一个或者多个RDDs组成的分布式矩阵。本地向量和矩阵是很简单的数据模型，用来当作公共接口。底层的线性代数操作是由Breeze提供。在MLlib中，用于有监督学习的训练样本称为 labeled point 。
 Local vector本地向量具有从0开始的integer类型的索引以及double类型的值，并且保存在单台机器上。MLlib支持两种类型的本">
-<meta property="og:updated_time" content="2016-11-07T02:16:12.000Z">
+<meta property="og:updated_time" content="2016-11-07T12:02:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data Types - RDD-Based API">
-<meta name="twitter:description" content="MLlib支持存储在单机上的本地向量和矩阵，和由一个或者多个RDDs支撑的分布式矩阵。本地向量和矩阵是很简单的数据模型，用来当作公共接口。底层的线性代数操作是由Breeze提供。在MLlib中，用于有监督学习的训练样本称为 labeled point 。
+<meta name="twitter:description" content="MLlib支持存储在单机上的本地向量和矩阵，和由一个或者多个RDDs组成的分布式矩阵。本地向量和矩阵是很简单的数据模型，用来当作公共接口。底层的线性代数操作是由Breeze提供。在MLlib中，用于有监督学习的训练样本称为 labeled point 。
 Local vector本地向量具有从0开始的integer类型的索引以及double类型的值，并且保存在单台机器上。MLlib支持两种类型的本">
 
 
@@ -334,7 +334,7 @@ Local vector本地向量具有从0开始的integer类型的索引以及double类
       
 
       
-        <p>MLlib支持存储在单机上的本地向量和矩阵，和由一个或者多个RDDs支撑的分布式矩阵。<br>本地向量和矩阵是很简单的数据模型，用来当作公共接口。底层的线性代数操作是由<a href="http://www.scalanlp.org/" target="_blank" rel="external">Breeze</a>提供。<br>在MLlib中，用于有监督学习的训练样本称为 labeled point 。</p>
+        <p>MLlib支持存储在单机上的本地向量和矩阵，和由一个或者多个RDDs组成的分布式矩阵。<br>本地向量和矩阵是很简单的数据模型，用来当作公共接口。底层的线性代数操作是由<a href="http://www.scalanlp.org/" target="_blank" rel="external">Breeze</a>提供。<br>在MLlib中，用于有监督学习的训练样本称为 labeled point 。</p>
 <h2 id="Local-vector"><a href="#Local-vector" class="headerlink" title="Local vector"></a>Local vector</h2><p>本地向量具有从0开始的integer类型的索引以及double类型的值，并且保存在单台机器上。<br>MLlib支持两种类型的本地向量：稠密型(dense)和稀疏型(spase)。<br>稠密向量通过double类型的数组来表示它的输入值(entry values)；而稀疏向量是通过两个并列的数组（indices和values）来表示。例如，一个向量 (1.0, 0.0, 3.0)用稠密的形式可以表示为[1.0, 0.0, 3.0]，或者用稀疏的形式表示为(3, [0, 2], [1.0, 3.0])，这里3表示向量的大小。</p>
 <p>MLlib把下列类型当作密集型向量：</p>
 <ul>
@@ -345,7 +345,7 @@ Local vector本地向量具有从0开始的integer类型的索引以及double类
 
 dv1 = np.array([1.0, 0.0, 3.0])  # 使用NumPy数组作为稠密型向量
 dv2 = [1.0, 0.0, 3.0]  # 使用Python列表作为稠密型向量
-</code></pre><p>把下列类型当作稀疏矩阵：</p>
+</code></pre><p>把下列类型当作稀疏型向量：</p>
 <ul>
 <li>MLlib’s <a href="https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.linalg.SparseVector" target="_blank" rel="external">SparseVector</a></li>
 <li>SciPy’s <a href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csc_matrix.html#scipy.sparse.csc_matrix" target="_blank" rel="external">csc_matrix</a> with a single column</li>
@@ -354,7 +354,7 @@ dv2 = [1.0, 0.0, 3.0]  # 使用Python列表作为稠密型向量
 from pyspark.mllib.linalg import Vectors
 
 sv1 = Vectors.sparse(3, [0, 2], [1.0, 3.0])  #构建稀疏向量
-sv2 = sps.csc\_matrix((np.array([1.0, 3.0]), np.array([0, 2]), np.array([0, 2])), shape = (3, 1))  #用单列的SciPy csc\_matrix作为稀疏向量
+sv2 = sps.csc_matrix((np.array([1.0, 3.0]), np.array([0, 2]), np.array([0, 2])), shape = (3, 1))  #用单列的SciPy csc_matrix作为稀疏向量
 </code></pre><p>基于效率考虑，推荐使用NumPy数组而不是python本身的列表，并且使用在<a href="https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.linalg.Vectors" target="_blank" rel="external">Vectors</a>中实现的工厂方法来创建稀疏向量。</p>
 <p>Refer to the <a href="https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.linalg.Vectors" target="_blank" rel="external">Vectors Python docs</a> for more details on the API.</p>
 <h2 id="Labeled-point"><a href="#Labeled-point" class="headerlink" title="Labeled point"></a>Labeled point</h2><p>labeled point 是带有标签/response的本地向量，既可以是稠密的，也可以是稀疏的。在MLlib中，labeled points被用在有监督学习算法中。我们用double类型存储标签，这样就可以在回归和分类任务中都使用labeled points。对于二元分类，标签应该是0 (negative) 或者 1 (positive)。对于多元分类，标签应该是从0开始的类别索引：0，1，2，…</p>
@@ -384,8 +384,32 @@ dm2 = Matrices.dense(3, 2, [1, 2, 3, 4, 5, 6])
 
 # Create a sparse matrix ((9.0, 0.0), (0.0, 8.0), (0.0, 6.0))
 sm = Matrices.sparse(3, 2, [0, 1, 3], [0, 2, 1], [9, 6, 8])
-</code></pre><h2 id="Distributed-matrix"><a href="#Distributed-matrix" class="headerlink" title="Distributed matrix"></a>Distributed matrix</h2><p>A distributed matrix has long-typed row and column indices and double-typed values, stored distributively in one or more RDDs. It is very important to choose the right format to store large and distributed matrices. Converting a distributed matrix to a different format may require a global shuffle, which is quite expensive. Four types of distributed matrices have been implemented so far.<br>The basic type is called RowMatrix. A RowMatrix is a row-oriented distributed matrix without meaningful row indices, e.g., a collection of feature vectors. It is backed by an RDD of its rows, where each row is a local vector. We assume that the number of columns is not huge for a RowMatrix so that a single local vector can be reasonably communicated to the driver and can also be stored / operated on using a single node. An IndexedRowMatrix is similar to a RowMatrix but with row indices, which can be used for identifying rows and executing joins. A CoordinateMatrix is a distributed matrix stored in coordinate list (COO)format, backed by an RDD of its entries. A BlockMatrix is a distributed matrix backed by an RDD of MatrixBlock which is a tuple of (Int, Int, Matrix).</p>
-<h3 id="RowMatrix"><a href="#RowMatrix" class="headerlink" title="RowMatrix"></a>RowMatrix</h3><h3 id="IndexedRowMatrix"><a href="#IndexedRowMatrix" class="headerlink" title="IndexedRowMatrix"></a>IndexedRowMatrix</h3><h3 id="CoordinateMatrix"><a href="#CoordinateMatrix" class="headerlink" title="CoordinateMatrix"></a>CoordinateMatrix</h3><h3 id="BlockMatrix"><a href="#BlockMatrix" class="headerlink" title="BlockMatrix"></a>BlockMatrix</h3>
+</code></pre><h2 id="Distributed-matrix"><a href="#Distributed-matrix" class="headerlink" title="Distributed matrix"></a>Distributed matrix</h2><p>分布式矩阵有long类型的行列索引，和double类型的值，分散地存储在一个或者多个RDDs里。选择正确的格式来存储分布式的矩阵是很重要的。将分布式矩阵转换成另一种不同的格式可能需要进行全局的shuffle，这个代价是昂贵的。目前已经实现了4种分布式矩阵。</p>
+<p>基本的类型是<strong> RowMatrix</strong>。 <strong>RowMatrix</strong> 是面向行的分布式矩阵，没有有意义的行索引(没有行索引)。比如，特征向量的集合。它被它的行的RDD支持，这里每一行都是一个本地向量。我们假设<strong>RowMatrix</strong>的列的数量不是太大，一个单个的本地向量可以被合理地传递给 driver，也可以用一个单节点来存储和操作。<strong>IndexedRowMatrix</strong> 和 <strong>RowMatrix</strong> 很相似，但是有行索引，行索引可以被用来定位行，以及进行 <strong>join</strong> 操作。<strong>CoordinateMatrix</strong> 是以 coordinate list (COO) 格式存储的分布式矩阵，由它的输入的RDD所支持。<strong>BlockMatrix</strong>是一个分布式矩阵，由MatrixBlock的RDD所支持，MatrixBlock是一个(Int, Int, Matrix)元组。</p>
+<p>注意： 分布式矩阵的内部RDDs必须是确定性的，因为我们会缓存矩阵的大小。通常使用非确定性RDDS可能会导致错误。</p>
+<h3 id="RowMatrix"><a href="#RowMatrix" class="headerlink" title="RowMatrix"></a>RowMatrix</h3><p><strong> RowMatrix</strong>是一个面向行的分布式矩阵，没有行索引，由一个所有行组成的RDD支持，这里每一行都是一个本地向量。因为每一行都由一个本地向量所表示，列的数量只能在整数范围以内，实际上，列的数目应该更小。</p>
+<p>我们可以用向量的RDD来创建<a href="https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.linalg.distributed.RowMatrix" target="_blank" rel="external">RowMatrix</a> 。</p>
+<p>Refer to the <a href="https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.linalg.distributed.RowMatrix" target="_blank" rel="external">RowMatrix Python docs</a> for more details on the API.</p>
+<pre><code>from pyspark.mllib.linalg.distributed import RowMatrix
+
+rows = sc.parallelize([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])   # 创建一个向量组成的RDD。
+
+mat = RowMatrix(rows)   # 从向量组成的RDD创建一个RowMatrix
+
+m = mat.numRows()  # 4   # 获得它们的大小
+n = mat.numCols()  # 3
+
+rowsRDD = mat.rows    # 取出所有的行再生成一个由向量组成的RDD
+</code></pre><h3 id="IndexedRowMatrix"><a href="#IndexedRowMatrix" class="headerlink" title="IndexedRowMatrix"></a>IndexedRowMatrix</h3><p><strong>IndexedRowMatrix</strong> 和 <strong>RowMatrix</strong> 很相似，但是它有有意义的行索引。由于<strong>IndexedRowMatrix</strong>就是一个行含有索引的RDD，每一行都由它的索引(long类型)和本地向量所表示。</p>
+<p>我们可以用由<strong>IndexedRows</strong>组成的RDD创建<strong>IndexedRowMatrix</strong>，这里<strong>IndexedRow</strong>是对<strong>(long, vector)</strong>的一个包装。<strong>IndexedRowMatrixcan</strong>可以通过丢掉它的行索引转变成<strong>RowMatrix</strong>。</p>
+<p>Refer to the <a href="https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.linalg.distributed.IndexedRowMatrix" target="_blank" rel="external">IndexedRowMatrix Python docs</a> for more details on the API.</p>
+<h3 id="CoordinateMatrix"><a href="#CoordinateMatrix" class="headerlink" title="CoordinateMatrix"></a>CoordinateMatrix</h3><p><strong>CoordinateMatrix</strong>是分布式矩阵，内部是它的输入值的RDD。 它的每个输入都是一个元组<strong>(i: Long, j: Long, value: Double)</strong>，这里<strong>i</strong>是行索引，<strong>j</strong>是列索引，值是输入值。只有当矩阵的两个维度都很大，并且矩阵是非常稀疏的情况下，我们才使用<strong>CoordinateMatrix</strong>。</p>
+<p>我们可以通过MatrixEntry输入格式的RDD来创建一个<a href="https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.linalg.distributed.CoordinateMatrix" target="_blank" rel="external">CoordinateMatrix</a> ，这里<a href="https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.linalg.distributed.MatrixEntry" target="_blank" rel="external">MatrixEntry</a>是对(long, long, float)的包装。<strong> CoordinateMatrix</strong>通过调用<strong>toRowMatrix</strong>方法，可以被转化为<strong> RowMatrix</strong>，或者调用<strong> toIndexedRowMatrix</strong>方法转化成具有稀疏的行的<strong>IndexedRowMatrix</strong>。因为整个矩阵是稀疏的，所以行也是稀疏的。</p>
+<p>Refer to the <a href="https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.linalg.distributed.CoordinateMatrix" target="_blank" rel="external">CoordinateMatrix Python docs</a> for more details on the API.</p>
+<h3 id="BlockMatrix"><a href="#BlockMatrix" class="headerlink" title="BlockMatrix"></a>BlockMatrix</h3><p>BlockMatrix是分布式矩阵，内部是MatrixBlocks格式的RDD，这里MatrixBlock是((Int, Int), Matrix)形式的元组，(Int, Int)是block的索引， Matrix是在给定索引位置上大小为rowsPerBlock x colsPerBlock的子矩阵。BlockMatrix支持和另一个矩阵做像加法和乘法的方法。<strong>BlockMatrix</strong>也有一个帮助函数<strong>validate</strong>，它可以用来检查<strong>BlockMatrix</strong>是否被设置正确。</p>
+<p>我们可以通过子矩阵块的RDD来创建一个<a href="https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.linalg.distributed.BlockMatrix" target="_blank" rel="external">BlockMatrix</a>，这里子矩阵块是一个((blockRowIndex, blockColIndex), sub-matrix)元组。</p>
+<p>Refer to the <a href="https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.linalg.distributed.BlockMatrix" target="_blank" rel="external">BlockMatrix Python docs</a> for more details on the API.</p>
+
       
     </div>
 
