@@ -84,16 +84,16 @@
 
 
 
-<meta name="description">
+<meta name="description" content="数学公式许多标准的机器学习算法都可以表示成凸优化问题，比如寻找凸函数 \(f\) 的最小值，函数 \(f\) 是变量 \(w\) 的函数，而 \(w\) 是一个 \(d\) 维的向量，在代码中我们把它称为weights。我们可以把寻找最小值写成一个优化问题 \(\min _{ w\in { R }^{ d } }{ f(w) } \)，它的目标函数具有如下形式：$$ f(w):=\lambda R">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TensorFlow:Vector Representations of Words">
-<meta property="og:url" content="http://github.com/kiseliu/2016/10/10/tensorflow-vector-representations-of-words/index.html">
+<meta property="og:title" content="Linear Methods - RDD-Based API">
+<meta property="og:url" content="http://github.com/kiseliu/2016/11/08/linear-methods-rdd-based-api/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-10-10T08:45:37.000Z">
+<meta property="og:description" content="数学公式许多标准的机器学习算法都可以表示成凸优化问题，比如寻找凸函数 \(f\) 的最小值，函数 \(f\) 是变量 \(w\) 的函数，而 \(w\) 是一个 \(d\) 维的向量，在代码中我们把它称为weights。我们可以把寻找最小值写成一个优化问题 \(\min _{ w\in { R }^{ d } }{ f(w) } \)，它的目标函数具有如下形式：$$ f(w):=\lambda R">
+<meta property="og:updated_time" content="2016-11-08T08:06:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TensorFlow:Vector Representations of Words">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Linear Methods - RDD-Based API">
+<meta name="twitter:description" content="数学公式许多标准的机器学习算法都可以表示成凸优化问题，比如寻找凸函数 \(f\) 的最小值，函数 \(f\) 是变量 \(w\) 的函数，而 \(w\) 是一个 \(d\) 维的向量，在代码中我们把它称为weights。我们可以把寻找最小值写成一个优化问题 \(\min _{ w\in { R }^{ d } }{ f(w) } \)，它的目标函数具有如下形式：$$ f(w):=\lambda R">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/2016/10/10/tensorflow-vector-representations-of-words/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/2016/11/08/linear-methods-rdd-based-api/"/>
 
-  <title> TensorFlow:Vector Representations of Words | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Linear Methods - RDD-Based API | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -284,7 +284,7 @@
             
             
               
-                TensorFlow:Vector Representations of Words
+                Linear Methods - RDD-Based API
               
             
           </h1>
@@ -296,8 +296,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-10T16:45:37+08:00" content="2016-10-10">
-              2016-10-10
+            <time itemprop="dateCreated" datetime="2016-11-08T11:52:49+08:00" content="2016-11-08">
+              2016-11-08
             </time>
           </span>
 
@@ -307,8 +307,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/10/tensorflow-vector-representations-of-words/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/tensorflow-vector-representations-of-words/" itemprop="commentsCount"></span>
+                <a href="/2016/11/08/linear-methods-rdd-based-api/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/08/linear-methods-rdd-based-api/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -331,7 +331,22 @@
       
 
       
-        
+        <h1 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h1><p>许多标准的机器学习算法都可以表示成凸优化问题，比如寻找凸函数 \(f\) 的最小值，函数 \(f\) 是变量 \(w\) 的函数，而 \(w\) 是一个 \(d\) 维的向量，在代码中我们把它称为weights。我们可以把寻找最小值写成一个优化问题 \(\min _{ w\in { R }^{ d } }{ f(w) } \)，它的目标函数具有如下形式：<br>$$ f(w):=\lambda R(W)+\frac { 1 }{ n } \sum _{ i=1 }^{ n }{ L(w;{ x }_{ i },{ y }_{ i }) }  $$<br>这里向量 \({ x }_{ i }\in { R }^{ d } ，1\le i\le n \) 是训练数据样本，\({ y }_{ i }\in { R }\) 是我们想要预测的样本对应的标签。如果 \(L(w;x,y)\) 可以被表示为 \({ w }^{ T }x\) 和 \(y\)的函数，我们就叫这种方法为线性的。</p>
+<p>目标函数 \(f\) 有两部分组成：控制模型复杂度的正则化项，和衡量模型在训练数据集上的误差损失。损失函数 \(L(w;.)\) 是 \(w\) 的凸函数。固定的正则化参数 \(\lambda \ge 0\) (代码中是regParam)定义了减小损失(训练误差)和减小模型复杂度(避免过拟合)两个目标之间的trade-off。</p>
+<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p>下表总结了损失函数和 spark.mllib 支持的对这些函数的梯度和子梯度：</p>
+<h2 id="正则化项"><a href="#正则化项" class="headerlink" title="正则化项"></a>正则化项</h2><p><a href="http://en.wikipedia.org/wiki/Regularization_(mathematics)" target="_blank" rel="external">正则化项</a>的目的是希望得到简单的模型，避免过拟合。在spark.mllib中我们支持下列的正则化项：</p>
+<p>这里 \(sign(w)\) 是由 \(w\) 的所有输入值的符号(+1或者-1)组成的向量。</p>
+<p>由于平滑性，L2正则问题通常比L1正则解决起来更容易。但是，L1正则可以帮助使得权重更加稀疏，从而得到较小的具有可解释性的模型，该模型之后还可以用来进行特征选择。<a href="http://en.wikipedia.org/wiki/Elastic_net_regularization" target="_blank" rel="external">Elastic net</a>是L1和L2正则的组合。我们并不推荐在训练模型的时候不加入正则，尤其是训练样本的数量很小的情况。</p>
+<h2 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h2><p>在底层，线性方法是使用凸优化方法来优化目标函数。</p>
+<p>spark.mllib 使用两种优化方法：SGD 和 L-BFGS，在优化的部分对他们有描述。目前，大部份算法APIs支持随机梯度下降(SGD)算法，有一些支持L-BFGS。你可以参考<a href="https://spark.apache.org/docs/latest/mllib-optimization.html#Choosing-an-Optimization-Method" target="_blank" rel="external">优化部分</a>的说明来选择优化算法。</p>
+<h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>分类旨在将一些项划分成若干类。最常见的分类类型是二元分类，也就是说将数据分成二个类别，通常我们把这两个类别叫做正向和负向。如果超过两个类别，我们就把这样的分类任务叫做多元分类。</p>
+<p>spark.mllib支持两种线性分类方法：线性支持向量机(SVMs)和logistic回归。线性SVMs只支持二元分类，但是logistic回归既支持二元分类问题，也支持多元分类问题。对于这两种方法，spark.mllib都支持L1和L2正则化项。训练数据集用MLlib中LabeledPoint格式的RDD来表示，这里标签是从0开始的类索引，0, 1, 2, …</p>
+<h2 id="线性支持向量机-SVMs"><a href="#线性支持向量机-SVMs" class="headerlink" title="线性支持向量机(SVMs)"></a>线性支持向量机(SVMs)</h2><p>线性支持向量机是解决大规模分类任务的常规方法。它是一种用上述的方程(1)描述的线性方法，公式中的损失函数是hinge损失：<br>$$L(w;x,y):=max\{ 0,1-y{ w }^{ T }x\} $$<br>默认情况下，线性SVMs使用L2正则训练，我们也支持L1正则化。在这种情况下，该问题变成<a href="http://en.wikipedia.org/wiki/Linear_programming" target="_blank" rel="external">线性规划</a>。</p>
+<p>线性SVMs算法输出一个SVM模型。给定一个新的数据点，记作\(x\)，模型基于 \({ w }^{ T }x\) 的值进行预测。默认情况下，如果 \({ w }^{ T }x\ge 0 \) ，那么输出是正向，否则是负向。</p>
+<p>下面的示例显示了如何加载样本数据集，构建SVM模型，用得到的模型再重新对训练集进行预测然后计算训练误差。</p>
+<p>分类旨在将一些项划分成若干类。最常见的分类类型是二元分类，也就是说将数据分成二个类别，通常我们把这两个类别叫做正向和负向。如果超过两个类别，我们就把这样的分类任务叫做多元分类。spark.mllib支持两种线性分类方法：线性支持向量机(SVMs)和logistic回归。线性SVMs只支持二元分类，但是logistic回归既支持二元分类问题，也支持多元分类问题。对于这两种方法，spark.mllib都支持L1和L2正则化项。训练数据集用MLlib中LabeledPoint格式的RDD来表示，这里标签是从0开始的类索引，0, 1, 2, …</p>
+<p>注意：对于上面指导中的数学公式，二元标签y被记成+1(正向), -1(负向)，这种记法是为了方便公式表示。但是，为了和多元标签一致，spark.mllib中用0表示负向的标签，而不是-1。</p>
+<h2 id="Logistic回归"><a href="#Logistic回归" class="headerlink" title="Logistic回归"></a>Logistic回归</h2><h1 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h1><h2 id="最小二乘法，LASSO和ridge回归"><a href="#最小二乘法，LASSO和ridge回归" class="headerlink" title="最小二乘法，LASSO和ridge回归"></a>最小二乘法，LASSO和ridge回归</h2><h2 id="Streaming-linear-regression"><a href="#Streaming-linear-regression" class="headerlink" title="Streaming linear regression"></a>Streaming linear regression</h2><h1 id="Implementation-developer"><a href="#Implementation-developer" class="headerlink" title="Implementation (developer)"></a>Implementation (developer)</h1>
       
     </div>
 
@@ -355,16 +370,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/10/tensorflow-tensorflow-wide-deep-learning-tutorial/" rel="next" title="TensorFlow:TensorFlow Wide & Deep Learning Tutorial">
-                <i class="fa fa-chevron-left"></i> TensorFlow:TensorFlow Wide & Deep Learning Tutorial
+              <a href="/2016/11/04/data-types-rdd-based-api/" rel="next" title="Data Types - RDD-Based API">
+                <i class="fa fa-chevron-left"></i> Data Types - RDD-Based API
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/10/tensorflow-recurrent-neural-networks/" rel="prev" title="TensorFlow:Recurrent Neural Networks">
-                TensorFlow:Recurrent Neural Networks <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/08/支持向量机/" rel="prev" title="支持向量机">
+                支持向量机 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -391,8 +406,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/10/tensorflow-vector-representations-of-words/"
-           data-title="TensorFlow:Vector Representations of Words" data-url="http://github.com/kiseliu/2016/10/10/tensorflow-vector-representations-of-words/">
+      <div class="ds-thread" data-thread-key="2016/11/08/linear-methods-rdd-based-api/"
+           data-title="Linear Methods - RDD-Based API" data-url="http://github.com/kiseliu/2016/11/08/linear-methods-rdd-based-api/">
       </div>
     
   </div>
@@ -514,7 +529,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数学公式"><span class="nav-number">1.</span> <span class="nav-text">数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#损失函数"><span class="nav-number">1.1.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则化项"><span class="nav-number">1.2.</span> <span class="nav-text">正则化项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化算法"><span class="nav-number">1.3.</span> <span class="nav-text">优化算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分类"><span class="nav-number">2.</span> <span class="nav-text">分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性支持向量机-SVMs"><span class="nav-number">2.1.</span> <span class="nav-text">线性支持向量机(SVMs)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic回归"><span class="nav-number">2.2.</span> <span class="nav-text">Logistic回归</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回归"><span class="nav-number">3.</span> <span class="nav-text">回归</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最小二乘法，LASSO和ridge回归"><span class="nav-number">3.1.</span> <span class="nav-text">最小二乘法，LASSO和ridge回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Streaming-linear-regression"><span class="nav-number">3.2.</span> <span class="nav-text">Streaming linear regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implementation-developer"><span class="nav-number">4.</span> <span class="nav-text">Implementation (developer)</span></a></li></ol></div>
             
           </div>
         </section>
