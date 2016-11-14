@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://github.com/kiseliu/2016/11/08/linear-methods-rdd-based-api/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
 <meta property="og:description" content="数学公式许多标准的机器学习算法都可以表示成凸优化问题，比如寻找凸函数 \(f\) 的最小值，函数 \(f\) 是变量 \(w\) 的函数，而 \(w\) 是一个 \(d\) 维的向量，在代码中我们把它称为weights。我们可以把寻找最小值写成一个优化问题 \(\min _{ w\in { R }^{ d } }{ f(w) } \)，它的目标函数具有如下形式：$$ f(w):=\lambda R">
-<meta property="og:updated_time" content="2016-11-08T08:06:42.000Z">
+<meta property="og:updated_time" content="2016-11-14T09:42:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linear Methods - RDD-Based API">
 <meta name="twitter:description" content="数学公式许多标准的机器学习算法都可以表示成凸优化问题，比如寻找凸函数 \(f\) 的最小值，函数 \(f\) 是变量 \(w\) 的函数，而 \(w\) 是一个 \(d\) 维的向量，在代码中我们把它称为weights。我们可以把寻找最小值写成一个优化问题 \(\min _{ w\in { R }^{ d } }{ f(w) } \)，它的目标函数具有如下形式：$$ f(w):=\lambda R">
@@ -337,8 +337,7 @@
 <h2 id="正则化项"><a href="#正则化项" class="headerlink" title="正则化项"></a>正则化项</h2><p><a href="http://en.wikipedia.org/wiki/Regularization_(mathematics)" target="_blank" rel="external">正则化项</a>的目的是希望得到简单的模型，避免过拟合。在spark.mllib中我们支持下列的正则化项：</p>
 <p>这里 \(sign(w)\) 是由 \(w\) 的所有输入值的符号(+1或者-1)组成的向量。</p>
 <p>由于平滑性，L2正则问题通常比L1正则解决起来更容易。但是，L1正则可以帮助使得权重更加稀疏，从而得到较小的具有可解释性的模型，该模型之后还可以用来进行特征选择。<a href="http://en.wikipedia.org/wiki/Elastic_net_regularization" target="_blank" rel="external">Elastic net</a>是L1和L2正则的组合。我们并不推荐在训练模型的时候不加入正则，尤其是训练样本的数量很小的情况。</p>
-<h2 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h2><p>在底层，线性方法是使用凸优化方法来优化目标函数。</p>
-<p>spark.mllib 使用两种优化方法：SGD 和 L-BFGS，在优化的部分对他们有描述。目前，大部份算法APIs支持随机梯度下降(SGD)算法，有一些支持L-BFGS。你可以参考<a href="https://spark.apache.org/docs/latest/mllib-optimization.html#Choosing-an-Optimization-Method" target="_blank" rel="external">优化部分</a>的说明来选择优化算法。</p>
+<h2 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h2><p>在底层，线性方法是使用凸优化方法来优化目标函数。spark.mllib 使用两种优化方法：SGD 和 L-BFGS，在优化的部分对他们有描述。目前，大部份算法APIs支持随机梯度下降(SGD)算法，有一些支持L-BFGS。你可以参考<a href="https://spark.apache.org/docs/latest/mllib-optimization.html#Choosing-an-Optimization-Method" target="_blank" rel="external">优化部分</a>的说明来选择优化算法。</p>
 <h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>分类旨在将一些项划分成若干类。最常见的分类类型是二元分类，也就是说将数据分成二个类别，通常我们把这两个类别叫做正向和负向。如果超过两个类别，我们就把这样的分类任务叫做多元分类。</p>
 <p>spark.mllib支持两种线性分类方法：线性支持向量机(SVMs)和logistic回归。线性SVMs只支持二元分类，但是logistic回归既支持二元分类问题，也支持多元分类问题。对于这两种方法，spark.mllib都支持L1和L2正则化项。训练数据集用MLlib中LabeledPoint格式的RDD来表示，这里标签是从0开始的类索引，0, 1, 2, …</p>
 <h2 id="线性支持向量机-SVMs"><a href="#线性支持向量机-SVMs" class="headerlink" title="线性支持向量机(SVMs)"></a>线性支持向量机(SVMs)</h2><p>线性支持向量机是解决大规模分类任务的常规方法。它是一种用上述的方程(1)描述的线性方法，公式中的损失函数是hinge损失：<br>$$L(w;x,y):=max\{ 0,1-y{ w }^{ T }x\} $$<br>默认情况下，线性SVMs使用L2正则训练，我们也支持L1正则化。在这种情况下，该问题变成<a href="http://en.wikipedia.org/wiki/Linear_programming" target="_blank" rel="external">线性规划</a>。</p>
@@ -346,7 +345,19 @@
 <p>下面的示例显示了如何加载样本数据集，构建SVM模型，用得到的模型再重新对训练集进行预测然后计算训练误差。</p>
 <p>分类旨在将一些项划分成若干类。最常见的分类类型是二元分类，也就是说将数据分成二个类别，通常我们把这两个类别叫做正向和负向。如果超过两个类别，我们就把这样的分类任务叫做多元分类。spark.mllib支持两种线性分类方法：线性支持向量机(SVMs)和logistic回归。线性SVMs只支持二元分类，但是logistic回归既支持二元分类问题，也支持多元分类问题。对于这两种方法，spark.mllib都支持L1和L2正则化项。训练数据集用MLlib中LabeledPoint格式的RDD来表示，这里标签是从0开始的类索引，0, 1, 2, …</p>
 <p>注意：对于上面指导中的数学公式，二元标签y被记成+1(正向), -1(负向)，这种记法是为了方便公式表示。但是，为了和多元标签一致，spark.mllib中用0表示负向的标签，而不是-1。</p>
-<h2 id="Logistic回归"><a href="#Logistic回归" class="headerlink" title="Logistic回归"></a>Logistic回归</h2><h1 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h1><h2 id="最小二乘法，LASSO和ridge回归"><a href="#最小二乘法，LASSO和ridge回归" class="headerlink" title="最小二乘法，LASSO和ridge回归"></a>最小二乘法，LASSO和ridge回归</h2><h2 id="Streaming-linear-regression"><a href="#Streaming-linear-regression" class="headerlink" title="Streaming linear regression"></a>Streaming linear regression</h2><h1 id="Implementation-developer"><a href="#Implementation-developer" class="headerlink" title="Implementation (developer)"></a>Implementation (developer)</h1>
+<h2 id="Logistic-regression"><a href="#Logistic-regression" class="headerlink" title="Logistic regression"></a>Logistic regression</h2><p><a href="http://en.wikipedia.org/wiki/Logistic_regression" target="_blank" rel="external">Logistic regression</a>被广泛地用于预测一个二元问题。它是一种线性方法，可以用上述的方程来描述，公式中的损失函数是logistic损失：<br>$$L(w;x,y):=log(1+exp(-y{ w }^{ T }x)) $$<br>对于二元分类问题，算法输出一个二元logistic regression模型。对于一个新的数据点，我们记作\(x\)，模型通过应用logistic function来进行预测：<br>$$f(z)=\frac { 1 }{ 1+{ e }^{ -z } } $$<br>这里\(z={ w }^{ T }x\)。默认情况下，如果\({ f(w }^{ T }x)>0.5\)，则输出是正向的，否则是负向的。不像线性的SVMs，logistic regression模型f(z)的原始输出具有概率的解释(即x为正向的概率)。</p>
+<p>二元logistic regression可以被泛化为<a href="http://en.wikipedia.org/wiki/Multinomial_logistic_regression" target="_blank" rel="external">multinomial logistic regression</a>来训练和预测多元分类问题。</p>
+<p>这里是详细的<a href="http://www.slideshare.net/dbtsai/2014-0620-mlor-36132297" target="_blank" rel="external">数学推导</a>。</p>
+<p>对于多元分类问题，算法会输出一个多元的logistic regression模型，它包含K-1个二元logistic regression模型。给定一个新的数据点，会得到K-1个模型，然后具有最大概率的类别将会被选为预测的类别。</p>
+<p>我们实现了两种算法来解决logistic regression问题：mini-batch gradient ，descent 和 L-BFGS。如果想要更快地收敛，推荐使用L-BFGS而不是mini-batch gradient descent。</p>
+<h1 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h1><h2 id="最小二乘法，LASSO和ridge回归"><a href="#最小二乘法，LASSO和ridge回归" class="headerlink" title="最小二乘法，LASSO和ridge回归"></a>最小二乘法，LASSO和ridge回归</h2><p>线性最小二乘是解决回归问题最常见的方法。它也是可以用上面的方程描述的线性方法。公式中的损失函数是平方损失：<br>$$L(w;x,y):=\frac { 1 }{ 2 } { ({ w }^{ T }x-y) }^{ 2 } $$<br>许多和回归方法有关的模型都是使用不同类型的正则化得到的，比如：普通最小二乘或者线性最小二乘不使用正则化项；ridge回归使用L2正则，Lasso使用L1正则。对所有这些模型，平均损失或者训练误差\(\frac { 1 }{ n } \sum _{ i=1 }^{ n }{ { ({ W }^{ T }{ x }_{ i }-{ y }_{ i }) }^{ 2 } } \)，也叫做均方误差。</p>
+<p>下面的示例显示了如何加载训练数据，并解析它们为LabeledPoint格式的RDD。然后使用 <strong>LinearRegressionWithSGD</strong> 构建了一个简单的线性模型来预测标签值，在最后我们计算均方误差来评估拟合的好坏。</p>
+<h2 id="Streaming-linear-regression"><a href="#Streaming-linear-regression" class="headerlink" title="Streaming linear regression"></a>Streaming linear regression</h2><p>当数据是以流的方式获得，用在线的方式拟合回归模型是有用的，当有新数据来的时候，我们不断地更新模型的参数。spark.mllib目前支持使用普通最小二乘的流式线性回归。除了拟合是发生在每一批的数据上，拟合方式和线下是相似的，因此模型不断地根据流进来的数据进行更新。</p>
+<p>下列示例显示了如何从两种不同的文本文件输入流中加载训练数据和测试数据，解析流数据为 labeled points，对于初始的流在线拟合一个线性回归模型，然后对第二批流进行预测。</p>
+<p>首先，我们导入必需的类别来解析我们的输入数据，并且创建模型，<br>然后我们将输入流分成训练数据集和测试数据集。我们假设流上下文ssc已经被创建了，更多信息参考<a href="https://spark.apache.org/docs/latest/streaming-programming-guide.html#initializing" target="_blank" rel="external">Spark Streaming Programming Guide</a>。比如这个例子，我们使用训练和测试流中的labeled points，但是实际上对于测试数据，你很可能想要使用无标签的向量。</p>
+<p>通过初始化权重为0，我们创建了模型。<br>现在我们登记流进行训练和测试，然后启动一个作业。</p>
+<p>我们可以保存数据到文本文件，然后放到训练或者测试文件夹中。每一行都是一个数据点，格式为(y,[x1,x2,x3])，这里y是标签，x1,x2,x3 是特征。任何时间，文本文件被sys.argv<a href="http://en.wikipedia.org/wiki/Regularization_(mathematics)" target="_blank" rel="external">1</a>替换，模型都会更新。任何时候，sys.argv<a href="http://en.wikipedia.org/wiki/Elastic_net_regularization" target="_blank" rel="external">2</a>中的文本文件被替换了，你就会看到预测结果。随着你在训练目录中存放更多的数据，预测会变得越来越好。</p>
+<h1 id="Implementation-developer"><a href="#Implementation-developer" class="headerlink" title="Implementation (developer)"></a>Implementation (developer)</h1>
       
     </div>
 
@@ -452,7 +463,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">63</span>
+              <span class="site-state-item-count">65</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -529,7 +540,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数学公式"><span class="nav-number">1.</span> <span class="nav-text">数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#损失函数"><span class="nav-number">1.1.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则化项"><span class="nav-number">1.2.</span> <span class="nav-text">正则化项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化算法"><span class="nav-number">1.3.</span> <span class="nav-text">优化算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分类"><span class="nav-number">2.</span> <span class="nav-text">分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性支持向量机-SVMs"><span class="nav-number">2.1.</span> <span class="nav-text">线性支持向量机(SVMs)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic回归"><span class="nav-number">2.2.</span> <span class="nav-text">Logistic回归</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回归"><span class="nav-number">3.</span> <span class="nav-text">回归</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最小二乘法，LASSO和ridge回归"><span class="nav-number">3.1.</span> <span class="nav-text">最小二乘法，LASSO和ridge回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Streaming-linear-regression"><span class="nav-number">3.2.</span> <span class="nav-text">Streaming linear regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implementation-developer"><span class="nav-number">4.</span> <span class="nav-text">Implementation (developer)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数学公式"><span class="nav-number">1.</span> <span class="nav-text">数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#损失函数"><span class="nav-number">1.1.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则化项"><span class="nav-number">1.2.</span> <span class="nav-text">正则化项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化算法"><span class="nav-number">1.3.</span> <span class="nav-text">优化算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分类"><span class="nav-number">2.</span> <span class="nav-text">分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性支持向量机-SVMs"><span class="nav-number">2.1.</span> <span class="nav-text">线性支持向量机(SVMs)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic-regression"><span class="nav-number">2.2.</span> <span class="nav-text">Logistic regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回归"><span class="nav-number">3.</span> <span class="nav-text">回归</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最小二乘法，LASSO和ridge回归"><span class="nav-number">3.1.</span> <span class="nav-text">最小二乘法，LASSO和ridge回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Streaming-linear-regression"><span class="nav-number">3.2.</span> <span class="nav-text">Streaming linear regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implementation-developer"><span class="nav-number">4.</span> <span class="nav-text">Implementation (developer)</span></a></li></ol></div>
             
           </div>
         </section>

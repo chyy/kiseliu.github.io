@@ -94,7 +94,7 @@
 <meta property="og:description" content="研究现状为了抽取文章的摘要，研究者从不同的角度对自动文本摘要技术进行了研究：有专门研究摘要内容跟非摘要内容的区分特征的，有试图通过模拟文章写作过程将文章的主题挖掘出来的主题模型等等。如何将文章内容的侧重点挖掘出来，是自动摘要技术研究的关键之处。
 基于篇章结构的自动文本摘要方法在近年来发展迅速。
 潜在语义分析是一种篇章结构分析方法，其核心是用于描述文本产生机制的主题模型。一个好的主题模型应该能把握创">
-<meta property="og:updated_time" content="2016-10-10T03:07:50.000Z">
+<meta property="og:updated_time" content="2016-11-14T06:23:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文本自动摘要算法">
 <meta name="twitter:description" content="研究现状为了抽取文章的摘要，研究者从不同的角度对自动文本摘要技术进行了研究：有专门研究摘要内容跟非摘要内容的区分特征的，有试图通过模拟文章写作过程将文章的主题挖掘出来的主题模型等等。如何将文章内容的侧重点挖掘出来，是自动摘要技术研究的关键之处。
@@ -362,9 +362,9 @@
 <p>主题模型的训练离不开词频统计，词语多义现象造成基于词形的词频统计不准确，因此需要先对文本进行词语消歧。可以基于WordNet进行词语相关度计算，用于词语消歧，该步骤可以看作自动文本摘要的预处理工作。</p>
 <p>HMM(Hidden Markov Model)模型将文本看成<strong>由句子构成的观察序列</strong>，<strong>隐藏状态是文本的主题</strong>，该模型取消了主题的独立性假设，在理论上比较成功地描述了文本的发生机制，但是对于文本摘要，特别是单文本摘要，如果能得知文本各部分主题的长度，就能够保证摘要内容的平衡性。</p>
 <p>自动文本摘要技术需要考虑摘要的信息压缩比、内容的覆盖率和平衡性、语句的多样性、 整体的可读性等因素,这些因素直接影响自动文本摘要结果的好坏。</p>
-<h1 id="单文本摘要技术"><a href="#单文本摘要技术" class="headerlink" title="单文本摘要技术"></a>单文本摘要技术</h1><h2 id="基于特征的实现方法"><a href="#基于特征的实现方法" class="headerlink" title="基于特征的实现方法"></a>基于特征的实现方法</h2><ul>
+<h1 id="单文本摘要技术"><a href="#单文本摘要技术" class="headerlink" title="单文本摘要技术"></a>单文本摘要技术</h1><h2 id="基于特征分析的实现方法"><a href="#基于特征分析的实现方法" class="headerlink" title="基于特征分析的实现方法"></a>基于特征分析的实现方法</h2><ul>
 <li>将全文按照标题和内容分开；</li>
-<li>选取文本内容中重要的词语(这里主要考虑名词和动词)，并计算每个词语的权重，权重计算根据其在文本中出现的次数 tf 和包含该词语的句子个数 isf，即为 tf\isf；如果某个词语在标题中出现，对其权重乘以大于1的值，此处选取1.2。</li>
+<li>选取文本内容中重要的词语(这里主要考虑名词和动词)，并计算每个词语的权重，权重计算根据其在文本中出现的次数 tf 和包含该词语的句子个数 isf，即为 tf/isf；如果某个词语在标题中出现，对其权重乘以大于1的值，此处选取1.2。</li>
 <li>对文本内容进行分段分句，对位于首段尾段，首句尾句的句子进行标记。计算每个句子的权重，方法是将句子中的重要词语的权重加和；然后对首段尾段的句子权重乘以p_weight(大于1)，对首句尾句的句子权重乘以s_weight(大于1)。</li>
 <li>根据用户输入的压缩比，求出权重最高的topK个句子，并按它们在原文中的顺序输出生成摘要。</li>
 </ul>
@@ -492,7 +492,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">63</span>
+              <span class="site-state-item-count">65</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -569,7 +569,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#研究现状"><span class="nav-number">1.</span> <span class="nav-text">研究现状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单文本摘要技术"><span class="nav-number">2.</span> <span class="nav-text">单文本摘要技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于特征的实现方法"><span class="nav-number">2.1.</span> <span class="nav-text">基于特征的实现方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于TextRank的实现方法"><span class="nav-number">2.2.</span> <span class="nav-text">基于TextRank的实现方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用LSA进行单文档摘要"><span class="nav-number">2.3.</span> <span class="nav-text">利用LSA进行单文档摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于LDA的单文档摘要"><span class="nav-number">2.4.</span> <span class="nav-text">基于LDA的单文档摘要</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#研究现状"><span class="nav-number">1.</span> <span class="nav-text">研究现状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单文本摘要技术"><span class="nav-number">2.</span> <span class="nav-text">单文本摘要技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于特征分析的实现方法"><span class="nav-number">2.1.</span> <span class="nav-text">基于特征分析的实现方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于TextRank的实现方法"><span class="nav-number">2.2.</span> <span class="nav-text">基于TextRank的实现方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用LSA进行单文档摘要"><span class="nav-number">2.3.</span> <span class="nav-text">利用LSA进行单文档摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于LDA的单文档摘要"><span class="nav-number">2.4.</span> <span class="nav-text">基于LDA的单文档摘要</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
