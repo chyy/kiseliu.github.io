@@ -84,16 +84,22 @@
 
 
 
-<meta name="description">
+<meta name="description" content="机器翻译源起：第一代——词汇转换为主的方法词汇有一词多义问题；考虑上下文，出现第二代。还有词汇的顺序问题；第二代——句法分析为主的方法但是也不好，不能用有限的规则全部概括。第三代——语义分析为主的方法觉得句法分析还不能解决语义的问题，考虑对语义进行分析，引入到机器翻译中。
+随着统计方法的兴起：使用语料库，平行语料：是句子对齐，而不是词对齐(EM算法)。  
+噪声信道与统计机器翻译原语言 -&amp;gt; 噪声">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器翻译">
 <meta property="og:url" content="http://github.com/kiseliu/2016/11/21/机器翻译/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-11-21T11:24:06.000Z">
+<meta property="og:description" content="机器翻译源起：第一代——词汇转换为主的方法词汇有一词多义问题；考虑上下文，出现第二代。还有词汇的顺序问题；第二代——句法分析为主的方法但是也不好，不能用有限的规则全部概括。第三代——语义分析为主的方法觉得句法分析还不能解决语义的问题，考虑对语义进行分析，引入到机器翻译中。
+随着统计方法的兴起：使用语料库，平行语料：是句子对齐，而不是词对齐(EM算法)。  
+噪声信道与统计机器翻译原语言 -&amp;gt; 噪声">
+<meta property="og:updated_time" content="2016-11-21T13:03:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器翻译">
-<meta name="twitter:description">
+<meta name="twitter:description" content="机器翻译源起：第一代——词汇转换为主的方法词汇有一词多义问题；考虑上下文，出现第二代。还有词汇的顺序问题；第二代——句法分析为主的方法但是也不好，不能用有限的规则全部概括。第三代——语义分析为主的方法觉得句法分析还不能解决语义的问题，考虑对语义进行分析，引入到机器翻译中。
+随着统计方法的兴起：使用语料库，平行语料：是句子对齐，而不是词对齐(EM算法)。  
+噪声信道与统计机器翻译原语言 -&amp;gt; 噪声">
 
 
 
@@ -350,7 +356,15 @@
       
 
       
-        
+        <p>机器翻译源起：<br>第一代——词汇转换为主的方法<br>词汇有一词多义问题；考虑上下文，出现第二代。还有词汇的顺序问题；<br>第二代——句法分析为主的方法<br>但是也不好，不能用有限的规则全部概括。<br>第三代——语义分析为主的方法<br>觉得句法分析还不能解决语义的问题，考虑对语义进行分析，引入到机器翻译中。</p>
+<p>随着统计方法的兴起：使用语料库，<br>平行语料：是句子对齐，而不是词对齐(EM算法)。  </p>
+<p>噪声信道与统计机器翻译<br>原语言 -> 噪声信道 -> 目标语言，这里原语言和目标语言和我们要翻译的原语言和目标语言相反。</p>
+<p>翻译三原则:信(准确)，达(充分)，雅(优美)</p>
+<p>1 词对齐问题<br>2 可能性太多，性能差</p>
+<p>1 词汇翻译概率分布：最大似然估计<br>   使用EM算法<br>2 对齐函数<br>   满足函数条件</p>
+<p>IBM翻译模型1<br>$$ p(e,a|f)=\frac { \E  }{ { ({ l }_{ f }+1) }^{ { l }_{ e } } } \prod _{ j=1 }^{ { l }_{ e } }{ t({ e }_{ j }|{ f }_{ a(j) }) } $$</p>
+<p>词对齐<br>EM算法：从句子对齐的平行语料推算出词对齐的概率</p>
+
       
     </div>
 
@@ -481,7 +495,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
