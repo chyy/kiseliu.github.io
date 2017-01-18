@@ -1,0 +1,923 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Helvetica Neue:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="LingPipe,NER," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="What is Named Entity Recognition?NER是在运行文本中查找指定内容的提示的过程。
+News Entities: People, Locations and Organizations比如，一个简单的英文新闻命名实体识别器，在文本“John J. Smith lives in Seattle”中会找到人的提示：“John J. Smith”，位置的提示：“Seattl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lingpipe命名实体识别使用说明">
+<meta property="og:url" content="http://github.com/kiseliu/2017/01/16/lingpipe命名实体识别使用说明/index.html">
+<meta property="og:site_name" content="Welcome to kiseliu's homepage">
+<meta property="og:description" content="What is Named Entity Recognition?NER是在运行文本中查找指定内容的提示的过程。
+News Entities: People, Locations and Organizations比如，一个简单的英文新闻命名实体识别器，在文本“John J. Smith lives in Seattle”中会找到人的提示：“John J. Smith”，位置的提示：“Seattl">
+<meta property="og:updated_time" content="2017-01-18T10:01:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lingpipe命名实体识别使用说明">
+<meta name="twitter:description" content="What is Named Entity Recognition?NER是在运行文本中查找指定内容的提示的过程。
+News Entities: People, Locations and Organizations比如，一个简单的英文新闻命名实体识别器，在文本“John J. Smith lives in Seattle”中会找到人的提示：“John J. Smith”，位置的提示：“Seattl">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://github.com/kiseliu/2017/01/16/lingpipe命名实体识别使用说明/"/>
+
+  <title> Lingpipe命名实体识别使用说明 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Welcome to kiseliu's homepage</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Here's a dream chaser.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Lingpipe命名实体识别使用说明
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2017-01-16T10:31:34+08:00" content="2017-01-16">
+              2017-01-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/natural-language-processing/" itemprop="url" rel="index">
+                    <span itemprop="name">Natural Language Processing</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/16/lingpipe命名实体识别使用说明/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/16/lingpipe命名实体识别使用说明/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="What-is-Named-Entity-Recognition"><a href="#What-is-Named-Entity-Recognition" class="headerlink" title="What is Named Entity Recognition?"></a>What is Named Entity Recognition?</h1><p>NER是在运行文本中查找指定内容的提示的过程。</p>
+<h2 id="News-Entities-People-Locations-and-Organizations"><a href="#News-Entities-People-Locations-and-Organizations" class="headerlink" title="News Entities: People, Locations and Organizations"></a>News Entities: People, Locations and Organizations</h2><p>比如，一个简单的英文新闻命名实体识别器，在文本“John J. Smith lives in Seattle”中会找到人的提示：“John J. Smith”，位置的提示：“Seattle”。</p>
+<h2 id="Biomedical-Entities-Genes-Organisms-Malignancies-Chemicals-…"><a href="#Biomedical-Entities-Genes-Organisms-Malignancies-Chemicals-…" class="headerlink" title="Biomedical Entities: Genes, Organisms, Malignancies, Chemicals, …"></a>Biomedical Entities: Genes, Organisms, Malignancies, Chemicals, …</h2><p>There are a range of biomedical corpora available to find mentions of various entities. For instance, human fibrinogen and thrombin are mentions of genes in the sentence Native human fibrinogen was brought to coagulation by adding thrombin.</p>
+<h1 id="How-does-LingPipe-Recognize-Entities"><a href="#How-does-LingPipe-Recognize-Entities" class="headerlink" title="How does LingPipe Recognize Entities?"></a>How does LingPipe Recognize Entities?</h1><p>就像LingPipe中的许多其他模块，命名实体涉及到统计模型的有监督的训练，或者更直接的方法，比如字典匹配或者正则表达式匹配。所有这些方法用相同的类com.aliasi.chunk来标注文本。</p>
+<p>在统计模型中，训练数据必须已经被标注了所有感兴趣的实体，和它们的类型。更进一步，训练数据应该匹配系统会运行的数据。如果系统是在编辑好的新闻专线数据上训练的，那么运行在blogs上，表现会很差，因为模型会根据新闻专线文本提供的线索(比如尊称MR.的使用)进行调优，这会丢失blogs中提供的线索(比如e-mail链接)。</p>
+<h1 id="Rule-Based-Named-Entity-Detection"><a href="#Rule-Based-Named-Entity-Detection" class="headerlink" title="Rule-Based Named Entity Detection"></a>Rule-Based Named Entity Detection</h1><p>如果写一个正则表达式能够表示实体可能的模式，那么NER会非常简单。<br>下面我们写一个实体探测器，寻找符合语法规则的 email 地址。emails的格式可以参考维基百科标准：<br>▪       <a href="http://en.wikipedia.org/wiki/E-mail_address" target="_blank" rel="external">Wikipedia E-mail address entry</a></p>
+<p>简单地来说，一个形如lingpipe@alias-i.com的e-mail地址由两部分组成，个性化部分lingpipe和域名alias-i.com。它们被at-sign (@)分开。</p>
+<p>第一步是写一个正则表达式匹配所有的，且只匹配e-mail地址。我们不编写一个完全符合规范的电子邮件识别器，而是从下列中选择一个：<br>▪    <a href="http://regexlib.com/DisplayPatterns.aspx" target="_blank" rel="external">[Email Matching RegExes at (from regexlib.com)]</a></p>
+<p>下列示例由Bilou McGyver贡献，会起到示例作用：</p>
+<pre><code>[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})
+</code></pre><h1 id="Exact-Dictionary-Based-Chunking"><a href="#Exact-Dictionary-Based-Chunking" class="headerlink" title="Exact Dictionary-Based Chunking"></a>Exact Dictionary-Based Chunking</h1><p>在许多应用中，将一系列名字(别名)对应到它的实体和类型是相当直接的。比如，westlaw.com 已经列出了美国所有已经登记的律师。这些列表对于在法律文档，比如case law 或者 court transcripts中寻找律师的提示是非常有帮助的。棒球网址，比如mlb.com，有所有在职和退休的棒球运动员的名单。</p>
+<h2 id="Finding-Names-in-a-Dictionary"><a href="#Finding-Names-in-a-Dictionary" class="headerlink" title="Finding Names in a Dictionary"></a>Finding Names in a Dictionary</h2><p>有时候，用字典在文本中找出短语的所有提示是非常简单的。</p>
+<p>使用统计的识别器或者普通的基于规则的方法，在文本中寻找类似”50 Cent”的名字或者”xyx120 dvd player”的产品名字是非常困难的。有时候，词典可以被用来和统计识别器一起提高对这种“困难”名字提取的召回率。如果某些名字像类型一样，很容易混淆，或者如果它们和普通词语容易混淆，那么这些名字的提取很困难。</p>
+<p>另一种可行的策略是在语料上运行统计命名实体识别，然后用输出构建一个字典，该字典可以用于重新注释在第一遍中可能已经错过的块的语料库。</p>
+<p>做一个分离的正则表达式或子字符串搜索的简单方法在面对适度大小的字典时很快败下阵来。LingPipe提供了Aho-Corasick算法的实现。Aho-Corasick算法的优美之处是它可以在线性时间找到字典的所有匹配，和匹配的数量或者字典的大小无关。</p>
+<h2 id="Demo-Code"><a href="#Demo-Code" class="headerlink" title="Demo Code"></a>Demo Code</h2><p>Demo的代码是在 <a href="http://alias-i.com/lingpipe/demos/tutorial/ne/src/DictionaryChunker.java" target="_blank" rel="external">src/DictionaryChunker.java</a>。代码的第一步是简单地从一些固定的输入中创造一个字典：</p>
+<pre><code>static final double CHUNK_SCORE = 1.0;
+
+public static void main(String[] args) {
+
+    MapDictionary&lt;String&gt; dictionary = new MapDictionary&lt;String&gt;();
+    dictionary.addEntry(new DictionaryEntry&lt;String&gt;(&quot;50 Cent&quot;,&quot;PERSON&quot;,CHUNK_SCORE));
+    dictionary.addEntry(new DictionaryEntry&lt;String&gt;(&quot;XYZ120 DVD Player&quot;,&quot;DB_ID_1232&quot;,CHUNK_SCORE));
+    dictionary.addEntry(new DictionaryEntry&lt;String&gt;(&quot;cent&quot;,&quot;MONETARY_UNIT&quot;,CHUNK_SCORE));
+    dictionary.addEntry(new DictionaryEntry&lt;String&gt;(&quot;dvd player&quot;,&quot;PRODUCT&quot;,CHUNK_SCORE));
+</code></pre><p>注意，在DictionaryEntry构造器中，第一个参数是短语，第二个字符串参数是类型，最后一个双精度浮点型的参数是 chunk 的分数。字典输入本身是大小写敏感的。</p>
+<p>我们把短语”XYZ120 DVD Player”的类型设为”DB_ID_1232”。这是一种连接数据库IDs和文本提示的简单方法，但是注意歧义。并不是所有的”John Smith”s都是一样的。在字典中不同实体类型的数量是没有限制的。分数将被简单地作为基于字典的chunker中的chunk分数传递。</p>
+<p>代码的下一步是构建基于字典的chunker:</p>
+<pre><code>ExactDictionaryChunker dictionaryChunkerTT
+        = new ExactDictionaryChunker(dictionary,
+                                     IndoEuropeanTokenizerFactory.INSTANCE,
+                                     true,true);
+</code></pre><p>注意字典chunker是由字典，tokenizer factory和两个flags构建的。我们传递的tokenizer factory是IndoEuropean tokenizer factory的一个实例。因为我们的匹配将tokens当作符号，所以chunker需要一个tokenizer来进行匹配。在匹配过程中空格会被忽略。第一个flag表示是否找到所有的匹配，即使它们是重复的。第二个flag表示chunker是否是大小写敏感的。因此上面构造的字典chunker 会找到所有的chunk，并且是大小写敏感的。覆盖所有flag设置的三个其他chunkers构造如下：</p>
+<pre><code>ExactDictionaryChunker dictionaryChunkerTF
+       = new ExactDictionaryChunker(dictionary,
+                                    IndoEuropeanTokenizerFactory.INSTANCE,
+                                    true,false);
+
+    ExactDictionaryChunker dictionaryChunkerFT
+       = new ExactDictionaryChunker(dictionary,
+                                    IndoEuropeanTokenizerFactory.INSTANCE,
+                                    false,true);
+
+   ExactDictionaryChunker dictionaryChunkerFF
+       = new ExactDictionaryChunker(dictionary,
+                                    IndoEuropeanTokenizerFactory.INSTANCE,
+                                    false,false);
+</code></pre><p>chunkers被创建后，代码的其余部分通过命令行参数简单地运行，然后在结果文本上依次调用每个chunker。</p>
+<pre><code>for (int i = 0; i &lt; args.length; ++i) {
+        String text = args[i];
+        chunk(dictionaryChunkerTT,text);
+        chunk(dictionaryChunkerTF,text);
+        chunk(dictionaryChunkerFT,text);
+        chunk(dictionaryChunkerFF,text);
+    }
+</code></pre><p>chunk()方法简单地应用chunker到text上，然后打印结果。</p>
+<pre><code>static void chunk(ExactDictionaryChunker chunker, String text) {
+    Chunking chunking = chunker.chunk(text);
+    for (Chunk chunk : chunking.chunkSet()) {
+        int start = chunk.start();
+        int end = chunk.end();
+        String type = chunk.type();
+        double score = chunk.score();
+        String phrase = text.substring(start,end);
+        System.out.println(&quot;     phrase=|&quot; + phrase + &quot;|&quot;
+                           + &quot; start=&quot; + start
+                           + &quot; end=&quot; + end
+                           + &quot; type=&quot; + type
+                           + &quot; score=&quot; + score);
+    }
+}
+</code></pre><p>花点时间来比较基于构造器flags的不同输出。当大小写敏感被开启，字典输入”50 Cent”和文本”50 cent”不匹配，当所有匹配被开启，但是不开启大小写敏感，字典输入”cent”匹配”50 Cent”的第二个token。</p>
+<p>注意这种情况下，”50 Cent” and “Cent”是从同一个文本中拉出来的，字符跨度分别是(0,7) and (3,7)。</p>
+<h1 id="Approximate-Dictionary-Based-Chunking"><a href="#Approximate-Dictionary-Based-Chunking" class="headerlink" title="Approximate Dictionary-Based Chunking"></a>Approximate Dictionary-Based Chunking</h1><p>类<a href="http://alias-i.com/lingpipe/docs/api/com/aliasi/dict/ApproxDictionaryChunker.html" target="_blank" rel="external">dict.ApproxDictionaryChunker</a>实现了基于字典的chunker，它用来进行近似匹配。近似词典chunker用词典填充，方式和精确词典chunker相同。但是当它运行时，它不是寻找精确匹配，而是在某个固定的权重的编辑距离阀值内的所有匹配。</p>
+<h2 id="Running-the-Demo"><a href="#Running-the-Demo" class="headerlink" title="Running the Demo"></a>Running the Demo</h2><p>demos/tutorials/ne/src/ApproximateChunkerDemo.java</p>
+<h2 id="Code-Walk-Through"><a href="#Code-Walk-Through" class="headerlink" title="Code Walk Through"></a>Code Walk Through</h2><h1 id="Running-a-Statistical-Named-Entity-Recognizer"><a href="#Running-a-Statistical-Named-Entity-Recognizer" class="headerlink" title="Running a Statistical Named Entity Recognizer"></a>Running a Statistical Named Entity Recognizer</h1><p>如果训练的模型已经存在了，那么命名实体识别会非常简单。</p>
+<h2 id="First-Best-Named-Entity-Chunking"><a href="#First-Best-Named-Entity-Chunking" class="headerlink" title="First-Best Named Entity Chunking"></a>First-Best Named Entity Chunking</h2><p>下列程序 <a href="http://alias-i.com/lingpipe/demos/tutorial/ne/src/RunChunker.java" target="_blank" rel="external">src/RunChunker.java</a>提供一个命令来加载一个命名实体识别器作为Chunker接口的一个实例，然后把它应用到其余的命令行参数，最后打印结果。</p>
+<pre><code>public static void main(String[] args) throws Exception {
+    File modelFile = new File(args[0]);
+
+    System.out.println(&quot;Reading chunker from file=&quot; + modelFile);
+    Chunker chunker
+        = (Chunker) AbstractExternalizable.readObject(modelFile);
+
+    for (int i = 1; i &lt; args.length; ++i) {
+        Chunking chunking = chunker.chunk(args[i]);
+        System.out.println(&quot;Chunking=&quot; + chunking);
+    }
+}
+</code></pre><h2 id="N-Best-Named-Entity-Chunking"><a href="#N-Best-Named-Entity-Chunking" class="headerlink" title="N-Best Named Entity Chunking"></a>N-Best Named Entity Chunking</h2><h2 id="Confidence-Named-Entity-Chunking"><a href="#Confidence-Named-Entity-Chunking" class="headerlink" title="Confidence Named Entity Chunking"></a>Confidence Named Entity Chunking</h2><h1 id="Training-a-Named-Entity-Recognizer"><a href="#Training-a-Named-Entity-Recognizer" class="headerlink" title="Training a Named Entity Recognizer"></a>Training a Named Entity Recognizer</h1><h2 id="Download-Training-Data"><a href="#Download-Training-Data" class="headerlink" title="Download Training Data"></a>Download Training Data</h2><p>训练一个命名实体识别器的首要条件是收集数据。对于这个demo，我们用GeneTag 命名实体数据，由the Unites States <a href="http://ncbi.nlm.nih.gov/" target="_blank" rel="external">National Center for Biotechnology Information</a> (NCBI), a part of the U.S. Library of Medicine提供，下面这篇论文中有描述：<br>▪    Tanabe, L., N. Xie L. H. Thom, W. Matten, And W. J. Wilbur. 2004. <a href="http://www.biomedcentral.com/1471-2105/6/S1/S3" target="_blank" rel="external">GENETAG: a tagged corpus for gene/protein named entity recognition</a>. BMC Bioinformatics 2005, 6(Suppl 1):S3.<br>The data itself may be downloaded from the following anonymous FTP server:<br>▪    ftp://ftp.ncbi.nlm.nih.gov/pub/lsmith/MedTag/medtag.tar.gz</p>
+<h2 id="Running-the-Training-Code"><a href="#Running-the-Training-Code" class="headerlink" title="Running the Training Code"></a>Running the Training Code</h2><p>从 <a href="http://alias-i.com/lingpipe/demos/tutorial/ne/src/TrainGeneTag.java" target="_blank" rel="external">src/TrainGeneTag.java</a> 中抽取的下列代码，提供了所有你需要的来训练一个命名实体识别器：</p>
+<pre><code>static final int MAX_N_GRAM = 8;
+static final int NUM_CHARS = 256;
+static final double LM_INTERPOLATION = MAX_N_GRAM; // default behavior
+
+public static void main(String[] args) throws IOException {
+    File corpusFile = new File(args[0]);
+    File modelFile = new File(args[1]);
+
+    System.out.println(&quot;Setting up Chunker Estimator&quot;);
+    TokenizerFactory factory
+      = IndoEuropeanTokenizerFactory.INSTANCE;
+    HmmCharLmEstimator hmmEstimator
+      = new HmmCharLmEstimator(MAX_N_GRAM,NUM_CHARS,LM_INTERPOLATION);
+    CharLmHmmChunker chunkerEstimator
+      = new CharLmHmmChunker(factory,hmmEstimator);
+
+    System.out.println(&quot;Setting up Data Parser&quot;);
+    GeneTagParser parser = new GeneTagParser();
+    parser.setHandler(chunkerEstimator);
+
+    System.out.println(&quot;Training with Data from File=&quot; + corpusFile);
+    parser.parse(corpusFile);
+
+    System.out.println(&quot;Compiling and Writing Model to File=&quot; + modelFile);
+    AbstractExternalizable.compileTo(chunkerEstimator,modelFile);
+}
+</code></pre><p>需要注意的是：LingPipe中的代码和这里不同，需要进行相应的修改。</p>
+<h1 id="Evaluating-a-Named-Entity-Recognizer"><a href="#Evaluating-a-Named-Entity-Recognizer" class="headerlink" title="Evaluating a Named Entity Recognizer"></a>Evaluating a Named Entity Recognizer</h1><p>命名实体识别器(或者任何其他的统计模型)的标准的评估步骤涉及将带标签的数据划分为训练部分和测试部分。如果你是用老式的假设测试统计规则来做，或者你正在进行bakeoff的比赛，它只允许一次提交，你只能在测试集上测试一次。在机器学习社区，像我们即将做的事情是很常见的，它是一种作弊。用稍微技术一点的术语，我们将在所谓的development集上给出post-hoc结果。很幸运地，我们系统的参数非常稳定，这意味着参数上很微小的变化只会引起表现上微小的变化。</p>
+<h2 id="CoNLL-Spanish-Task"><a href="#CoNLL-Spanish-Task" class="headerlink" title="CoNLL Spanish Task"></a>CoNLL Spanish Task</h2><p>本教程使用的数据可以从web上获取。The Conference on Computational Natural Language Learning (ConNLL), is an annual meeting that sponsors a bakeoff. 在2002年，bakeoff比赛涉及了西班牙语和荷兰语的命名实体识别。以下是相关的CoNLL网页目录：<br>▪    <a href="http://www.cnts.ua.ac.be/conll2002/" target="_blank" rel="external">CoNLL 2002 Main Site</a><br>▪    <a href="http://www.cnts.ua.ac.be/conll2002/ner/" target="_blank" rel="external">CoNLL 2002 Shared Task: Language-Independent Named Entity Recognition (I)</a><br>▪    <a href="http://www.cnts.ua.ac.be/conll2002/ner.tgz" target="_blank" rel="external">Download Data: ner.tgz</a><br>▪    <a href="http://acl.ldc.upenn.edu/W/W02/W02-2024.pdf" target="_blank" rel="external">Workshop Paper on Results</a></p>
+<p>西班牙语训练数据前几行的编码说明如下：</p>
+<pre><code>El O
+Abogado B-PER
+General I-PER
+del I-PER
+Estado I-PER
+, O
+Daryl B-PER
+Williams I-PER
+, O
+</code></pre><p>就该编码方式，短语 El Abogado General del Estado 和 Daryl Williams 被编码成人物，开始的tokens选用标签B-PER标记，后面的tokens使用I-PER。</p>
+<p>不幸地是，数据中有几个格式是错误的，必须在解析器处理它们之前进行修改：<br>▪    esp.train, line 221619, change I-LOC to B-LOC<br>▪    esp.testa, line 30882, change I-LOC to B-LOC<br>▪    esp.testb, line 9291, change I-LOC to B-LOC</p>
+<h2 id="Training-the-Recognizer"><a href="#Training-the-Recognizer" class="headerlink" title="Training the Recognizer"></a>Training the Recognizer</h2><p>首先，我们用西班牙数据训练一个识别器。对于这个，我们有另外一个程序，在<a href="http://alias-i.com/lingpipe/demos/tutorial/ne/src/TrainConll2002.java" target="_blank" rel="external">src/TrainConll2002.java</a>中。相关的细节如下：</p>
+<pre><code>static final int NUM_CHUNKINGS_RESCORED = 64;
+static final int MAX_N_GRAM = 12;
+static final int NUM_CHARS = 256;
+static final double LM_INTERPOLATION = MAX_N_GRAM; // default behavior
+
+public static void main(String[] args) throws IOException {
+    File modelFile = new File(args[0]);
+    File trainFile = new File(args[1]);
+    File devFile = new File(args[2]);
+
+    TokenizerFactory factory
+        = IndoEuropeanTokenizerFactory.INSTANCE;
+    CharLmRescoringChunker chunkerEstimator
+        = new CharLmRescoringChunker(factory,NUM_CHUNKINGS_RESCORED,
+                                     MAX_N_GRAM,NUM_CHARS,
+                                     LM_INTERPOLATION);
+
+    Conll2002ChunkTagParser parser
+        = new Conll2002ChunkTagParser();
+    parser.setHandler(chunkerEstimator);
+
+    parser.parse(trainFile);
+    parser.parse(devFile);
+
+    AbstractExternalizable.compileTo(chunkerEstimator,modelFile);
+}
+</code></pre><p>最主要的区别是我们使用了一个不同的chunker estimator，这次是com.aliasi.chunk.CharLmRescoringChunker。这个chunker提供了一个更高级别的模型来重新调整底层chunker的输出。这就是为什么第一个静态变量声明了多少这样的基础n-best chunkings 要被重新计算。第二个明显的区别是它使用了专门为CoNLL数据格式设计的标记解析器，该实现可以在<a href="http://alias-i.com/lingpipe/demos/tutorial/ne/src/Conll2002ChunkTagParser.java" target="_blank" rel="external">src/Conll2002ChunkTagParser.java</a>中找到。和新训练方案的另一个区别是我们在两个文件上训练，训练数据和开发数据(which were both available to participants in the bakeoff before the final evaluation)。</p>
+<h2 id="Test-Program"><a href="#Test-Program" class="headerlink" title="Test Program"></a>Test Program</h2><p>测试程序几乎和运行程序一样简单，可以在<a href="http://alias-i.com/lingpipe/demos/tutorial/ne/src/TestConll2002Chunker.java" target="_blank" rel="external">src/TestConll2002Chunker.java</a>中看到，它的内容去掉输入声明和输出声明如下：</p>
+<pre><code>public static void main(String[] args) throws Exception {
+    File chunkerFile = new File(args[0]);
+    File testFile = new File(args[1]);
+
+
+    AbstractCharLmRescoringChunker chunker
+        = (AbstractCharLmRescoringChunker)
+        AbstractExternalizable.readObject(chunkerFile);
+
+    ChunkerEvaluator evaluator = new ChunkerEvaluator(chunker);
+    evaluator.setVerbose(true);
+
+    Conll2002ChunkTagParser parser
+        = new Conll2002ChunkTagParser();
+    parser.setHandler(evaluator);
+
+    parser.parse(testFile);
+
+    System.out.println(evaluator.toString());
+}
+</code></pre><h2 id="Incremental-Per-Sentence-Results"><a href="#Incremental-Per-Sentence-Results" class="headerlink" title="Incremental Per-Sentence Results"></a>Incremental Per-Sentence Results</h2><p>因为我们将评估器设置为verbose(详细)，所以它会为处理的每个句子打印一个报告。这里有一个例子：</p>
+<p>报告一开始会打印句子和实际的基本块边界作为参考。在参考下方，系统结果作为响应被打印出来。</p>
+<p>接下来打印 n-best 结果，还是以打印输入字符串和标注参考开始。Then, the n-best list is printed up to the size specified on the evaluator (8, in our case).正确答案下用横线画出，并且正确答案的排名也在底下打印出来了。在排名旁边是分数。这是一个用log(以2为底)形式表现的联合概率估计。Thus we see that our first answer at -143 is 213 times more likely than the second analysis at -156.</p>
+<p>最后同样是在输出打印之后，打印基于confidence的结果。系统返回的chunks和它们的字符偏移量(包括开始，不包括结束)，类型，和分数都被打印出来。分数是chunk对于给定输入的条件概率估计。也就是系统99.98%确定从118到136的字符序列是机构。这不是一个好的估计。The variety of chunker we’re using for this demo tends to attenuate the results far too much in the direction of the top scorers. This is because it estimates confidence from the top results on the n-best list, which is itself very attenuated in this example. The simpler chunker,com.aliasi.chunk.CharLmHmmChunker provides more reliable confidence estimates than this chunker, thecom.aliasi.chunk.CharLmRescoringChunker.</p>
+<h2 id="First-best-Results"><a href="#First-best-Results" class="headerlink" title="First-best Results"></a>First-best Results</h2><h1 id="Which-Named-Entity-Recognizer"><a href="#Which-Named-Entity-Recognizer" class="headerlink" title="Which Named Entity Recognizer?"></a>Which Named Entity Recognizer?</h1><p>LingPipe提供了3种普通的，可训练的chunkers，可以被用来训练命名实体识别器，所有的都在包com.aliasi.chunk中。它们是：<br>▪    CharLmHmmChunker: 作为标注问题，该chunker是基于chunking的编码，不过比标准的BIO编码要稍微更丰富，并且对上下文信息更敏感。<br>A character language model HMM then handles the tagging, using character language models for each tag (state) in the HMM, and a maximum likelihood bigram transition model. This chunker runs first-best, n-best and confidence output. This is the simplest, but also the least accurate chunker. It’s very fast with caching turned on. It also has good recall for its confidence output and fairly reliable confidence estimates.<br>▪    CharLmRescoringChunker: 是最准确的，也是最慢的chunker。它用CharLmHmmChunker来生成几个假设，然后用longer-distance character language models进行重新评分。该chunker非常慢，尤其是在重新评分n-best列表时。 It also approximates a confidence-based chunker by estimating confidence through the n-best list, but the confidence estimates tend to be highly attenuated by the model.<br>▪    TokenShapeChunker: This is the LingPipe 1.0 chunker rewrapped in LingPipe 2.0 interfaces. It runs with a generative model jointly predicting the next token and tag based on the previous two tokens and previous tag. Unknown words are replaced with shape features, based on an instance of TokenCategorizer. This chunker must be trained using the class TrainTokenShapeChunker. It’s very fast, but only provides first-best output. It’s performance is usually halfway between the other two approaches.</p>
+<h1 id="Chinese-and-Beyond"><a href="#Chinese-and-Beyond" class="headerlink" title="Chinese and Beyond"></a>Chinese and Beyond</h1><h2 id="New-Data-Formats"><a href="#New-Data-Formats" class="headerlink" title="New Data Formats"></a>New Data Formats</h2><p>处理新的数据格式要做的全部事情是写一个新的解析器。或者将数据转换成LingPipe已经能够处理的格式。解析器的示例可以参考<a href="http://alias-i.com/lingpipe/demos/tutorial/ne/src/Conll2002ChunkTagParser.java" target="_blank" rel="external">src/Conll2002ChunkTagParser.java</a>。剩下的事情都一样，可以在构建模型和评价模型的时候，对程序进行微小的改动。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lingpipe/" rel="tag">#LingPipe</a>
+          
+            <a href="/tags/ner/" rel="tag">#NER</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/06/lingpipe词性标注使用说明/" rel="next" title="LingPipe词性标注使用说明">
+                <i class="fa fa-chevron-left"></i> LingPipe词性标注使用说明
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/30/kaggle-collections/" rel="prev" title="Kaggle Collections">
+                Kaggle Collections <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/16/lingpipe命名实体识别使用说明/"
+           data-title="Lingpipe命名实体识别使用说明" data-url="http://github.com/kiseliu/2017/01/16/lingpipe命名实体识别使用说明/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myname.png"
+               alt="kiseliu" />
+          <p class="site-author-name" itemprop="name">kiseliu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">70</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/">
+                
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+              
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kiseliu" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/kiseliu" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/kiseliu" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-Named-Entity-Recognition"><span class="nav-number">1.</span> <span class="nav-text">What is Named Entity Recognition?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#News-Entities-People-Locations-and-Organizations"><span class="nav-number">1.1.</span> <span class="nav-text">News Entities: People, Locations and Organizations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Biomedical-Entities-Genes-Organisms-Malignancies-Chemicals-…"><span class="nav-number">1.2.</span> <span class="nav-text">Biomedical Entities: Genes, Organisms, Malignancies, Chemicals, …</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-does-LingPipe-Recognize-Entities"><span class="nav-number">2.</span> <span class="nav-text">How does LingPipe Recognize Entities?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rule-Based-Named-Entity-Detection"><span class="nav-number">3.</span> <span class="nav-text">Rule-Based Named Entity Detection</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exact-Dictionary-Based-Chunking"><span class="nav-number">4.</span> <span class="nav-text">Exact Dictionary-Based Chunking</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Finding-Names-in-a-Dictionary"><span class="nav-number">4.1.</span> <span class="nav-text">Finding Names in a Dictionary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo-Code"><span class="nav-number">4.2.</span> <span class="nav-text">Demo Code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Approximate-Dictionary-Based-Chunking"><span class="nav-number">5.</span> <span class="nav-text">Approximate Dictionary-Based Chunking</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Running-the-Demo"><span class="nav-number">5.1.</span> <span class="nav-text">Running the Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Walk-Through"><span class="nav-number">5.2.</span> <span class="nav-text">Code Walk Through</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Running-a-Statistical-Named-Entity-Recognizer"><span class="nav-number">6.</span> <span class="nav-text">Running a Statistical Named Entity Recognizer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#First-Best-Named-Entity-Chunking"><span class="nav-number">6.1.</span> <span class="nav-text">First-Best Named Entity Chunking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N-Best-Named-Entity-Chunking"><span class="nav-number">6.2.</span> <span class="nav-text">N-Best Named Entity Chunking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Confidence-Named-Entity-Chunking"><span class="nav-number">6.3.</span> <span class="nav-text">Confidence Named Entity Chunking</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Training-a-Named-Entity-Recognizer"><span class="nav-number">7.</span> <span class="nav-text">Training a Named Entity Recognizer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Download-Training-Data"><span class="nav-number">7.1.</span> <span class="nav-text">Download Training Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Running-the-Training-Code"><span class="nav-number">7.2.</span> <span class="nav-text">Running the Training Code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Evaluating-a-Named-Entity-Recognizer"><span class="nav-number">8.</span> <span class="nav-text">Evaluating a Named Entity Recognizer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CoNLL-Spanish-Task"><span class="nav-number">8.1.</span> <span class="nav-text">CoNLL Spanish Task</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training-the-Recognizer"><span class="nav-number">8.2.</span> <span class="nav-text">Training the Recognizer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test-Program"><span class="nav-number">8.3.</span> <span class="nav-text">Test Program</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Incremental-Per-Sentence-Results"><span class="nav-number">8.4.</span> <span class="nav-text">Incremental Per-Sentence Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#First-best-Results"><span class="nav-number">8.5.</span> <span class="nav-text">First-best Results</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Which-Named-Entity-Recognizer"><span class="nav-number">9.</span> <span class="nav-text">Which Named Entity Recognizer?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chinese-and-Beyond"><span class="nav-number">10.</span> <span class="nav-text">Chinese and Beyond</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#New-Data-Formats"><span class="nav-number">10.1.</span> <span class="nav-text">New Data Formats</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kiseliu</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kiseliu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>

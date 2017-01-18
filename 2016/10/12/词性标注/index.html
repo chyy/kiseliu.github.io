@@ -84,16 +84,19 @@
 
 
 
-<meta name="description">
+<meta name="description" content="词性标注:就是在给定句子中判定每个词的语法范畴，确定其词性并加以标注的过程。
+汉语词性标注的难点：[刘开瑛，2000]1、汉语是一种缺乏词形态变化的语言，词的类别不能像印欧语那样，直接从词的形态变化上来判别。2、常用词兼类现象严重，造成在汉语文本中词类歧义排除的任务量大，面广，复杂多样。3、语言学届在词性划分的目的，标准等问题上还存在分歧。与汉语分词规范类似，到目前为止，还没有一个统一的被广泛认可">
 <meta property="og:type" content="article">
 <meta property="og:title" content="词性标注">
 <meta property="og:url" content="http://github.com/kiseliu/2016/10/12/词性标注/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-10-12T07:38:51.000Z">
+<meta property="og:description" content="词性标注:就是在给定句子中判定每个词的语法范畴，确定其词性并加以标注的过程。
+汉语词性标注的难点：[刘开瑛，2000]1、汉语是一种缺乏词形态变化的语言，词的类别不能像印欧语那样，直接从词的形态变化上来判别。2、常用词兼类现象严重，造成在汉语文本中词类歧义排除的任务量大，面广，复杂多样。3、语言学届在词性划分的目的，标准等问题上还存在分歧。与汉语分词规范类似，到目前为止，还没有一个统一的被广泛认可">
+<meta property="og:updated_time" content="2017-01-16T02:22:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词性标注">
-<meta name="twitter:description">
+<meta name="twitter:description" content="词性标注:就是在给定句子中判定每个词的语法范畴，确定其词性并加以标注的过程。
+汉语词性标注的难点：[刘开瑛，2000]1、汉语是一种缺乏词形态变化的语言，词的类别不能像印欧语那样，直接从词的形态变化上来判别。2、常用词兼类现象严重，造成在汉语文本中词类歧义排除的任务量大，面广，复杂多样。3、语言学届在词性划分的目的，标准等问题上还存在分歧。与汉语分词规范类似，到目前为止，还没有一个统一的被广泛认可">
 
 
 
@@ -350,7 +353,16 @@
       
 
       
-        
+        <h1 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注:"></a>词性标注:</h1><p>就是在给定句子中判定每个词的语法范畴，确定其词性并加以标注的过程。</p>
+<h1 id="汉语词性标注的难点："><a href="#汉语词性标注的难点：" class="headerlink" title="汉语词性标注的难点："></a>汉语词性标注的难点：</h1><p>[刘开瑛，2000]<br>1、汉语是一种缺乏词形态变化的语言，词的类别不能像印欧语那样，直接从词的形态变化上来判别。<br>2、常用词兼类现象严重，造成在汉语文本中词类歧义排除的任务量大，面广，复杂多样。<br>3、语言学届在词性划分的目的，标准等问题上还存在分歧。与汉语分词规范类似，到目前为止，还没有一个统一的被广泛认可的汉语词类划分标准，词类划分的粒度和标记符号都不统一。<strong>即划分目的，划分标准，划分粒度和标记符号都不统一。</strong></p>
+<ul>
+<li>LDC标注语料：汉语词性一级标注集划分为33类；[Xia,2000]</li>
+<li>北京大学计算语言学研究所：26个基本词类代码，74个扩充代码，标记集中共有106个代码；[俞士汶等,2003a]</li>
+<li>山西大学：汉语词类标记集共有25类，包括17个大类和前缀、后缀、语素等其他类型；[刘开瑛，2000]</li>
+</ul>
+<p>总之，词类划分标准和标记符号集的差异，以及分词规范的含混性，给中文信息处理带来了极大的困难。</p>
+<h1 id="词性标注方法"><a href="#词性标注方法" class="headerlink" title="词性标注方法"></a>词性标注方法</h1><h2 id="基于统计模型的词性标注方法"><a href="#基于统计模型的词性标注方法" class="headerlink" title="基于统计模型的词性标注方法"></a>基于统计模型的词性标注方法</h2><p>LOB语料库词性标注系统CLAWS是基于统计模型(n元语法与一阶马尔可夫转移矩阵)的词性标注方法的典型代表[Marshall,1983]，该系统通过对n元语法概率的统计优化，实现了133个词类标记的合理标注。</p>
+
       
     </div>
 
@@ -462,7 +474,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">70</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -481,7 +493,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -539,7 +551,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#词性标注"><span class="nav-number">1.</span> <span class="nav-text">词性标注:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#汉语词性标注的难点："><span class="nav-number">2.</span> <span class="nav-text">汉语词性标注的难点：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#词性标注方法"><span class="nav-number">3.</span> <span class="nav-text">词性标注方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于统计模型的词性标注方法"><span class="nav-number">3.1.</span> <span class="nav-text">基于统计模型的词性标注方法</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -558,7 +570,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
