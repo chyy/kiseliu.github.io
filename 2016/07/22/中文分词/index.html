@@ -96,7 +96,7 @@
 对有歧义的情况难以解决，以及未登录词切分不好。
 正向最大匹配法逆向最大匹配法双向扫描法逐词遍历法基于统计模型的分词方法n元语法HMM规则方法与统计方法相结合分词方法基于N最短路径NSP算法
 粗分的模型生成一堆候选把句子的所有的分词可能画成一个有向图">
-<meta property="og:updated_time" content="2016-10-24T23:42:38.000Z">
+<meta property="og:updated_time" content="2017-02-09T09:55:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="中文分词">
 <meta name="twitter:description" content="基于词典的分词方法有一个词典，列出了所有已知的汉语词汇，不过人名，地名，组织机构名等未登录对这种分词方法有很大的影响。字典中没有出现的单子，单独成词。
@@ -375,7 +375,9 @@
 otcws是Ltp分词模型的训练套件，用户可以使用otcws训练获得Ltp的分词模型。otcws分别支持从人工切分数据中训练分词模型和调用分词模型对句子进行切分。otcws主要通过配置文件指定执行的工作，其中主要有两类配置文件：训练配置和测试配置。 
 otcws-customized是LTP分词模型的个性化训练套件。当用户处理一个特定领域的文本时，例如《诛仙》小说，包含大量特殊的人名、地名、武功等等，LTP的通用模型的准确效果可能并不能满足要求。为了使LTP具备这样的领域适应功能，我们开发了otcws-customized，用户只需要标注少量（500句左右）特定领域的文本，就能很好的提升效果。 
 </code></pre><p>otcws-customized能够在一个已经训练好的模型的基础上，继续增加特定领域的训练数据进行训练，得到一个描述该领域特性的增量模型。使用LTP的基础模型和该领域的增量模型，能够准确的预测该领域的文本。 </p>
-<h1 id="分词性能评测指标"><a href="#分词性能评测指标" class="headerlink" title="分词性能评测指标"></a>分词性能评测指标</h1>
+<h1 id="分词性能评测指标"><a href="#分词性能评测指标" class="headerlink" title="分词性能评测指标"></a>分词性能评测指标</h1><p>为了公平地对比各种分词方法，我们采用SIGHAN规定的“封闭测试”原则：模型训练和测试过程中，仅允许使用SIGHAN提供的数据集进行训练和测试，其他任何语料、词典、人工知识和语言学规则都不能使用。</p>
+<p>评价指标包括：准确率(P)、召回率(R)、F-测度(F-measure，简写为F)、未登录词的召回率({ R }_{ OOV })和词典词的召回率({ R }_{ IV })。各指标的计算公式如下。</p>
+
       
     </div>
 
@@ -487,7 +489,7 @@ otcws-customized是LTP分词模型的个性化训练套件。当用户处理一�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">70</span>
+              <span class="site-state-item-count">79</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -496,7 +498,7 @@ otcws-customized是LTP分词模型的个性化训练套件。当用户处理一�
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -506,7 +508,7 @@ otcws-customized是LTP分词模型的个性化训练套件。当用户处理一�
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -583,7 +585,7 @@ otcws-customized是LTP分词模型的个性化训练套件。当用户处理一�
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

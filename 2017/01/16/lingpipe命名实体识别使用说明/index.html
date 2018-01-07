@@ -87,14 +87,14 @@
 <meta name="description" content="What is Named Entity Recognition?NER是在运行文本中查找指定内容的提示的过程。
 News Entities: People, Locations and Organizations比如，一个简单的英文新闻命名实体识别器，在文本“John J. Smith lives in Seattle”中会找到人的提示：“John J. Smith”，位置的提示：“Seattl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lingpipe命名实体识别使用说明">
+<meta property="og:title" content="LingPipe命名实体识别使用说明">
 <meta property="og:url" content="http://github.com/kiseliu/2017/01/16/lingpipe命名实体识别使用说明/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
 <meta property="og:description" content="What is Named Entity Recognition?NER是在运行文本中查找指定内容的提示的过程。
 News Entities: People, Locations and Organizations比如，一个简单的英文新闻命名实体识别器，在文本“John J. Smith lives in Seattle”中会找到人的提示：“John J. Smith”，位置的提示：“Seattl">
-<meta property="og:updated_time" content="2017-01-18T10:01:17.000Z">
+<meta property="og:updated_time" content="2017-02-09T02:14:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lingpipe命名实体识别使用说明">
+<meta name="twitter:title" content="LingPipe命名实体识别使用说明">
 <meta name="twitter:description" content="What is Named Entity Recognition?NER是在运行文本中查找指定内容的提示的过程。
 News Entities: People, Locations and Organizations比如，一个简单的英文新闻命名实体识别器，在文本“John J. Smith lives in Seattle”中会找到人的提示：“John J. Smith”，位置的提示：“Seattl">
 
@@ -119,7 +119,7 @@ News Entities: People, Locations and Organizations比如，一个简单的英文
 
   <link rel="canonical" href="http://github.com/kiseliu/2017/01/16/lingpipe命名实体识别使用说明/"/>
 
-  <title> Lingpipe命名实体识别使用说明 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> LingPipe命名实体识别使用说明 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -287,7 +287,7 @@ News Entities: People, Locations and Organizations比如，一个简单的英文
             
             
               
-                Lingpipe命名实体识别使用说明
+                LingPipe命名实体识别使用说明
               
             
           </h1>
@@ -360,7 +360,7 @@ News Entities: People, Locations and Organizations比如，一个简单的英文
 <p>在统计模型中，训练数据必须已经被标注了所有感兴趣的实体，和它们的类型。更进一步，训练数据应该匹配系统会运行的数据。如果系统是在编辑好的新闻专线数据上训练的，那么运行在blogs上，表现会很差，因为模型会根据新闻专线文本提供的线索(比如尊称MR.的使用)进行调优，这会丢失blogs中提供的线索(比如e-mail链接)。</p>
 <h1 id="Rule-Based-Named-Entity-Detection"><a href="#Rule-Based-Named-Entity-Detection" class="headerlink" title="Rule-Based Named Entity Detection"></a>Rule-Based Named Entity Detection</h1><p>如果写一个正则表达式能够表示实体可能的模式，那么NER会非常简单。<br>下面我们写一个实体探测器，寻找符合语法规则的 email 地址。emails的格式可以参考维基百科标准：<br>▪       <a href="http://en.wikipedia.org/wiki/E-mail_address" target="_blank" rel="external">Wikipedia E-mail address entry</a></p>
 <p>简单地来说，一个形如lingpipe@alias-i.com的e-mail地址由两部分组成，个性化部分lingpipe和域名alias-i.com。它们被at-sign (@)分开。</p>
-<p>第一步是写一个正则表达式匹配所有的，且只匹配e-mail地址。我们不编写一个完全符合规范的电子邮件识别器，而是从下列中选择一个：<br>▪    <a href="http://regexlib.com/DisplayPatterns.aspx" target="_blank" rel="external">[Email Matching RegExes at (from regexlib.com)]</a></p>
+<p>第一步是写一个正则表达式匹配所有的，且只匹配e-mail地址。我们不编写一个完全符合规范的电子邮件识别器，而是从下列中选择一个：<br>▪ <a href="http://regexlib.com/DisplayPatterns.aspx" target="_blank" rel="external">Email Matching RegExes at (from regexlib.com)</a></p>
 <p>下列示例由Bilou McGyver贡献，会起到示例作用：</p>
 <pre><code>[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})
 </code></pre><h1 id="Exact-Dictionary-Based-Chunking"><a href="#Exact-Dictionary-Based-Chunking" class="headerlink" title="Exact Dictionary-Based Chunking"></a>Exact Dictionary-Based Chunking</h1><p>在许多应用中，将一系列名字(别名)对应到它的实体和类型是相当直接的。比如，westlaw.com 已经列出了美国所有已经登记的律师。这些列表对于在法律文档，比如case law 或者 court transcripts中寻找律师的提示是非常有帮助的。棒球网址，比如mlb.com，有所有在职和退休的棒球运动员的名单。</p>
@@ -442,7 +442,46 @@ public static void main(String[] args) {
         System.out.println(&quot;Chunking=&quot; + chunking);
     }
 }
-</code></pre><h2 id="N-Best-Named-Entity-Chunking"><a href="#N-Best-Named-Entity-Chunking" class="headerlink" title="N-Best Named Entity Chunking"></a>N-Best Named Entity Chunking</h2><h2 id="Confidence-Named-Entity-Chunking"><a href="#Confidence-Named-Entity-Chunking" class="headerlink" title="Confidence Named Entity Chunking"></a>Confidence Named Entity Chunking</h2><h1 id="Training-a-Named-Entity-Recognizer"><a href="#Training-a-Named-Entity-Recognizer" class="headerlink" title="Training a Named Entity Recognizer"></a>Training a Named Entity Recognizer</h1><h2 id="Download-Training-Data"><a href="#Download-Training-Data" class="headerlink" title="Download Training Data"></a>Download Training Data</h2><p>训练一个命名实体识别器的首要条件是收集数据。对于这个demo，我们用GeneTag 命名实体数据，由the Unites States <a href="http://ncbi.nlm.nih.gov/" target="_blank" rel="external">National Center for Biotechnology Information</a> (NCBI), a part of the U.S. Library of Medicine提供，下面这篇论文中有描述：<br>▪    Tanabe, L., N. Xie L. H. Thom, W. Matten, And W. J. Wilbur. 2004. <a href="http://www.biomedcentral.com/1471-2105/6/S1/S3" target="_blank" rel="external">GENETAG: a tagged corpus for gene/protein named entity recognition</a>. BMC Bioinformatics 2005, 6(Suppl 1):S3.<br>The data itself may be downloaded from the following anonymous FTP server:<br>▪    ftp://ftp.ncbi.nlm.nih.gov/pub/lsmith/MedTag/medtag.tar.gz</p>
+</code></pre><h2 id="N-Best-Named-Entity-Chunking"><a href="#N-Best-Named-Entity-Chunking" class="headerlink" title="N-Best Named Entity Chunking"></a>N-Best Named Entity Chunking</h2><p>下一个示例运行的是n-best chunking。它不只返回最好的答案，也按照似然估计的顺序(从大到小)返回其他可能的答案。</p>
+<pre><code>NBestChunker chunker
+    = (NBestChunker) AbstractExternalizable.readObject(modelFile);
+for (int i = 1; i &lt; args.length; ++i) {
+    char[] cs = args[i].toCharArray();
+    Iterator&lt;ScoredObject&lt;Chunking&gt;&gt; it = chunker.nBest(cs,0,cs.length,MAX_N_BEST);
+    System.out.println(args[i]);
+    for (int n = 0; it.hasNext(); ++n) {
+        ScoredObject&lt;Chunking&gt; so = it.next();   //文档上是ScoredObject so = it.next(); 有问题
+        double jointProb = so.score();
+        Chunking chunking = so.getObject();
+        System.out.println(n + &quot; &quot; + jointProb
+                           +  &quot; &quot; + chunking.chunkSet());
+    }
+</code></pre><p>N-best 分析尤其对长距离的重新评分系统有用。类com.aliasi.chunk.RescoringChunker提供了 rescoring 的一个抽象的实现，类com.aliasi.chunk.CharLmRescoringChunker提供了一个具体的实现。</p>
+<h2 id="Confidence-Named-Entity-Chunking"><a href="#Confidence-Named-Entity-Chunking" class="headerlink" title="Confidence Named Entity Chunking"></a>Confidence Named Entity Chunking</h2><p>最后的例子以返回confidence顺序的方式来运行chunking，confidence是给定输入text，输出chunk的概率P(chunk|text)。程序是很直接的：</p>
+<pre><code>ConfidenceChunker chunker
+    = (ConfidenceChunker) AbstractExternalizable.readObject(modelFile);
+for (int i = 1; i &lt; args.length; ++i) {&apos;
+    char[] cs = args[i].toCharArray();
+    Iterator&lt;Chunk&gt; it
+      = chunker.nBestChunks(cs,0,cs.length,MAX_N_BEST_CHUNKS);
+    System.out.println(args[i]);
+    System.out.println(&quot;Rank          Conf      Span    Type     Phrase&quot;);
+    for (int n = 0; it.hasNext(); ++n) {
+        Chunk chunk = it.next();
+        double conf = Math.pow(2.0,chunk.score());
+        int start = chunk.start();
+        int end = chunk.end();
+        String phrase = args[i].substring(start,end);
+        System.out.println(n + &quot; &quot;
+                           + Strings.decimalFormat(conf,&quot;0.0000&quot;,12)
+                           + &quot;       (&quot; + start
+                           + &quot;, &quot; + end
+                           + &quot;)       &quot; + chunk.type()
+                           + &quot;         &quot; + phrase);
+     }
+}
+</code></pre><p>我们认为基于confidence的结果对于信息抽取应用是非常有帮助的，因为结果的召回率和confidence很重要。在贝叶斯学派中，系统不仅仅只是统计最好的结果中的样本，也可能在后续的过程中推动基因标注的不确定性。其实，结果在迭代中是有用的。</p>
+<h1 id="Training-a-Named-Entity-Recognizer"><a href="#Training-a-Named-Entity-Recognizer" class="headerlink" title="Training a Named Entity Recognizer"></a>Training a Named Entity Recognizer</h1><h2 id="Download-Training-Data"><a href="#Download-Training-Data" class="headerlink" title="Download Training Data"></a>Download Training Data</h2><p>训练一个命名实体识别器的首要条件是收集数据。对于这个demo，我们用GeneTag 命名实体数据，由the Unites States <a href="http://ncbi.nlm.nih.gov/" target="_blank" rel="external">National Center for Biotechnology Information</a> (NCBI), a part of the U.S. Library of Medicine提供，下面这篇论文中有描述：<br>▪ Tanabe, L., N. Xie L. H. Thom, W. Matten, And W. J. Wilbur. 2004. <a href="http://www.biomedcentral.com/1471-2105/6/S1/S3" target="_blank" rel="external">GENETAG: a tagged corpus for gene/protein named entity recognition</a>. BMC Bioinformatics 2005, 6(Suppl 1):S3.<br>The data itself may be downloaded from the following anonymous FTP server:<br>▪ ftp://ftp.ncbi.nlm.nih.gov/pub/lsmith/MedTag/medtag.tar.gz</p>
 <h2 id="Running-the-Training-Code"><a href="#Running-the-Training-Code" class="headerlink" title="Running the Training Code"></a>Running the Training Code</h2><p>从 <a href="http://alias-i.com/lingpipe/demos/tutorial/ne/src/TrainGeneTag.java" target="_blank" rel="external">src/TrainGeneTag.java</a> 中抽取的下列代码，提供了所有你需要的来训练一个命名实体识别器：</p>
 <pre><code>static final int MAX_N_GRAM = 8;
 static final int NUM_CHARS = 256;
@@ -472,7 +511,7 @@ public static void main(String[] args) throws IOException {
 }
 </code></pre><p>需要注意的是：LingPipe中的代码和这里不同，需要进行相应的修改。</p>
 <h1 id="Evaluating-a-Named-Entity-Recognizer"><a href="#Evaluating-a-Named-Entity-Recognizer" class="headerlink" title="Evaluating a Named Entity Recognizer"></a>Evaluating a Named Entity Recognizer</h1><p>命名实体识别器(或者任何其他的统计模型)的标准的评估步骤涉及将带标签的数据划分为训练部分和测试部分。如果你是用老式的假设测试统计规则来做，或者你正在进行bakeoff的比赛，它只允许一次提交，你只能在测试集上测试一次。在机器学习社区，像我们即将做的事情是很常见的，它是一种作弊。用稍微技术一点的术语，我们将在所谓的development集上给出post-hoc结果。很幸运地，我们系统的参数非常稳定，这意味着参数上很微小的变化只会引起表现上微小的变化。</p>
-<h2 id="CoNLL-Spanish-Task"><a href="#CoNLL-Spanish-Task" class="headerlink" title="CoNLL Spanish Task"></a>CoNLL Spanish Task</h2><p>本教程使用的数据可以从web上获取。The Conference on Computational Natural Language Learning (ConNLL), is an annual meeting that sponsors a bakeoff. 在2002年，bakeoff比赛涉及了西班牙语和荷兰语的命名实体识别。以下是相关的CoNLL网页目录：<br>▪    <a href="http://www.cnts.ua.ac.be/conll2002/" target="_blank" rel="external">CoNLL 2002 Main Site</a><br>▪    <a href="http://www.cnts.ua.ac.be/conll2002/ner/" target="_blank" rel="external">CoNLL 2002 Shared Task: Language-Independent Named Entity Recognition (I)</a><br>▪    <a href="http://www.cnts.ua.ac.be/conll2002/ner.tgz" target="_blank" rel="external">Download Data: ner.tgz</a><br>▪    <a href="http://acl.ldc.upenn.edu/W/W02/W02-2024.pdf" target="_blank" rel="external">Workshop Paper on Results</a></p>
+<h2 id="CoNLL-Spanish-Task"><a href="#CoNLL-Spanish-Task" class="headerlink" title="CoNLL Spanish Task"></a>CoNLL Spanish Task</h2><p>本教程使用的数据可以从web上获取。The Conference on Computational Natural Language Learning (ConNLL), is an annual meeting that sponsors a bakeoff. 在2002年，bakeoff比赛涉及了西班牙语和荷兰语的命名实体识别。以下是相关的CoNLL网页目录：<br>▪ <a href="http://www.cnts.ua.ac.be/conll2002/" target="_blank" rel="external">CoNLL 2002 Main Site</a><br>▪ <a href="http://www.cnts.ua.ac.be/conll2002/ner/" target="_blank" rel="external">CoNLL 2002 Shared Task: Language-Independent Named Entity Recognition (I)</a><br>▪ <a href="http://www.cnts.ua.ac.be/conll2002/ner.tgz" target="_blank" rel="external">Download Data: ner.tgz</a><br>▪ <a href="http://acl.ldc.upenn.edu/W/W02/W02-2024.pdf" target="_blank" rel="external">Workshop Paper on Results</a></p>
 <p>西班牙语训练数据前几行的编码说明如下：</p>
 <pre><code>El O
 Abogado B-PER
@@ -484,7 +523,7 @@ Daryl B-PER
 Williams I-PER
 , O
 </code></pre><p>就该编码方式，短语 El Abogado General del Estado 和 Daryl Williams 被编码成人物，开始的tokens选用标签B-PER标记，后面的tokens使用I-PER。</p>
-<p>不幸地是，数据中有几个格式是错误的，必须在解析器处理它们之前进行修改：<br>▪    esp.train, line 221619, change I-LOC to B-LOC<br>▪    esp.testa, line 30882, change I-LOC to B-LOC<br>▪    esp.testb, line 9291, change I-LOC to B-LOC</p>
+<p>不幸地是，数据中有几个格式是错误的，必须在解析器处理它们之前进行修改：<br>▪ esp.train, line 221619, change I-LOC to B-LOC<br>▪ esp.testa, line 30882, change I-LOC to B-LOC<br>▪ esp.testb, line 9291, change I-LOC to B-LOC</p>
 <h2 id="Training-the-Recognizer"><a href="#Training-the-Recognizer" class="headerlink" title="Training the Recognizer"></a>Training the Recognizer</h2><p>首先，我们用西班牙数据训练一个识别器。对于这个，我们有另外一个程序，在<a href="http://alias-i.com/lingpipe/demos/tutorial/ne/src/TrainConll2002.java" target="_blank" rel="external">src/TrainConll2002.java</a>中。相关的细节如下：</p>
 <pre><code>static final int NUM_CHUNKINGS_RESCORED = 64;
 static final int MAX_N_GRAM = 12;
@@ -535,11 +574,52 @@ public static void main(String[] args) throws IOException {
     System.out.println(evaluator.toString());
 }
 </code></pre><h2 id="Incremental-Per-Sentence-Results"><a href="#Incremental-Per-Sentence-Results" class="headerlink" title="Incremental Per-Sentence Results"></a>Incremental Per-Sentence Results</h2><p>因为我们将评估器设置为verbose(详细)，所以它会为处理的每个句子打印一个报告。这里有一个例子：</p>
-<p>报告一开始会打印句子和实际的基本块边界作为参考。在参考下方，系统结果作为响应被打印出来。</p>
+<pre><code>CHUNKS=(65,77):MISC   (118,136):ORG
+     Dicha concentración se hace para preparar el partido final de la Copa del Rey que disputará el próximo sábado ante el Atlético de Madrid .
+     012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567
+               1         2         3         4         5         6         7         8         9         0         1         2         3
+                                                                                                         1         1         1         1
+
+ REF                                                                  M...........                                         O.................
+RESP                                                                  M...........                                         O.................
+
+
+             CHUNKS=(65,77):MISC   (118,136):ORG
+             Dicha concentración se hace para preparar el partido final de la Copa del Rey que disputará el próximo sábado ante el Atlético de Madrid .
+             012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567
+                       1         2         3         4         5         6         7         8         9         0         1         2         3
+                                                                                                                 1         1         1         1
+ REF                                                                          M...........                                         O.................
+    0   -143                                                                  M...........                                         O.................
+  -----------
+    1   -156                                                                  M...........                                         O.......    L.....
+    2   -158 O....                                                            M...........                                         O.................
+    3   -159                                                               M..............                                         O.................
+    4   -163                                                                  M...........                                         O.......    O.....
+    5   -164                                                      M.......................                                         O.................
+    6   -165                                                                  M...     M..                                         O.................
+    7   -166                                                                  M........... P..                                     O.................
+Correct Rank=0
+
+
+     CHUNKS=(65,77):MISC   (118,136):ORG
+     Dicha concentración se hace para preparar el partido final de la Copa del Rey que disputará el próximo sábado ante el Atlético de Madrid .
+     012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567
+               1         2         3         4         5         6         7         8         9         0         1         2         3
+                                                                                                         1         1         1         1
+TRUE  (65, 77): MISC  0.9999877514430212
+TRUE  (118, 136): ORG  0.9998255148751076
+false (118, 126): ORG  1.7448512066560313E-4
+false (130, 136): LOC  1.7339828700790064E-4
+false (0, 5): ORG  2.679282465485203E-5
+false (62, 77): MISC  1.1394528562976028E-5
+false (130, 136): ORG  1.062746657431117E-6
+false (53, 77): MISC  4.978971914365618E-7
+</code></pre><p>报告一开始会打印句子和实际的基本块边界作为参考。在参考下方，系统结果作为响应被打印出来。</p>
 <p>接下来打印 n-best 结果，还是以打印输入字符串和标注参考开始。Then, the n-best list is printed up to the size specified on the evaluator (8, in our case).正确答案下用横线画出，并且正确答案的排名也在底下打印出来了。在排名旁边是分数。这是一个用log(以2为底)形式表现的联合概率估计。Thus we see that our first answer at -143 is 213 times more likely than the second analysis at -156.</p>
 <p>最后同样是在输出打印之后，打印基于confidence的结果。系统返回的chunks和它们的字符偏移量(包括开始，不包括结束)，类型，和分数都被打印出来。分数是chunk对于给定输入的条件概率估计。也就是系统99.98%确定从118到136的字符序列是机构。这不是一个好的估计。The variety of chunker we’re using for this demo tends to attenuate the results far too much in the direction of the top scorers. This is because it estimates confidence from the top results on the n-best list, which is itself very attenuated in this example. The simpler chunker,com.aliasi.chunk.CharLmHmmChunker provides more reliable confidence estimates than this chunker, thecom.aliasi.chunk.CharLmRescoringChunker.</p>
-<h2 id="First-best-Results"><a href="#First-best-Results" class="headerlink" title="First-best Results"></a>First-best Results</h2><h1 id="Which-Named-Entity-Recognizer"><a href="#Which-Named-Entity-Recognizer" class="headerlink" title="Which Named Entity Recognizer?"></a>Which Named Entity Recognizer?</h1><p>LingPipe提供了3种普通的，可训练的chunkers，可以被用来训练命名实体识别器，所有的都在包com.aliasi.chunk中。它们是：<br>▪    CharLmHmmChunker: 作为标注问题，该chunker是基于chunking的编码，不过比标准的BIO编码要稍微更丰富，并且对上下文信息更敏感。<br>A character language model HMM then handles the tagging, using character language models for each tag (state) in the HMM, and a maximum likelihood bigram transition model. This chunker runs first-best, n-best and confidence output. This is the simplest, but also the least accurate chunker. It’s very fast with caching turned on. It also has good recall for its confidence output and fairly reliable confidence estimates.<br>▪    CharLmRescoringChunker: 是最准确的，也是最慢的chunker。它用CharLmHmmChunker来生成几个假设，然后用longer-distance character language models进行重新评分。该chunker非常慢，尤其是在重新评分n-best列表时。 It also approximates a confidence-based chunker by estimating confidence through the n-best list, but the confidence estimates tend to be highly attenuated by the model.<br>▪    TokenShapeChunker: This is the LingPipe 1.0 chunker rewrapped in LingPipe 2.0 interfaces. It runs with a generative model jointly predicting the next token and tag based on the previous two tokens and previous tag. Unknown words are replaced with shape features, based on an instance of TokenCategorizer. This chunker must be trained using the class TrainTokenShapeChunker. It’s very fast, but only provides first-best output. It’s performance is usually halfway between the other two approaches.</p>
-<h1 id="Chinese-and-Beyond"><a href="#Chinese-and-Beyond" class="headerlink" title="Chinese and Beyond"></a>Chinese and Beyond</h1><h2 id="New-Data-Formats"><a href="#New-Data-Formats" class="headerlink" title="New Data Formats"></a>New Data Formats</h2><p>处理新的数据格式要做的全部事情是写一个新的解析器。或者将数据转换成LingPipe已经能够处理的格式。解析器的示例可以参考<a href="http://alias-i.com/lingpipe/demos/tutorial/ne/src/Conll2002ChunkTagParser.java" target="_blank" rel="external">src/Conll2002ChunkTagParser.java</a>。剩下的事情都一样，可以在构建模型和评价模型的时候，对程序进行微小的改动。</p>
+<h2 id="First-best-Results"><a href="#First-best-Results" class="headerlink" title="First-best Results"></a>First-best Results</h2><h1 id="Which-Named-Entity-Recognizer"><a href="#Which-Named-Entity-Recognizer" class="headerlink" title="Which Named Entity Recognizer?"></a>Which Named Entity Recognizer?</h1><p>LingPipe提供了3种普通的，可训练的chunkers，可以被用来训练命名实体识别器，所有的都在包com.aliasi.chunk中。它们是：<br>▪ CharLmHmmChunker: 作为标注问题，该chunker是基于chunking的编码，不过比标准的BIO编码要稍微更丰富，并且对上下文信息更敏感。基于字的语言模型HMM是使用HMM中的每个标签（状态）的字符语言模型和最大似然bigram转移模型处理标签。该chunker运行first-best, n-best 和 confidence output。这是最简单的，但也是最不准确的chunker。如果缓存开启，该chunker会非常快。对于confidence输出，它有很好的召回率，和相当可信的confidence估计。<br>▪ CharLmRescoringChunker: 是最准确的，也是最慢的chunker。它用CharLmHmmChunker来生成几个可能，然后用longer-distance character language models进行重新评分。该chunker非常慢，尤其是在重新评分n-best列表时。 它大致上是通过n-best列表估计confidence的基于confidence的chunker，但是confidence估计可能被模型极大地降低。<br>▪ TokenShapeChunker: 这是LingPipe 1.0 的chunker，但是用LingPipe 2.0接口包装了。It runs with a generative model jointly predicting the next token and tag based on the previous two tokens and previous tag. 它运行一个生成式模型，基于前面的2个tokens和前面的1个tag来预测下一个token和tag。基于TokenCategorizer的实例，未知的词语会用典型的特征进行替换。该chunker必须使用类TrainTokenShapeChunker来训练。它很快，但是只提供first-best输出。它的表现通常介于上述两个模型之间。</p>
+<h1 id="Named-Entities-in-Arabic"><a href="#Named-Entities-in-Arabic" class="headerlink" title="Named Entities in Arabic"></a>Named Entities in Arabic</h1><h1 id="Chinese-and-Beyond"><a href="#Chinese-and-Beyond" class="headerlink" title="Chinese and Beyond"></a>Chinese and Beyond</h1><h2 id="New-Data-Formats"><a href="#New-Data-Formats" class="headerlink" title="New Data Formats"></a>New Data Formats</h2><p>处理新的数据格式要做的全部事情是写一个新的解析器。或者将数据转换成LingPipe已经能够处理的格式。解析器的示例可以参考<a href="http://alias-i.com/lingpipe/demos/tutorial/ne/src/Conll2002ChunkTagParser.java" target="_blank" rel="external">src/Conll2002ChunkTagParser.java</a>。剩下的事情都一样，可以在构建模型和评价模型的时候，对程序进行微小的改动。</p>
 
       
     </div>
@@ -580,8 +660,8 @@ public static void main(String[] args) throws IOException {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/30/kaggle-collections/" rel="prev" title="Kaggle Collections">
-                Kaggle Collections <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/17/知识图谱技术综述/" rel="prev" title="知识图谱技术综述">
+                知识图谱技术综述 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -609,7 +689,7 @@ public static void main(String[] args) throws IOException {
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/01/16/lingpipe命名实体识别使用说明/"
-           data-title="Lingpipe命名实体识别使用说明" data-url="http://github.com/kiseliu/2017/01/16/lingpipe命名实体识别使用说明/">
+           data-title="LingPipe命名实体识别使用说明" data-url="http://github.com/kiseliu/2017/01/16/lingpipe命名实体识别使用说明/">
       </div>
     
   </div>
@@ -654,7 +734,7 @@ public static void main(String[] args) throws IOException {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">70</span>
+              <span class="site-state-item-count">79</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -663,7 +743,7 @@ public static void main(String[] args) throws IOException {
             <div class="site-state-item site-state-categories">
               <a href="/">
                 
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 
             </div>
@@ -673,7 +753,7 @@ public static void main(String[] args) throws IOException {
             <div class="site-state-item site-state-tags">
               <a href="/">
               
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -731,7 +811,7 @@ public static void main(String[] args) throws IOException {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-Named-Entity-Recognition"><span class="nav-number">1.</span> <span class="nav-text">What is Named Entity Recognition?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#News-Entities-People-Locations-and-Organizations"><span class="nav-number">1.1.</span> <span class="nav-text">News Entities: People, Locations and Organizations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Biomedical-Entities-Genes-Organisms-Malignancies-Chemicals-…"><span class="nav-number">1.2.</span> <span class="nav-text">Biomedical Entities: Genes, Organisms, Malignancies, Chemicals, …</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-does-LingPipe-Recognize-Entities"><span class="nav-number">2.</span> <span class="nav-text">How does LingPipe Recognize Entities?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rule-Based-Named-Entity-Detection"><span class="nav-number">3.</span> <span class="nav-text">Rule-Based Named Entity Detection</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exact-Dictionary-Based-Chunking"><span class="nav-number">4.</span> <span class="nav-text">Exact Dictionary-Based Chunking</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Finding-Names-in-a-Dictionary"><span class="nav-number">4.1.</span> <span class="nav-text">Finding Names in a Dictionary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo-Code"><span class="nav-number">4.2.</span> <span class="nav-text">Demo Code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Approximate-Dictionary-Based-Chunking"><span class="nav-number">5.</span> <span class="nav-text">Approximate Dictionary-Based Chunking</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Running-the-Demo"><span class="nav-number">5.1.</span> <span class="nav-text">Running the Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Walk-Through"><span class="nav-number">5.2.</span> <span class="nav-text">Code Walk Through</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Running-a-Statistical-Named-Entity-Recognizer"><span class="nav-number">6.</span> <span class="nav-text">Running a Statistical Named Entity Recognizer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#First-Best-Named-Entity-Chunking"><span class="nav-number">6.1.</span> <span class="nav-text">First-Best Named Entity Chunking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N-Best-Named-Entity-Chunking"><span class="nav-number">6.2.</span> <span class="nav-text">N-Best Named Entity Chunking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Confidence-Named-Entity-Chunking"><span class="nav-number">6.3.</span> <span class="nav-text">Confidence Named Entity Chunking</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Training-a-Named-Entity-Recognizer"><span class="nav-number">7.</span> <span class="nav-text">Training a Named Entity Recognizer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Download-Training-Data"><span class="nav-number">7.1.</span> <span class="nav-text">Download Training Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Running-the-Training-Code"><span class="nav-number">7.2.</span> <span class="nav-text">Running the Training Code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Evaluating-a-Named-Entity-Recognizer"><span class="nav-number">8.</span> <span class="nav-text">Evaluating a Named Entity Recognizer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CoNLL-Spanish-Task"><span class="nav-number">8.1.</span> <span class="nav-text">CoNLL Spanish Task</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training-the-Recognizer"><span class="nav-number">8.2.</span> <span class="nav-text">Training the Recognizer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test-Program"><span class="nav-number">8.3.</span> <span class="nav-text">Test Program</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Incremental-Per-Sentence-Results"><span class="nav-number">8.4.</span> <span class="nav-text">Incremental Per-Sentence Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#First-best-Results"><span class="nav-number">8.5.</span> <span class="nav-text">First-best Results</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Which-Named-Entity-Recognizer"><span class="nav-number">9.</span> <span class="nav-text">Which Named Entity Recognizer?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chinese-and-Beyond"><span class="nav-number">10.</span> <span class="nav-text">Chinese and Beyond</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#New-Data-Formats"><span class="nav-number">10.1.</span> <span class="nav-text">New Data Formats</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-Named-Entity-Recognition"><span class="nav-number">1.</span> <span class="nav-text">What is Named Entity Recognition?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#News-Entities-People-Locations-and-Organizations"><span class="nav-number">1.1.</span> <span class="nav-text">News Entities: People, Locations and Organizations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Biomedical-Entities-Genes-Organisms-Malignancies-Chemicals-…"><span class="nav-number">1.2.</span> <span class="nav-text">Biomedical Entities: Genes, Organisms, Malignancies, Chemicals, …</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-does-LingPipe-Recognize-Entities"><span class="nav-number">2.</span> <span class="nav-text">How does LingPipe Recognize Entities?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rule-Based-Named-Entity-Detection"><span class="nav-number">3.</span> <span class="nav-text">Rule-Based Named Entity Detection</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exact-Dictionary-Based-Chunking"><span class="nav-number">4.</span> <span class="nav-text">Exact Dictionary-Based Chunking</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Finding-Names-in-a-Dictionary"><span class="nav-number">4.1.</span> <span class="nav-text">Finding Names in a Dictionary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo-Code"><span class="nav-number">4.2.</span> <span class="nav-text">Demo Code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Approximate-Dictionary-Based-Chunking"><span class="nav-number">5.</span> <span class="nav-text">Approximate Dictionary-Based Chunking</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Running-the-Demo"><span class="nav-number">5.1.</span> <span class="nav-text">Running the Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Walk-Through"><span class="nav-number">5.2.</span> <span class="nav-text">Code Walk Through</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Running-a-Statistical-Named-Entity-Recognizer"><span class="nav-number">6.</span> <span class="nav-text">Running a Statistical Named Entity Recognizer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#First-Best-Named-Entity-Chunking"><span class="nav-number">6.1.</span> <span class="nav-text">First-Best Named Entity Chunking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N-Best-Named-Entity-Chunking"><span class="nav-number">6.2.</span> <span class="nav-text">N-Best Named Entity Chunking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Confidence-Named-Entity-Chunking"><span class="nav-number">6.3.</span> <span class="nav-text">Confidence Named Entity Chunking</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Training-a-Named-Entity-Recognizer"><span class="nav-number">7.</span> <span class="nav-text">Training a Named Entity Recognizer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Download-Training-Data"><span class="nav-number">7.1.</span> <span class="nav-text">Download Training Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Running-the-Training-Code"><span class="nav-number">7.2.</span> <span class="nav-text">Running the Training Code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Evaluating-a-Named-Entity-Recognizer"><span class="nav-number">8.</span> <span class="nav-text">Evaluating a Named Entity Recognizer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CoNLL-Spanish-Task"><span class="nav-number">8.1.</span> <span class="nav-text">CoNLL Spanish Task</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training-the-Recognizer"><span class="nav-number">8.2.</span> <span class="nav-text">Training the Recognizer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test-Program"><span class="nav-number">8.3.</span> <span class="nav-text">Test Program</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Incremental-Per-Sentence-Results"><span class="nav-number">8.4.</span> <span class="nav-text">Incremental Per-Sentence Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#First-best-Results"><span class="nav-number">8.5.</span> <span class="nav-text">First-best Results</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Which-Named-Entity-Recognizer"><span class="nav-number">9.</span> <span class="nav-text">Which Named Entity Recognizer?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Named-Entities-in-Arabic"><span class="nav-number">10.</span> <span class="nav-text">Named Entities in Arabic</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chinese-and-Beyond"><span class="nav-number">11.</span> <span class="nav-text">Chinese and Beyond</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#New-Data-Formats"><span class="nav-number">11.1.</span> <span class="nav-text">New Data Formats</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -750,7 +830,7 @@ public static void main(String[] args) throws IOException {
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
