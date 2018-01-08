@@ -84,16 +84,19 @@
 
 
 
-<meta name="description" content="Filters and Features在理解了图像处理的基础之后，我们来看看一些基本的概率以增强我们的理解，如，kernels，convolution，filters，和基本的 image features。我们将学习不同类型的image filters，如，Gaussian filter 和 Sobel。以及 edge detection 和 Hough transformations，它们是">
+<meta name="description" content="在理解了图像处理的基础之后，我们来看看一些基本的概率以增强我们的理解，如，kernels，convolution，filters，和基本的 image features。我们将学习不同类型的image filters，如，Gaussian filter 和 Sobel。以及 edge detection 和 Hough transformations，它们是计算机视觉应用中很基本的预处理步骤。
+I">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图像处理基础">
+<meta property="og:title" content="Filters and Features">
 <meta property="og:url" content="http://github.com/kiseliu/2018/01/05/图像处理基础/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="Filters and Features在理解了图像处理的基础之后，我们来看看一些基本的概率以增强我们的理解，如，kernels，convolution，filters，和基本的 image features。我们将学习不同类型的image filters，如，Gaussian filter 和 Sobel。以及 edge detection 和 Hough transformations，它们是">
-<meta property="og:updated_time" content="2018-01-07T10:17:02.606Z">
+<meta property="og:description" content="在理解了图像处理的基础之后，我们来看看一些基本的概率以增强我们的理解，如，kernels，convolution，filters，和基本的 image features。我们将学习不同类型的image filters，如，Gaussian filter 和 Sobel。以及 edge detection 和 Hough transformations，它们是计算机视觉应用中很基本的预处理步骤。
+I">
+<meta property="og:updated_time" content="2018-01-08T13:13:29.402Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图像处理基础">
-<meta name="twitter:description" content="Filters and Features在理解了图像处理的基础之后，我们来看看一些基本的概率以增强我们的理解，如，kernels，convolution，filters，和基本的 image features。我们将学习不同类型的image filters，如，Gaussian filter 和 Sobel。以及 edge detection 和 Hough transformations，它们是">
+<meta name="twitter:title" content="Filters and Features">
+<meta name="twitter:description" content="在理解了图像处理的基础之后，我们来看看一些基本的概率以增强我们的理解，如，kernels，convolution，filters，和基本的 image features。我们将学习不同类型的image filters，如，Gaussian filter 和 Sobel。以及 edge detection 和 Hough transformations，它们是计算机视觉应用中很基本的预处理步骤。
+I">
 
 
 
@@ -116,7 +119,7 @@
 
   <link rel="canonical" href="http://github.com/kiseliu/2018/01/05/图像处理基础/"/>
 
-  <title> 图像处理基础 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Filters and Features | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -284,7 +287,7 @@
             
             
               
-                图像处理基础
+                Filters and Features
               
             
           </h1>
@@ -350,8 +353,8 @@
       
 
       
-        <h1 id="Filters-and-Features"><a href="#Filters-and-Features" class="headerlink" title="Filters and Features"></a>Filters and Features</h1><p>在理解了图像处理的基础之后，我们来看看一些基本的概率以增强我们的理解，如，kernels，convolution，filters，和基本的 image features。<br>我们将学习不同类型的image filters，如，Gaussian filter 和 Sobel。以及 edge detection 和 Hough transformations，它们是计算机视觉应用中很基本的预处理步骤。</p>
-<h2 id="Image-derivatives"><a href="#Image-derivatives" class="headerlink" title="Image derivatives"></a>Image derivatives</h2><h2 id="Understanding-image-filters"><a href="#Understanding-image-filters" class="headerlink" title="Understanding image filters"></a>Understanding image filters</h2><h3 id="Gaussian-blur"><a href="#Gaussian-blur" class="headerlink" title="Gaussian blur"></a>Gaussian blur</h3><h3 id="Median-filter"><a href="#Median-filter" class="headerlink" title="Median filter"></a>Median filter</h3><h3 id="Dilation-and-erosion"><a href="#Dilation-and-erosion" class="headerlink" title="Dilation and erosion"></a>Dilation and erosion</h3><h3 id="Customs-filters"><a href="#Customs-filters" class="headerlink" title="Customs filters"></a>Customs filters</h3><h3 id="Image-thresholding"><a href="#Image-thresholding" class="headerlink" title="Image thresholding"></a>Image thresholding</h3><h2 id="Edge-detection"><a href="#Edge-detection" class="headerlink" title="Edge detection"></a>Edge detection</h2><p>在图像里，检测边缘是一个很重要的概念，并且有很多应用。检测边缘可以帮助我们知道关于图像的结构和图像中物体的边界。<br>边是图像中那些像素值有很大变化的部分。也就是说，随着我们从左往右扫描图片，如果前一个像素的值会比目前像素的值低很多，那么目前的像素可能是边的一个像素。<br>正如我们在前一章中提到的，图像的导数是一种寻找像素值改变的方法，因此它可能是寻找图像中的边界的最简单的方法。不过只使用图像的导数并不是非常的rubost，因为具有很多噪音的图像会产生很多假边，这样就会降低视觉系统的整体质量。<br>目前有许多复杂的边缘检测技术，比如，Sobel和Canny边缘检测器，这些检测器更robust，会产生比较少的假边。</p>
+        <p>在理解了图像处理的基础之后，我们来看看一些基本的概率以增强我们的理解，如，kernels，convolution，filters，和基本的 image features。<br>我们将学习不同类型的image filters，如，Gaussian filter 和 Sobel。以及 edge detection 和 Hough transformations，它们是计算机视觉应用中很基本的预处理步骤。</p>
+<h2 id="Image-derivatives"><a href="#Image-derivatives" class="headerlink" title="Image derivatives"></a>Image derivatives</h2><h1 id="Understanding-image-filters"><a href="#Understanding-image-filters" class="headerlink" title="Understanding image filters"></a>Understanding image filters</h1><h3 id="Gaussian-blur"><a href="#Gaussian-blur" class="headerlink" title="Gaussian blur"></a>Gaussian blur</h3><h3 id="Median-filter"><a href="#Median-filter" class="headerlink" title="Median filter"></a>Median filter</h3><h3 id="Dilation-and-erosion"><a href="#Dilation-and-erosion" class="headerlink" title="Dilation and erosion"></a>Dilation and erosion</h3><h3 id="Customs-filters"><a href="#Customs-filters" class="headerlink" title="Customs filters"></a>Customs filters</h3><h3 id="Image-thresholding"><a href="#Image-thresholding" class="headerlink" title="Image thresholding"></a>Image thresholding</h3><h1 id="Edge-detection"><a href="#Edge-detection" class="headerlink" title="Edge detection"></a>Edge detection</h1><p>在图像里，检测边缘是一个很重要的概念，并且有很多应用。检测边缘可以帮助我们知道关于图像的结构和图像中物体的边界。<br>边是图像中那些像素值有很大变化的部分。也就是说，随着我们从左往右扫描图片，如果前一个像素的值会比目前像素的值低很多，那么目前的像素可能是边的一个像素。<br>正如我们在前一章中提到的，图像的导数是一种寻找像素值改变的方法，因此它可能是寻找图像中的边界的最简单的方法。不过只使用图像的导数并不是非常的rubost，因为具有很多噪音的图像会产生很多假边，这样就会降低视觉系统的整体质量。<br>目前有许多复杂的边缘检测技术，比如，Sobel和Canny边缘检测器，这些检测器更robust，会产生比较少的假边。</p>
 <h3 id="Sobel-edge-detector"><a href="#Sobel-edge-detector" class="headerlink" title="Sobel edge detector"></a>Sobel edge detector</h3><p>Sobel边缘检测器背后的思想是寻找有较大梯度值的像素。我们不仅希望像素值有改变，还希望改变(梯度)的程度比较大。<br>我们通过计算图像在x方向和y方向的导数的平方和的平常根来衡量导数的量级，即以下导数的公式：<br>$$\Delta f=\frac { \partial f }{ \partial x } i+\frac { \partial f }{ \partial y } j+\frac { \partial f }{ \partial z } k$$<br>为了决定多大的值应该被考虑，我们设置一个threshold。在求出梯度之后，我们只考虑那些超出某个threshold的梯度值。  </p>
 <p>Sobel edge detector 算法使用的kernels如下：<br>sobel_h, sobel_v</p>
 <pre><code>from skimage import io, filters, color
@@ -373,8 +376,10 @@ edge = feature.canny(img, 3)
    io.imshow(edge)
    io.show()
 </code></pre><p>至此，我们已经使用了一些filters来寻找物体的边缘。我们能否检测出图像中的某些特定的形状呢？比如，圆，直线，甚至是椭圆。下面我们将使用<strong>Hough transform</strong>来看看如何检测图像中特定的形状。Hough transformation是一种通用的框架，给定某种形状的参数方程，它能够检测出图形中的这些形状。</p>
-<h3 id="Hough-line"><a href="#Hough-line" class="headerlink" title="Hough line"></a>Hough line</h3><h3 id="Hough-circle"><a href="#Hough-circle" class="headerlink" title="Hough circle"></a>Hough circle</h3><p>霍夫圆和霍夫线相似，只是参数方程改变了。对于霍夫圆来说，我们使用下列圆的参数方程：<br>$$(x-h)^2 + (y-k)^2 = r^2$$<br>这里(h,k)是圆的中心，r是半径。和斜率，截距不同，霍夫圆会使用图像中的点找到圆的中心和半径。</p>
-<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>本节，我们首先学习了图像filters和convolutions，接着看了一些fillets的例子，比如：Gaussian blur, median filter, dilation, 和 erosion。这些通常都作为大型计算机视觉系统的预处理步骤，很少单独使用。然后介绍了一些有趣的概念，如：边缘检测，主要了解了Canny和Sobel边缘检测器。边缘检测在计算机视觉中有很重要的作用。最后，我们学习了如何使用Hough transformation检测图像中的特定形状。</p>
+<h3 id="Hough-line"><a href="#Hough-line" class="headerlink" title="Hough line"></a>Hough line</h3><p>在数学中，我们使用两个参数来定义线：斜率和截距。在霍夫线算法中，我们利用相同的概念，并尝试找出图像中存在的线段的斜率和截距。</p>
+<h3 id="Hough-circle"><a href="#Hough-circle" class="headerlink" title="Hough circle"></a>Hough circle</h3><p>霍夫圆和霍夫线相似，只是参数方程改变了。对于霍夫圆来说，我们使用下列圆的参数方程：<br>$$(x-h)^2 + (y-k)^2 = r^2$$<br>这里(h,k)是圆的中心，r是半径。和斜率，截距不同，霍夫圆会使用图像中的点找到圆的中心和半径。    </p>
+<p>霍夫线的另外一个变体叫做概率霍夫线(probabilistic Hough line)，基本上它做同样的事情，但是是用不同的方法来计算线段的参数，它使用了更复杂的数学。</p>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>本节，我们首先学习了图像filters和convolutions，接着看了一些fillets的例子，比如：Gaussian blur, median filter, dilation, 和 erosion。这些通常都作为大型计算机视觉系统的预处理步骤，很少单独使用。然后介绍了一些有趣的概念，如：边缘检测，主要了解了Canny和Sobel边缘检测器。边缘检测在计算机视觉中有很重要的作用。最后，我们学习了如何使用Hough transformation检测图像中的特定形状。</p>
 
       
     </div>
@@ -413,6 +418,10 @@ edge = feature.canny(img, 3)
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/01/08/drilling-deeper-into-features-object-detection/" rel="prev" title="Drilling Deeper Into Features - Object Detection">
+                Drilling Deeper Into Features - Object Detection <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -438,7 +447,7 @@ edge = feature.canny(img, 3)
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2018/01/05/图像处理基础/"
-           data-title="图像处理基础" data-url="http://github.com/kiseliu/2018/01/05/图像处理基础/">
+           data-title="Filters and Features" data-url="http://github.com/kiseliu/2018/01/05/图像处理基础/">
       </div>
     
   </div>
@@ -483,7 +492,7 @@ edge = feature.canny(img, 3)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -560,7 +569,7 @@ edge = feature.canny(img, 3)
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Filters-and-Features"><span class="nav-number">1.</span> <span class="nav-text">Filters and Features</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-derivatives"><span class="nav-number">1.1.</span> <span class="nav-text">Image derivatives</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Understanding-image-filters"><span class="nav-number">1.2.</span> <span class="nav-text">Understanding image filters</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gaussian-blur"><span class="nav-number">1.2.1.</span> <span class="nav-text">Gaussian blur</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Median-filter"><span class="nav-number">1.2.2.</span> <span class="nav-text">Median filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dilation-and-erosion"><span class="nav-number">1.2.3.</span> <span class="nav-text">Dilation and erosion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Customs-filters"><span class="nav-number">1.2.4.</span> <span class="nav-text">Customs filters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Image-thresholding"><span class="nav-number">1.2.5.</span> <span class="nav-text">Image thresholding</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Edge-detection"><span class="nav-number">1.3.</span> <span class="nav-text">Edge detection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sobel-edge-detector"><span class="nav-number">1.3.1.</span> <span class="nav-text">Sobel edge detector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Canny-edge-detector"><span class="nav-number">1.3.2.</span> <span class="nav-text">Canny edge detector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hough-line"><span class="nav-number">1.3.3.</span> <span class="nav-text">Hough line</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hough-circle"><span class="nav-number">1.3.4.</span> <span class="nav-text">Hough circle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary"><span class="nav-number">1.3.5.</span> <span class="nav-text">Summary</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-derivatives"><span class="nav-number">1.</span> <span class="nav-text">Image derivatives</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Understanding-image-filters"><span class="nav-number"></span> <span class="nav-text">Understanding image filters</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gaussian-blur"><span class="nav-number">0.1.</span> <span class="nav-text">Gaussian blur</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Median-filter"><span class="nav-number">0.2.</span> <span class="nav-text">Median filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dilation-and-erosion"><span class="nav-number">0.3.</span> <span class="nav-text">Dilation and erosion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Customs-filters"><span class="nav-number">0.4.</span> <span class="nav-text">Customs filters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Image-thresholding"><span class="nav-number">0.5.</span> <span class="nav-text">Image thresholding</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Edge-detection"><span class="nav-number"></span> <span class="nav-text">Edge detection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sobel-edge-detector"><span class="nav-number">0.1.</span> <span class="nav-text">Sobel edge detector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Canny-edge-detector"><span class="nav-number">0.2.</span> <span class="nav-text">Canny edge detector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hough-line"><span class="nav-number">0.3.</span> <span class="nav-text">Hough line</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hough-circle"><span class="nav-number">0.4.</span> <span class="nav-text">Hough circle</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-number"></span> <span class="nav-text">Summary</span></a></div>
             
           </div>
         </section>

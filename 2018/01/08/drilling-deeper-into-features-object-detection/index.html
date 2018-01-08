@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="washington pl,emacs,sml," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="本文来自Coursera程序设计语言(华盛顿大学)。
-Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；• C-x C-c: Quit Emacs• C-g: Cancel the current action• C-x C-f: Open a file (whether or not it already exists)• C-x C-s: Save a file•">
+<meta name="description" content="在现实世界中，很多时候我们需要对两张图片进行比较，或者在一大堆图片中搜索包含某个物体的图片。比如：谷歌的图像搜索，在防卫组织的指纹库中搜索某个人的指纹。我们要如何解决这些问题呢？  
+我们需要能够描述图片(和颜色，大小，旋转角度，仿射变换无关)的方法。在计算机视觉中，我们想要用特征来描述图片。在上一章节，我们已经看了一些基本的特征，比如：梯度，边缘。但是这些不足以来描述图像，而且它们对亮度的改变很">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Emacs With Sml-Mode">
-<meta property="og:url" content="http://github.com/kiseliu/2016/08/27/sml基本命令/index.html">
+<meta property="og:title" content="Drilling Deeper Into Features - Object Detection">
+<meta property="og:url" content="http://github.com/kiseliu/2018/01/08/drilling-deeper-into-features-object-detection/index.html">
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
-<meta property="og:description" content="本文来自Coursera程序设计语言(华盛顿大学)。
-Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；• C-x C-c: Quit Emacs• C-g: Cancel the current action• C-x C-f: Open a file (whether or not it already exists)• C-x C-s: Save a file•">
-<meta property="og:updated_time" content="2016-08-28T02:45:43.000Z">
+<meta property="og:description" content="在现实世界中，很多时候我们需要对两张图片进行比较，或者在一大堆图片中搜索包含某个物体的图片。比如：谷歌的图像搜索，在防卫组织的指纹库中搜索某个人的指纹。我们要如何解决这些问题呢？  
+我们需要能够描述图片(和颜色，大小，旋转角度，仿射变换无关)的方法。在计算机视觉中，我们想要用特征来描述图片。在上一章节，我们已经看了一些基本的特征，比如：梯度，边缘。但是这些不足以来描述图像，而且它们对亮度的改变很">
+<meta property="og:updated_time" content="2018-01-08T15:40:41.354Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Emacs With Sml-Mode">
-<meta name="twitter:description" content="本文来自Coursera程序设计语言(华盛顿大学)。
-Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；• C-x C-c: Quit Emacs• C-g: Cancel the current action• C-x C-f: Open a file (whether or not it already exists)• C-x C-s: Save a file•">
+<meta name="twitter:title" content="Drilling Deeper Into Features - Object Detection">
+<meta name="twitter:description" content="在现实世界中，很多时候我们需要对两张图片进行比较，或者在一大堆图片中搜索包含某个物体的图片。比如：谷歌的图像搜索，在防卫组织的指纹库中搜索某个人的指纹。我们要如何解决这些问题呢？  
+我们需要能够描述图片(和颜色，大小，旋转角度，仿射变换无关)的方法。在计算机视觉中，我们想要用特征来描述图片。在上一章节，我们已经看了一些基本的特征，比如：梯度，边缘。但是这些不足以来描述图像，而且它们对亮度的改变很">
 
 
 
@@ -117,9 +117,9 @@ Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；�
 
 
 
-  <link rel="canonical" href="http://github.com/kiseliu/2016/08/27/sml基本命令/"/>
+  <link rel="canonical" href="http://github.com/kiseliu/2018/01/08/drilling-deeper-into-features-object-detection/"/>
 
-  <title> Emacs With Sml-Mode | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Drilling Deeper Into Features - Object Detection | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -287,7 +287,7 @@ Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；�
             
             
               
-                Emacs With Sml-Mode
+                Drilling Deeper Into Features - Object Detection
               
             
           </h1>
@@ -299,8 +299,8 @@ Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-27T18:29:50+08:00" content="2016-08-27">
-              2016-08-27
+            <time itemprop="dateCreated" datetime="2018-01-08T21:11:47+08:00" content="2018-01-08">
+              2018-01-08
             </time>
           </span>
 
@@ -313,8 +313,8 @@ Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；�
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/programming-languages/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming Languages</span>
+                  <a href="/categories/computer-vision/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Vision</span>
                   </a>
                 </span>
 
@@ -329,8 +329,8 @@ Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/27/sml基本命令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/27/sml基本命令/" itemprop="commentsCount"></span>
+                <a href="/2018/01/08/drilling-deeper-into-features-object-detection/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/01/08/drilling-deeper-into-features-object-detection/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -353,19 +353,44 @@ Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；�
       
 
       
-        <p>本文来自<a href="https://www.coursera.org/learn/programming-languages/supplement/mi5oU/part-a-software-installation-and-use-sml-and-emacs" target="_blank" rel="external">Coursera程序设计语言(华盛顿大学)</a>。</p>
-<h2 id="Emacs基本命令"><a href="#Emacs基本命令" class="headerlink" title="Emacs基本命令"></a>Emacs基本命令</h2><p>C-x 表示按住Control，再按x键；M表示按下Alt键；<br>• C-x C-c: Quit Emacs<br>• C-g: Cancel the current action<br>• C-x C-f: Open a file (whether or not it already exists)<br>• C-x C-s: Save a file<br>• C-x C-w: Write a file (probably more familiar to you as Save as…)<br>Cut, copy, paste:<br>• Highlight text with the mouse or by hitting C-Space to set a mark and then moving the cursor to highlight a region.<br>• C-w: Cut a highlighted region<br>• M-w: Copy a highlighted region<br>• C-k: Cut (kill) from the cursor to the end of the line<br>• C-y: Paste (yank)<br>Some other useful commands:<br>• C-x 2: Split the window into 2 buffers, one above the other (Use the mouse or C-x o to switch between them)<br>• C-x 0: Undo window-splitting so there is only 1 buffer<br>• C-x b: Switch to another buffer by entering its name<br>• C-x C-b: See a list of all current buffers<br>Getting help within Emacs: In addition to the help button/menu on the right…<br>• C-h: Hitting this will display a short message in the minibuffer: 𝙲-𝚑 (𝚃𝚢𝚙𝚎 ? 𝚏𝚘𝚛 𝚏𝚞𝚛𝚝𝚑𝚎𝚛 𝚘𝚙𝚝𝚒𝚘𝚗𝚜).<br>• C-h b: Key bindings. This lists all key bindings that are valid for the current mode. Note that key bindings change from mode to mode.<br>• C-h a: Command apropos. After typing 𝙲-𝚑 a you can type a symbol and a buffer will appear that lists all symbols and functions that match that phrase.</p>
-<h2 id="SML-NJ-Installation"><a href="#SML-NJ-Installation" class="headerlink" title="SML/NJ Installation"></a>SML/NJ Installation</h2><p>打开链接<a href="http://www.smlnj.org/dist/working/110.79/" target="_blank" rel="external">http://www.smlnj.org/dist/working/110.79/</a>，下载𝚜𝚖𝚕𝚗𝚓-𝚡𝟾𝟼-𝟷𝟷𝟶.𝟽𝟿.𝚙𝚔𝚐，然后按照提示安装，不用修改安装位置，默认的安装位置是：“/usr/local/smlnj/bin”。<br>打开~/.𝚋𝚊𝚜𝚑_𝚙𝚛𝚘𝚏𝚒𝚕𝚎 文件，添加环境变量:</p>
-<pre><code>export PATH=&quot;$PATH:/usr/local/smlnj/bin&quot;
-</code></pre><p>保存执行下列命令即可：</p>
-<pre><code>source .bash_profile
-</code></pre><h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><ul>
-<li><p>smh：在终端键入smh + Enter/Return，进入SML解释器，你会看到如下提示符：</p>
-<p>  Standard ML of New Jersey v110.79 [built: …]</p>
-</li>
-<li>Control-D：退出SML解释器；</li>
+        <p>在现实世界中，很多时候我们需要对两张图片进行比较，或者在一大堆图片中搜索包含某个物体的图片。比如：谷歌的图像搜索，在防卫组织的指纹库中搜索某个人的指纹。我们要如何解决这些问题呢？  </p>
+<p>我们需要能够描述图片(和颜色，大小，旋转角度，仿射变换无关)的方法。在计算机视觉中，我们想要用特征来描述图片。在上一章节，我们已经看了一些基本的特征，比如：梯度，边缘。但是这些不足以来描述图像，而且它们对亮度的改变很敏感。只使用边缘特征，我们无法区分钟表和车轮，它们都会返回一堆点来构成一个圆。因此，我们需要更好的特征抽取技术来帮助处理这些情况。    </p>
+<p>在本节，我们会扩展对于特征的了解，然后看一看能够在图像中抽取更好细节的高级图像特征，这些特征通常对大小，颜色，和旋转具有很好的稳定性和不变形。以下是本节将要讨论的特征列表：    </p>
+<ul>
+<li>Corner detection (Harris corner)    </li>
+<li>Cascade classifier—Local Binary Pattern (LBP)    </li>
+<li>Oriented FAST and Rotated BRIEF (ORB)</li>
 </ul>
-<h2 id="SML-Mode-for-Emacs-Installation"><a href="#SML-Mode-for-Emacs-Installation" class="headerlink" title="SML Mode for Emacs Installation"></a>SML Mode for Emacs Installation</h2>
+<p>在我们进入前述的算法前，让我们简要地回顾一下什么是图像特征，为什么它们对我们想要做的事情如此重要。</p>
+<h1 id="Revisiting-image-features"><a href="#Revisiting-image-features" class="headerlink" title="Revisiting image features"></a>Revisiting image features</h1><p>图像的梯度和边缘给了我们很多关于不同物体的形状的信息。使用边缘，我们有时可能也能够决定图像中物体的方向。但是有一些弱特征，我们不能一直去依赖它们，因为它们对亮度，对比度和背景的改变很敏感。我们需要比梯度和边缘更加稳定的特征。为了解决这个问题，我们使用更复杂的特征描述子，比如：corners, Local Binary Pattern (LBP), BRISK, 和 Oriented FAST and Rotated BRIEF。让我们先来理解一下这些特征有什么不同，使得它们比只用边缘和图像梯度更好。</p>
+<p>如果一个特征描述子是一个好的特征，那么它应该对于大小，旋转和翻转的改变具有不变性。也就是说，如果我们能够用某种特定的方式来描述图像中的汽车，那么即使这个图像被缩小一半，或者旋转90度，我们依然能够用同样的方式来描述汽车。具有这种性质的特征描述子能够对图像的变化更robust，也能有效地处理现实生活中的情况。随着机器学习的发展，研究者和工业界的人们目前使用神经网络从图像中抽取特征。结果显示，相比本节所要讲的传统的方法，它们取得了显著的进步。但是我们仍然要说，理解更多传统的算法对于完全理解和掌握特征抽取是如何起作用的非常重要。</p>
+<p>我们将从图像中定义的最基本的特征：corners-角点开始。简单地说，角点不过是两个边的交点。假如我们有一张桌子的照片，我们计算得知图像中的四个角点。然后我们被给了一张桌子的图片，那么这个图像也是桌子么？关于桌子，我们都知道些什么？我们知道桌子有四个角点，所以我们在新的图像中计算角点的个数。我们看到新的图像也有四个角点，所以我们说新的图像也是桌子。但是许多物体都有四个角点，因此角不是我们描述图像的最好方式，不过它确实是我们后面要学习的算法中的一个部分。</p>
+<h1 id="Harris-corner-detection"><a href="#Harris-corner-detection" class="headerlink" title="Harris corner detection"></a>Harris corner detection</h1><p>一种非常粗暴的寻找角点的方法是先找到图像中的所有边，然后检查每一对边是否相交。这种方法在某些情况可能效果不错，但是在实际情况中非常低效不可取。让我们看一种快速的角点检测算法—Harris corner.</p>
+<p>角点是图像中非常重要的点。它们在许多应用中都有使用，比如：图像相关性，视频稳定性和3D建模。Harris corner是角点检测中最常使用的技术之一。Harris corner检测器在图像上使用滑动窗口来计算强度的变化。由于角点周围的强度值会有很大的变化，我们需要寻找图像中滑动窗口在所有方向上强度变化很大的位置。Harris corner检测器使用数学方程来决定哪些点是角点。</p>
+<p>为了检测角点，我们尝试最大化下面的等式：<br>$$\sum{}{}{\left[ I(x+u, y+v)-I(x,y)\ \right]^2}$$<br>这里，$I$是图像，$u$是滑动窗口在水平方向的位移，$v$是垂直方向的位移。</p>
+<pre><code>import matplotlib.pyplot as plt
+from skimage import io, color, feature
+
+img = io.imread(&quot;../image.png&quot;)  #Read an image
+img = color.rgb2gray(img)
+
+corners = feature.corner_harris(img) #Compute the Harris corners in the image. 
+coords = feature.corner_peaks(corners, min_distance=5) #Using the corner response image we calculate the actual corners in the image
+coords_subpix = feature.corner_subpix(img, coords, window_size=13)  # This function decides if the corner point is an edge point or an isolated peak
+
+fig, ax = plt.subplots()
+ax.imshow(img, interpolation=&apos;nearest&apos;, cmap=plt.cm.gray)
+ax.plot(coords[:, 1], coords[:, 0], &apos;.b&apos;, markersize=3)
+ax.plot(coords_subpix[:, 1], coords_subpix[:, 0], &apos;+r&apos;, markersize=15)
+ax.axis((0, 350, 350, 0))
+plt.show()
+</code></pre><ul>
+<li>corner_harris: 这是一个基本的函数，它度量了图像中的每个像素是角点的可能性。Harris角点检测器背后的数学超出了本书的范围，但正如我们前面所看到的，它试图在图像中找到各个方向都有变化的部分。并且该部分的中心像素被标记为可能的角点像素。</li>
+<li>corner_peaks: 使用corner_harris()函数的输出结果，corner_peaks尝试找到真正的角点。该函数返回角点的像素坐标，这些坐标被用来画在图像中。</li>
+<li>corner_subpix: 这是另外一个辅助函数，它用来帮助对corner_peaks的结果进行优化。例如，它试图区分这个点是两个边的交点，还是实际上是一个角（像一个正方形）除非你的应用真的需要这一层的分类，否则不需要使用该函数。</li>
+</ul>
+<p>这里有一点需要注意的是Harris corners是旋转和变形不变的。即使角点被移动到了图像中的新的位置，或者被旋转了一定的角度，该算法都能够对角点进行检测。</p>
+<h1 id="Local-Binary-Patterns"><a href="#Local-Binary-Patterns" class="headerlink" title="Local Binary Patterns"></a>Local Binary Patterns</h1><h1 id="Oriented-FAST-and-Rotated-BRIEF-ORB"><a href="#Oriented-FAST-and-Rotated-BRIEF-ORB" class="headerlink" title="Oriented FAST and Rotated BRIEF (ORB)"></a>Oriented FAST and Rotated BRIEF (ORB)</h1><h2 id="oFAST-–-FAST-keypoint-orientation"><a href="#oFAST-–-FAST-keypoint-orientation" class="headerlink" title="oFAST – FAST keypoint orientation"></a>oFAST – FAST keypoint orientation</h2><h2 id="FAST-detector"><a href="#FAST-detector" class="headerlink" title="FAST detector"></a>FAST detector</h2><h2 id="Orientation-by-intensity-centroid"><a href="#Orientation-by-intensity-centroid" class="headerlink" title="Orientation by intensity centroid"></a>Orientation by intensity centroid</h2><h2 id="rBRIEF-–-Rotation-aware-BRIEF"><a href="#rBRIEF-–-Rotation-aware-BRIEF" class="headerlink" title="rBRIEF – Rotation-aware BRIEF"></a>rBRIEF – Rotation-aware BRIEF</h2><h2 id="Steered-BRIEF"><a href="#Steered-BRIEF" class="headerlink" title="Steered BRIEF"></a>Steered BRIEF</h2><h2 id="Variance-and-correlation"><a href="#Variance-and-correlation" class="headerlink" title="Variance and correlation"></a>Variance and correlation</h2><h1 id="Image-stitching"><a href="#Image-stitching" class="headerlink" title="Image stitching"></a>Image stitching</h1><h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1>
       
     </div>
 
@@ -384,32 +409,18 @@ Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；�
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/washington-pl/" rel="tag">#washington pl</a>
-          
-            <a href="/tags/emacs/" rel="tag">#emacs</a>
-          
-            <a href="/tags/sml/" rel="tag">#sml</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/24/tensorboard-visualizing-learning/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/01/05/图像处理基础/" rel="next" title="Filters and Features">
+                <i class="fa fa-chevron-left"></i> Filters and Features
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/28/opencv安装说明/" rel="prev" title="OpenCV安装说明">
-                OpenCV安装说明 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -435,8 +446,8 @@ Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/27/sml基本命令/"
-           data-title="Emacs With Sml-Mode" data-url="http://github.com/kiseliu/2016/08/27/sml基本命令/">
+      <div class="ds-thread" data-thread-key="2018/01/08/drilling-deeper-into-features-object-detection/"
+           data-title="Drilling Deeper Into Features - Object Detection" data-url="http://github.com/kiseliu/2018/01/08/drilling-deeper-into-features-object-detection/">
       </div>
     
   </div>
@@ -558,7 +569,7 @@ Emacs基本命令C-x 表示按住Control，再按x键；M表示按下Alt键；�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Emacs基本命令"><span class="nav-number">1.</span> <span class="nav-text">Emacs基本命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SML-NJ-Installation"><span class="nav-number">2.</span> <span class="nav-text">SML/NJ Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作"><span class="nav-number">3.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SML-Mode-for-Emacs-Installation"><span class="nav-number">4.</span> <span class="nav-text">SML Mode for Emacs Installation</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Revisiting-image-features"><span class="nav-number">1.</span> <span class="nav-text">Revisiting image features</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Harris-corner-detection"><span class="nav-number">2.</span> <span class="nav-text">Harris corner detection</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Local-Binary-Patterns"><span class="nav-number">3.</span> <span class="nav-text">Local Binary Patterns</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oriented-FAST-and-Rotated-BRIEF-ORB"><span class="nav-number">4.</span> <span class="nav-text">Oriented FAST and Rotated BRIEF (ORB)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#oFAST-–-FAST-keypoint-orientation"><span class="nav-number">4.1.</span> <span class="nav-text">oFAST – FAST keypoint orientation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAST-detector"><span class="nav-number">4.2.</span> <span class="nav-text">FAST detector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Orientation-by-intensity-centroid"><span class="nav-number">4.3.</span> <span class="nav-text">Orientation by intensity centroid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rBRIEF-–-Rotation-aware-BRIEF"><span class="nav-number">4.4.</span> <span class="nav-text">rBRIEF – Rotation-aware BRIEF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Steered-BRIEF"><span class="nav-number">4.5.</span> <span class="nav-text">Steered BRIEF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variance-and-correlation"><span class="nav-number">4.6.</span> <span class="nav-text">Variance and correlation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Image-stitching"><span class="nav-number">5.</span> <span class="nav-text">Image stitching</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-number">6.</span> <span class="nav-text">Summary</span></a></li></ol></div>
             
           </div>
         </section>
