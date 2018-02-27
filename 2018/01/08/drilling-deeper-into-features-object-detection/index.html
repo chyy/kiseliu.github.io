@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Welcome to kiseliu's homepage">
 <meta property="og:description" content="在现实世界中，很多时候我们需要对两张图片进行比较，或者在一大堆图片中搜索包含某个物体的图片。比如：谷歌的图像搜索，在防卫组织的指纹库中搜索某个人的指纹。我们要如何解决这些问题呢？  
 我们需要能够描述图片(和颜色，大小，旋转角度，仿射变换无关)的方法。在计算机视觉中，我们想要用特征来描述图片。在上一章节，我们已经看了一些基本的特征，比如：梯度，边缘。但是这些不足以来描述图像，而且它们对亮度的改变很">
-<meta property="og:updated_time" content="2018-01-08T15:40:41.354Z">
+<meta property="og:updated_time" content="2018-01-17T15:06:57.049Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Drilling Deeper Into Features - Object Detection">
 <meta name="twitter:description" content="在现实世界中，很多时候我们需要对两张图片进行比较，或者在一大堆图片中搜索包含某个物体的图片。比如：谷歌的图像搜索，在防卫组织的指纹库中搜索某个人的指纹。我们要如何解决这些问题呢？  
@@ -390,7 +390,18 @@ plt.show()
 <li>corner_subpix: 这是另外一个辅助函数，它用来帮助对corner_peaks的结果进行优化。例如，它试图区分这个点是两个边的交点，还是实际上是一个角（像一个正方形）除非你的应用真的需要这一层的分类，否则不需要使用该函数。</li>
 </ul>
 <p>这里有一点需要注意的是Harris corners是旋转和变形不变的。即使角点被移动到了图像中的新的位置，或者被旋转了一定的角度，该算法都能够对角点进行检测。</p>
-<h1 id="Local-Binary-Patterns"><a href="#Local-Binary-Patterns" class="headerlink" title="Local Binary Patterns"></a>Local Binary Patterns</h1><h1 id="Oriented-FAST-and-Rotated-BRIEF-ORB"><a href="#Oriented-FAST-and-Rotated-BRIEF-ORB" class="headerlink" title="Oriented FAST and Rotated BRIEF (ORB)"></a>Oriented FAST and Rotated BRIEF (ORB)</h1><h2 id="oFAST-–-FAST-keypoint-orientation"><a href="#oFAST-–-FAST-keypoint-orientation" class="headerlink" title="oFAST – FAST keypoint orientation"></a>oFAST – FAST keypoint orientation</h2><h2 id="FAST-detector"><a href="#FAST-detector" class="headerlink" title="FAST detector"></a>FAST detector</h2><h2 id="Orientation-by-intensity-centroid"><a href="#Orientation-by-intensity-centroid" class="headerlink" title="Orientation by intensity centroid"></a>Orientation by intensity centroid</h2><h2 id="rBRIEF-–-Rotation-aware-BRIEF"><a href="#rBRIEF-–-Rotation-aware-BRIEF" class="headerlink" title="rBRIEF – Rotation-aware BRIEF"></a>rBRIEF – Rotation-aware BRIEF</h2><h2 id="Steered-BRIEF"><a href="#Steered-BRIEF" class="headerlink" title="Steered BRIEF"></a>Steered BRIEF</h2><h2 id="Variance-and-correlation"><a href="#Variance-and-correlation" class="headerlink" title="Variance and correlation"></a>Variance and correlation</h2><h1 id="Image-stitching"><a href="#Image-stitching" class="headerlink" title="Image stitching"></a>Image stitching</h1><h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1>
+<h1 id="Local-Binary-Patterns"><a href="#Local-Binary-Patterns" class="headerlink" title="Local Binary Patterns"></a>Local Binary Patterns</h1><p>Local Binary Patterns (LBP) cascade是一种级联分类器，级联分类器在计算机视觉中被广泛地使用。在理解LBP之前，我们先来看一看什么是级联分类器。分类器就像黑箱，我们输入一张图片，它根据(使用许多训练图片训练得到的)一些模型输出这张图片的标签。“级联”意思是许多分类器构成一个链条。一个分类器的输出被传给下一个分类器作为输入。级联分类器的两个非常著名的例子是 Haar Cascades 和 Local Binary Patterns (LBP)。在这部分，我们只讨论LBP。</p>
+<p>在LBP中，通过考虑八个相邻像素（左上，右上，左右，左下，右下），为图像中的每个像素创建八位二进制特征向量。对于每个相邻像素，都有一个相应的位，如果像素值大于中心像素的值，则相应的位值为1，否则为0。八位特征向量被视为二进制数（稍后将其转换到十进制值），并使用每个像素的十进制值，计算一个256框直方图。该直方图被用作图像的表示。</p>
+<p>使用我们在最后一段中描述的八位二进制特征向量，我们可以识别出图3所示的一组基元。空心圆意味着相邻像素大于中心像素，黑色实心圆表示相邻像素的值大于中心像素。</p>
+<h1 id="Oriented-FAST-and-Rotated-BRIEF-ORB"><a href="#Oriented-FAST-and-Rotated-BRIEF-ORB" class="headerlink" title="Oriented FAST and Rotated BRIEF (ORB)"></a>Oriented FAST and Rotated BRIEF (ORB)</h1><p>Oriented FAST and Rotated BRIEF (ORB) 是在OpenCV labs发现的，它可以作为SIFT和SURF的有效和可行的替代方案。ORB被认为主要是因为SIFT和SURF是专利算法。但是ORB可以自由使用。</p>
+<p>ORB在特征检测任务方面的表现和SIFT一样好（比SURF好），并且几乎快了两个数量级。 ORB建立在知名的FAST关键点检测器和BRIEF描述符上。这两种技术由于其良好的性能和低成本而具有很强的吸引力。 ORB的主要贡献如下：    </p>
+<ul>
+<li>在FAST中增加了一个快速和准确的定向分量</li>
+<li>定向BRIEF特征的高效计算</li>
+<li>定向BRIEF特征的方差和相关性分析</li>
+<li>一种在旋转不变性下解BRIEF特征的学习方法，在最近邻应用中得到了更好的性能</li>
+</ul>
+<h2 id="oFAST-–-FAST-keypoint-orientation"><a href="#oFAST-–-FAST-keypoint-orientation" class="headerlink" title="oFAST – FAST keypoint orientation"></a>oFAST – FAST keypoint orientation</h2><h2 id="FAST-detector"><a href="#FAST-detector" class="headerlink" title="FAST detector"></a>FAST detector</h2><h2 id="Orientation-by-intensity-centroid"><a href="#Orientation-by-intensity-centroid" class="headerlink" title="Orientation by intensity centroid"></a>Orientation by intensity centroid</h2><h2 id="rBRIEF-–-Rotation-aware-BRIEF"><a href="#rBRIEF-–-Rotation-aware-BRIEF" class="headerlink" title="rBRIEF – Rotation-aware BRIEF"></a>rBRIEF – Rotation-aware BRIEF</h2><h2 id="Steered-BRIEF"><a href="#Steered-BRIEF" class="headerlink" title="Steered BRIEF"></a>Steered BRIEF</h2><h2 id="Variance-and-correlation"><a href="#Variance-and-correlation" class="headerlink" title="Variance and correlation"></a>Variance and correlation</h2><h1 id="Image-stitching"><a href="#Image-stitching" class="headerlink" title="Image stitching"></a>Image stitching</h1><h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1>
       
     </div>
 
@@ -421,6 +432,10 @@ plt.show()
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/15/maxima-problem/" rel="prev" title="Maxima Problem">
+                Maxima Problem <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -492,7 +507,7 @@ plt.show()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">82</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

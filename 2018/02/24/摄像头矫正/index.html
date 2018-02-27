@@ -1,0 +1,801 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Helvetica Neue:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Goal在这部分    
+
+我们将学习相机的失真，相机的内在和外在参数等。     
+我们将学会找到这些参数，不失真的图像等。
+
+Basics如今，便宜的单孔摄像头会引起图像的失真。主要有两种失真：径向失真和切向失真。
+由于径向失真，直线会出现弯曲。随着我们从图像中心移动到边缘，它的影响越来越严重。比如下面的图像，棋盘的两条边用红线标记出来了。但是你可以看到边界不是直线，和红线不匹配。所有预期的直">
+<meta property="og:type" content="article">
+<meta property="og:title" content="摄像头矫正">
+<meta property="og:url" content="http://github.com/kiseliu/2018/02/24/摄像头矫正/index.html">
+<meta property="og:site_name" content="Welcome to kiseliu's homepage">
+<meta property="og:description" content="Goal在这部分    
+
+我们将学习相机的失真，相机的内在和外在参数等。     
+我们将学会找到这些参数，不失真的图像等。
+
+Basics如今，便宜的单孔摄像头会引起图像的失真。主要有两种失真：径向失真和切向失真。
+由于径向失真，直线会出现弯曲。随着我们从图像中心移动到边缘，它的影响越来越严重。比如下面的图像，棋盘的两条边用红线标记出来了。但是你可以看到边界不是直线，和红线不匹配。所有预期的直">
+<meta property="og:image" content="http://opencv-python-tutroals.readthedocs.io/en/latest/_images/calib_radial.jpg">
+<meta property="og:image" content="http://opencv-python-tutroals.readthedocs.io/en/latest/_images/math/fc9f12344ac840bfdcb53f61df91cf853ddd6af8.png">
+<meta property="og:image" content="http://opencv-python-tutroals.readthedocs.io/en/latest/_images/math/7817dd9b0769c056c23aeefc392cf06907a990a9.png">
+<meta property="og:image" content="http://opencv-python-tutroals.readthedocs.io/en/latest/_images/math/26ad926921974fb12443390fe4f8e91c9c2a9e38.png">
+<meta property="og:image" content="http://opencv-python-tutroals.readthedocs.io/en/latest/_images/math/5e9d2db8b3561f68fa0688992fa45c13766a382c.png">
+<meta property="og:image" content="http://opencv-python-tutroals.readthedocs.io/en/latest/_images/calib_result.jpg">
+<meta property="og:updated_time" content="2018-02-24T08:08:05.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="摄像头矫正">
+<meta name="twitter:description" content="Goal在这部分    
+
+我们将学习相机的失真，相机的内在和外在参数等。     
+我们将学会找到这些参数，不失真的图像等。
+
+Basics如今，便宜的单孔摄像头会引起图像的失真。主要有两种失真：径向失真和切向失真。
+由于径向失真，直线会出现弯曲。随着我们从图像中心移动到边缘，它的影响越来越严重。比如下面的图像，棋盘的两条边用红线标记出来了。但是你可以看到边界不是直线，和红线不匹配。所有预期的直">
+<meta name="twitter:image" content="http://opencv-python-tutroals.readthedocs.io/en/latest/_images/calib_radial.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://github.com/kiseliu/2018/02/24/摄像头矫正/"/>
+
+  <title> 摄像头矫正 | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Welcome to kiseliu's homepage</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Here's a dream chaser.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                摄像头矫正
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2018-02-24T14:03:22+08:00" content="2018-02-24">
+              2018-02-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/computer-vision/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Vision</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/02/24/摄像头矫正/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/02/24/摄像头矫正/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h1><p>在这部分    </p>
+<ul>
+<li>我们将学习相机的失真，相机的内在和外在参数等。     </li>
+<li>我们将学会找到这些参数，不失真的图像等。</li>
+</ul>
+<h1 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h1><p>如今，便宜的单孔摄像头会引起图像的失真。主要有两种失真：径向失真和切向失真。</p>
+<p>由于径向失真，直线会出现弯曲。随着我们从图像中心移动到边缘，它的影响越来越严重。比如下面的图像，棋盘的两条边用红线标记出来了。但是你可以看到边界不是直线，和红线不匹配。所有预期的直线都凸出来了。    </p>
+<p><img src="http://opencv-python-tutroals.readthedocs.io/en/latest/_images/calib_radial.jpg" alt="img"></p>
+<p>失真可以如下解决：   </p>
+<p><img src="http://opencv-python-tutroals.readthedocs.io/en/latest/_images/math/fc9f12344ac840bfdcb53f61df91cf853ddd6af8.png" alt="img"></p>
+<p>同样地，切向失真发生是因为图像采集镜头没有完全平行于成像平面对齐。因此，图像中的某些区域可能看起来比预期更近。它的解决如下：    </p>
+<p><img src="http://opencv-python-tutroals.readthedocs.io/en/latest/_images/math/7817dd9b0769c056c23aeefc392cf06907a990a9.png" alt="img"></p>
+<p>总之，我们需要找到五个参数，称为失真系数，由下式给出：</p>
+<p><img src="http://opencv-python-tutroals.readthedocs.io/en/latest/_images/math/26ad926921974fb12443390fe4f8e91c9c2a9e38.png" alt="img"></p>
+<p>除此之外，我们还需要找到其他一些信息，如摄像头的内在参数和外在参数。内在参数是摄像头特有的。它包括像焦距 $(f_x, f_y)$，光学中心 $(c_x,c_y)$ 等信息。它也叫做摄像头矩阵。它只依赖摄像头本身，一旦被计算出来，就可以永久保存。可以用如下 3x3 矩阵表示：</p>
+<p><img src="http://opencv-python-tutroals.readthedocs.io/en/latest/_images/math/5e9d2db8b3561f68fa0688992fa45c13766a382c.png" alt="img"></p>
+<p>外部参数对应于将3D点的坐标转换为坐标系的旋转和平移向量。</p>
+<p>对立体声应用，这些失真首先需要被矫正。为了找到所有这些参数，我们必须做的是提供一些样本图像。我们在其中找到一些具体点（棋盘上的方角）。我们知道它在现实世界空间中的坐标，并且知道它在图像中的坐标。有了这些数据，我们可以解决一些数学问题以获得失真系数。为了获得更好的结果，我们需要至少10个测试模式。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><p>正如上面提到的，我们需要至少10张测试图片来进行摄像头矫正。OpenCV 。为了易于理解，我们只考虑一张棋盘图像。摄像头校准需要的重要的输入数据是真实世界的3D点集合，和它对应的2D图像点。2D图像点是可以从图像中轻松找到的。（这些图像点是两个黑色方块在棋盘上相互接触的位置）</p>
+<p>那么真实世界空间中的3D点呢？这些图像是从静态相机拍摄的，棋盘放置在不同的位置和方向。所以我们需要知道 $(X,Y,Z)$ 值。但为了简单起见，我们可以说棋盘在XY平面上保持静止，（因此总是Z=0）并且相应地移动相机。这种考虑有助于我们找到只有X，Y值。现在对于X，Y值，我们可以简单地将点传递为（0,0），（1,0），（2,0），…这表示点的位置。在这种情况下，我们得到的结果将会是棋盘格的大小。但是如果我们知道方形尺寸（例如30毫米），并且我们可以将值作为（0,0），（30,0），（60,0），…，我们得到的结果是毫米。（在这种情况下，我们不知道平方尺寸，因为我们没有拍这些图像，所以我们通过平方尺寸）。</p>
+<p>一旦找到角落，我们可以使用cv2.cornerSubPix（）来提高它们的准确性。我们也可以使用cv2.drawChessboardCorners（）来绘制模式。所有这些步骤都包含在下面的代码中：</p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>为了找到棋盘中的pattern，我们使用函数<strong>cv2.findChessboardCorners()</strong>。我们也需要传递我们寻找的是哪种pattern，比如 8x8 的网格，5x5的网格。在这个例子中，我们使用7x6的网格。(通常一个棋盘有8x8个网格和7x7个内角)。它返回角点和retval，如果获得pattern，retval将为True。这些角落将按顺序排列（从左到右，从上到下）。</p>
+<h2 id="Calibration"><a href="#Calibration" class="headerlink" title="Calibration"></a>Calibration</h2><p>所以现在我们有了准备进行校准的物体点和图像点。进行校准所使用的函数是<strong>cv2.calibrateCamera()</strong>。它返回摄像头矩阵，失真系数，旋转和平移向量等。</p>
+<pre><code>ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1],None,None)
+</code></pre><h2 id="Undistortion"><a href="#Undistortion" class="headerlink" title="Undistortion"></a>Undistortion</h2><p>现在我们取一张图片，然后使它去失真。OpenCV提供了两种方法，我们来看看。但在此之前，我们可以使用<strong>cv2.getOptimalNewCameraMatrix()</strong> 基于自由缩放参数来优化摄像头矩阵。如果缩放参数alpha=0，它会返回不失真的图像，并将不需要的像素减至最少。所以它甚至可以去除图像角落处的一些像素。如果alpha=1，所有像素都会保留，并且有一些额外的黑色图像。它还会返回可用于裁剪结果的图像ROI。</p>
+<p>所以我们取一张新的图片：</p>
+<pre><code>img = cv2.imread(&apos;left12.jpg&apos;)
+h,  w = img.shape[:2]
+newcameramtx, roi=cv2.getOptimalNewCameraMatrix(mtx,dist,(w,h),1,(w,h))
+</code></pre><h3 id="1-Using-cv2-undistort"><a href="#1-Using-cv2-undistort" class="headerlink" title="1. Using cv2.undistort()"></a>1. Using cv2.undistort()</h3><p>这是最简便的方式。只需调用该函数并使用上面获得的ROI裁剪结果即可。</p>
+<pre><code># undistort
+dst = cv2.undistort(img, mtx, dist, None, newcameramtx)
+
+# crop the image
+x,y,w,h = roi
+dst = dst[y:y+h, x:x+w]
+cv2.imwrite(&apos;calibresult.png&apos;,dst)
+</code></pre><h3 id="2-Using-remapping"><a href="#2-Using-remapping" class="headerlink" title="2. Using remapping"></a>2. Using remapping</h3><p>这是有点曲折的方式。首先找到从失真图像到未失真图像的映射函数。然后使用重映射功能。</p>
+<pre><code># undistort
+mapx,mapy = cv2.initUndistortRectifyMap(mtx,dist,None,newcameramtx,(w,h),5)
+dst = cv2.remap(img,mapx,mapy,cv2.INTER_LINEAR)
+
+# crop the image
+x,y,w,h = roi
+dst = dst[y:y+h, x:x+w]
+cv2.imwrite(&apos;calibresult.png&apos;,dst)
+</code></pre><p>两种方法都得到了相同的结果：<br><img src="http://opencv-python-tutroals.readthedocs.io/en/latest/_images/calib_result.jpg" alt="img"><br>你可以看到在这个结果中，所有的边都是直的。</p>
+<h1 id="Re-projection-Error"><a href="#Re-projection-Error" class="headerlink" title="Re-projection Error"></a>Re-projection Error</h1><p>再投影误差可以很好地估计找到的参数的精确程度。这应尽可能接近于零。考虑到内在参数，失真，旋转和平移矩阵，我们首先使用<strong>cv2.projectPoints()</strong>将对象点转换为图像点。然后我们计算我们在转换和角落搜索算法​​之间的绝对范数。为了找到平均误差，我们计算所有校准图像的误差的算术平均值。</p>
+<pre><code>mean_error = 0
+for i in xrange(len(objpoints)):
+    imgpoints2, _ = cv2.projectPoints(objpoints[i], rvecs[i], tvecs[i], mtx, dist)
+    error = cv2.norm(imgpoints[i],imgpoints2, cv2.NORM_L2)/len(imgpoints2)
+    tot_error += error
+
+print &quot;total error: &quot;, mean_error/len(objpoints)
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/15/maxima-problem/" rel="next" title="Maxima Problem">
+                <i class="fa fa-chevron-left"></i> Maxima Problem
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/02/24/摄像头矫正/"
+           data-title="摄像头矫正" data-url="http://github.com/kiseliu/2018/02/24/摄像头矫正/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myname.png"
+               alt="kiseliu" />
+          <p class="site-author-name" itemprop="name">kiseliu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">82</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/">
+                
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">categories</span>
+                
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+              
+                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kiseliu" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/kiseliu" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/kiseliu" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Goal"><span class="nav-number">1.</span> <span class="nav-text">Goal</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Basics"><span class="nav-number">2.</span> <span class="nav-text">Basics</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Code"><span class="nav-number">3.</span> <span class="nav-text">Code</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup"><span class="nav-number">3.1.</span> <span class="nav-text">Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calibration"><span class="nav-number">3.2.</span> <span class="nav-text">Calibration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Undistortion"><span class="nav-number">3.3.</span> <span class="nav-text">Undistortion</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Using-cv2-undistort"><span class="nav-number">3.3.1.</span> <span class="nav-text">1. Using cv2.undistort()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Using-remapping"><span class="nav-number">3.3.2.</span> <span class="nav-text">2. Using remapping</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Re-projection-Error"><span class="nav-number">4.</span> <span class="nav-text">Re-projection Error</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kiseliu</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kiseliu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
