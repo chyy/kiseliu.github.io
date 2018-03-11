@@ -1,0 +1,746 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Helvetica Neue:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="One of fundamental challenges of Reinforcement learning is the exploration versus exploitation trade-off, which can be described as the search for a balance between exploring the environment to find p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Multi-Armed Bandits">
+<meta property="og:url" content="http://github.com/kiseliu/2018/03/02/multi-armed-bandits/index.html">
+<meta property="og:site_name" content="Welcome to kiseliu's homepage">
+<meta property="og:description" content="One of fundamental challenges of Reinforcement learning is the exploration versus exploitation trade-off, which can be described as the search for a balance between exploring the environment to find p">
+<meta property="og:updated_time" content="2018-03-02T13:10:24.937Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Multi-Armed Bandits">
+<meta name="twitter:description" content="One of fundamental challenges of Reinforcement learning is the exploration versus exploitation trade-off, which can be described as the search for a balance between exploring the environment to find p">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://github.com/kiseliu/2018/03/02/multi-armed-bandits/"/>
+
+  <title> Multi-Armed Bandits | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Welcome to kiseliu's homepage</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Here's a dream chaser.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Multi-Armed Bandits
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2018-03-02T18:18:34+08:00" content="2018-03-02">
+              2018-03-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/reinforcement-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Reinforcement Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/03/02/multi-armed-bandits/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/03/02/multi-armed-bandits/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>One of fundamental challenges of Reinforcement learning is the exploration versus exploitation trade-off, which can be described as the search for a balance between exploring the environment to find profitable actions while taking the empirically best action as often as possible. And this exploration vs. exploitation trade-off in reinforcement learning has been most thoroughly studied through the multi-armed bandit problem, which is perhaps the simplest instance of this exploration vs. exploitation dilemma.</p>
+<h1 id="A-k-armed-Bandit-Problem"><a href="#A-k-armed-Bandit-Problem" class="headerlink" title="A k-armed Bandit Problem"></a>A k-armed Bandit Problem</h1><h2 id="The-basic-problem"><a href="#The-basic-problem" class="headerlink" title="The basic problem"></a>The basic problem</h2><ul>
+<li>You are faced repeatedly with a choice among k different options, or actions. </li>
+<li>After each choice you receive a numerical reward chosen from a stationary probability distribution that depends on the action you selected. </li>
+<li>Your objective is to maximize the expected total reward over some time period, for example, over 1000 action selections, or time steps.  </li>
+</ul>
+<p>In our k-armed bandit problem, each of the k actions has an expected or mean reward given that action is selected; let us call this the <strong>value</strong> of that action.<br>If you knew the value of each action, then it would be trivial to solve the k-armed bandit problem: you would always select the action with highest value. Therefore, we assume that you do not know the action values with certainty, although you may have estimates.</p>
+<h2 id="Mathematical-notions"><a href="#Mathematical-notions" class="headerlink" title="Mathematical notions"></a>Mathematical notions</h2><h2 id="Greedy-action"><a href="#Greedy-action" class="headerlink" title="Greedy action"></a>Greedy action</h2><p>If you maintain estimates of the action values, then at any time step there is at least one action whose estimated value is greatest. We call these <strong>the greedy actions</strong>.  </p>
+<h2 id="Exploiting-vs-Exploring"><a href="#Exploiting-vs-Exploring" class="headerlink" title="Exploiting vs Exploring"></a>Exploiting vs Exploring</h2><p>When you select one of these greedy actions, we say that you are <strong>exploiting</strong> your current knowledge of the values of the actions. If instead you select one of the nongreedy actions, then we say you are <strong>exploring</strong>, because this enables you to improve your estimate of the nongreedy action’s value.<br>Because it is not possible both to explore and to exploit with any single action selection, one often refers to the “conflict” between exploration and exploitation.</p>
+<h2 id="Why-do-exploring"><a href="#Why-do-exploring" class="headerlink" title="Why do exploring?"></a>Why do exploring?</h2><p>Exploitation is the right thing to do to maximize the expected reward on the one step, but exploration may <strong>produce the greater total reward in the long run</strong>.    </p>
+<p>For example, suppose a greedy action’s value is known with certainty, while several other actions are estimated to be nearly as good but with substantial uncertainty. The uncertainty is such that at least one of these other actions probably is actually better than the greedy action, but you don’t know which one. If you have many time steps ahead on which to make action selections, then it may be better to explore the nongreedy actions and discover which of them are better than the greedy action. Reward is lower in the short run, during exploration, but higher in the long run because after you have discovered the better actions, you can exploit them many times. </p>
+<h2 id="Stationary-Multi-armed-Bandit"><a href="#Stationary-Multi-armed-Bandit" class="headerlink" title="Stationary Multi-armed Bandit"></a>Stationary Multi-armed Bandit</h2><p><strong>In any specific case, whether it is better to explore or exploit depends in a complex way on the precise values of the estimates, uncertainties, and the number of remaining steps.</strong><br>There are many sophisticated methods for balancing exploration and exploitation for particular mathematical formulations of the k-armed bandit and related problems. However, most of these methods make strong assumptions about stationarity and prior knowledge that are either violated or impossible to verify in applications and in the full reinforcement learning problem that we consider in subsequent chapters. The guarantees of optimality or bounded loss for these methods are of little comfort when the assumptions of their theory do not apply.</p>
+<h1 id="Action-value-Methods"><a href="#Action-value-Methods" class="headerlink" title="Action-value Methods"></a>Action-value Methods</h1><p>Recall that the true value of an action is the mean reward when that action is selected. One natural way to estimate this is by averaging the rewards actually received:</p>
+<p>We call this the <strong>sample-average</strong> method for estimating action values because each estimate is an average of the sample of relevant rewards.</p>
+<p>Of course this is just one way to estimate action values, and not necessarily the best one. Nevertheless, for now let us stay with this simple estimation method and turn to the question of how the estimates might be used to select actions.</p>
+<h2 id="Greedy-algorithm"><a href="#Greedy-algorithm" class="headerlink" title="Greedy algorithm"></a>Greedy algorithm</h2><p>The simplest action selection rule is to select one of the actions with the highest estimated value, that is, one of the greedy actions as defined in the previous section. If there is more than one greedy action, then a selection is made among them in some arbitrary way, perhaps randomly. We write this greedy action selection method as$$ A_t=argmax_aQ_t(a),$$where $argmax_a$ denotes the action a for which the expression that follows is maximized (again, with ties broken arbitrarily). </p>
+<p>Greedy action selection always exploits current knowledge to maximize immediate reward; it spends no time at all sampling apparently inferior actions to see if they might really be better.</p>
+<h2 id="ε-Greedy-algorithm"><a href="#ε-Greedy-algorithm" class="headerlink" title="ε-Greedy algorithm"></a>ε-Greedy algorithm</h2><p>A simple alternative is to behave greedily most of the time, but every once in a while, say with small probability ε, instead select randomly from among all the actions with equal probability, independently of the action-value estimates. We call methods using this near-greedy action selection rule ε-greedy methods. </p>
+<p>An advantage of these methods is that, in the limit as the number of steps increases, every action will be sampled an infinite number of times, thus ensuring that all the $Q_t(a)$ converge to $q_∗(a)$. This of course implies that the probability of selecting the optimal action converges to greater than 1 − ε, that is, to near certainty. These are just asymptotic guarantees, however, and say little about the practical effectiveness of the methods.</p>
+<h1 id="The-10-armed-Testbed"><a href="#The-10-armed-Testbed" class="headerlink" title="The 10-armed Testbed"></a>The 10-armed Testbed</h1><p>The upper graph shows the increase in expected reward with experience. The greedy method improved slightly faster than the other methods at the very beginning, but then leveled off at a lower level. The greedy method performed significantly worse in the long run because it often got stuck performing suboptimal actions.<br>The lower graph shows that the greedy method found the optimal action in only approximately one-third of the tasks. In the other two-thirds, its initial samples of the optimal action were disappointing, and it never returned to it. The ε-greedy methods eventually performed better because they continued to explore and to improve their chances of recognizing the optimal action.<br>The ε = 0.1 method explored more, and usually found the optimal action earlier, but it never selected that action more than 91% of the time. The ε = 0.01 method improved more slowly, but eventually would perform better than the ε = 0.1 method on both performance measures shown in the figure. It is also possible to reduce ε over time to try to get the best of both high and low values.     </p>
+<p>The advantage of ε-greedy over greedy methods depends on the task. But even in the deterministic case there is a large advantage to exploring if we weaken some of the other assumptions. For example, suppose the bandit task were nonstationary, that is, the true values of the actions changed over time. In this case exploration is needed even in the deterministic case to make sure one of the nongreedy actions has not changed to become better than the greedy one. Even if the underlying task is stationary and deterministic, the learner faces a set of banditlike decision tasks each of which changes over time as learning proceeds and the agent’s policy changes. Reinforcement learning requires a balance between exploration and exploitation.</p>
+<h1 id="Incremental-Implementation"><a href="#Incremental-Implementation" class="headerlink" title="Incremental Implementation"></a>Incremental Implementation</h1><h1 id="Tracking-a-Nonstationary-Problem"><a href="#Tracking-a-Nonstationary-Problem" class="headerlink" title="Tracking a Nonstationary Problem"></a>Tracking a Nonstationary Problem</h1><h1 id="Optimistic-Initial-Values"><a href="#Optimistic-Initial-Values" class="headerlink" title="Optimistic Initial Values"></a>Optimistic Initial Values</h1><h1 id="Upper-Confidence-Bound-Action-Selection"><a href="#Upper-Confidence-Bound-Action-Selection" class="headerlink" title="Upper-Confidence-Bound Action Selection"></a>Upper-Confidence-Bound Action Selection</h1>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/24/摄像头矫正/" rel="next" title="摄像头矫正">
+                <i class="fa fa-chevron-left"></i> 摄像头矫正
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/04/segmentation-understanding-images-better/" rel="prev" title="Segmentation - Understanding Images Better">
+                Segmentation - Understanding Images Better <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/03/02/multi-armed-bandits/"
+           data-title="Multi-Armed Bandits" data-url="http://github.com/kiseliu/2018/03/02/multi-armed-bandits/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myname.png"
+               alt="kiseliu" />
+          <p class="site-author-name" itemprop="name">kiseliu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/">
+                
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">categories</span>
+                
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+              
+                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kiseliu" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/kiseliu" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/kiseliu" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#A-k-armed-Bandit-Problem"><span class="nav-number">1.</span> <span class="nav-text">A k-armed Bandit Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-basic-problem"><span class="nav-number">1.1.</span> <span class="nav-text">The basic problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mathematical-notions"><span class="nav-number">1.2.</span> <span class="nav-text">Mathematical notions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Greedy-action"><span class="nav-number">1.3.</span> <span class="nav-text">Greedy action</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploiting-vs-Exploring"><span class="nav-number">1.4.</span> <span class="nav-text">Exploiting vs Exploring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-do-exploring"><span class="nav-number">1.5.</span> <span class="nav-text">Why do exploring?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stationary-Multi-armed-Bandit"><span class="nav-number">1.6.</span> <span class="nav-text">Stationary Multi-armed Bandit</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Action-value-Methods"><span class="nav-number">2.</span> <span class="nav-text">Action-value Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Greedy-algorithm"><span class="nav-number">2.1.</span> <span class="nav-text">Greedy algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ε-Greedy-algorithm"><span class="nav-number">2.2.</span> <span class="nav-text">ε-Greedy algorithm</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-10-armed-Testbed"><span class="nav-number">3.</span> <span class="nav-text">The 10-armed Testbed</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Incremental-Implementation"><span class="nav-number">4.</span> <span class="nav-text">Incremental Implementation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tracking-a-Nonstationary-Problem"><span class="nav-number">5.</span> <span class="nav-text">Tracking a Nonstationary Problem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optimistic-Initial-Values"><span class="nav-number">6.</span> <span class="nav-text">Optimistic Initial Values</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Upper-Confidence-Bound-Action-Selection"><span class="nav-number">7.</span> <span class="nav-text">Upper-Confidence-Bound Action Selection</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kiseliu</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kiseliu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>

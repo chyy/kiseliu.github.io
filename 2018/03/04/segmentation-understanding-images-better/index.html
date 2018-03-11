@@ -1,0 +1,768 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Helvetica Neue:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在前面的章节，我们已经看了一些发现图像特征的技术，这些技术能够帮助我们描述图像中的各种各样的物体。我们也介绍了Haar Cascades，它能帮助我们识别图像中的脸部。关于这些算法的一个很有趣的事情是它们的局部本质。所有这些算法都会查看其邻域中的点，以将某个像素标记为特征像素。在本章，我们将向前推进一步，尝试从一个不同的角度来分析一张给定的图片。我们将看看有助于我们查看更大的图像区域的技术，并从中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Segmentation - Understanding Images Better">
+<meta property="og:url" content="http://github.com/kiseliu/2018/03/04/segmentation-understanding-images-better/index.html">
+<meta property="og:site_name" content="Welcome to kiseliu's homepage">
+<meta property="og:description" content="在前面的章节，我们已经看了一些发现图像特征的技术，这些技术能够帮助我们描述图像中的各种各样的物体。我们也介绍了Haar Cascades，它能帮助我们识别图像中的脸部。关于这些算法的一个很有趣的事情是它们的局部本质。所有这些算法都会查看其邻域中的点，以将某个像素标记为特征像素。在本章，我们将向前推进一步，尝试从一个不同的角度来分析一张给定的图片。我们将看看有助于我们查看更大的图像区域的技术，并从中">
+<meta property="og:updated_time" content="2018-03-04T14:52:45.415Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Segmentation - Understanding Images Better">
+<meta name="twitter:description" content="在前面的章节，我们已经看了一些发现图像特征的技术，这些技术能够帮助我们描述图像中的各种各样的物体。我们也介绍了Haar Cascades，它能帮助我们识别图像中的脸部。关于这些算法的一个很有趣的事情是它们的局部本质。所有这些算法都会查看其邻域中的点，以将某个像素标记为特征像素。在本章，我们将向前推进一步，尝试从一个不同的角度来分析一张给定的图片。我们将看看有助于我们查看更大的图像区域的技术，并从中">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://github.com/kiseliu/2018/03/04/segmentation-understanding-images-better/"/>
+
+  <title> Segmentation - Understanding Images Better | Welcome to kiseliu's homepage </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Welcome to kiseliu's homepage</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Here's a dream chaser.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Segmentation - Understanding Images Better
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2018-03-04T21:42:27+08:00" content="2018-03-04">
+              2018-03-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/computer-vision/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Vision</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/03/04/segmentation-understanding-images-better/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/03/04/segmentation-understanding-images-better/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在前面的章节，我们已经看了一些发现图像特征的技术，这些技术能够帮助我们描述图像中的各种各样的物体。我们也介绍了Haar Cascades，它能帮助我们识别图像中的脸部。关于这些算法的一个很有趣的事情是它们的局部本质。所有这些算法都会查看其邻域中的点，以将某个像素标记为特征像素。在本章，我们将向前推进一步，尝试从一个不同的角度来分析一张给定的图片。我们将看看有助于我们查看更大的图像区域的技术，并从中得出有意义的结论。这将帮助我们<strong>将图像分割为诸如背景，前景，水域和草地等区域</strong>。</p>
+<p>下列是本章涉及的算法和技术列表：</p>
+<ul>
+<li>Contour detection</li>
+<li>Watershed algorithm</li>
+<li>Superpixels</li>
+<li>Graph cut</li>
+</ul>
+<h1 id="Introduction-to-segmentation"><a href="#Introduction-to-segmentation" class="headerlink" title="Introduction to segmentation"></a>Introduction to segmentation</h1><p>分割的意思究竟是什么？分割图像是将图像分解成更小的具有有意义的信息的区域的过程，并帮助我们理解图像的整体内容。例如，让我们看看下面的图片（图1）。左侧是原始图像，在右侧看到对应的分割图像。正如我们所看到的，该算法成功将图像的相似的区域组成一起。比如整个灌木背景被分组为深绿色。黄色的草地和动物前方的草地被染成了一块。在本章中，我们将看看将帮助我们实现类似结果的不同技术。并非所有技术都适用于所有情况，因此有必要了解些不同的技术：</p>
+<p>在我们专门研究每种算法之前，一个很好的提示是所有这些算法在内部是如何使用基于其颜色值的像素聚类的。这些算法之间的唯一区别是用于聚类的参数。有些使用欧几里德距离，有些使用更复杂的公式，我们将在接下来的章节中看到。</p>
+<h1 id="Contour-detection"><a href="#Contour-detection" class="headerlink" title="Contour detection"></a>Contour detection</h1><p>让我们以一个最简单的分隔技术开始：轮廓。只有输入，轮廓法除了图像中物体的边界之外，没有其他输入。比如，在图片中，你有不同类型的瓶子，你想要将他们每一个都分隔出来。轮廓检测算法将尝试追踪每个瓶子的边界并形成闭环。图像中的每一个闭环表示一个轮廓。你可能会想，轮廓不是和边缘相似么？他们有一些微小的差异。轮廓总是形成闭环，然而边缘可以是打开的。一个轮廓检测算法将尝试把边缘组合起来形成一个闭环。</p>
+<p>下述代码用来抽取图像中的轮廓。为了得到更好的结果，我们首先把图像转化为灰度图，然后使用sobel边缘检测：</p>
+<pre><code>from skimage import measure
+from skimage.io import imread
+from skimage.color import rgb2gray
+from skimage.filters import sobel
+import matplotlib.pyplot as plt
+
+# Read an image
+img = imread(&apos;contours.png&apos;)
+
+# Convert the image to grayscale
+img_gray = rgb2gray(img)
+
+# Find edges in the image
+img_edges = sobel(img_gray)
+
+# Find contours in the image
+contours = measure.find_contours(img_edges, 0.2)
+
+# Display the image and plot all contours found
+fig, ax = plt.subplots()
+ax.imshow(img_edges, interpolation=&apos;nearest&apos;, cmap=plt.cm.gray)
+for n, contour in     enumerate(contours):
+    ax.plot(contour[:, 1], contour[:, 0], linewidth=2)
+    ax.axis(&apos;image&apos;)
+    ax.set_xticks([])
+    ax.set_yticks([])
+plt.show()
+</code></pre><p>正如我们看到的，该算法能够完美地检测到圆和正方形。The two-color boundary that you see in the output consists of the inner and the outer edges for each shape.</p>
+<p>As the image gets more complicated, the results are not that good. You can try an experiment with Lenna’s image and see the results yourself. So how do we tackle more complicated images? Simple! By using more sophisticated algorithms. Let’s look at the Watershed algorithm next.</p>
+<p>如果图片变得复杂一些，结果可能没有那么好。你可以尝试用Lena的图片做一下实验，然后看一下结果。那么我们如何处理更复杂的图片呢？很简单，使用更精细的算法。下面让我们看一下分水岭算法。</p>
+<h1 id="The-Watershed-algorithm"><a href="#The-Watershed-algorithm" class="headerlink" title="The Watershed algorithm"></a>The Watershed algorithm</h1><p>这是一个有趣的算法，它从物理世界中提取类比。在研究论文和其他文章中解释这种算法的最常用方式是与地理浮雕相比较。想象一个有许多陨石坑的地区（例如月球表面），我们希望为这些陨石坑填充不同颜色的水。我们最初从标记每个火山口的中心开始，然后继续用彩色的水填充火山口，直到水位达到刚好接触相邻火山口边界的点（假设所有火山口都靠近）。在我们用彩色水填充所有陨石坑后，我们已经成功地分割出了我们表面上的每个坑。够简单！</p>
+<h1 id="Superpixels"><a href="#Superpixels" class="headerlink" title="Superpixels"></a>Superpixels</h1><h1 id="Normalized-Graph-cut"><a href="#Normalized-Graph-cut" class="headerlink" title="Normalized Graph cut"></a>Normalized Graph cut</h1><h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/02/multi-armed-bandits/" rel="next" title="Multi-Armed Bandits">
+                <i class="fa fa-chevron-left"></i> Multi-Armed Bandits
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/04/introduction-to-computer-vision-using-opencv/" rel="prev" title="Introduction to Computer Vision Using OpenCV">
+                Introduction to Computer Vision Using OpenCV <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/03/04/segmentation-understanding-images-better/"
+           data-title="Segmentation - Understanding Images Better" data-url="http://github.com/kiseliu/2018/03/04/segmentation-understanding-images-better/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myname.png"
+               alt="kiseliu" />
+          <p class="site-author-name" itemprop="name">kiseliu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/">
+                
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">categories</span>
+                
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+              
+                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kiseliu" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/kiseliu" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/kiseliu" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-to-segmentation"><span class="nav-number">1.</span> <span class="nav-text">Introduction to segmentation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Contour-detection"><span class="nav-number">2.</span> <span class="nav-text">Contour detection</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Watershed-algorithm"><span class="nav-number">3.</span> <span class="nav-text">The Watershed algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Superpixels"><span class="nav-number">4.</span> <span class="nav-text">Superpixels</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Normalized-Graph-cut"><span class="nav-number">5.</span> <span class="nav-text">Normalized Graph cut</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-number">6.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kiseliu</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kiseliu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
